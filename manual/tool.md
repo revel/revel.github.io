@@ -13,7 +13,7 @@ Now run it:
 
 	$ bin/revel
 	~
-	~ revel! http://revel.github.com/revel
+	~ revel! http://revel.github.io
 	~
 	usage: revel command [arguments]
 

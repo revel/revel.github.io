@@ -146,7 +146,7 @@ Here is an example session:
 
 	$ revel test github.com/revel/revel/samples/booking dev
 	~
-	~ revel! http://revel.github.com/revel
+	~ revel! http://revel.github.io
 	~
 	INFO  2012/11/09 19:21:02 revel.go:237: Loaded module testrunner
 	Open DB

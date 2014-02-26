@@ -55,7 +55,7 @@ Lastly, let's verify that it works:
 
 	$ revel help
 	~
-	~ revel! http://revel.github.com/revel
+	~ revel! http://revel.github.io
 	~
 	usage: revel command [arguments]
 

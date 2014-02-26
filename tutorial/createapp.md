@@ -10,7 +10,7 @@ run it:
 
 	$ revel new myapp
 	~
-	~ revel! http://revel.github.com/revel
+	~ revel! http://revel.github.io
 	~
     Your application is ready:
         /Users/revel/code/gocode/src/myapp
@@ -20,7 +20,7 @@ run it:
 
 	$ revel run myapp
 	~
-	~ revel! http://revel.github.com/revel
+	~ revel! http://revel.github.io
 	~
 	2012/09/27 17:01:54 run.go:41: Running myapp (myapp) in dev mode
 	2012/09/27 17:01:54 harness.go:112: Listening on :9000
