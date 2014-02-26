@@ -1,0 +1,114 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>I18n</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#I18nFilter">func I18nFilter(c *Controller, fc []Filter)</a></dd>
+			
+				
+				<dd><a href="#Message">func Message(locale, message string, args ...interface{}) string</a></dd>
+			
+				
+				<dd><a href="#MessageLanguages">func MessageLanguages() []string</a></dd>
+			
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/i18n.html">i18n.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const (
+    <span id="CurrentLocaleRenderArg">CurrentLocaleRenderArg</span> = &#34;currentLocale&#34; <span class="comment">// The key for the current locale render arg value</span>
+
+)</pre>
+				
+			
+		
+		
+		
+			
+			
+			<h2 id="I18nFilter">func <a href="../src/i18n.html?s=4243:4286#L135">I18nFilter</a></h2>
+			<pre>func I18nFilter(c *<a href="#Controller">Controller</a>, fc []<a href="#Filter">Filter</a>)</pre>
+			
+			
+		
+			
+			
+			<h2 id="Message">func <a href="../src/i18n.html?s=926:990#L31">Message</a></h2>
+			<pre>func Message(locale, message <a href="/pkg/builtin/#string">string</a>, args ...interface{}) <a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+Perform a message look-up for the given locale and message using the given arguments.
+</p>
+<p>
+When either an unknown locale or message is detected, a specially formatted string is returned.
+</p>
+
+			
+		
+			
+			
+			<h2 id="MessageLanguages">func <a href="../src/i18n.html?s=555:587#L18">MessageLanguages</a></h2>
+			<pre>func MessageLanguages() []<a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+Return all currently loaded message languages.
+</p>
+
+			
+		
+		
+	
+
+	
+
+
+
+
+
+
+

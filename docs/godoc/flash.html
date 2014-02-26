@@ -1,0 +1,123 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Flash</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#FlashFilter">func FlashFilter(c *Controller, fc []Filter)</a></dd>
+			
+			
+				
+				<dd><a href="#Flash">type Flash</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Flash.Error">func (f Flash) Error(msg string, args ...interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Flash.Success">func (f Flash) Success(msg string, args ...interface{})</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/flash.html">flash.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+		
+		
+			
+			
+			<h2 id="FlashFilter">func <a href="../src/flash.html?s=714:758#L23">FlashFilter</a></h2>
+			<pre>func FlashFilter(c *<a href="#Controller">Controller</a>, fc []<a href="#Filter">Filter</a>)</pre>
+			
+			
+		
+		
+			
+			
+			<h2 id="Flash">type <a href="../src/flash.html?s=334:384#L3">Flash</a></h2>
+			<pre>type Flash struct {
+    Data, Out map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>
+}</pre>
+			<p>
+Flash represents a cookie that gets overwritten on each request.
+It allows data to be stored across one page at a time.
+This is commonly used to implement success or error messages.
+e.g. the Post/Redirect/Get pattern: <a href="http://en.wikipedia.org/wiki/Post/Redirect/Get">http://en.wikipedia.org/wiki/Post/Redirect/Get</a>
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="Flash.Error">func (Flash) <a href="../src/flash.html?s=386:439#L7">Error</a></h3>
+				<pre>func (f <a href="#Flash">Flash</a>) Error(msg <a href="/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				
+				
+				
+			
+				
+				<h3 id="Flash.Success">func (Flash) <a href="../src/flash.html?s=547:602#L15">Success</a></h3>
+				<pre>func (f <a href="#Flash">Flash</a>) Success(msg <a href="/pkg/builtin/#string">string</a>, args ...interface{})</pre>
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+

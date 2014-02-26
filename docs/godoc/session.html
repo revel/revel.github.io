@@ -1,0 +1,123 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Session</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#SessionFilter">func SessionFilter(c *Controller, fc []Filter)</a></dd>
+			
+			
+				
+				<dd><a href="#Session">type Session</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Session.Id">func (s Session) Id() string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/session.html">session.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const (
+    <span id="SESSION_ID_KEY">SESSION_ID_KEY</span> = &#34;_ID&#34;
+    <span id="TS_KEY">TS_KEY</span>         = &#34;_TS&#34;
+)</pre>
+				
+			
+		
+		
+		
+			
+			
+			<h2 id="SessionFilter">func <a href="../src/session.html?s=2993:3039#L115">SessionFilter</a></h2>
+			<pre>func SessionFilter(c *<a href="#Controller">Controller</a>, fc []<a href="#Filter">Filter</a>)</pre>
+			
+			
+		
+		
+			
+			
+			<h2 id="Session">type <a href="../src/session.html?s=227:257#L5">Session</a></h2>
+			<pre>type Session map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+A signed cookie (and thus limited to 4kb in size).
+Restriction: Keys may not have a colon in them.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="Session.Id">func (Session) <a href="../src/session.html?s=855:883#L29">Id</a></h3>
+				<pre>func (s <a href="#Session">Session</a>) Id() <a href="/pkg/builtin/#string">string</a></pre>
+				<p>
+Return a UUID identifying this session.
+</p>
+
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+

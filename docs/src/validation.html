@@ -1,0 +1,213 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Validation</h1>
+
+
+
+	<pre>package revel
+
+<span class="comment">// Simple struct to store the Message &amp; Key of a validation error</span>
+type ValidationError struct {
+    Message, Key string
+}
+
+<span class="comment">// String returns the Message field of the ValidationError struct.</span>
+func (e *ValidationError) String() string {
+    if e == nil {
+        return &#34;&#34;
+    }
+    return e.Message
+}
+
+<span class="comment">// A Validation context manages data validation and error messages.</span>
+type Validation struct {
+    Errors []*ValidationError
+
+}
+
+<span class="comment">// Keep tells revel to set a flash cookie on the client to make the validation</span>
+<span class="comment">// errors available for the next request.</span>
+<span class="comment">// This is helpful  when redirecting the client after the validation failed.</span>
+<span class="comment">// It is good practice to always redirect upon a HTTP POST request. Thus</span>
+<span class="comment">// one should use this method when HTTP POST validation failed and redirect</span>
+<span class="comment">// the user back to the form.</span>
+func (v *Validation) Keep() {
+    v.keep = true
+}
+
+<span class="comment">// Clear *all* ValidationErrors</span>
+func (v *Validation) Clear() {
+    v.Errors = []*ValidationError{}
+}
+
+<span class="comment">// HasErrors returns true if there are any (ie &gt; 0) errors. False otherwise.</span>
+func (v *Validation) HasErrors() bool {
+    return len(v.Errors) &gt; 0
+}
+
+<span class="comment">// ErrorMap returns the errors mapped by key.</span>
+<span class="comment">// If there are multiple validation errors associated with a single key, the</span>
+<span class="comment">// first one &#34;wins&#34;.  (Typically the first validation will be the more basic).</span>
+func (v *Validation) ErrorMap() map[string]*ValidationError {
+    m := map[string]*ValidationError{}
+    for _, e := range v.Errors {
+        if _, ok := m[e.Key]; !ok {
+            m[e.Key] = e
+        }
+    }
+    return m
+}
+
+<span class="comment">// Error adds an error to the validation context.</span>
+func (v *Validation) Error(message string, args ...interface{}) *ValidationResult {
+    result := (&amp;ValidationResult{
+        Ok:    false,
+        Error: &amp;ValidationError{},
+    }).Message(message, args...)
+    v.Errors = append(v.Errors, result.Error)
+    return result
+}
+
+<span class="comment">// A ValidationResult is returned from every validation method.</span>
+<span class="comment">// It provides an indication of success, and a pointer to the Error (if any).</span>
+type ValidationResult struct {
+    Error *ValidationError
+    Ok    bool
+}
+
+<span class="comment">// Key sets the ValidationResult&#39;s Error &#34;key&#34; and returns itself for chaining</span>
+func (r *ValidationResult) Key(key string) *ValidationResult {
+    if r.Error != nil {
+        r.Error.Key = key
+    }
+    return r
+}
+
+<span class="comment">// Message sets the error message for a ValidationResult. Returns itself to</span>
+<span class="comment">// allow chaining.  Allows Sprintf() type calling with multiple parameters</span>
+func (r *ValidationResult) Message(message string, args ...interface{}) *ValidationResult {
+    if r.Error != nil {
+        if len(args) == 0 {
+            r.Error.Message = message
+        } else {
+            r.Error.Message = fmt.Sprintf(message, args...)
+        }
+    }
+    return r
+}
+
+<span class="comment">// Required tests that the argument is non-nil and non-empty (if string or list)</span>
+func (v *Validation) Required(obj interface{}) *ValidationResult {
+    return v.apply(Required{}, obj)
+}
+
+func (v *Validation) Min(n int, min int) *ValidationResult {
+    return v.apply(Min{min}, n)
+}
+
+func (v *Validation) Max(n int, max int) *ValidationResult {
+    return v.apply(Max{max}, n)
+}
+
+func (v *Validation) Range(n, min, max int) *ValidationResult {
+    return v.apply(Range{Min{min}, Max{max}}, n)
+}
+
+func (v *Validation) MinSize(obj interface{}, min int) *ValidationResult {
+    return v.apply(MinSize{min}, obj)
+}
+
+func (v *Validation) MaxSize(obj interface{}, max int) *ValidationResult {
+    return v.apply(MaxSize{max}, obj)
+}
+
+func (v *Validation) Length(obj interface{}, n int) *ValidationResult {
+    return v.apply(Length{n}, obj)
+}
+
+func (v *Validation) Match(str string, regex *regexp.Regexp) *ValidationResult {
+    return v.apply(Match{regex}, str)
+}
+
+func (v *Validation) Email(str string) *ValidationResult {
+    return v.apply(Email{Match{emailPattern}}, str)
+}
+
+<span class="comment">// Apply a group of validators to a field, in order, and return the</span>
+<span class="comment">// ValidationResult from the first one that fails, or the last one that</span>
+<span class="comment">// succeeds.</span>
+func (v *Validation) Check(obj interface{}, checks ...Validator) *ValidationResult {
+    var result *ValidationResult
+    for _, check := range checks {
+        result = v.apply(check, obj)
+        if !result.Ok {
+            return result
+        }
+    }
+    return result
+}
+
+<span class="comment">// Revel Filter function to be hooked into the filter chain.</span>
+func ValidationFilter(c *Controller, fc []Filter) {
+    errors, err := restoreValidationErrors(c.Request.Request)
+    c.Validation = &amp;Validation{
+        Errors: errors,
+        keep:   false,
+    }
+    hasCookie := (err != http.ErrNoCookie)
+
+    fc[0](c, fc[1:])
+
+    <span class="comment">// Add Validation errors to RenderArgs.</span>
+    c.RenderArgs[&#34;errors&#34;] = c.Validation.ErrorMap()
+
+    <span class="comment">// Store the Validation errors</span>
+    var errorsValue string
+    if c.Validation.keep {
+        for _, error := range c.Validation.Errors {
+            if error.Message != &#34;&#34; {
+                errorsValue += &#34;\x00&#34; + error.Key + &#34;:&#34; + error.Message + &#34;\x00&#34;
+            }
+        }
+    }
+
+    <span class="comment">// When there are errors from Validation and Keep() has been called, store the</span>
+    <span class="comment">// values in a cookie. If there previously was a cookie but no errors, remove</span>
+    <span class="comment">// the cookie.</span>
+    if errorsValue != &#34;&#34; {
+        c.SetCookie(&amp;http.Cookie{
+            Name:     CookiePrefix + &#34;_ERRORS&#34;,
+            Value:    url.QueryEscape(errorsValue),
+            Path:     &#34;/&#34;,
+            HttpOnly: CookieHttpOnly,
+            Secure:   CookieSecure,
+        })
+    } else if hasCookie {
+        c.SetCookie(&amp;http.Cookie{
+            Name:     CookiePrefix + &#34;_ERRORS&#34;,
+            MaxAge:   -1,
+            Path:     &#34;/&#34;,
+            HttpOnly: CookieHttpOnly,
+            Secure:   CookieSecure,
+        })
+    }
+}
+
+<span class="comment">// Register default validation keys for all calls to Controller.Validation.Func().</span>
+<span class="comment">// Map from (package).func =&gt; (line =&gt; name of first arg to Validation func)</span>
+<span class="comment">// E.g. &#34;myapp/controllers.helper&#34; or &#34;myapp/controllers.(*Application).Action&#34;</span>
+<span class="comment">// This is set on initialization in the generated main.go file.</span>
+var DefaultValidationKeys map[string]map[int]string
+</pre>
+
+
+
+
+

@@ -1,0 +1,243 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Util</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+			
+				
+				<dd><a href="#ContainsString">func ContainsString(list []string, target string) bool</a></dd>
+			
+				
+				<dd><a href="#ContentTypeByFilename">func ContentTypeByFilename(filename string) string</a></dd>
+			
+				
+				<dd><a href="#DirExists">func DirExists(filename string) bool</a></dd>
+			
+				
+				<dd><a href="#Equal">func Equal(a, b interface{}) bool</a></dd>
+			
+				
+				<dd><a href="#ExecuteTemplate">func ExecuteTemplate(tmpl ExecutableTemplate, data interface{}) string</a></dd>
+			
+				
+				<dd><a href="#FindMethod">func FindMethod(recvType reflect.Type, funcVal reflect.Value) *reflect.Method</a></dd>
+			
+				
+				<dd><a href="#FirstNonEmpty">func FirstNonEmpty(strs ...string) string</a></dd>
+			
+				
+				<dd><a href="#LoadMimeConfig">func LoadMimeConfig()</a></dd>
+			
+				
+				<dd><a href="#MustReadLines">func MustReadLines(filename string) []string</a></dd>
+			
+				
+				<dd><a href="#ParseKeyValueCookie">func ParseKeyValueCookie(val string, cb func(key, val string))</a></dd>
+			
+				
+				<dd><a href="#ReadLines">func ReadLines(filename string) ([]string, error)</a></dd>
+			
+			
+				
+				<dd><a href="#ExecutableTemplate">type ExecutableTemplate</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/util.html">util.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const <span id="DefaultFileContentType">DefaultFileContentType</span> = &#34;application/octet-stream&#34;</pre>
+				
+			
+		
+		
+		
+			
+			
+			<h2 id="ContainsString">func <a href="../src/util.html?s=871:925#L34">ContainsString</a></h2>
+			<pre>func ContainsString(list []<a href="/pkg/builtin/#string">string</a>, target <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
+			
+			
+		
+			
+			
+			<h2 id="ContentTypeByFilename">func <a href="../src/util.html?s=2405:2455#L90">ContentTypeByFilename</a></h2>
+			<pre>func ContentTypeByFilename(filename <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+Returns a MIME content type based on the filename&#39;s extension.
+If no appropriate one is found, returns &#34;application/octet-stream&#34; by default.
+Additionally, specifies the charset as UTF-8 for text/* types.
+</p>
+
+			
+		
+			
+			
+			<h2 id="DirExists">func <a href="../src/util.html?s=2909:2945#L110">DirExists</a></h2>
+			<pre>func DirExists(filename <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a></pre>
+			<p>
+DirExists returns true if the given path exists and is a directory.
+</p>
+
+			
+		
+			
+			
+			<h2 id="Equal">func <a href="../src/util.html?s=3532:3565#L130">Equal</a></h2>
+			<pre>func Equal(a, b interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+			<p>
+Equal is a helper for comparing value equality, following these rules:
+</p>
+<pre>- Values with equivalent types are compared with reflect.DeepEqual
+- int, uint, and float values are compared without regard to the type width.
+  for example, Equal(int32(5), int64(5)) == true
+- strings and byte slices are converted to strings before comparison.
+- else, return false.
+</pre>
+
+			
+		
+			
+			
+			<h2 id="ExecuteTemplate">func <a href="../src/util.html?s=290:360#L10">ExecuteTemplate</a></h2>
+			<pre>func ExecuteTemplate(tmpl <a href="#ExecutableTemplate">ExecutableTemplate</a>, data interface{}) <a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+Execute a template and returns the result as a string.
+</p>
+
+			
+		
+			
+			
+			<h2 id="FindMethod">func <a href="../src/util.html?s=1082:1159#L44">FindMethod</a></h2>
+			<pre>func FindMethod(recvType <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>, funcVal <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a>) *<a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Method">Method</a></pre>
+			<p>
+Return the reflect.Method, given a Receiver type and Func value.
+</p>
+
+			
+		
+			
+			
+			<h2 id="FirstNonEmpty">func <a href="../src/util.html?s=3026:3067#L115">FirstNonEmpty</a></h2>
+			<pre>func FirstNonEmpty(strs ...<a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
+			
+			
+		
+			
+			
+			<h2 id="LoadMimeConfig">func <a href="../src/util.html?s=1978:1999#L75">LoadMimeConfig</a></h2>
+			<pre>func LoadMimeConfig()</pre>
+			<p>
+Load mime-types.conf on init.
+</p>
+
+			
+		
+			
+			
+			<h2 id="MustReadLines">func <a href="../src/util.html?s=497:541#L17">MustReadLines</a></h2>
+			<pre>func MustReadLines(filename <a href="/pkg/builtin/#string">string</a>) []<a href="/pkg/builtin/#string">string</a></pre>
+			<p>
+Reads the lines of the given file.  Panics in the case of error.
+</p>
+
+			
+		
+			
+			
+			<h2 id="ParseKeyValueCookie">func <a href="../src/util.html?s=1603:1665#L61">ParseKeyValueCookie</a></h2>
+			<pre>func ParseKeyValueCookie(val <a href="/pkg/builtin/#string">string</a>, cb func(key, val <a href="/pkg/builtin/#string">string</a>))</pre>
+			<p>
+Takes the raw (escaped) cookie value and parses out key values.
+</p>
+
+			
+		
+			
+			
+			<h2 id="ReadLines">func <a href="../src/util.html?s=689:738#L26">ReadLines</a></h2>
+			<pre>func ReadLines(filename <a href="/pkg/builtin/#string">string</a>) ([]<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+Reads the lines of the given file.  Panics in the case of error.
+</p>
+
+			
+		
+		
+			
+			
+			<h2 id="ExecutableTemplate">type <a href="../src/util.html?s=154:230#L5">ExecutableTemplate</a></h2>
+			<pre>type ExecutableTemplate interface {
+    Execute(<a href="/pkg/io/">io</a>.<a href="/pkg/io/#Writer">Writer</a>, interface{}) <a href="/pkg/builtin/#error">error</a>
+}</pre>
+			<p>
+Add some more methods to the default Template.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+

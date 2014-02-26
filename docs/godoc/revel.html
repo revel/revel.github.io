@@ -1,0 +1,215 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Revel</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+				<dd><a href="#pkg-constants">Constants</a></dd>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+				
+				<dd><a href="#CheckInit">func CheckInit()</a></dd>
+			
+				
+				<dd><a href="#Init">func Init(mode, importPath, srcPath string)</a></dd>
+			
+				
+				<dd><a href="#ResolveImportPath">func ResolveImportPath(importPath string) (string, error)</a></dd>
+			
+			
+				
+				<dd><a href="#Module">type Module</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ModuleByName">func ModuleByName(name string) (m Module, found bool)</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/revel.html">revel.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+			<h2 id="pkg-constants">Constants</h2>
+			
+				<pre>const (
+    <span id="REVEL_IMPORT_PATH">REVEL_IMPORT_PATH</span> = &#34;github.com/robfig/revel&#34;
+)</pre>
+				
+			
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<pre>var (
+    <span class="comment">// App details</span>
+    <span id="AppName">AppName</span>    <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;sample&#34;</span>
+    <span id="BasePath">BasePath</span>   <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample&#34;</span>
+    <span id="AppPath">AppPath</span>    <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample/app&#34;</span>
+    <span id="ViewsPath">ViewsPath</span>  <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample/app/views&#34;</span>
+    <span id="ImportPath">ImportPath</span> <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;corp/sample&#34;</span>
+    <span id="SourcePath">SourcePath</span> <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/Users/robfig/gocode/src&#34;</span>
+
+    <span id="Config">Config</span>  *<a href="#MergedConfig">MergedConfig</a>
+    <span id="RunMode">RunMode</span> <a href="/pkg/builtin/#string">string</a> <span class="comment">// Application-defined (by default, &#34;dev&#34; or &#34;prod&#34;)</span>
+    <span id="DevMode">DevMode</span> <a href="/pkg/builtin/#bool">bool</a>   <span class="comment">// if true, RunMode is a development mode.</span>
+
+    <span class="comment">// Revel installation details</span>
+    <span id="RevelPath">RevelPath</span> <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/revel&#34;</span>
+
+    <span class="comment">// Where to look for templates and configuration.</span>
+    <span class="comment">// Ordered by priority.  (Earlier paths take precedence over later paths.)</span>
+    <span id="CodePaths">CodePaths</span>     []<a href="/pkg/builtin/#string">string</a>
+    <span id="ConfPaths">ConfPaths</span>     []<a href="/pkg/builtin/#string">string</a>
+    <span id="TemplatePaths">TemplatePaths</span> []<a href="/pkg/builtin/#string">string</a>
+
+    <span id="Modules">Modules</span> []<a href="#Module">Module</a>
+
+    <span class="comment">// Server config.</span>
+    <span class="comment">//</span>
+    <span class="comment">// Alert: This is how the app is configured, which may be different from</span>
+    <span class="comment">// the current process reality.  For example, if the app is configured for</span>
+    <span class="comment">// port 9000, HttpPort will always be 9000, even though in dev mode it is</span>
+    <span class="comment">// run on a random port and proxied.</span>
+    <span id="HttpPort">HttpPort</span>    <a href="/pkg/builtin/#int">int</a>    <span class="comment">// e.g. 9000</span>
+    <span id="HttpAddr">HttpAddr</span>    <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;&#34;, &#34;127.0.0.1&#34;</span>
+    <span id="HttpSsl">HttpSsl</span>     <a href="/pkg/builtin/#bool">bool</a>   <span class="comment">// e.g. true if using ssl</span>
+    <span id="HttpSslCert">HttpSslCert</span> <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/path/to/cert.pem&#34;</span>
+    <span id="HttpSslKey">HttpSslKey</span>  <a href="/pkg/builtin/#string">string</a> <span class="comment">// e.g. &#34;/path/to/key.pem&#34;</span>
+
+    <span class="comment">// All cookies dropped by the framework begin with this prefix.</span>
+    <span id="CookiePrefix">CookiePrefix</span> <a href="/pkg/builtin/#string">string</a>
+
+    <span class="comment">// Cookie flags</span>
+    <span id="CookieHttpOnly">CookieHttpOnly</span> <a href="/pkg/builtin/#bool">bool</a>
+    <span id="CookieSecure">CookieSecure</span>   <a href="/pkg/builtin/#bool">bool</a>
+
+    <span class="comment">// Delimiters to use when rendering templates</span>
+    <span id="TemplateDelims">TemplateDelims</span> <a href="/pkg/builtin/#string">string</a>
+
+    <span class="comment">// Loggers</span>
+    <span id="TRACE">TRACE</span> = <a href="/pkg/log/">log</a>.<a href="/pkg/log/#New">New</a>(<a href="/pkg/io/ioutil/">ioutil</a>.<a href="/pkg/io/ioutil/#Discard">Discard</a>, &#34;TRACE &#34;, <a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ldate">Ldate</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ltime">Ltime</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Lshortfile">Lshortfile</a>)
+    <span id="INFO">INFO</span>  = <a href="/pkg/log/">log</a>.<a href="/pkg/log/#New">New</a>(<a href="/pkg/io/ioutil/">ioutil</a>.<a href="/pkg/io/ioutil/#Discard">Discard</a>, &#34;INFO  &#34;, <a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ldate">Ldate</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ltime">Ltime</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Lshortfile">Lshortfile</a>)
+    <span id="WARN">WARN</span>  = <a href="/pkg/log/">log</a>.<a href="/pkg/log/#New">New</a>(<a href="/pkg/io/ioutil/">ioutil</a>.<a href="/pkg/io/ioutil/#Discard">Discard</a>, &#34;WARN  &#34;, <a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ldate">Ldate</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ltime">Ltime</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Lshortfile">Lshortfile</a>)
+    <span id="ERROR">ERROR</span> = <a href="/pkg/log/">log</a>.<a href="/pkg/log/#New">New</a>(&amp;<a href="#error_log">error_log</a>, &#34;ERROR &#34;, <a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ldate">Ldate</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Ltime">Ltime</a>|<a href="/pkg/log/">log</a>.<a href="/pkg/log/#Lshortfile">Lshortfile</a>)
+
+    <span id="Initialized">Initialized</span> <a href="/pkg/builtin/#bool">bool</a>
+)</pre>
+				
+			
+		
+		
+			
+			
+			<h2 id="CheckInit">func <a href="../src/revel.html?s=9705:9721#L329">CheckInit</a></h2>
+			<pre>func CheckInit()</pre>
+			
+			
+		
+			
+			
+			<h2 id="Init">func <a href="../src/revel.html?s=3179:3222#L100">Init</a></h2>
+			<pre>func Init(mode, importPath, srcPath <a href="/pkg/builtin/#string">string</a>)</pre>
+			<p>
+Init initializes Revel -- it provides paths for getting around the app.
+</p>
+<p>
+Params:
+</p>
+<pre>mode - the run mode, which determines which app.conf settings are used.
+importPath - the Go import path of the application.
+srcPath - the path to the source directory, containing Revel and the app.
+  If not specified (&#34;&#34;), then a functioning Go installation is required.
+</pre>
+
+			
+		
+			
+			
+			<h2 id="ResolveImportPath">func <a href="../src/revel.html?s=8493:8550#L289">ResolveImportPath</a></h2>
+			<pre>func ResolveImportPath(importPath <a href="/pkg/builtin/#string">string</a>) (<a href="/pkg/builtin/#string">string</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+			<p>
+ResolveImportPath returns the filesystem path for the given import path.
+Returns an error if the import path could not be found.
+</p>
+
+			
+		
+		
+			
+			
+			<h2 id="Module">type <a href="../src/revel.html?s=7899:7952#L268">Module</a></h2>
+			<pre>type Module struct {
+    Name, ImportPath, Path <a href="/pkg/builtin/#string">string</a>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ModuleByName">func <a href="../src/revel.html?s=9531:9584#L320">ModuleByName</a></h3>
+				<pre>func ModuleByName(name <a href="/pkg/builtin/#string">string</a>) (m <a href="#Module">Module</a>, found <a href="/pkg/builtin/#bool">bool</a>)</pre>
+				<p>
+ModuleByName returns the module of the given name, if loaded.
+</p>
+
+				
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+

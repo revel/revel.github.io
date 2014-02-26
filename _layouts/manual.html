@@ -1,0 +1,124 @@
+---
+root: ..
+name: manual
+nav:
+-
+  name: Overview
+  articles:
+  -
+    title: Introduction
+    url: index.html
+  -
+    title: Concepts
+    url: concepts.html
+  -
+    title: Organization
+    url: organization.html
+-
+  name: Controllers
+  articles:
+  -
+    title: Overview
+    url: controllers.html
+  -
+    title: Routing
+    url: routing.html
+  -
+    title: Parameters
+    url: binding.html
+  -
+    title: Validation
+    url: validation.html
+  -
+    title: Session / Flash
+    url: sessionflash.html
+  -
+    title: Results
+    url: results.html
+  -
+    title: Templates
+    url: templates.html
+  -
+    title: Interceptors
+    url: interceptors.html
+  -
+    title: Filters
+    url: filters.html
+  -
+    title: Websockets
+    url: websockets.html
+  -
+    title: I18n
+    url: i18n-messages.html
+  -
+    title: Cache
+    url: cache.html
+-
+  name: Modules
+  articles:
+  -
+    title: Overview
+    url: modules.html
+  -
+    title: Testing
+    url: testing.html
+  -
+    title: Jobs
+    url: jobs.html
+-
+  name: Operational
+  articles:
+  -
+    title: Versions
+    url: versions.html
+  -
+    title: Logging
+    url: logging.html
+  -
+    title: Deployment
+    url: deployment.html
+-
+  name: Reference
+  articles:
+  -
+    title: app.conf
+    url: appconf.html
+  -
+    title: Command line tool
+    url: tool.html
+  -
+    title: FAQ
+    url: faq.html
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+    <link href="{{ page.root }}/css/manual.css" type="text/css" rel="stylesheet" />
+    <link href="{{ page.root }}/css/prettify.css" type="text/css" rel="stylesheet" />
+    <script src="{{ page.root }}/js/prettify.js" type="text/javascript"></script>
+    <script src="{{ page.root }}/js/lang-go-rich.js" type="text/javascript"></script>
+		{% include analytics.html %}
+  </head>
+
+  <body onload="prettyPrint()">
+
+    {% include topnav.html %}
+
+    <div class="container">
+      <div class="row">
+        <div class="span2">
+          {% include leftnav.html %}
+        </div>
+
+        <div class="span10">
+          <div class="page-header">
+            <h1>{{ page.title }}</h1>
+            <a href="https://github.com/robfig/revel/edit/gh-pages/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
+          </div>
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

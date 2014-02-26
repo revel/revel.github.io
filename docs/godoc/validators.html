@@ -1,0 +1,560 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Validators</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#Email">type Email</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#VaildEmail">func VaildEmail() Email</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Email.DefaultMessage">func (e Email) DefaultMessage() string</a></dd>
+				
+			
+				
+				<dd><a href="#Length">type Length</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidLength">func ValidLength(n int) Length</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Length.DefaultMessage">func (s Length) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Length.IsSatisfied">func (s Length) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Match">type Match</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidMatch">func ValidMatch(regex *regexp.Regexp) Match</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Match.DefaultMessage">func (m Match) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Match.IsSatisfied">func (m Match) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Max">type Max</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidMax">func ValidMax(max int) Max</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Max.DefaultMessage">func (m Max) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Max.IsSatisfied">func (m Max) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#MaxSize">type MaxSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidMaxSize">func ValidMaxSize(max int) MaxSize</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MaxSize.DefaultMessage">func (m MaxSize) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MaxSize.IsSatisfied">func (m MaxSize) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Min">type Min</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidMin">func ValidMin(min int) Min</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Min.DefaultMessage">func (m Min) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Min.IsSatisfied">func (m Min) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#MinSize">type MinSize</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidMinSize">func ValidMinSize(min int) MinSize</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinSize.DefaultMessage">func (m MinSize) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#MinSize.IsSatisfied">func (m MinSize) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Range">type Range</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidRange">func ValidRange(min, max int) Range</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Range.DefaultMessage">func (r Range) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Range.IsSatisfied">func (r Range) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Required">type Required</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#ValidRequired">func ValidRequired() Required</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Required.DefaultMessage">func (r Required) DefaultMessage() string</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Required.IsSatisfied">func (r Required) IsSatisfied(obj interface{}) bool</a></dd>
+				
+			
+				
+				<dd><a href="#Validator">type Validator</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/validators.html">validators.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Email">type <a href="../src/validators.html?s=3560:3588#L189">Email</a></h2>
+			<pre>type Email struct {
+    <a href="#Match">Match</a>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="VaildEmail">func <a href="../src/validators.html?s=3590:3613#L193">VaildEmail</a></h3>
+				<pre>func VaildEmail() <a href="#Email">Email</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Email.DefaultMessage">func (Email) <a href="../src/validators.html?s=3654:3692#L197">DefaultMessage</a></h3>
+				<pre>func (e <a href="#Email">Email</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Length">type <a href="../src/validators.html?s=2646:2675#L146">Length</a></h2>
+			<pre>type Length struct {
+    N <a href="/pkg/builtin/#int">int</a>
+}</pre>
+			<p>
+Requires an array or string to be exactly a given length.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidLength">func <a href="../src/validators.html?s=2677:2707#L150">ValidLength</a></h3>
+				<pre>func ValidLength(n <a href="/pkg/builtin/#int">int</a>) <a href="#Length">Length</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Length.DefaultMessage">func (Length) <a href="../src/validators.html?s=2948:2987#L165">DefaultMessage</a></h3>
+				<pre>func (s <a href="#Length">Length</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Length.IsSatisfied">func (Length) <a href="../src/validators.html?s=2731:2780#L154">IsSatisfied</a></h3>
+				<pre>func (s <a href="#Length">Length</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Match">type <a href="../src/validators.html?s=3086:3130#L170">Match</a></h2>
+			<pre>type Match struct {
+    Regexp *<a href="/pkg/regexp/">regexp</a>.<a href="/pkg/regexp/#Regexp">Regexp</a>
+}</pre>
+			<p>
+Requires a string to match a given regex.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidMatch">func <a href="../src/validators.html?s=3132:3175#L174">ValidMatch</a></h3>
+				<pre>func ValidMatch(regex *<a href="/pkg/regexp/">regexp</a>.<a href="/pkg/regexp/#Regexp">Regexp</a>) <a href="#Match">Match</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Match.DefaultMessage">func (Match) <a href="../src/validators.html?s=3311:3349#L183">DefaultMessage</a></h3>
+				<pre>func (m <a href="#Match">Match</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Match.IsSatisfied">func (Match) <a href="../src/validators.html?s=3202:3250#L178">IsSatisfied</a></h3>
+				<pre>func (m <a href="#Match">Match</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Max">type <a href="../src/validators.html?s=977:1005#L59">Max</a></h2>
+			<pre>type Max struct {
+    Max <a href="/pkg/builtin/#int">int</a>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidMax">func <a href="../src/validators.html?s=1007:1033#L63">ValidMax</a></h3>
+				<pre>func ValidMax(max <a href="/pkg/builtin/#int">int</a>) <a href="#Max">Max</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Max.DefaultMessage">func (Max) <a href="../src/validators.html?s=1178:1214#L75">DefaultMessage</a></h3>
+				<pre>func (m <a href="#Max">Max</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Max.IsSatisfied">func (Max) <a href="../src/validators.html?s=1056:1102#L67">IsSatisfied</a></h3>
+				<pre>func (m <a href="#Max">Max</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MaxSize">type <a href="../src/validators.html?s=2175:2207#L122">MaxSize</a></h2>
+			<pre>type MaxSize struct {
+    Max <a href="/pkg/builtin/#int">int</a>
+}</pre>
+			<p>
+Requires an array or string to be at most a given length.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidMaxSize">func <a href="../src/validators.html?s=2209:2243#L126">ValidMaxSize</a></h3>
+				<pre>func ValidMaxSize(max <a href="/pkg/builtin/#int">int</a>) <a href="#MaxSize">MaxSize</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="MaxSize.DefaultMessage">func (MaxSize) <a href="../src/validators.html?s=2492:2532#L141">DefaultMessage</a></h3>
+				<pre>func (m <a href="#MaxSize">MaxSize</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="MaxSize.IsSatisfied">func (MaxSize) <a href="../src/validators.html?s=2270:2320#L130">IsSatisfied</a></h3>
+				<pre>func (m <a href="#MaxSize">MaxSize</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Min">type <a href="../src/validators.html?s=692:720#L39">Min</a></h2>
+			<pre>type Min struct {
+    Min <a href="/pkg/builtin/#int">int</a>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidMin">func <a href="../src/validators.html?s=722:748#L43">ValidMin</a></h3>
+				<pre>func ValidMin(min <a href="/pkg/builtin/#int">int</a>) <a href="#Min">Min</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Min.DefaultMessage">func (Min) <a href="../src/validators.html?s=893:929#L55">DefaultMessage</a></h3>
+				<pre>func (m <a href="#Min">Min</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Min.IsSatisfied">func (Min) <a href="../src/validators.html?s=771:817#L47">IsSatisfied</a></h3>
+				<pre>func (m <a href="#Min">Min</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="MinSize">type <a href="../src/validators.html?s=1704:1736#L98">MinSize</a></h2>
+			<pre>type MinSize struct {
+    Min <a href="/pkg/builtin/#int">int</a>
+}</pre>
+			<p>
+Requires an array or string to be at least a given length.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidMinSize">func <a href="../src/validators.html?s=1738:1772#L102">ValidMinSize</a></h3>
+				<pre>func ValidMinSize(min <a href="/pkg/builtin/#int">int</a>) <a href="#MinSize">MinSize</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="MinSize.DefaultMessage">func (MinSize) <a href="../src/validators.html?s=2021:2061#L117">DefaultMessage</a></h3>
+				<pre>func (m <a href="#MinSize">MinSize</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="MinSize.IsSatisfied">func (MinSize) <a href="../src/validators.html?s=1799:1849#L106">IsSatisfied</a></h3>
+				<pre>func (m <a href="#MinSize">MinSize</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Range">type <a href="../src/validators.html?s=1318:1349#L80">Range</a></h2>
+			<pre>type Range struct {
+    <a href="#Min">Min</a>
+    <a href="#Max">Max</a>
+}</pre>
+			<p>
+Requires an integer to be within Min, Max inclusive.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidRange">func <a href="../src/validators.html?s=1351:1386#L85">ValidRange</a></h3>
+				<pre>func ValidRange(min, max <a href="/pkg/builtin/#int">int</a>) <a href="#Range">Range</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Range.DefaultMessage">func (Range) <a href="../src/validators.html?s=1537:1575#L93">DefaultMessage</a></h3>
+				<pre>func (r <a href="#Range">Range</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Range.IsSatisfied">func (Range) <a href="../src/validators.html?s=1426:1474#L89">IsSatisfied</a></h3>
+				<pre>func (r <a href="#Range">Range</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Required">type <a href="../src/validators.html?s=149:171#L5">Required</a></h2>
+			<pre>type Required struct{}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="ValidRequired">func <a href="../src/validators.html?s=173:202#L7">ValidRequired</a></h3>
+				<pre>func ValidRequired() <a href="#Required">Required</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Required.DefaultMessage">func (Required) <a href="../src/validators.html?s=626:667#L35">DefaultMessage</a></h3>
+				<pre>func (r <a href="#Required">Required</a>) DefaultMessage() <a href="/pkg/builtin/#string">string</a></pre>
+				
+				
+				
+			
+				
+				<h3 id="Required.IsSatisfied">func (Required) <a href="../src/validators.html?s=227:278#L11">IsSatisfied</a></h3>
+				<pre>func (r <a href="#Required">Required</a>) IsSatisfied(obj interface{}) <a href="/pkg/builtin/#bool">bool</a></pre>
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="Validator">type <a href="../src/validators.html?s=63:147#L1">Validator</a></h2>
+			<pre>type Validator interface {
+    IsSatisfied(interface{}) <a href="/pkg/builtin/#bool">bool</a>
+    DefaultMessage() <a href="/pkg/builtin/#string">string</a>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+

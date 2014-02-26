@@ -1,0 +1,279 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Intercept</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+				
+				<dd><a href="#InterceptFunc">func InterceptFunc(intc InterceptorFunc, when When, target interface{})</a></dd>
+			
+				
+				<dd><a href="#InterceptMethod">func InterceptMethod(intc InterceptorMethod, when When)</a></dd>
+			
+				
+				<dd><a href="#InterceptorFilter">func InterceptorFilter(c *Controller, fc []Filter)</a></dd>
+			
+			
+				
+				<dd><a href="#InterceptTarget">type InterceptTarget</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Interception">type Interception</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Interception.Invoke">func (i Interception) Invoke(val reflect.Value) reflect.Value</a></dd>
+				
+			
+				
+				<dd><a href="#InterceptorFunc">type InterceptorFunc</a></dd>
+				
+				
+			
+				
+				<dd><a href="#InterceptorMethod">type InterceptorMethod</a></dd>
+				
+				
+			
+				
+				<dd><a href="#When">type When</a></dd>
+				
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/intercept.html">intercept.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+		
+		
+			
+			
+			<h2 id="InterceptFunc">func <a href="../src/intercept.html?s=3170:3241#L123">InterceptFunc</a></h2>
+			<pre>func InterceptFunc(intc <a href="#InterceptorFunc">InterceptorFunc</a>, when <a href="#When">When</a>, target interface{})</pre>
+			<p>
+Install a general interceptor.
+This can be applied to any Controller.
+It must have the signature of:
+</p>
+<pre>func example(c *revel.Controller) revel.Result
+</pre>
+
+			
+		
+			
+			
+			<h2 id="InterceptMethod">func <a href="../src/intercept.html?s=3641:3696#L136">InterceptMethod</a></h2>
+			<pre>func InterceptMethod(intc <a href="#InterceptorMethod">InterceptorMethod</a>, when <a href="#When">When</a>)</pre>
+			<p>
+Install an interceptor method that applies to its own Controller.
+</p>
+<pre>func (c AppController) example() revel.Result
+func (c *AppController) example() revel.Result
+</pre>
+
+			
+		
+			
+			
+			<h2 id="InterceptorFilter">func <a href="../src/intercept.html?s=2178:2228#L78">InterceptorFilter</a></h2>
+			<pre>func InterceptorFilter(c *<a href="#Controller">Controller</a>, fc []<a href="#Filter">Filter</a>)</pre>
+			
+			
+		
+		
+			
+			
+			<h2 id="InterceptTarget">type <a href="../src/intercept.html?s=1277:1301#L38">InterceptTarget</a></h2>
+			<pre>type InterceptTarget <a href="/pkg/builtin/#int">int</a></pre>
+			
+
+			
+				<pre>const (
+    <span id="ALL_CONTROLLERS">ALL_CONTROLLERS</span> <a href="#InterceptTarget">InterceptTarget</a> = <a href="/pkg/builtin/#iota">iota</a>
+)</pre>
+				
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Interception">type <a href="../src/intercept.html?s=1354:1523#L44">Interception</a></h2>
+			<pre>type Interception struct {
+    When <a href="#When">When</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="Interception.Invoke">func (Interception) <a href="../src/intercept.html?s=1603:1664#L57">Invoke</a></h3>
+				<pre>func (i <a href="#Interception">Interception</a>) Invoke(val <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
+				<p>
+Perform the given interception.
+val is a pointer to the App Controller.
+</p>
+
+				
+				
+			
+		
+			
+			
+			<h2 id="InterceptorFunc">type <a href="../src/intercept.html?s=1127:1172#L27">InterceptorFunc</a></h2>
+			<pre>type InterceptorFunc func(*<a href="#Controller">Controller</a>) <a href="#Result">Result</a></pre>
+			<p>
+An &#34;interceptor&#34; is functionality invoked by the framework BEFORE or AFTER
+an action.
+</p>
+<p>
+An interceptor may optionally return a Result (instead of nil).  Depending on
+when the interceptor was invoked, the response is different:
+1. BEFORE:  No further interceptors are invoked, and neither is the action.
+2. AFTER: Further interceptors are still run.
+In all cases, any returned Result will take the place of any existing Result.
+</p>
+<p>
+In the BEFORE case, that returned Result is guaranteed to be final, while
+in the AFTER case it is possible that a further interceptor could emit its
+own Result.
+</p>
+<p>
+Interceptors are called in the order that they are added.
+</p>
+<p>
+***
+</p>
+<p>
+Two types of interceptors are provided: Funcs and Methods
+</p>
+<p>
+Func Interceptors may apply to any / all Controllers.
+</p>
+<pre>func example(*revel.Controller) revel.Result
+</pre>
+<p>
+Method Interceptors are provided so that properties can be set on application
+controllers.
+</p>
+<pre>func (c AppController) example() revel.Result
+func (c *AppController) example() revel.Result
+</pre>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InterceptorMethod">type <a href="../src/intercept.html?s=1173:1207#L28">InterceptorMethod</a></h2>
+			<pre>type InterceptorMethod interface{}</pre>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="When">type <a href="../src/intercept.html?s=1208:1221#L29">When</a></h2>
+			<pre>type When <a href="/pkg/builtin/#int">int</a></pre>
+			
+
+			
+				<pre>const (
+    <span id="BEFORE">BEFORE</span> <a href="#When">When</a> = <a href="/pkg/builtin/#iota">iota</a>
+    <span id="AFTER">AFTER</span>
+    <span id="PANIC">PANIC</span>
+    <span id="FINALLY">FINALLY</span>
+)</pre>
+				
+			
+
+			
+
+			
+
+			
+
+			
+		
+	
+
+	
+
+
+
+
+
+
+

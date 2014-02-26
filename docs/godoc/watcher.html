@@ -1,0 +1,200 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Watcher</h1>
+
+	
+		
+		<!-- The package's Name is printed as title by the top-level template -->
+		
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+				<dd><a href="#pkg-variables">Variables</a></dd>
+			
+			
+			
+				
+				<dd><a href="#DiscerningListener">type DiscerningListener</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Listener">type Listener</a></dd>
+				
+				
+			
+				
+				<dd><a href="#Watcher">type Watcher</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewWatcher">func NewWatcher() *Watcher</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Watcher.Listen">func (w *Watcher) Listen(listener Listener, roots ...string)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Watcher.Notify">func (w *Watcher) Notify() *Error</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h4>File</h4>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="../src/watcher.html">watcher.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<pre>var <span id="WatchFilter">WatchFilter</span> = func(c *<a href="#Controller">Controller</a>, fc []<a href="#Filter">Filter</a>) {
+    if <a href="#MainWatcher">MainWatcher</a> != <a href="/pkg/builtin/#nil">nil</a> {
+        <span id="err">err</span> := <a href="#MainWatcher">MainWatcher</a>.<a href="#Notify">Notify</a>()
+        if <a href="#err">err</a> != <a href="/pkg/builtin/#nil">nil</a> {
+            <a href="#c">c</a>.<a href="#Result">Result</a> = <a href="#c">c</a>.<a href="#RenderError">RenderError</a>(<a href="#err">err</a>)
+            return
+        }
+    }
+    <a href="#fc">fc</a>[0](<a href="#c">c</a>, <a href="#fc">fc</a>[1:])
+}</pre>
+				
+			
+		
+		
+		
+			
+			
+			<h2 id="DiscerningListener">type <a href="../src/watcher.html?s=444:557#L10">DiscerningListener</a></h2>
+			<pre>type DiscerningListener interface {
+    <a href="#Listener">Listener</a>
+    WatchDir(info <a href="/pkg/os/">os</a>.<a href="/pkg/os/#FileInfo">FileInfo</a>) <a href="/pkg/builtin/#bool">bool</a>
+    WatchFile(basename <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#bool">bool</a>
+}</pre>
+			<p>
+DiscerningListener allows the receiver to selectively watch files.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Listener">type <a href="../src/watcher.html?s=171:372#L3">Listener</a></h2>
+			<pre>type Listener interface {
+    <span class="comment">// Refresh is invoked by the watcher on relevant filesystem events.</span>
+    <span class="comment">// If the listener returns an error, it is served to the user on the current request.</span>
+    Refresh() *<a href="#Error">Error</a>
+}</pre>
+			<p>
+Listener is an interface for receivers of filesystem events.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="Watcher">type <a href="../src/watcher.html?s=653:844#L18">Watcher</a></h2>
+			<pre>type Watcher struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+			<p>
+Watcher allows listeners to register to be notified of changes under a given
+directory.
+</p>
+
+
+			
+
+			
+
+			
+
+			
+				
+				<h3 id="NewWatcher">func <a href="../src/watcher.html?s=846:872#L27">NewWatcher</a></h3>
+				<pre>func NewWatcher() *<a href="#Watcher">Watcher</a></pre>
+				
+				
+			
+
+			
+				
+				<h3 id="Watcher.Listen">func (*Watcher) <a href="../src/watcher.html?s=1021:1081#L35">Listen</a></h3>
+				<pre>func (w *<a href="#Watcher">Watcher</a>) Listen(listener <a href="#Listener">Listener</a>, roots ...<a href="/pkg/builtin/#string">string</a>)</pre>
+				<p>
+Listen registers for events within the given root directories (recursively).
+</p>
+
+				
+				
+			
+				
+				<h3 id="Watcher.Notify">func (*Watcher) <a href="../src/watcher.html?s=2657:2690#L96">Notify</a></h3>
+				<pre>func (w *<a href="#Watcher">Watcher</a>) Notify() *<a href="#Error">Error</a></pre>
+				<p>
+Notify causes the watcher to forward any change events to listeners.
+It returns the first (if any) error returned.
+</p>
+
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+

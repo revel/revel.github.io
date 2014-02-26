@@ -1,0 +1,108 @@
+---
+layout: godoc
+---
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<h1>Params</h1>
+
+
+
+	<pre>package revel
+
+<span class="comment">// Params provides a unified view of the request params.</span>
+<span class="comment">// Includes:</span>
+<span class="comment">// - URL query string</span>
+<span class="comment">// - Form values</span>
+<span class="comment">// - File uploads</span>
+<span class="comment">//</span>
+<span class="comment">// Warning: param maps other than Values may be nil if there were none.</span>
+type Params struct {
+    url.Values <span class="comment">// A unified view of all the individual param maps below.</span>
+
+    <span class="comment">// Set by the router</span>
+    Fixed url.Values <span class="comment">// Fixed parameters from the route, e.g. App.Action(&#34;fixed param&#34;)</span>
+    Route url.Values <span class="comment">// Parameters extracted from the route,  e.g. /customers/{id}</span>
+
+    <span class="comment">// Set by the ParamsFilter</span>
+    Query url.Values <span class="comment">// Parameters from the query string, e.g. /index?limit=10</span>
+    Form  url.Values <span class="comment">// Parameters from the request body.</span>
+
+    Files map[string][]*multipart.FileHeader <span class="comment">// Files uploaded in a multipart form</span>
+
+}
+
+func ParseParams(params *Params, req *Request) {
+    params.Query = req.URL.Query()
+
+    <span class="comment">// Parse the body depending on the content type.</span>
+    switch req.ContentType {
+    case &#34;application/x-www-form-urlencoded&#34;:
+        <span class="comment">// Typical form.</span>
+        if err := req.ParseForm(); err != nil {
+            WARN.Println(&#34;Error parsing request body:&#34;, err)
+        } else {
+            params.Form = req.Form
+        }
+
+    case &#34;multipart/form-data&#34;:
+        <span class="comment">// Multipart form.</span>
+        <span class="comment">// TODO: Extract the multipart form param so app can set it.</span>
+        if err := req.ParseMultipartForm(32 &lt;&lt; 20 <span class="comment">/* 32 MB */</span>); err != nil {
+            WARN.Println(&#34;Error parsing request body:&#34;, err)
+        } else {
+            params.Form = req.MultipartForm.Value
+            params.Files = req.MultipartForm.File
+        }
+    }
+
+    params.Values = params.calcValues()
+}
+
+<span class="comment">// Bind looks for the named parameter, converts it to the requested type, and</span>
+<span class="comment">// writes it into &#34;dest&#34;, which must be settable.  If the value can not be</span>
+<span class="comment">// parsed, &#34;dest&#34; is set to the zero value.</span>
+func (p *Params) Bind(dest interface{}, name string) {
+    value := reflect.ValueOf(dest)
+    if value.Kind() != reflect.Ptr {
+        panic(&#34;revel/params: non-pointer passed to Bind: &#34; + name)
+    }
+    value = value.Elem()
+    if !value.CanSet() {
+        panic(&#34;revel/params: non-settable variable passed to Bind: &#34; + name)
+    }
+    value.Set(Bind(p, name, value.Type()))
+}
+
+func ParamsFilter(c *Controller, fc []Filter) {
+    ParseParams(c.Params, c.Request)
+
+    <span class="comment">// Clean up from the request.</span>
+    defer func() {
+        <span class="comment">// Delete temp files.</span>
+        if c.Request.MultipartForm != nil {
+            err := c.Request.MultipartForm.RemoveAll()
+            if err != nil {
+                WARN.Println(&#34;Error removing temporary files:&#34;, err)
+            }
+        }
+
+        for _, tmpFile := range c.Params.tmpFiles {
+            err := os.Remove(tmpFile.Name())
+            if err != nil {
+                WARN.Println(&#34;Could not remove upload temp file:&#34;, err)
+            }
+        }
+    }()
+
+    fc[0](c, fc[1:])
+}
+</pre>
+
+
+
+
+
