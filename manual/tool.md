@@ -7,7 +7,7 @@ layout: manual
 
 You must build the command line tool in order to use Revel:
 
-	$ go get github.com/revel/revel/revel
+	$ go get github.com/revel/cmd/revel
 
 Now run it:
 

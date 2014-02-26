@@ -44,7 +44,7 @@ The Revel command line tool is how you build, run, and package Revel application
 
 Use `go get` to install it:
 
-	go get github.com/revel/revel/revel
+	go get github.com/revel/cmd/revel
 
 Then, ensure the $GOPATH/bin directory is in your PATH so that you can reference the command from anywhere.
 
