@@ -6,7 +6,7 @@ layout: manual
 ## Overview
 
 The application config file is named `app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/robfig/config), which is similar to Microsoft
+[goconfig](https://github.com/revel/config), which is similar to Microsoft
 INI files.
 
 Here's an example file:
@@ -388,7 +388,7 @@ Default: false
 [Modules](modules.html) may be added to an application by specifying their base
 import path.  For example:
 
-	module.testrunner = github.com/robfig/revel/modules/testrunner
+	module.testrunner = github.com/revel/revel/modules/testrunner
 
 ## Areas for development
 

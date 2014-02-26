@@ -81,10 +81,10 @@ avoid potentially having to cross-compile.
 ## Heroku
 
 Revel maintains a Heroku Buildpack, allowing one-command deploys:
-https://github.com/robfig/heroku-buildpack-go-revel
+https://github.com/revel/heroku-buildpack-go-revel
 
 Please see the
-[README](https://github.com/robfig/heroku-buildpack-go-revel/blob/master/README.md)
+[README](https://github.com/revel/heroku-buildpack-go-revel/blob/master/README.md)
 for usage instructions.
 
 ## Cross-compilation

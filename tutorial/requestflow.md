@@ -23,7 +23,7 @@ Let's follow this call to the code, in **app/controllers/app.go**:
 
 	package controllers
 
-	import "github.com/robfig/revel"
+	import "github.com/revel/revel"
 
 	type App struct {
 		*revel.Controller

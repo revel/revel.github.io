@@ -47,7 +47,7 @@ Next, we have to create the view.  Create a file
 
 Refresh the page, and you should see a greeting:
 
-![Hello Robfig](../img/HelloRobfig.png)
+![Hello revel](../img/Hellorevel.png)
 
 Lastly, let's add some validation.  The name should be required, and at least
 three characters.

@@ -28,7 +28,7 @@ Here are the contents of the app:
 			...
 
 
-[Browse the code on Github](https://github.com/robfig/revel/tree/master/samples/booking)
+[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/booking)
 
 ## Installation
 
@@ -49,7 +49,7 @@ C library.
 Once you have SQLite installed, it should be possible to run the booking app as
 usual:
 
-	$ revel run github.com/robfig/revel/samples/booking
+	$ revel run github.com/revel/revel/samples/booking
 
 ## Database / Gorp Plugin
 
@@ -61,7 +61,7 @@ usual:
 * AfterRequest: Commits the transaction.  Panics if there was an error.
 * OnException: Rolls back the transaction.
 
-[Check out the code](https://github.com/robfig/revel/blob/master/samples/booking/app/controllers/gorp.go)
+[Check out the code](https://github.com/revel/revel/blob/master/samples/booking/app/controllers/gorp.go)
 
 ## Interceptors
 
@@ -92,14 +92,14 @@ func (c Hotels) checkUser() revel.Result {
 }
 </pre>
 
-[Check out the user management code in app.go](https://github.com/robfig/revel/blob/master/samples/booking/app/controllers/app.go)
+[Check out the user management code in app.go](https://github.com/revel/revel/blob/master/samples/booking/app/controllers/app.go)
 
 ## Validation
 
 The booking app does quite a bit of validation.
 
 For example, here is the routine to validate a booking, from
-[models/booking.go](https://github.com/robfig/revel/blob/master/samples/booking/app/models/booking.go):
+[models/booking.go](https://github.com/revel/revel/blob/master/samples/booking/app/models/booking.go):
 
 <pre class="prettyprint lang-go">
 func (booking Booking) Validate(v *revel.Validation) {
@@ -125,7 +125,7 @@ required; if it evaluates to the zero date, Revel stores a `ValidationError` in
 the validation context under the key "booking.CheckInDate".
 
 Subsequently, the
-[Hotels/Book.html](https://github.com/robfig/revel/blob/master/samples/booking/app/views/Hotels/Book.html)
+[Hotels/Book.html](https://github.com/revel/revel/blob/master/samples/booking/app/views/Hotels/Book.html)
 template can easily access them using the **field** helper:
 
 <pre class="prettyprint lang-go">{% capture tmpl %}{% raw %}

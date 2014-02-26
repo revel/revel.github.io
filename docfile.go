@@ -1,22 +1,22 @@
 // This program generates per-file godoc.
 //
-// go run docfile.go -templates ~/Dropbox/Public/revel/docs/godoc -out ~/Dropbox/Public/revel/docs  ~/code/gocode/src/github.com/robfig/revel/*.go
+// go run docfile.go -templates ~/Dropbox/Public/revel/docs/godoc -out ~/Dropbox/Public/revel/docs  ~/code/gocode/src/github.com/revel/revel/*.go
 package main
 
 import (
 	"bytes"
-	"os/exec"
 	"flag"
-	"path"
-	"path/filepath"
 	"log"
 	"os"
+	"os/exec"
+	"path"
+	"path/filepath"
 	"strings"
 )
 
 var (
 	templates = flag.String("templates", "", "Path to the package.html template")
-	out = flag.String("out", "out", "Path to the generated stuff")
+	out       = flag.String("out", "out", "Path to the generated stuff")
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 
 	// Link each file in turn.
 	for _, filename := range flag.Args() {
-		if !strings.HasSuffix(filename, ".go") || strings.HasSuffix(filename, "_test.go"){
+		if !strings.HasSuffix(filename, ".go") || strings.HasSuffix(filename, "_test.go") {
 			continue
 		}
 		log.Println("Processing", filename)

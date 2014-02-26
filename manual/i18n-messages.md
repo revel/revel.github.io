@@ -26,7 +26,7 @@ When creating new message files, there are a couple of rules to keep in mind:
 * All message files should be stored in the `messages` directory in the application root.
 * The file extension determines the *language* of the message file and should be an [ISO 639-1 code](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 * Message files should be UTF-8 encoded. While this is not a hard requirement, it is best practice.
-* Each message file is effectively a [goconfig file](https://github.com/robfig/config) and supports all goconfig features.
+* Each message file is effectively a [goconfig file](https://github.com/revel/config) and supports all goconfig features.
 
 ### Organizing message files
 
@@ -56,7 +56,7 @@ Another approach would be to create *multiple files* for the *same language* and
 
 ### Message keys and values
 
-A message file is for all intents and purposes a [goconfig file](https://github.com/robfig/goconfig). This means that messages should be defined according to the tried and
+A message file is for all intents and purposes a [goconfig file](https://github.com/revel/goconfig). This means that messages should be defined according to the tried and
 tested key-value format:
 
     key=value

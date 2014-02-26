@@ -23,12 +23,12 @@ Here are the contents of the app:
 		views
 			...            # HTML and Javascript
 
-[Browse the code on Github](https://github.com/robfig/revel/tree/master/samples/chat)
+[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/chat)
 
 ## The Chat Room
 
 First, let's look at how the chat room is implemented, in
-[**chatroom.go**](https://github.com/robfig/revel/tree/master/samples/chat/app/chatroom/chatroom.go).
+[**chatroom.go**](https://github.com/revel/revel/tree/master/samples/chat/app/chatroom/chatroom.go).
 
 The chat room runs as an independent go-routine, started on initialization:
 
@@ -149,7 +149,7 @@ get any new messages:
   setInterval(refresh, 5000)
 </pre>
 
-> [Refresh/Room.html](https://github.com/robfig/revel/tree/master/samples/chat/app/views/Refresh/Room.html)
+> [Refresh/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/Refresh/Room.html)
 
 This is the handler to serve that:
 
@@ -167,7 +167,7 @@ func (c Refresh) Room(user string) revel.Result {
 }
 </pre>
 
-> [refresh.go](https://github.com/robfig/revel/tree/master/samples/chat/app/controllers/refresh.go)
+> [refresh.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/refresh.go)
 
 It subscribes to the chatroom and passes the archive to the template to be
 rendered (after changing the user name to "you" as necessary).
@@ -208,7 +208,7 @@ keeps open until a new message comes in.  The javascript provides a
   getMessages();
 </pre>
 
-> [LongPolling/Room.html](https://github.com/robfig/revel/tree/master/samples/chat/app/views/LongPolling/Room.html)
+> [LongPolling/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/LongPolling/Room.html)
 
 and here is the handler
 
@@ -236,7 +236,7 @@ func (c LongPolling) WaitMessages(lastReceived int) revel.Result {
 }
 {% endraw %}{% endcapture %}{{ WaitMessages|escape }}</pre>
 
-> [longpolling.go](https://github.com/robfig/revel/tree/master/samples/chat/app/controllers/longpolling.go)
+> [longpolling.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/longpolling.go)
 
 In this implementation, it can simply block on the subscription channel
 (assuming it has already sent back everything in the archive).
@@ -262,7 +262,7 @@ user has loaded the chat room page.
   });
 </pre>
 
-> [WebSocket/Room.html](https://github.com/robfig/revel/tree/master/samples/chat/app/views/WebSocket/Room.html#L51)
+> [WebSocket/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/WebSocket/Room.html#L51)
 
 The first thing to do is to subscribe to new events, join the room, and send
 down the archive.  Here is what that looks like:
@@ -286,7 +286,7 @@ func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
 {% endraw %}{% endcapture %}{{ guy|escape }}
 </pre>
 
-> [websocket.go](https://github.com/robfig/revel/tree/master/samples/chat/app/controllers/websocket.go#L17)
+> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L17)
 
 Next, we have to listen for new events from the subscription.  However, the
 websocket library only provides a blocking call to get a new frame.  To select
@@ -309,7 +309,7 @@ between them, we have to wrap it:
 	}()
 {% endraw %}{% endcapture %}{{ WebSocket2|escape }}</pre>
 
-> [websocket.go](https://github.com/robfig/revel/tree/master/samples/chat/app/controllers/websocket.go#L33)
+> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L33)
 
 Now we can select for new websocket messages on the `newMessages` channel.
 
@@ -340,6 +340,6 @@ chat room has said something) and propagates the message to the other.
 }
 {% endraw %}{% endcapture %}{{ WebSocket3|escape }}</pre>
 
-> [websocket.go](https://github.com/robfig/revel/tree/master/samples/chat/app/controllers/websocket.go#L48)
+> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L48)
 
 If we detect the websocket channel has closed, then we just return nil.

@@ -17,4 +17,4 @@ Revel provides a couple samples to demonstrate typical usage.
 
 The samples can generally be run easily, for example:
 
-	$ revel run github.com/robfig/revel/samples/chat
+	$ revel run github.com/revel/revel/samples/chat

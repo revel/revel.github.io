@@ -13,7 +13,7 @@ The framework is included as an optional module, that is not included in your
 application by default.  To activate it, add the module to your app
 configuration:
 
-	module.jobs = github.com/robfig/revel/modules/jobs
+	module.jobs = github.com/revel/revel/modules/jobs
 
 Additionally, in order to access the job monitoring page, you will need to add
 this line to your routes:
@@ -55,9 +55,9 @@ Jobs may be scheduled to run on any schedule.  There are two options for express
 1. A cron specification
 2. A fixed interval
 
-Revel uses the [cron library](https://github.com/robfig/cron) to parse the
+Revel uses the [cron library](https://github.com/revel/cron) to parse the
 schedule and run the jobs.  The library's
-[README](https://github.com/robfig/cron/blob/master/README.md) provides a detailed
+[README](https://github.com/revel/cron/blob/master/README.md) provides a detailed
 description of the format accepted.
 
 Jobs are generally registered using the
@@ -69,8 +69,8 @@ Here are some examples:
 {% raw %}
 <pre class="prettyprint lang-go">
 import (
-    "github.com/robfig/revel"
-    "github.com/robfig/revel/modules/jobs/app/jobs"
+    "github.com/revel/revel"
+    "github.com/revel/revel/modules/jobs/app/jobs"
     "time"
 )
 

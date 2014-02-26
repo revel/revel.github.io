@@ -8,7 +8,7 @@ storage.  It is a good replacement for frequent database access to slowly
 changing data, and it can also be using for implementing user sessions (if the
 cookie-based sessions are insufficient).
 
-Read the [interface](http://godoc.org/github.com/robfig/revel/cache#Cache)
+Read the [interface](http://godoc.org/github.com/revel/revel/cache#Cache)
 
 ## Expiration
 
@@ -61,8 +61,8 @@ invocation to process the request.
 {% raw %}
 <pre class="prettyprint lang-go">
 import (
-	"github.com/robfig/revel"
-	"github.com/robfig/revel/cache"
+	"github.com/revel/revel"
+	"github.com/revel/revel/cache"
 )
 
 func (c App) ShowProduct(id string) revel.Result {

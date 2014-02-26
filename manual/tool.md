@@ -7,13 +7,13 @@ layout: manual
 
 You must build the command line tool in order to use Revel:
 
-	$ go get github.com/robfig/revel/revel
+	$ go get github.com/revel/revel/revel
 
 Now run it:
 
 	$ bin/revel
 	~
-	~ revel! http://robfig.github.com/revel
+	~ revel! http://revel.github.com/revel
 	~
 	usage: revel command [arguments]
 

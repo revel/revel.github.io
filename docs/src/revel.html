@@ -14,7 +14,7 @@ layout: godoc
 	<pre>package revel
 
 const (
-    REVEL_IMPORT_PATH = &#34;github.com/robfig/revel&#34;
+    REVEL_IMPORT_PATH = &#34;github.com/revel/revel&#34;
 )
 
 func (r *revelLogs) Write(p []byte) (n int, err error) {
@@ -24,18 +24,18 @@ func (r *revelLogs) Write(p []byte) (n int, err error) {
 var (
     <span class="comment">// App details</span>
     AppName    string <span class="comment">// e.g. &#34;sample&#34;</span>
-    BasePath   string <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample&#34;</span>
-    AppPath    string <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample/app&#34;</span>
-    ViewsPath  string <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/corp/sample/app/views&#34;</span>
+    BasePath   string <span class="comment">// e.g. &#34;/Users/revel/gocode/src/corp/sample&#34;</span>
+    AppPath    string <span class="comment">// e.g. &#34;/Users/revel/gocode/src/corp/sample/app&#34;</span>
+    ViewsPath  string <span class="comment">// e.g. &#34;/Users/revel/gocode/src/corp/sample/app/views&#34;</span>
     ImportPath string <span class="comment">// e.g. &#34;corp/sample&#34;</span>
-    SourcePath string <span class="comment">// e.g. &#34;/Users/robfig/gocode/src&#34;</span>
+    SourcePath string <span class="comment">// e.g. &#34;/Users/revel/gocode/src&#34;</span>
 
     Config  *MergedConfig
     RunMode string <span class="comment">// Application-defined (by default, &#34;dev&#34; or &#34;prod&#34;)</span>
     DevMode bool   <span class="comment">// if true, RunMode is a development mode.</span>
 
     <span class="comment">// Revel installation details</span>
-    RevelPath string <span class="comment">// e.g. &#34;/Users/robfig/gocode/src/revel&#34;</span>
+    RevelPath string <span class="comment">// e.g. &#34;/Users/revel/gocode/src/revel&#34;</span>
 
     <span class="comment">// Where to look for templates and configuration.</span>
     <span class="comment">// Ordered by priority.  (Earlier paths take precedence over later paths.)</span>

@@ -13,7 +13,7 @@ title: The Revel Web Framework for Go
   </head>
 
   <body onload="prettyPrint()">
-    <a href="https://github.com/robfig/revel">
+    <a href="https://github.com/revel/revel">
       <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000;"
            src="img/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
@@ -132,8 +132,8 @@ title: The Revel Web Framework for Go
           </div>
           <div class="span6" style="vertical-align:bottom;">
             <pre>
-  go get github.com/robfig/revel/revel
-  revel run github.com/robfig/revel/samples/chat
+  go get github.com/revel/revel/revel
+  revel run github.com/revel/revel/samples/chat
             </pre>
           </div>
         </div>
@@ -322,7 +322,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
                 The app may inject any helper funcs that it wants.
               <li> The <b>title</b> variable is available in the template as if
                 it had been explicitly put in the RenderArgs.  (It's used in
-                <a href="http://github.com/robfig/revel/samples/booking/app/views/header.html">
+                <a href="http://github.com/revel/revel/samples/booking/app/views/header.html">
                   header.html</a> in this case)
             </ul>
           </div>
@@ -377,7 +377,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 
           <div class="span12">
             <pre class="prettyprint">
-// github.com/robfig/revel/modules/db/app/db.go
+// github.com/revel/revel/modules/db/app/db.go
 
 var Db *sql.DB
 
@@ -459,7 +459,7 @@ type Filter func(c *Controller, filterChain []Filter)</pre>
 
           <div class="span12">
             <pre class="prettyprint">
-// github.com/robfig/revel/intercept.go
+// github.com/revel/revel/intercept.go
 
 var InterceptorFilter = func(c *Controller, fc []Filter) {
 	defer invokeInterceptors(FINALLY, c)
@@ -486,7 +486,7 @@ var InterceptorFilter = func(c *Controller, fc []Filter) {
 						</p>
 
             <pre class="prettyprint">
-// github.com/robfig/revel/filter.go
+// github.com/revel/revel/filter.go
 
 // Filters is the default set of global filters.
 // It may be set by the application on initialization.
@@ -511,11 +511,11 @@ var Filters = []Filter{
 						</p>
 						<p>
 							As proof of modularity, look how simple
-							the <a href="https://github.com/robfig/revel/blob/master/server.go">
+							the <a href="https://github.com/revel/revel/blob/master/server.go">
 								main server handler</a> is:
 						</p>
             <pre class="prettyprint">
-// github.com/robfig/revel/server.go
+// github.com/revel/revel/server.go
 
 func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) {
 	var (
