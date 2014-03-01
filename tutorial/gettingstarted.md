@@ -38,6 +38,8 @@ This command does a couple things:
 * Go uses git to clone the repository into `$GOPATH/src/github.com/revel/revel/`
 * Go transitively finds all of the dependencies and runs `go get` on them as well.
 
+*__Note:__ if you are upgrading from v0.8 or earlier, see the [v0.9.0 release notes](https://github.com/revel/revel/releases/tag/v0.9.0) for detailed instructions.*
+
 #### Build the Revel command line tool
 
 The Revel command line tool is how you build, run, and package Revel applications.
