@@ -151,7 +151,7 @@ Second method: Importing the routes under a prefixed path:
 
 	# This is your routes file
 	*       /foo     module:mymodule # Must be defined with asterisk for the method
-
+	
 	# Your other routes
 	GET     /        Application.Index
 	GET     /bar     Application.Bar
