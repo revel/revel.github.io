@@ -92,13 +92,14 @@ If you look at header.html, you can see some more template tags in action:
 {% raw %}
 
 	<!DOCTYPE html>
+
 	<html>
 	  <head>
 	    <title>{{.title}}</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	    <link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/main.css">
-	    <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
-	    <script src="/public/javascripts/jquery-1.5.2.min.js" type="text/javascript" charset="utf-8"></script>
+	    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+	    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+	    <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
 	    {{range .moreStyles}}
 	      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
 	    {{end}}
