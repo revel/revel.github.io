@@ -11,19 +11,21 @@ The basic syntax is:
 
 This example demonstrates all of the features:
 
-	# conf/routes
-	# This file defines all application routes (Higher priority routes first)
+```
+# conf/routes
+# This file defines all application routes (Higher priority routes first)
 
-	module:jobs                                          # Import all routes from the jobs module
+module:jobs                                          # Import all routes from the jobs module
 
-	GET    /login                 App.Login              # A simple path
-	GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ (optional trailing slash)
-	GET    /hotels/:id            Hotels.Show            # Extract a URI argument
-	WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
-	POST   /hotels/:id/:action    Hotels.:action         # Automatically route some actions.
-	GET    /public/*filepath      Static.Serve("public") # Map /app/public resources under /public/...
-	*      /debug/                module:testrunner      # Prefix all routes in the testrunner module with /debug/
-	*      /:controller/:action   :controller.:action    # Catch all; Automatic URL generation
+GET    /login                 App.Login              # A simple path
+GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ (optional trailing slash)
+GET    /hotels/:id            Hotels.Show            # Extract a URI argument
+WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
+POST   /hotels/:id/:action    Hotels.:action         # Automatically route some actions.
+GET    /public/*filepath      Static.Serve("public") # Map /app/public resources under /public/...
+*      /debug/                module:testrunner      # Prefix all routes in the testrunner module with /debug/
+*      /:controller/:action   :controller.:action    # Catch all; Automatic URL generation
+```
 
 Let's go through the lines one at a time.  At the end, we'll see how to
 accomplish **reverse routing** -- generating the URL to invoke a particular action.
@@ -149,12 +151,14 @@ First method: Importing routes as-is using the following in your `routes` file:
 
 Second method: Importing the routes under a prefixed path:
 
-	# This is your routes file
-	*       /foo     module:mymodule # Must be defined with asterisk for the method
+```
+# This is your routes file
+*       /foo     module:mymodule # Must be defined with asterisk for the method
 	
-	# Your other routes
-	GET     /        Application.Index
-	GET     /bar     Application.Bar
+# Your other routes
+GET     /        Application.Index
+GET     /bar     Application.Bar
+```
 
 Assuming `mymodule` has a `routes` file containing:
 
@@ -165,8 +169,10 @@ Then in the first example, the routes would be imported into your application wi
 
 ## Auto Routing
 
-	POST   /hotels/:id/:action    Hotels.:action
-	*      /:controller/:action   :controller.:action
+```
+POST   /hotels/:id/:action    Hotels.:action
+*      /:controller/:action   :controller.:action
+```
 
 URL argument extraction can also be used to determine the invoked action.
 Matching to controllers and actions is **case insensitive**.
