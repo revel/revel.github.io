@@ -64,7 +64,8 @@ Example:
 
 Default: no value
 
-***
+<br>
+
 #### app.secret
 
 The secret key used for cryptographic operations
@@ -89,7 +90,8 @@ Example:
 
 	http.port = 9000
 
-***
+<br>
+
 #### http.addr
 
 The IP address on which to listen.
@@ -99,7 +101,8 @@ silently converted to `"localhost"`
 
 Default: ""
 
-***
+<br>
+
 #### harness.port
 
 Specifies the port for the application to listen on, when run by the harness.
@@ -112,7 +115,8 @@ when running in an environment that restricts socket access by the program.
 
 Default: 0
 
-***
+<br>
+
 #### http.ssl
 
 If true, Revel's web server will configure itself to accept SSL connections. This
@@ -120,11 +124,15 @@ requires an X509 certificate and a key file.
 
 Default: false
 
+<br>
+
 #### http.sslcert
 
 Specifies the path to an X509 certificate file.
 
 Default: ""
+
+<br>
 
 #### http.sslkey
 
@@ -143,7 +151,8 @@ before the entire template has been fully rendered.
 
 Default: false
 
-***
+<br>
+
 #### results.pretty
 
 Configures [`RenderXml`](../docs/godoc/controller.html#RenderXml) and
@@ -167,12 +176,13 @@ For example:
 
 Default: ""
 
-***
+<br>
+
 #### i18n.cookie
 
 Specifies the name of the cookie used to store the user's locale.
 
-Default: "%(cookie.prefix)_LANG" (see cookie.prefix)
+Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
 
 ### Watchers
 
@@ -186,14 +196,16 @@ configuration keys.  (This is appropriate for production deployments)
 
 Default: true
 
-***
+<br>
+
 #### watch.templates
 
 If true, Revel will watch your views for changes and reload them as necessary.
 
 Default: true
 
-***
+<br>
+
 #### watch.routes
 
 If true, Revel will watch your `routes` file for changes and reload as
@@ -201,7 +213,8 @@ necessary.
 
 Default: true
 
-***
+<br>
+
 #### watch.code
 
 If true, Revel will watch your Go code for changes and rebuild your application
@@ -215,10 +228,13 @@ Default: true
 ### Cookies
 
 Revel components use the following cookies by default:
+
 * REVEL_SESSION
 * REVEL_LANG
 * REVEL_FLASH
 * REVEL_ERRORS
+
+<br>
 
 #### cookie.prefix
 
@@ -230,6 +246,7 @@ For example,
 	cookie.prefix = MY
 
 would result in the following cookie names:
+
 * MY_SESSION
 * MY_LANG
 * MY_FLASH
@@ -250,7 +267,7 @@ the result is not always guaranteed.
 
 ### Templates
 
-#### template.delimiters 
+#### template.delimiters
 
 Specifies an override for the left and right delimiters used in the templates.  
 The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"
@@ -262,15 +279,18 @@ Default: "\{\{ \}\}"
 #### format.date
 
 Specifies the default date format for the application.  Revel uses this in two places:
+
 * Binding dates to a `time.Time` (see [binding](binding.html))
 * Printing dates using the `date` template function (see [template funcs](templates.html))
 
 Default: "2006-01-02"
 
-***
+<br>
+
 #### format.datetime
 
 Specifies the default datetime format for the application.  Revel uses this in two places:
+
 * Binding dates to a `time.Time` (see [binding](binding.html))
 * Printing dates using the `datetime` template function (see [template funcs](templates.html))
 
@@ -284,7 +304,8 @@ Specifies the import path of the desired database/sql driver for the db module.
 
 Default: ""
 
-***
+<br>
+
 #### db.driver
 
 Specifies the name of the database/sql driver (used in
@@ -292,7 +313,8 @@ Specifies the name of the database/sql driver (used in
 
 Default: ""
 
-***
+<br>
+
 #### db.spec
 
 Specifies the data source name of your database/sql database (used in
@@ -317,6 +339,8 @@ TODO
 
 The [cache](cache.html) module is a simple interface to a heap or distributed cache.
 
+<br>
+
 #### cache.expires
 
 Sets the default duration before cache entries are expired from the cache.  It
@@ -329,7 +353,8 @@ It is specified as a duration string acceptable to
 
 Default: "1h" (1 hour)
 
-***
+<br>
+
 #### cache.memcached
 
 If true, the cache module uses [memcached](http://memcached.org) instead of the
@@ -337,7 +362,8 @@ in-memory cache.
 
 Default: false
 
-***
+<br>
+
 #### cache.hosts
 
 A comma-separated list of memcached hosts.  Cache entries are automatically
@@ -360,11 +386,10 @@ Named cron schedules may be configured by setting a key of the form:
 That schedule may then be referenced upon submission to the job runner. For
 example:
 
-<pre class="prettyprint lang-go">
-jobs.Schedule("cron.schedulename", job)
-</pre>
+	jobs.Schedule("cron.schedulename", job)
 
-***
+<br>
+
 #### jobs.pool
 
 The number of jobs allowed to run concurrently.  For example:
@@ -375,7 +400,8 @@ If 0, there is no limit imposed.
 
 Default: 10
 
-***
+<br>
+
 #### jobs.selfconcurrent
 
 If true, allows a job to run even if previous instances of that job are still in

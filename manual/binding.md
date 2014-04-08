@@ -10,10 +10,11 @@ easy as possible.  This conversion from string to another type is referred to as
 ## Params
 
 All request parameters are collected into a single `Params` object.  That includes:
- * URL Path parameters
- * URL Query parameters
- * Form values (Multipart or not)
- * File uploads
+
+* URL Path parameters
+* URL Query parameters
+* Form values (Multipart or not)
+* File uploads
 
 This is the definition ([godoc](../docs/godoc/params.html)):
 
@@ -60,6 +61,7 @@ func (c SomeController) Action() revel.Result {
 {% endraw %}
 
 The following data types are supported out of the box:
+
 * Ints of all widths
 * Bools
 * Pointers to any supported type
@@ -144,6 +146,7 @@ func init() {
 ### File Uploads
 
 File uploads may be bound to any of the following types:
+
 * \*os.File
 * \[\]byte
 * io.Reader
