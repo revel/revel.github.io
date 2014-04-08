@@ -64,7 +64,6 @@ Example:
 
 Default: no value
 
-<br>
 
 #### app.secret
 
@@ -90,7 +89,6 @@ Example:
 
 	http.port = 9000
 
-<br>
 
 #### http.addr
 
@@ -101,7 +99,6 @@ silently converted to `"localhost"`
 
 Default: ""
 
-<br>
 
 #### harness.port
 
@@ -115,7 +112,6 @@ when running in an environment that restricts socket access by the program.
 
 Default: 0
 
-<br>
 
 #### http.ssl
 
@@ -124,7 +120,6 @@ requires an X509 certificate and a key file.
 
 Default: false
 
-<br>
 
 #### http.sslcert
 
@@ -132,7 +127,6 @@ Specifies the path to an X509 certificate file.
 
 Default: ""
 
-<br>
 
 #### http.sslkey
 
@@ -151,7 +145,6 @@ before the entire template has been fully rendered.
 
 Default: false
 
-<br>
 
 #### results.pretty
 
@@ -176,7 +169,6 @@ For example:
 
 Default: ""
 
-<br>
 
 #### i18n.cookie
 
@@ -196,7 +188,6 @@ configuration keys.  (This is appropriate for production deployments)
 
 Default: true
 
-<br>
 
 #### watch.templates
 
@@ -204,7 +195,6 @@ If true, Revel will watch your views for changes and reload them as necessary.
 
 Default: true
 
-<br>
 
 #### watch.routes
 
@@ -213,7 +203,6 @@ necessary.
 
 Default: true
 
-<br>
 
 #### watch.code
 
@@ -234,7 +223,6 @@ Revel components use the following cookies by default:
 * REVEL_FLASH
 * REVEL_ERRORS
 
-<br>
 
 #### cookie.prefix
 
@@ -285,7 +273,6 @@ Specifies the default date format for the application.  Revel uses this in two p
 
 Default: "2006-01-02"
 
-<br>
 
 #### format.datetime
 
@@ -304,7 +291,6 @@ Specifies the import path of the desired database/sql driver for the db module.
 
 Default: ""
 
-<br>
 
 #### db.driver
 
@@ -313,7 +299,6 @@ Specifies the name of the database/sql driver (used in
 
 Default: ""
 
-<br>
 
 #### db.spec
 
@@ -339,7 +324,6 @@ TODO
 
 The [cache](cache.html) module is a simple interface to a heap or distributed cache.
 
-<br>
 
 #### cache.expires
 
@@ -353,7 +337,6 @@ It is specified as a duration string acceptable to
 
 Default: "1h" (1 hour)
 
-<br>
 
 #### cache.memcached
 
@@ -362,7 +345,6 @@ in-memory cache.
 
 Default: false
 
-<br>
 
 #### cache.hosts
 
@@ -388,7 +370,6 @@ example:
 
 	jobs.Schedule("cron.schedulename", job)
 
-<br>
 
 #### jobs.pool
 
@@ -400,7 +381,6 @@ If 0, there is no limit imposed.
 
 Default: 10
 
-<br>
 
 #### jobs.selfconcurrent
 
