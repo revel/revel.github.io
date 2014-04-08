@@ -5,6 +5,7 @@ layout: manual
 
 Revel uses [Go Templates](http://www.golang.org/pkg/text/template/).  It
 searches two directories for templates:
+
 * The application's `views` directory (and all subdirectories)
 * Revel's own `templates` directory.
 
@@ -80,6 +81,7 @@ Example:
 A helper for input fields.
 
 Given a field name, it returns a struct containing the following members:
+
 * Id: the field name, converted to be suitable as a HTML element ID.
 * Name: the field name
 * Value: the value of the field in the current RenderArgs
@@ -186,12 +188,14 @@ Go Templates allow you to compose templates by inclusion.  For example:
 {% endraw %}
 
 There are two things to note:
+
 * Paths are relative to `app/views`
 
 ## Tips
 
 The sample applications included with Revel try to demonstrate effective use of
 Go Templates.  In particular, please take a look at:
+
 * `revel/samples/booking/app/views/header.html`
 * `revel/samples/booking/app/views/Hotels/Book.html`
 

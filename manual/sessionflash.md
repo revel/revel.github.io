@@ -25,6 +25,7 @@ Revel's concept of "session" is a string map, stored as a cryptographically
 signed cookie.
 
 This has a couple implications:
+
 * The size limit is 4kb.
 * All data must be serialized to a string for storage.
 * All data may be viewed by the user (it is not encrypted), but it is safe from modification.
@@ -69,12 +70,14 @@ func (c App) SaveSettings(setting string) revel.Result {
 </pre>
 
 Walking through this example:
+
 1. User fetches the settings page.
 2. User posts a setting (POST)
 3. Application processes the request, saves an error or success message to the flash, and redirects the user to the settings page (REDIRECT)
 4. User fetches the settings page, whose template shows the flashed message. (GET)
 
 It uses two convenience functions:
+
 1. `Flash.Success(message string)` is an abbreviation of `Flash.Out["success"] = message`
 2. `Flash.Error(message string)` is an abbreviation of `Flash.Out["error"] = message`
 

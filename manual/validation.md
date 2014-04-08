@@ -3,7 +3,8 @@ title: Validation
 layout: manual
 ---
 
-Revel provides built-in functionality for validating parameters.  There are a couple parts:
+Revel provides built-in functionality for validating parameters. There are a couple parts:
+
 * A Validation context collects and manages validation errors (keys and messages).
 * Helper functions that check data and put errors into the context.
 * A template function that gets error messages from the Validation context by key.
@@ -36,6 +37,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 </pre>
 
 Step by step:
+
 1. Evaluate four different conditions on `username` (Required, MinSize, MaxSize, Match).
 2. Each evaluation returns a [ValidationResult](../docs/godoc/validation.html#ValidationResult). Failed ValidationResults are stored in the Validation context.
 3. As part of building the app, Revel records the name of the variable being
@@ -60,6 +62,7 @@ The Hotels.Settings action renders a template:
 {% endraw %}
 
 It does three things:
+
 1. Checks the `errors` map for the `username` key to see if that field had an error.
 2. Prefills the input with the flashed `username` param value.
 3. Shows the error message next to the field.  (We didn't specify any error message, but each validation function provides one by default.)
@@ -73,6 +76,7 @@ The template can be simplified if error messages are collected in a single place
 (e.g. a big red box at the top of the screen.)
 
 There are only two differences from the previous example:
+
 1. We specify a `Message` instead of a `Key` on the `ValidationError`
 2. We print all messages at the top of the form.
 

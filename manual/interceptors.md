@@ -6,6 +6,7 @@ layout: manual
 An "interceptor" is a function that is invoked by the framework before or after an action invocation.  It allows a form of
 [Aspect Oriented Programming](http://en.wikipedia.org/wiki/Aspect-oriented_programming),
 which is useful for some common concerns:
+
 * Request logging
 * Error handling
 * Stats keeping

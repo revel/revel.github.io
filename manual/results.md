@@ -14,6 +14,7 @@ type Result interface {
 
 [`revel.Controller`](../docs/godoc/controller.html#Controller) provides a couple
 methods to produce Results:
+
 * Render, RenderTemplate - render a template, passing arguments.
 * RenderJson, RenderXml - serialize a structure to json or xml.
 * RenderText - return a plaintext response.
@@ -83,17 +84,19 @@ consumption.
 A helper function is provided for generating redirects.  It may be used in two ways.
 
 1. Redirect to an action with no arguments:
-<pre class="prettyprint lang-go">
-	return c.Redirect(Hotels.Settings)
-</pre>
-This form is useful as it provides a degree of type safety and independence from
-the routing.  (It generates the URL automatically.)
+
+    <pre class="prettyprint lang-go">
+      return c.Redirect(Hotels.Settings)</pre>
+
+    This form is useful as it provides a degree of type safety and independence from
+    the routing.  (It generates the URL automatically.)
 
 2. Redirect to a formatted string:
-<pre class="prettyprint lang-go">
-	return c.Redirect("/hotels/%d/settings", hotelId)
-</pre>
-This form is necessary to pass arguments.
+
+    <pre class="prettyprint lang-go">
+      return c.Redirect("/hotels/%d/settings", hotelId)</pre>
+
+    This form is necessary to pass arguments.
 
 It returns a 302 (Temporary Redirect) status code.
 

@@ -4,6 +4,7 @@ layout: manual
 ---
 
 Revel provides four loggers:
+
 * TRACE - debugging information only.
 * INFO - informational.
 * WARN - something unexpected but not harmful.
