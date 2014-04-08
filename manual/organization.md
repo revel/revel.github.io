@@ -36,11 +36,13 @@ typical Go installation.
 ## The app/ directory
 
 The `app` directory contains the source code and templates for your application.
+
 - `app/controllers`
 - `app/models`
 - `app/views`
 
 Revel requires:
+
 - All templates are under `app/views`
 - All controllers are under `app/controllers`
 

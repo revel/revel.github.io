@@ -9,7 +9,7 @@ Typically:
 {% raw %}
 <pre class="prettyprint lang-go">
 type AppController struct {
-  *revel.Controller
+	*revel.Controller
 }
 </pre>
 {% endraw %}
@@ -23,21 +23,21 @@ for the full story, but here is the definition (along with definitions of helper
 {% raw %}
 <pre class="prettyprint lang-go">
 type Controller struct {
-    Name          string          // The controller name, e.g. "Application"
-    Type          *ControllerType // A description of the controller type.
-    MethodType    *MethodType     // A description of the invoked action type.
-    AppController interface{}     // The controller that was instantiated.
+	Name          string          // The controller name, e.g. "Application"
+	Type          *ControllerType // A description of the controller type.
+	MethodType    *MethodType     // A description of the invoked action type.
+	AppController interface{}     // The controller that was instantiated.
 
-    Request  *Request
-    Response *Response
-    Result   Result
+	Request  *Request
+	Response *Response
+	Result   Result
 
-    Flash      Flash                  // User cookie, cleared after 1 request.
-    Session    Session                // Session, stored in cookie, signed.
-    Params     *Params                // Parameters from URL and form (including multipart).
-    Args       map[string]interface{} // Per-request scratch space.
-    RenderArgs map[string]interface{} // Args passed to the template.
-    Validation *Validation            // Data validation helpers
+	Flash      Flash                  // User cookie, cleared after 1 request.
+	Session    Session                // Session, stored in cookie, signed.
+	Params     *Params                // Parameters from URL and form (including multipart).
+	Args       map[string]interface{} // Per-request scratch space.
+	RenderArgs map[string]interface{} // Args passed to the template.
+	Validation *Validation            // Data validation helpers
 }
 
 // These provide a unified view of the request params.
