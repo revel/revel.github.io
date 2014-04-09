@@ -35,7 +35,7 @@ This example shows them set to their default values.
 ## Startup jobs
 
 To run a task on application startup, use
-[`revel.OnAppStart`](../docs/godoc/init.html#OnAppStart) to register a function.
+[`revel.OnAppStart`](../docs/godoc/server.html#OnAppStart) to register a function.
 Revel runs these tasks serially, before starting the server.  Note that this
 functionality does not actually use the jobs module, but it can be used to
 submit a job for execution that doesn't block server startup.
@@ -61,7 +61,7 @@ schedule and run the jobs.  The library's
 description of the format accepted.
 
 Jobs are generally registered using the
-[`revel.OnAppStart`](../docs/godoc/init.html#OnAppStart) hook, but they may be
+[`revel.OnAppStart`](../docs/godoc/server.html#OnAppStart) hook, but they may be
 registered at any later time as well.
 
 Here are some examples:
