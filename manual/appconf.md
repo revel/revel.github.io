@@ -49,6 +49,16 @@ The developer may define custom keys and access them via the
 [`revel.Config` variable](../docs/godoc/revel.html#variables), which exposes a
 [simple api](../docs/godoc/config.html).
 
+Example:
+
+    var mode string
+    if revel.Config.BoolDefault("mode.prod", false) {
+      mode = "prod"
+    } else {
+      mode = "dev"    
+    }
+    revel.INFO.Printf("Running in %s mode.", mode)
+
 ## Built-in properties
 
 ### Application settings
