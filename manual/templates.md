@@ -177,6 +177,22 @@ Example:
 
 {% endraw %}
 
+### even
+
+Perform $in % 2 == 0. This is a convenience function that assists with table row coloring.
+
+Example:
+
+{% raw %}
+
+	{{range $index, $element := .results}}
+	<tr class="{{if even $index}}danger{{end}}">
+		...
+	</tr>
+	{{end}}
+
+{% endraw %}
+
 ## Including
 
 Go Templates allow you to compose templates by inclusion.  For example:
