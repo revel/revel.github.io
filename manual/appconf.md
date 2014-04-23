@@ -66,7 +66,7 @@ Default: no value
 
 #### app.root
 
-The root of the application. This is used to serve more then one application on one server:port behind a frontend web server (e.g. nginx). Make sure all paths in the application are created using the routes module. For hardcoded paths prefix ``{{url `Root`}}``.
+The root of the application. This is used to serve more than one application on one server:port behind a frontend web server (e.g. nginx). Make sure all paths in the application are created using the routes module. For hardcoded paths prefix ``{{url `Root`}}``.
 
 #### app.secret
 
