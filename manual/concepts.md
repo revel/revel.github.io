@@ -93,6 +93,7 @@ type AppController struct {
 {% endraw %}
 
 An **Action** is any method on a **Controller** that meets the following criteria:
+
 * is exported
 * returns a revel.Result
 
