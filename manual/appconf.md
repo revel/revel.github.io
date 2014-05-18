@@ -43,6 +43,46 @@ New apps start with **dev** and **prod** run modes defined, but the user may
 create any sections they wish.  The run mode is chosen at runtime by the
 argument provided to "revel run" (the [command-line tool](tool.html)).
 
+## Variables
+
+There are two types of variable developer can use in app.conf
+
+### Unfolding variables
+
+This variable type will read value from another declared key. The syntax is `%(UNF_VARS)s`
+**Note the 's' in the last syntax**
+
+Example:
+
+	app.name=chat
+	http.port=9000
+	
+	log.warn.output = %(app.name)s.log
+	log.error.output = %(app.name)s.log
+    
+Will be parsed by revel/config to:
+
+	app.name=chat
+	http.port=9000
+
+	log.warn.output  = chat.log
+	log.error.output = chat.log
+    
+### Environment Variables
+
+You can also get your config values from environment variable. The syntax is `${ENV_VARS}`
+
+Example:
+
+	app.name=chat
+	http.port=9000
+	
+	db.driver = ${APP_DB_DRIVER}
+	db.spec   = ${APP_DB_SPEC}
+	
+Revel then will find `APP_DB_DRIVER` and `APP_DB_SPEC in your environment variables,
+and set those value to your config file`
+
 ## Custom properties
 
 The developer may define custom keys and access them via the
