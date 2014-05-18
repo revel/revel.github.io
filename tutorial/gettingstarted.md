@@ -17,6 +17,7 @@ is a directory tree where all of your Go code will live.  Here are the steps to 
 1. Make a directory: `mkdir ~/gocode`
 2. Tell Go to use that as your GOPATH: `export GOPATH=~/gocode`
 3. Save your GOPATH so that it will apply to all future shell sessions: `echo GOPATH=$GOPATH >> .bash_profile`
+   On Mac Terminal: `echo 'export GOPATH=$GOPATH' >> .bash_profile`, remember this will append this line to your BASH profile configuration and you can always go edit it later using vim or your favourite editor.
 
 Now your Go installation is complete.
 
@@ -52,8 +53,12 @@ Then, ensure the $GOPATH/bin directory is in your PATH so that you can reference
 
 	export PATH="$PATH:$GOPATH/bin"
 	echo 'PATH="$PATH:$GOPATH/bin"' >> .bash_profile
+	
+On Mac Terminal:
+	
+	echo 'export PATH="$PATH:$GOPATH/bin"' >> .bash_profile
 
-Lastly, let's verify that it works:
+Lastly, let's verify that it works, you may want to close your terminal session now so as to make sure your path variables will initialize properly and open a new terminal window, once you have done this type the following into the terminal and you should see the response:
 
 	$ revel help
 	~
