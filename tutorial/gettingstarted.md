@@ -16,7 +16,7 @@ is a directory tree where all of your Go code will live.  Here are the steps to 
 
 1. Make a directory: `mkdir ~/gocode`
 2. Tell Go to use that as your GOPATH: `export GOPATH=~/gocode`
-3. Save your GOPATH so that it will apply to all future shell sessions: `echo GOPATH=$GOPATH >> .bash_profile`
+3. Save your GOPATH so that it will apply to all future shell sessions: `echo export GOPATH=$GOPATH >> ~/.bash_profile`
 
 Now your Go installation is complete.
 
@@ -51,7 +51,7 @@ Use `go get` to install it:
 Then, ensure the $GOPATH/bin directory is in your PATH so that you can reference the command from anywhere.
 
 	export PATH="$PATH:$GOPATH/bin"
-	echo 'PATH="$PATH:$GOPATH/bin"' >> .bash_profile
+	echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.bash_profile
 
 Lastly, let's verify that it works:
 
