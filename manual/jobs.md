@@ -32,6 +32,31 @@ This example shows them set to their default values.
     jobs.pool = 10                # Number of jobs allowed to run simultaneously
     jobs.selfconcurrent = false   # Allow a job to run only if previous instances are done
 
+## Implementing Jobs
+
+To create a Job, implement the `cron.Job` interface defined by the [Cron API](https://github.com/robfig/cron/).  The `Job` interface has the following signature:
+
+{% raw %}
+<pre class="prettyprint lang-go">
+// https://github.com/robfig/cron/blob/master/cron.go
+type Job interface {
+	Run()
+}
+</pre>
+{% endraw %}
+
+For example:
+
+{% raw %}
+<pre class="prettyprint lang-go">
+type MyJob struct {}
+
+func (j MyJob) Run() {
+   // Do something
+}
+</pre>
+{% endraw %}
+
 ## Startup jobs
 
 To run a task on application startup, use
