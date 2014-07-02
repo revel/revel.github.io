@@ -43,6 +43,49 @@ New apps start with **dev** and **prod** run modes defined, but the user may
 create any sections they wish.  The run mode is chosen at runtime by the
 argument provided to "revel run" (the [command-line tool](tool.html)).
 
+## Dynamic parameters
+
+Besides static configuration, Revel also supports dynamic configuration by injecting
+environment variables or the value of other parameters.
+
+### Environment variables
+
+In most cases, you'll want to load sensitive values from environment variables
+rather than storing them in your configuration file. The syntax for including an
+environment variable is similar to the shell syntax: `${ENV_VAR_NAME}`.
+
+Example:
+
+	app.name = chat
+	http.port = 9000
+	
+	db.driver = ${CHAT_DB_DRIVER}
+	db.spec = ${CHAT_DB_SPEC}
+	
+Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
+and inject them into the config at runtime.
+
+### Composing other parameters
+
+To incorporate the value of one parameter into another, you can "unfold" it by using
+the `%(var_name)s` syntax (note the 's' at the end).
+
+Example:
+
+	app.name = chat
+	http.port = 9000
+	
+	log.warn.output = %(app.name)s.log
+	log.error.output = %(app.name)s.log
+
+Will be parsed by revel/config as:
+
+	app.name=chat
+	http.port=9000
+
+	log.warn.output = chat.log
+	log.error.output = chat.log
+
 ## Custom properties
 
 The developer may define custom keys and access them via the
