@@ -43,45 +43,48 @@ New apps start with **dev** and **prod** run modes defined, but the user may
 create any sections they wish.  The run mode is chosen at runtime by the
 argument provided to "revel run" (the [command-line tool](tool.html)).
 
-## Variables
+## Dynamic parameters
 
-There are two types of variable developer can use in app.conf
+Besides static configuration, Revel also supports dynamic configuration by injecting
+environment variables or the value of other parameters.
 
-### Unfolding variables
+### Environment variables
 
-This variable type will read value from another declared key. The syntax is `%(UNF_VARS)s`
-**Note the 's' in the last syntax**
+In most cases, you'll want to load sensitive values from environment variables
+rather than storing them in your configuration file. The syntax for including an
+environment variable is similar to the shell syntax: `${ENV_VAR_NAME}`.
 
 Example:
 
-	app.name=chat
-	http.port=9000
+	app.name = chat
+	http.port = 9000
+	
+	db.driver = ${CHAT_DB_DRIVER}
+	db.spec = ${CHAT_DB_SPEC}
+	
+Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
+and inject them into the config at runtime.
+
+### Composing other parameters
+
+To incorporate the value of one parameter into another, you can "unfold" it by using
+the `%(var_name)s` syntax (note the 's' at the end).
+
+Example:
+
+	app.name = chat
+	http.port = 9000
 	
 	log.warn.output = %(app.name)s.log
 	log.error.output = %(app.name)s.log
-    
-Will be parsed by revel/config to:
+
+Will be parsed by revel/config as:
 
 	app.name=chat
 	http.port=9000
 
-	log.warn.output  = chat.log
+	log.warn.output = chat.log
 	log.error.output = chat.log
-    
-### Environment Variables
-
-You can also get your config values from environment variable. The syntax is `${ENV_VARS}`
-
-Example:
-
-	app.name=chat
-	http.port=9000
-	
-	db.driver = ${APP_DB_DRIVER}
-	db.spec   = ${APP_DB_SPEC}
-	
-Revel then will find `APP_DB_DRIVER` and `APP_DB_SPEC in your environment variables,
-and set those value to your config file`
 
 ## Custom properties
 
