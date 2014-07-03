@@ -15,12 +15,13 @@ configuration:
 
 	module.jobs = github.com/revel/revel/modules/jobs
 
-Additionally, in order to access the job monitoring page, you will need to add
-this line to your routes:
+Additionally, in order to access the job monitoring page, you will need to add `module:jobs`  to your routes, normally as the top, eg:
 
 	module:jobs
-
-This statement will insert the `/@jobs` route at that location.
+	GET     /    App.Index
+	
+This statement will insert the `@jobs` route at that location, ie `http://127.0.0.1/@jobs`. At present
+the jobs url is restricted to `127.0.0.1`
 
 ## Options
 
@@ -30,7 +31,9 @@ to place on the jobs that it runs.
 This example shows them set to their default values.
 
     jobs.pool = 10                # Number of jobs allowed to run simultaneously
-    jobs.selfconcurrent = false   # Allow a job to run only if previous instances are done
+    jobs.selfconcurrent = true    # Allow a job to run only if previous instances are done
+    # or 
+    jobs.selfconcurrent = false   # Allow a job to run even if previous instances are running
 
 ## Implementing Jobs
 

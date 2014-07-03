@@ -25,6 +25,10 @@ run it:
 	2012/09/27 17:01:54 run.go:41: Running myapp (myapp) in dev mode
 	2012/09/27 17:01:54 harness.go:112: Listening on :9000
 
+	## Another example
+	$ revel new github.com/me/new_revel_site
+	$ revel run github.com/me/new_revel_site
+	
 Open your browser to http://localhost:9000/ to see a notification that your app
 is ready.
 
