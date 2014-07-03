@@ -38,7 +38,7 @@ in the first slot (directly or indirectly). Any method on a controller that is
 exported and returns a `revel.Result` may be treated as an Action.
 
 The Revel controller provides many useful methods for generating Results. In
-this example, it calls [`Render()`](../docs/godoc/mvc.html#Controller.Render),
+this example, it calls [`Render()`](../docs/godoc/controller.html#Controller.Render),
 which tells Revel to find and render a template as the response (**200 OK**).
 
 ### Templates
