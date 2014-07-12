@@ -107,9 +107,11 @@ Here is an example of adding a simple Result.
 Create this type:
 
 <pre class="prettyprint lang-go">
+import ("net/http")
+
 type Html string
 
-func (r Html) Apply(req *Request, resp *Response) {
+func (r Html) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
 	resp.Out.Write([]byte(r))
 }
