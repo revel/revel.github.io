@@ -203,7 +203,7 @@ from 127.0.0.1.
 It is possible to configure the job module to limit the number of jobs that are
 allowed to run at the same time.  This allows the developer to restrict the
 resources that could be potentially in use by asynchronous jobs -- typically
-interactive responsiveness if valued above asynchronous processing.  When a pool
+interactive responsiveness is valued above asynchronous processing.  When a pool
 is full of running jobs, new jobs block to wait for running jobs to complete.
 
 Implementation note: The implementation blocks on a channel receive, which is
