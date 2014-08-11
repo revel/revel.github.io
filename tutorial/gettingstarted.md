@@ -63,10 +63,12 @@ Lastly, let's verify that it works:
 
 	The commands are:
 
-	    run         run a Revel application
 	    new         create a skeleton Revel application
-	    clean       clean a Revel application's temp files
+	    run         run a Revel application
+	    build       build a Revel application (e.g. for deployment)
 	    package     package a Revel application (e.g. for deployment)
+	    clean       clean a Revel application's temp files
+	    test        run all tests from the command-line
 
 	Use "revel help [command]" for more information.
 
