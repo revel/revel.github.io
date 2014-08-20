@@ -37,17 +37,13 @@ C library.
 
 ### To install (OSX):
 
-1. Install Homebrew ( http://mxcl.github.com/homebrew/ ):
-	
-	```sh 
-	$ ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
-	```
+1. Install [Homebrew](http://mxcl.github.com/homebrew/) if you don't already have it.
 
 2. Install pkg-config and sqlite3:
 
-	```sh 
-	$ brew install pkgconfig sqlite3
-	```
+~~~
+$ brew install pkgconfig sqlite3
+~~~
 
 ### To install (Ubuntu):
 
