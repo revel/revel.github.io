@@ -49,8 +49,8 @@ Configure the cache using these keys in `app.conf`:
   used. (default false)
 * `cache.redis` - a boolean indicating whether or not redis should be
   used. (default false)
-* `cache.hosts` - a comma separated list of hosts to use as backends.  this is
-  only used when memcached is enabled.
+* `cache.hosts` - a comma separated list of hosts to use as backends.  If the used cache is Redis,
+  only the first host in this list is used.
 
 ## Example usage
 
