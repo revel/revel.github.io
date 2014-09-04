@@ -280,7 +280,7 @@ func (c Application) Register() revel.Result {
 
 func (c Application) SaveUser(user models.User, verifyPassword string) revel.Result {
 	c.Validation.Required(verifyPassword)
-	c.Validation.Required(verifyPassword == user.Password)
+	c.Validation.Required(verifyPassword == user.Password).
 		Message("Password does not match")
 	user.Validate(c.Validation)
 
