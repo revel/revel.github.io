@@ -98,8 +98,8 @@ Example:
 	{{with $field := field "booking.CheckInDate" .}}
 	  <p class="{{$field.ErrorClass}}">
 	    <strong>Check In Date:</strong>
-	    <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}">
-	    * <span class="error">{{$field.Error}}</span>
+	    <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}"> *
+	    <span class="error">{{$field.Error}}</span>
 	  </p>
 	{{end}}
 
