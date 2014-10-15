@@ -84,7 +84,7 @@ There are two supported syntaxes for binding slices: ordered or unordered.
 
 Ordered:
 
-	?ids[0]=1
+	&ids[0]=1
 	&ids[1]=2
 	&ids[3]=4
 
@@ -92,7 +92,7 @@ Results in the slice `[]int{1, 2, 0, 4}`
 
 Unordered:
 
-	?ids[]=1
+	&ids[]=1
 	&ids[]=2
 	&ids[]=3
 
@@ -100,7 +100,7 @@ results in the slice `[]int{1, 2, 3}`
 
 **Note:** Only ordered slices should be used when binding a slice of structs:
 
-	?user[0].Id=1
+	&user[0].Id=1
 	&user[0].Name=rob
 	&user[1].Id=2
 	&user[1].Name=jenny
@@ -109,7 +109,7 @@ results in the slice `[]int{1, 2, 3}`
 
 Structs are bound using a simple dot notation:
 
-	?user.Id=1
+	&user.Id=1
 	&user.Name=rob
 	&user.Friends[]=2
 	&user.Friends[]=3
