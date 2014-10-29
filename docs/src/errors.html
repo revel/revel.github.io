@@ -29,7 +29,7 @@ type Error struct {
 func NewErrorFromPanic(err interface{}) *Error {
 
     <span class="comment">// Parse the filename and line from the originating line of app code.</span>
-    <span class="comment">// /Users/revel/code/gocode/src/revel/samples/booking/app/controllers/hotels.go:191 (0x44735)</span>
+    <span class="comment">// /Users/revel/code/gocode/src/samples/booking/app/controllers/hotels.go:191 (0x44735)</span>
     stack := string(debug.Stack())
     frame, basePath := findRelevantStackFrame(stack)
     if frame == -1 {

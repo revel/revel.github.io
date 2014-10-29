@@ -212,8 +212,8 @@ There are two things to note:
 The sample applications included with Revel try to demonstrate effective use of
 Go Templates.  In particular, please take a look at:
 
-* `revel/samples/booking/app/views/header.html`
-* `revel/samples/booking/app/views/Hotels/Book.html`
+* `samples/booking/app/views/header.html`
+* `samples/booking/app/views/Hotels/Book.html`
 
 It takes advantage of the helper functions to set the title and extra styles in
 the template itself.
