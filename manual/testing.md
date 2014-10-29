@@ -92,7 +92,7 @@ All assertions raise a panic if they are not fulfilled.  All panics are caught b
 
 In order to run any tests, the `testrunner` module must be activated.  This is done by including the following line in your `app.conf`:
 
-	module.testrunner = github.com/revel/revel/modules/testrunner
+	module.testrunner = github.com/revel/modules/testrunner
 	
 You must also import the test module routes, by adding this line to your `routes` file:
 

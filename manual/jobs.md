@@ -13,7 +13,7 @@ The framework is included as an optional module, that is not included in your
 application by default.  To activate it, add the module to your app
 configuration:
 
-	module.jobs = github.com/revel/revel/modules/jobs
+	module.jobs = github.com/revel/modules/jobs
 
 Additionally, in order to access the job monitoring page, you will need to add
 this line to your routes:
@@ -95,7 +95,7 @@ Here are some examples:
 <pre class="prettyprint lang-go">
 import (
     "github.com/revel/revel"
-    "github.com/revel/revel/modules/jobs/app/jobs"
+    "github.com/revel/modules/jobs/app/jobs"
     "time"
 )
 
