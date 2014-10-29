@@ -24,4 +24,4 @@ An empty import path disables the module:
 
 For example, to enable the test runner module:
 
-	module.testrunner = github.com/revel/revel/modules/testrunner
+	module.testrunner = github.com/revel/modules/testrunner

@@ -110,7 +110,7 @@ For the 2 parameters version of Static.Serve, blank spaces are not allowed betwe
 
 For serving directories of static assets, Revel provides the **static** module,
 which contains a single
-[Static](http://godoc.org/github.com/revel/revel/modules/static/app/controllers)
+[Static](http://godoc.org/github.com/revel/modules/static/app/controllers)
 controller.  Its Serve action takes two parameters:
 
 * prefix (string) - A (relative or absolute) path to the asset root.

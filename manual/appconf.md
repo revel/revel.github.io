@@ -447,7 +447,7 @@ Default: false
 [Modules](modules.html) may be added to an application by specifying their base
 import path.  For example:
 
-	module.testrunner = github.com/revel/revel/modules/testrunner
+	module.testrunner = github.com/revel/modules/testrunner
 
 ## Areas for development
 
