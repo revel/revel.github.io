@@ -16,7 +16,7 @@ Here are the contents of the app:
 		controllers
 			app.go    # All code
 
-[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/facebook-oauth2)
+[Browse the code on Github](https://github.com/revel/samples/tree/master/facebook-oauth2)
 
 ## OAuth2 Overview
 

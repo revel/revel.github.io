@@ -16,7 +16,7 @@ nesting and arguments.
 ## Sample application
 
 The way Revel handles message files and internationalization in general is similar to most other web frameworks out there. For those of you that wish to get
-started straight away without going through the specifics, there is a sample application `revel/samples/i18n` that you can have a look at which demonstrates 
+started straight away without going through the specifics, there is a sample application `samples/i18n` that you can have a look at which demonstrates 
 all the basics.
 
 ## Message files

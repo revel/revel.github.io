@@ -17,4 +17,4 @@ Here are the contents of the app:
 			sample2.go  # Validating simple fields with error messages shown inline.
 			sample3.go  # Validating a struct with error messages shown inline.
 
-[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/validation)
+[Browse the code on Github](https://github.com/revel/samples/tree/master/validation)
