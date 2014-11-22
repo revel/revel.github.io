@@ -5,7 +5,7 @@ layout: manual
 
 Revel provides a Cache library for server-side, temporary, low-latency
 storage.  It is a good replacement for frequent database access to slowly
-changing data, and it can also be using for implementing user sessions (if the
+changing data, and it can also be used for implementing user sessions (if the
 cookie-based sessions are insufficient).
 
 Read the [interface](http://godoc.org/github.com/revel/revel/cache#Cache)
