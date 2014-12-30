@@ -98,7 +98,7 @@ its value will be the path substring that follows the * prefix.
 identifier of **WS**.
 
 
-## Static serving
+## Static Serving
 
 	GET    /public/*filepath            Static.Serve("public")
 	GET    /favicon.ico                 Static.Serve("public","img/favicon.png")
@@ -116,7 +116,7 @@ controller.  Its Serve action takes two parameters:
 
 (Refer to [organization](organization.html) for the directory layout)
 
-## Fixed parameters
+## Fixed Parameters
 
 As demonstrated in the Static Serving section, routes may specify one or more
 parameters to the action.  For example:
@@ -134,7 +134,7 @@ This could be helpful in situations where:
 * you have actions that do the same thing, but operate in different modes
 * you have actions that do the same thing, but operate on different data types
 
-## Routing Modules
+## Routing:Modules
 
 Modules which contain routes can be imported into your application in two ways:
 
@@ -198,12 +198,11 @@ the reverse router..
 
 ## Reverse Routing
 
-It is good practice to use a reverse router to generate URLs for a couple reasons:
+It is good practice to use a reverse router to generate URL's instead of hardcoding for a few reasons including:
 
 * Avoids misspellings
-* The compiler ensures that reverse routes have the right number and type of
-  parameters.
-* Localizes URL changes to one place: the routes file.
+* The compiler ensures that reverse routes have the right number and type of parameters.
+* Localizes URL changes to one place in the 'conf/routes' file.
 
 Upon building your application, Revel generates an `app/routes` package.  Use it
 with a statement of the form:
@@ -212,8 +211,16 @@ with a statement of the form:
 routes.Controller.Action(param1, param2)
 </pre>
 
-The above statement returns a URL (type string) to Controller.Action with the
-given parameters.  Here is a more complete example:
+
+The above statement returns an URL (type string) to `Controller.Action` with the
+given parameters.  
+
+<div class="alert alert-info"><strong>Limitation:</strong> Only primitive
+parameters to a route are typed due to the possibility of circular imports.
+Non-primitive parameters are typed as interface{}.
+</div>
+
+Below is a more complete example:
 
 <pre class="prettyprint lang-go">{% capture html %}
 import (
@@ -242,7 +249,4 @@ func (c App) ProcessForm(username, input string) revel.Result {
 </pre>
 
 
-<div class="alert alert-info"><strong>Limitation:</strong> Only primitive
-parameters to a route are typed due to the possibility of circular imports.
-Non-primitive parameters are typed as interface{}.
-</div>
+

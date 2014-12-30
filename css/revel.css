@@ -151,3 +151,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
   margin: 0 5px;
   position: relative;
 }
+
+.container {
+    width: 1100px;
+}

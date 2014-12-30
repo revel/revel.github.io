@@ -3,20 +3,20 @@ title: Binding Parameters
 layout: manual
 ---
 
-Revel tries to make the conversion of parameters into their desired Go types as
-easy as possible.  This conversion from string to another type is referred to as
-"data binding".
+- Revel tries to make the conversion of request parameters into their desired Go types as
+easy and painless as possible. 
+- The conversion from a string to another type is referred to as **data binding**.
 
 ## Params
 
-All request parameters are collected into a single `Params` object.  That includes:
+All request parameters are collected into a single `Params` object and includes:
 
-* URL Path parameters
-* URL Query parameters
-* Form values (Multipart or not)
-* File uploads
+* The URL **/:path** parameters
+* The URL **?query** parameters
+* **Form** values 
+* **File** multipart uploads
 
-This is the definition ([godoc](../docs/godoc/params.html)):
+The Go struct is:
 
 <pre class="prettyprint lang-go">
 type Params struct {
@@ -25,9 +25,8 @@ type Params struct {
 }
 </pre>
 
-The embedded `url.Values` ([godoc](http://www.golang.org/pkg/net/url/#Values))
-does provide accessors for simple values, but developers will find it easier to
-use Revel's data-binding mechanisms for any non-string values.
+- Golang's native [`url.Values`]([godoc](http://www.golang.org/pkg/net/url/#Values)) provides accessors for simple values
+- Revel's data-binding mechanisms helps with non-string values such as dates or floats
 
 ## Action arguments
 
@@ -40,18 +39,17 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 }
 </pre>
 
-Before invoking the action, Revel asks its Binder to convert parameters of those
-names to the requested data type.  If the binding is unsuccessful for any
-reason, the parameter will have the zero value for its type.
+- Before invoking the action, Revel asks its Binder to convert parameters of those names to the requested data type.  
+- If the binding is unsuccessful for any reason, the parameter will have the zero value for its type.
 
 ## Binder
 
-To bind a parameter to a data type, use Revel's Binder
-([godoc](../docs/godoc/binder.html)).  It is integrated with the Params object
-as the following example shows:
+- To bind a parameter to a data type, use Revel's [`Binder`](../docs/godoc/binder.html).  
+- The [`Binder`](../docs/godoc/binder.html) is integrated with the [`Params`](../docs/godoc/params.html) object.
 
 {% raw %}
 <pre class="prettyprint lang-go">
+// Example params to binder
 func (c SomeController) Action() revel.Result {
 	var ids []int
 	c.Params.Bind(&amp;ids, "ids")
@@ -60,10 +58,10 @@ func (c SomeController) Action() revel.Result {
 </pre>
 {% endraw %}
 
-The following data types are supported out of the box:
+The following data types are supported by Revel out of the box:
 
-* Ints of all widths
-* Bools
+* Integers of all widths
+* Booleans
 * Pointers to any supported type
 * Slices of any supported type
 * Structs
@@ -71,34 +69,33 @@ The following data types are supported out of the box:
 * \*os.File, \[\]byte, io.Reader, io.ReadSeeker for file uploads
 
 The following sections describe the syntax for these types.  It is also useful
-to refer to [the source code](../docs/src/binder.html) if more detail is required.
+to refer to [the source code of](../docs/src/binder.html) if more detail is required.
 
 ### Booleans
 
-The string values "true", "on", and "1" are all treated as **true**.  Else, the
-bound value will be **false**.
+The string values "true", "on", and "1" are all treated as **true**,  otherwise it is **false**.
 
 ### Slices
 
-There are two supported syntaxes for binding slices: ordered or unordered.
+There are two supported syntaxes for binding slices; **ordered** and **unordered**.
 
-Ordered:
+#### Ordered:
 
 	?ids[0]=1
 	&ids[1]=2
 	&ids[3]=4
 
-Results in the slice `[]int{1, 2, 0, 4}`
+- results in a slice of `[]int{1, 2, 0, 4}`
 
-Unordered:
+#### Unordered:
 
 	?ids[]=1
 	&ids[]=2
-	&ids[]=3
+	&ids[]=4
 
-results in the slice `[]int{1, 2, 3}`
+- results in a slice of `[]int{1, 2, 4}`
 
-**Note:** Only ordered slices should be used when binding a slice of structs:
+<div class="alert alert-info">Note: Only ordered slices should be used when binding a slice of structs:</div>
 
 	?user[0].Id=1
 	&user[0].Name=rob
@@ -107,7 +104,7 @@ results in the slice `[]int{1, 2, 3}`
 
 ### Structs
 
-Structs are bound using a simple dot notation:
+Structs are bound using simple dot notation:
 
 	?user.Id=1
 	&user.Name=rob
@@ -116,26 +113,23 @@ Structs are bound using a simple dot notation:
 	&user.Father.Id=5
 	&user.Father.Name=Hermes
 
-would bind a structure defined as:
+Will bind the struct:
+    
+    type User struct {
+        Id int
+        Name string
+        Friends []int
+        Father User
+    }
 
-<pre class="prettyprint lang-go">
-type User struct {
-	Id int
-	Name string
-	Friends []int
-	Father User
-}
-</pre>
 
-**Note:** Properties must be exported in order to be bound.
+<div class="alert alert-info">Note: Properties must be exported in order to be bound.</div>
 
 ### Date / Time
 
-The SQL standard time formats \["2006-01-02", "2006-01-02 15:04"\] are built in.
-
-More may be added by the application, using
-[the official pattern](http://golang.org/pkg/time/#pkg-constants).  Simply add
-the pattern to recognize to the `TimeFormats` variable, like this:
+- The SQL standard date time formats of `2006-01-02`, `2006-01-02 15:04` are built in.
+- Alternative formats may be added to the application, using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
+- Add a pattern to recognize to the `TimeFormats` variable, like this:
 
 <pre class="prettyprint lang-go">
 func init() {
@@ -145,7 +139,7 @@ func init() {
 
 ### File Uploads
 
-File uploads may be bound to any of the following types:
+File uploads can be bound to any of the following types:
 
 * \*os.File
 * \[\]byte
@@ -157,8 +151,8 @@ This is a wrapper around the upload handling provided by
 stay in memory unless they exceed a threshold (10MB by default), in which case
 they are written to a temp file.
 
-**Note:** Binding a file upload to `os.File` requires Revel to write it to a
-temp file (if it wasn't already), making it less efficient than the other types.
+<div class="alert alert-info">Note: Binding a file upload to <i>os.File</i> requires Revel to write it to a
+temp file (if it wasn't already), making it less efficient than the other types.</div>
 
 ### Custom Binders
 
