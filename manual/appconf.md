@@ -198,6 +198,7 @@ before the entire template has been fully rendered.
 
 Default: false
 
+<a name="results.pretty"></a>
 
 #### results.pretty
 
@@ -267,6 +268,8 @@ watched.
 
 Default: true
 
+<a name="Cookies"></a>
+
 ### Cookies
 
 Revel components use the following cookies by default:
@@ -296,6 +299,10 @@ would result in the following cookie names:
 
 Default: "REVEL"
 
+
+<a name="Session"></a>
+
+
 ### Session
 
 #### session.expires
@@ -305,6 +312,10 @@ Revel uses [ParseDuration](http://golang.org/pkg/time/#ParseDuration) to parse t
 The default value is 30 days. It can also be set to "session" to allow session only
 expiry. Please note that the client behaviour is dependent on browser configuration so
 the result is not always guaranteed.
+
+
+<a name="Templates"></a>
+
 
 ### Templates
 
@@ -335,6 +346,10 @@ Specifies the default datetime format for the application.  Revel uses this in t
 * Printing dates using the `datetime` template function (see [template funcs](templates.html))
 
 Default: "2006-01-02 15:04"
+
+
+<a name="Database"></a>
+
 
 ### Database
 
@@ -373,6 +388,9 @@ Default: ""
 
 TODO
 
+<a name="Cache"></a>
+
+
 ### Cache
 
 The [cache](cache.html) module is a simple interface to a heap or distributed cache.
@@ -408,6 +426,10 @@ space.
 
 Default: ""
 
+
+<a name="Jobs"></a>
+
+
 ### Scheduled Jobs
 
 The [jobs](jobs.html) module allows you to run scheduled or ad-hoc jobs.
@@ -441,6 +463,9 @@ If true, allows a job to run even if previous instances of that job are still in
 progress.
 
 Default: false
+
+<a name="Modules"></a>
+
 
 ### Modules
 

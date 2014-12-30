@@ -88,7 +88,7 @@ type (usually a struct).  Revel will serialize it using
 [`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
-If `results.pretty=true` in [`conf/app.conf`](appconf.html), serialization will be done using
+If [`results.pretty=true`]((appconf.html#results.pretty) in [`conf/app.conf`](appconf.html), serialization will be done using
 `MarshalIndent` instead, to produce nicely indented output for human
 consumption.
 
