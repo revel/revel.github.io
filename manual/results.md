@@ -4,7 +4,7 @@ layout: manual
 ---
 
 Actions must return a [`revel.Result`](../docs/godoc/results.html#Result), which
-handles the response generation.  It adheres to a simple interface:
+handles the HTTP response generation.  It adheres to the simple interface:
 
 <pre class="prettyprint lang-go">
 type Result interface {
@@ -12,41 +12,54 @@ type Result interface {
 }
 </pre>
 
-[`revel.Controller`](../docs/godoc/controller.html#Controller) provides a couple
+[`revel.Controller`](../docs/godoc/controller.html#Controller) provides a few
 methods to produce Results:
 
-* Render, RenderTemplate - render a template, passing arguments.
-* RenderJson, RenderXml - serialize a structure to json or xml.
+* [Render](#Render), [RenderTemplate](#RenderTemplate) - render a template, passing arguments.
+* [RenderJson](#RenderJson), [RenderXml](#RenderXml) - serialize a structure to json or xml.
 * RenderText - return a plaintext response.
-* Redirect - redirect to another action or URL
+* [Redirect](#Redirect) - redirect to another action or URL
 * RenderFile - return a file, generally to be downloaded as an attachment.
 * RenderError - return a 500 response that renders the errors/500.html template.
 * NotFound - return a 404 response that renders the errors/404.html template.
 * Todo - return a stub response (500)
 
-Additionally, the developer may define their own `revel.Result` and return that.
+Additionally, the developer may [define their own `revel.Result`](#CustomResult) and return that.
 
 ### Setting the Status Code / Content Type
 
-Each built-in Result has a default Status Code and Content Type.  To override
+Each built-in Result has a default `HTTP Status Code` and `Content Type`.  To override
 those defaults, simply set those properties on the response:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c App) Action() revel.Result {
 	c.Response.Status = http.StatusTeapot
 	c.Response.ContentType = "application/dishware"
 	return c.Render()
 }
+{% endhighlight %}
+
+
+You can override the default status code by setting one yourself:
+
+<pre class="prettyprint lang-go">
+func (c *App) CreateEntity() revel.Result {
+    c.Response.Status = 201
+    return c.Render()
+}
 </pre>
+
+<a name="Render">
 
 ## Render
 
 Called within an action (e.g. "Controller.Action"),
 [`mvc.Controller.Render`](../docs/godoc/controller.html#Controller.Render) does two things:
-1. Adds all arguments to the controller's RenderArgs, using their local identifier as the key.
-2. Executes the template "views/Controller/Action.html", passing in the controller's "RenderArgs" as the data map.
 
-If unsuccessful (e.g. it could not find the template), it returns an ErrorResult instead.
+ 1. Adds all arguments to the controller's `RenderArgs`, using their local identifier as the key.
+ 2. Executes the template "views/Controller/Action.html", passing in the controller's `RenderArgs` as the data map.
+
+If unsuccessful (e.g. it could not find the template), it returns an `ErrorResult` instead.
 
 This allows the developer to write:
 
@@ -57,14 +70,14 @@ func (c MyApp) Action() revel.Result {
 }
 </pre>
 
-and to use "myValue" in their template.  This is usually more convenient than
+and to use `myValue` in their template.  This is usually more convenient than
 constructing an explicit map, since in many cases the data will need to be
 handled as a local variable anyway.
 
-**Note:** Revel looks at the calling method name to determine the Template
-  path and to look up the argument names.  Therefore, c.Render() may only be
-  called from Actions.
+<div class="alert alert-info">Note: Revel looks at the calling method name to determine the Template
+path and to look up the argument names.  Therefore, `c.Render()` may only be  called from Actions.</div>
 
+<a name="RenderJson"></a><a name="RenderXml"></a>
 
 ## RenderJson / RenderXml
 
@@ -75,9 +88,11 @@ type (usually a struct).  Revel will serialize it using
 [`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
-If `results.pretty=true` in `app.conf`, serialization will be done using
+If `results.pretty=true` in [`conf/app.conf`](appconf.html), serialization will be done using
 `MarshalIndent` instead, to produce nicely indented output for human
 consumption.
+
+<a name="Redirect"></a>
 
 ## Redirect
 
@@ -98,7 +113,9 @@ A helper function is provided for generating redirects.  It may be used in two w
 
     This form is necessary to pass arguments.
 
-It returns a 302 (Temporary Redirect) status code.
+It returns a `302 Temporary Redirect` status code.
+
+<a name="CustomResult">
 
 ## Adding your own Result
 
@@ -109,9 +126,9 @@ Create this type:
 <pre class="prettyprint lang-go">
 import ("net/http")
 
-type Html string
+type MyHtml string
 
-func (r Html) Apply(req *revel.Request, resp *revel.Response) {
+func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
 	resp.Out.Write([]byte(r))
 }
@@ -121,18 +138,8 @@ Then use it in an action:
 
 <pre class="prettyprint lang-go">{% capture html %}
 func (c *App) Action() revel.Result {
-	return Html("<html><body>Hello World</body></html>")
+	return MyHtml("<html><body>Hello Result</body></html>")
 }{% endcapture %}{{ html|escape }}
 </pre>
 
-## Status Codes
 
-Each Result will set a status code by default.  You can override the default
-status code by setting one yourself:
-
-<pre class="prettyprint lang-go">
-func (c *App) CreateEntity() revel.Result {
-	c.Response.Status = 201
-	return c.Render()
-}
-</pre>
