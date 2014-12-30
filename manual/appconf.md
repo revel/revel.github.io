@@ -6,8 +6,8 @@ layout: manual
 ## Overview
 
 The application config file is named `app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/revel/config), which is similar to Microsoft
-INI files.
+[goconfig](https://github.com/revel/config), which are similar to 
+[INI](http://en.wikipedia.org/wiki/INI_file) files.
 
 Here's an example file:
 

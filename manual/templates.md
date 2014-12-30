@@ -6,8 +6,8 @@ layout: manual
 Revel uses [Go Templates](http://www.golang.org/pkg/text/template/).  It
 searches two directories for templates:
 
-* The application's `views` directory (and all subdirectories)
-* Revel's own `templates` directory.
+1. Firstly, the application's `app/views` directory, and all subdirectories.
+2. Then Revel's own `templates` directory.
 
 Given a controller named `Hello` with an action named `World`, Revel will
 look for a template file named `views/Hello/World.html`. Template file names
@@ -15,30 +15,26 @@ are case insensitive so `views/hello/world.html` will work the same as
 `views/HeLlO/wOrLd.HtMl`.
 
 Revel provides templates for error pages (that display the friendly compilation
-errors in DEV mode), but the application may override them by creating a
+errors in DEV mode), but an application may override them by creating a
 template of the equivalent name, e.g. `app/views/errors/500.html`.
 
 ## Render Context
 
-Revel executes the template using the RenderArgs data map.  Aside from
+Revel executes the template using the [`RenderArgs`](../docs/godoc/controller.html#Controller) data map.  Aside from
 application-provided data, Revel provides the following entries:
 
-* "errors" - the map returned by
+* **errors** - the map returned by
   [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap)
-* "flash" - the data flashed by the previous request.
+* **flash** - the data [flashed](sessionflash.html#Flash) by the previous request.
 
 ## Template Functions
 
-Go provides
-[a few functions](http://www.golang.org/pkg/text/template/#Functions) for use in
-your templates.  Revel adds to those.  Read the documentation below or
-[check out their source code](../docs/godoc/template.html#variables).
+- Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
+- Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
 
 ### eq
 
-A simple "a == b" test.
-
-Example:
+A simple `a == b` test.
 
 {% raw %}
 
@@ -50,8 +46,6 @@ Example:
 
 Set a variable in the given context.
 
-Example:
-
 {% raw %}
 
 	{{set . "title" "Basic Chat room"}}
@@ -62,9 +56,7 @@ Example:
 
 ### append
 
-Add a variable to an array, or start an array, in the given context.
-
-Example:
+Add a variable to an array, or create an array; in the given context.
 
 {% raw %}
 
@@ -78,18 +70,18 @@ Example:
 
 ### field
 
-A helper for input fields.
+A helper for input fields [See godoc.](../docs/godoc/field.html).
 
 Given a field name, it returns a struct containing the following members:
 
-* Id: the field name, converted to be suitable as a HTML element ID.
-* Name: the field name
-* Value: the value of the field in the current RenderArgs
-* Flash: the flashed value of the field.
-* Error: the error message, if any is associated with this field.
-* ErrorClass: the raw string "hasError", if there was an error, else "".
+* **Id**: the field name, converted to be suitable as a HTML element ID.
+* **Name**: the field name
+* **Value**: the value of the field in the current `RenderArgs`
+* **Flash**: the [flash](sessionflash.html#Flash) value of the field.
+* **Error**: the error message, if any is associated with this field.
+* **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.
 
-[See godoc.](../docs/godoc/field.html)
+
 
 Example:
 
@@ -98,7 +90,8 @@ Example:
 	{{with $field := field "booking.CheckInDate" .}}
 	  <p class="{{$field.ErrorClass}}">
 	    <strong>Check In Date:</strong>
-	    <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}"> *
+	    <input type="text" size="10" name="{{$field.Name}}" 
+	          class="datepicker" value="{{$field.Flash}}"> *
 	    <span class="error">{{$field.Error}}</span>
 	  </p>
 	{{end}}
@@ -108,9 +101,7 @@ Example:
 ### option
 
 Assists in constructing HTML `option` elements, in conjunction with the field
-helper.
-
-Example:
+helper, eg:
 
 {% raw %}
 
@@ -127,9 +118,7 @@ Example:
 ### radio
 
 Assists in constructing HTML radio `input` elements, in conjunction with the field
-helper.
-
-Example:
+helper, eg:
 
 {% raw %}
 
@@ -144,8 +133,6 @@ Example:
 
 Convert newlines to HTML breaks.
 
-Example:
-
 {% raw %}
 
     You said:
@@ -157,8 +144,6 @@ Example:
 
 A helper for correctly pluralizing words.
 
-Example:
-
 {% raw %}
 
 	There are {{.numComments}} comment{{pluralize (len comments) "" "s"}}
@@ -169,7 +154,6 @@ Example:
 
 Prints raw, unescaped, text.
 
-Example:
 
 {% raw %}
 
@@ -179,14 +163,13 @@ Example:
 
 ### even
 
-Perform $in % 2 == 0. This is a convenience function that assists with table row coloring.
+Perform `$in % 2 == 0`. This is a convenience function that assists with table row coloring.
 
-Example:
 
 {% raw %}
 
 	{{range $index, $element := .results}}
-	<tr class="{{if even $index}}danger{{end}}">
+	<tr class="{{if even $index}}light-row{{else}}dark-row{{end}}">
 		...
 	</tr>
 	{{end}}
@@ -209,11 +192,11 @@ There are two things to note:
 
 ## Tips
 
-The sample applications included with Revel try to demonstrate effective use of
+The [sample applications](https://github.com/revel/samples) try to demonstrate effective use of
 Go Templates.  In particular, please take a look at:
 
-* `samples/booking/app/views/header.html`
-* `samples/booking/app/views/Hotels/Book.html`
+* [`samples/booking/app/views/header.html`](https://github.com/revel/samples/blob/master/booking/app/views/header.html)
+* [`samples/booking/app/views/hotels/book.html`](https://github.com/revel/samples/blob/master/booking/app/views/hotels/book.html)
 
 It takes advantage of the helper functions to set the title and extra styles in
 the template itself.
@@ -260,7 +243,7 @@ Here is an example:
 {% raw %}
 <pre class="prettyprint lang-go">
 func init() {
-	revel.TemplateFuncs["eq"] = func(a, b interface{}) bool { return a == b }
+	revel.TemplateFuncs["my_eq"] = func(a, b interface{}) bool { return a == b || a == 0 }
 }
 </pre>
 {% endraw %}
