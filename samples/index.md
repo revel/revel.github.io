@@ -3,7 +3,7 @@ title: Sample applications
 layout: samples
 ---
 
-Revel provides a couple samples to demonstrate typical usage.
+Revel provides a few samples to demonstrate typical usage. There are in the [github.com/revel/samples/](https://github.com/revel/samples/) repository.
 
 * [Booking](booking.html) - A database-driven hotel-booking application,
   including user management.
@@ -17,4 +17,5 @@ Revel provides a couple samples to demonstrate typical usage.
 
 The samples can generally be run easily, for example:
 
-	$ revel run github.com/revel/samples/chat
+    % go get github.com/revel/samples
+    $ revel run github.com/revel/samples/chat

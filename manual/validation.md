@@ -3,20 +3,20 @@ title: Validation
 layout: manual
 ---
 
-Revel provides built-in functionality for validating parameters. There are a couple parts:
+Revel provides built-in functionality for validating [parameters](binding.html). There are a couple parts:
 
 * A Validation context collects and manages validation errors (keys and messages).
 * Helper functions that check data and put errors into the context.
 * A template function that gets error messages from the Validation context by key.
 
-Take a look at the validation [sample app](../samples/validation.html) for some
+See the [validation sample app](../samples/validation.html) for some
 in-depth examples.
 
 ## Inline Error Messages
 
 This example demonstrates field validation with inline error messages.
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c MyApp) SaveUser(username string) revel.Result {
 	// Username (required) must be between 4 and 15 letters (inclusive).
 	c.Validation.Required(username)
@@ -34,7 +34,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 	// All the data checked out!
 	...
 }
-</pre>
+{% endhighlight  %}
 
 Step by step:
 
@@ -42,11 +42,11 @@ Step by step:
 2. Each evaluation returns a [ValidationResult](../docs/godoc/validation.html#ValidationResult). Failed ValidationResults are stored in the Validation context.
 3. As part of building the app, Revel records the name of the variable being
 validated, and uses that as the default key in the validation context (to be looked up later).
-4. `Validation.HasErrors()` returns true if the the context is non-empty.
-5. `Validation.Keep()` tells Revel to serialize the ValidationErrors to the Flash cookie.
-6. Revel returns a redirect to the Hotels.Settings action.
+4. `Validation.HasErrors()` returns `true` if the the context is non-empty.
+5. `Validation.Keep()` tells Revel to serialize the `ValidationErrors` to the [Flash](sessionflash.html#Flash) cookie.
+6. Revel returns a [redirect](results.html#Redirect) to the `Hotels.Settings` action.
 
-The Hotels.Settings action renders a template:
+The `Hotels.Settings` action renders a template:
 {% raw %}
 
 	{{/* app/views/Hotels/Settings.html */}}
@@ -67,7 +67,7 @@ It does three things:
 2. Prefills the input with the flashed `username` param value.
 3. Shows the error message next to the field.  (We didn't specify any error message, but each validation function provides one by default.)
 
-**Note:** The *field* template helper function makes writing templates that use
+**Note:** The [`field`](templates.html#field) template helper function makes writing templates that use
 the validation error framework a little more convenient.
 
 ## Top Error Messages
@@ -82,7 +82,7 @@ There are only two differences from the previous example:
 
 Here's the code.
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c MyApp) SaveUser(username string) revel.Result {
 	// Username (required) must be between 4 and 15 letters (inclusive).
 	c.Validation.Required(username).Message("Please enter a username")
@@ -100,7 +100,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 	// All the data checked out!
 	...
 }
-</pre>
+{% endhighlight %}
 
 .. and the template:
 

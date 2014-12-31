@@ -10,7 +10,7 @@ The Booking sample app demonstrates:
 * Interceptors for checking that the user is logged in.
 * Using validation to display inline errors
 
-Here are the contents of the app:
+Here are the contents of the app ([browse the code](https://github.com/revel/samples/tree/master/booking)):
 
 	booking/app/
 		models		   # Structs and validation.
@@ -28,7 +28,7 @@ Here are the contents of the app:
 			...
 
 
-[Browse the code on Github](https://github.com/revel/samples/tree/master/booking)
+
 
 ## Installation
 
@@ -56,7 +56,7 @@ usual:
 
 ## Database / Gorp Plugin
 
-**app/controllers/gorp.go** defines `GorpPlugin`, which is a plugin that does a couple things:
+[`app/controllers/gorp.go`](https://github.com/revel/samples/blob/master/booking/app/controllers/gorp.go) defines `GorpPlugin`, which is a plugin that does a couple things:
 
 * OnAppStart: Uses the DB module to open a SQLite in-memory database, create the
   User, Booking, and Hotel tables, and insert some test records.
@@ -64,12 +64,11 @@ usual:
 * AfterRequest: Commits the transaction.  Panics if there was an error.
 * OnException: Rolls back the transaction.
 
-[Check out the code](https://github.com/revel/samples/blob/master/booking/app/controllers/gorp.go)
 
 ## Interceptors
 
-**app/controllers/init.go** registers the interceptors that run before every
-action:
+[`app/controllers/init.go`](https://github.com/revel/samples/blob/master/booking/app/controllers/init.go) 
+registers the [interceptors](../manual/interceptors.html) that run before every action:
 
 <pre class="prettyprint lang-go">
 func init() {

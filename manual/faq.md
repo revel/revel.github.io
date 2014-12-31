@@ -2,18 +2,16 @@
 title: Frequently Asked Questions
 layout: manual
 ---
-
-> How do I integrate existing http.Handlers with Revel?
+#### How do I integrate existing http.Handlers with Revel?
 
 As shown in the [concept diagram](concepts.html), the http.Handler is where Go
 hands off the user's request for processing.  Revel's handler is extraordinarily
-simple -- it just creates the Controller instance and passes the request to the
-Filter Chain.
+simple, it just creates the [Controller](controllers.html) instance and passes the request to the
+[Filter Chain](filters.html).
 
-Applications may integrate existing http.Handlers by overriding the default
-Handler:
+Applications may integrate existing http.Handlers by overriding the default Handler:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func installHandlers() {
 	var (
 		serveMux     = http.NewServeMux()
@@ -26,21 +24,21 @@ func installHandlers() {
 
 func init() {
 	revel.OnAppStart(installHandlers)
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight %}
 
 
-> What is the relationship between interceptors, filters, and modules?
+#### What is the relationship between interceptors, filters, and modules?
 
-1. Modules are packages that can be plugged into an application. They allow
+1. [Modules](modules.html) are packages that can be plugged into an application. They allow
 sharing of controllers, views, assets, and other code between multiple Revel
 applications (or from third-party sources).
 
-2. Filters are functions that may be hooked into the request processing
+2. [Filters](filters.html) are functions that may be hooked into the request processing
 pipeline.  They generally apply to the application as a whole and handle
 technical concerns, orthogonal to application logic.
 
-3. Interceptors are a convenient way to package data and behavior, since
+3. [Interceptors](interceptors,html) are a convenient way to package data and behavior, since
 embedding a type imports its interceptors and fields.  This makes interceptors
 useful for things like verifying the login cookie and saving that information
 into a field.  Interceptors can be applied to one or more controllers.

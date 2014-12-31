@@ -10,31 +10,32 @@ The application config file is named `app.conf` and uses the syntax accepted by
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
 Here's an example file with two sections for `dev` and `prod`:
+{% highlight ini %}
+app.name = chat
+app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
+http.addr =
+http.port = 9000
 
-	app.name=chat
-	app.secret=pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-	http.addr=
-	http.port=9000
+[dev]
+# Development settings
+results.pretty = true
+watch = true
 
-	[dev]
-	# Development settings
-	results.pretty=true
-	watch=true
+log.trace.output = off
+log.info.output  = stderr
+log.warn.output  = stderr
+log.error.output = stderr
 
-	log.trace.output = off
-	log.info.output  = stderr
-	log.warn.output  = stderr
-	log.error.output = stderr
+[prod]
+# Production settings
+results.pretty = false
+watch = false
 
-	[prod]
-	# Production settings
-	results.pretty=false
-	watch=false
-
-	log.trace.output = off
-	log.info.output  = off
-	log.warn.output  = %(app.name)s.log
-	log.error.output = %(app.name)s.log
+log.trace.output = off
+log.info.output  = off
+log.warn.output  = %(app.name)s.log
+log.error.output = %(app.name)s.log
+{% endhighlight %}
 
 - Each section is a **Run Mode**.  
 - The keys at the top level (`app`, `http`) are not within any section and apply to all run modes.  
@@ -59,13 +60,13 @@ rather than storing them in your configuration file. The syntax for including an
 environment variable is similar to the shell syntax: `${ENV_VAR_NAME}`.
 
 Example:
+{% highlight ini %}
+app.name = chat
+http.port = 9000
 
-	app.name = chat
-	http.port = 9000
-	
-	db.driver = ${CHAT_DB_DRIVER}
-	db.spec = ${CHAT_DB_SPEC}
-	
+db.driver = ${CHAT_DB_DRIVER}
+db.spec = ${CHAT_DB_SPEC}
+{% endhighlight %}	
 Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
 and inject them into the config at runtime.
 
@@ -75,20 +76,21 @@ To incorporate the value of one parameter into another, you can "unfold" it by u
 the `%(var_name)s` syntax (note the 's' at the end).
 
 Example:
+{% highlight ini %}
+app.name = chat
+http.port = 9000
 
-	app.name = chat
-	http.port = 9000
-	
-	log.warn.output = %(app.name)s.log
-	log.error.output = %(app.name)s.log
-
+log.warn.output = %(app.name)s.log
+log.error.output = %(app.name)s.log
+{% endhighlight %}
 Will be parsed by revel/config as:
+{% highlight ini %}
+app.name=chat
+http.port=9000
 
-	app.name=chat
-	http.port=9000
-
-	log.warn.output = chat.log
-	log.error.output = chat.log
+log.warn.output = chat.log
+log.error.output = chat.log
+{% endhighlight %}
 
 ## Custom properties
 
