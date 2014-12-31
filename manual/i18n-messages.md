@@ -3,42 +3,42 @@ title: Messages
 layout: manual
 ---
 
-Messages are used to externalize pieces of text in order to be able to provide translations for them. Revel
+**Messages** are used to externalize pieces of text in order to be able to provide translations for them. Revel
 supports message files organized per language, automatic locale look-up, cookie-based overrides and message 
 nesting and arguments.
 
 #### Glossary
 
-* Locale: a combination of *language* and *region* that indicates a user language preference, eg. `en-US`.
-* Language: the language part of a locale, eg. `en`. Language identifiers are expected to be [ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
-* Region: the region part of a locale, eg. `US`. Region identifiers are expected to be [ISO 3166-1 alpha-2 codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
+* **Locale**: a combination of *language* and *region* that indicates a user language preference, eg. `en-US`.
+* **Language**: the language part of a locale, eg. `en`. Language identifiers are expected to be [ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+* **Region**: the region part of a locale, eg. `US`. Region identifiers are expected to be [ISO 3166-1 alpha-2 codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
 
-## Sample application
+## Example Application
 
 The way Revel handles message files and internationalization in general is similar to most other web frameworks out there. For those of you that wish to get
-started straight away without going through the specifics, there is a sample application `samples/i18n` that you can have a look at which demonstrates 
-all the basics.
+started straight away without going through the specifics, there is a sample application 
+[`samples/i18n`](https://github.com/revel/samples/tree/master/i18n) which demonstrates the basics.
 
-## Message files
+## Message Files
 
 Messages are defined in message files. These files contain the actual text that will be used while rendering the view (or elsewhere in your application if you so desire). 
 When creating new message files, there are a couple of rules to keep in mind:
 
-* All message files should be stored in the `messages` directory in the application root.
+* All message files should be stored in the `messages/` directory in the application root.
 * The file extension determines the *language* of the message file and should be an [ISO 639-1 code](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 * Message files should be UTF-8 encoded. While this is not a hard requirement, it is best practice.
 * Each message file is effectively a [goconfig file](https://github.com/revel/config) and supports all goconfig features.
 
-### Organizing message files
+### Organizing Message Files
 
 There are no restrictions on message file names; a message file name can be anything as long as it has a valid extention. There is also no restriction on the *amount*
-of files per language. When the application starts, Revel will parse all message files with a valid extension in the `messages` directory and merge them according to their 
+of files per language. When the application starts, Revel will parse all message files with a valid extension in the `messages/` directory and merge them according to their 
 language. This means that you are free to organize the message files however you want.
 
-For example, you may want to take a traditional approach and define 1 single message file per language:
+For example, you may want to take a traditional approach and define one single message file per language:
 
-    /app
-        /messages
+    /app/
+        /messages/
             messages.en
             messages.fr
             ...
@@ -136,23 +136,24 @@ In order to figure out which locale the user prefers Revel will look for a usabl
 
 1. Language cookie
 
-    Each request the framework will look for a cookie with the name defined in the application configuration (`i18n.cookie`). When such a cookie is found its value is 
-    assumed to be the current locale. All other resolution methods will be skipped when a cookie has been found.
+    - For every request, Revel will look for a cookie with the name defined in the application configuration [`i18n.cookie`](appconf.html#i18n.cookie). 
+    - If such a cookie is found,  its value is assumed to be the current locale. 
+    - All other resolution methods will be skipped when a cookie has been found.
 
 2. `Accept-Language` HTTP header
 
-    Revel will automatically parse the `Accept-Language` HTTP header for each incoming request. Each of the locales in the `Accept-Language` header value is evaluated 
-    and stored - in order of qualification according to the [HTTP specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4) - in the current 
-    Revel `Request` instance. This information is later used by the various message resolving functions to determine the current locale.
-
-    For more information see [Parsed Accept-Language HTTP header](#parsed_acceptlanguage_http_header).
+    - Revel will automatically parse the `Accept-Language` HTTP header for each incoming request. 
+    - Each of the locales in the `Accept-Language` header value is evaluated and stored in order of qualification according to the 
+      [HTTP specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4) - in the current `Request` instance. 
+    - This information is used later by the various message resolving functions to determine the current locale.
+    - For more information see [Parsed Accept-Language HTTP header](#parsed_acceptlanguage_http_header).
 
 3. Default language
 
-    When all of the look-up methods above have returned no usable client locale, the framework will use the default language as defined in the application configuration
-    file (`i18n.default_language`).
+    - When all of the look-up methods above have returned no usable client locale, Revel will use the [`i18n.default_language`](appconf.html#i18n.default_language) as 
+      defined in the [`conf/app.conf`](appconf.html) file.
 
-When the requested message could not be resolved at all, a specially formatted string containing the original message is returned.
+**Note:** When the requested message could not be resolved at all, a specially formatted string containing the original message is returned.
 
 <div class="alert alert-info"><strong>Note:</strong> the <code>Accept-Language</code> header is <strong>always</strong> parsed and stored in the current <code>Request</code>, even when a language cookie has been found. In such a case, the values from the header are simply never used by the message resolution functions, but they're still available to the application in case it needs them.</div>
 
@@ -167,10 +168,10 @@ func (c App) Index() revel.Result {
 }
 </pre>
 
-From a template, the current locale can be retrieved from the `currentLocale` property from the current `renderArgs`. For example:
+From a [template](templates.html), the current locale can be retrieved from the `currentLocale` property of `renderArgs`. For example:
 
 <pre class="prettyprint lang-html">
-    &#x3c;p&#x3e;Current preferred locale: &#x7b;&#x7b;.currentLocale&#x7d;&#x7d;&#x3c;/p&#x3e;
+    &#x3c;p&#x3e;My Locale is: &#x7b;&#x7b;.currentLocale&#x7d;&#x7d;&#x3c;/p&#x3e;
 </pre>
 
 ### Parsed Accept-Language HTTP header
@@ -208,7 +209,7 @@ func (c App) Index() revel.Result {
 
 ### Template
 
-To resolve messages using the current locale from templates there is a *template function* `msg` that you can use. For example:
+To resolve messages using the current locale from [templates](templates.html) there is a *template function* `msg` that you can use. For example:
 
 <pre class="prettyprint lang-html">
     &#x3c;p&#x3e;Greetings without arguments: &#x7b;&#x7b;msg . "greeting"&#x7d;&#x7d;&#x3c;/p&#x3e;

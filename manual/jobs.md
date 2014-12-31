@@ -117,6 +117,8 @@ func init() {
 </pre>
 {% endraw %}
 
+<a name="NamedSchedules"></a>
+
 ## Named schedules
 
 You can [configure schedules ](appconf.html#Jobs) in your [`app.conf`](appconf.html) file and reference them anywhere.

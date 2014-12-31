@@ -135,9 +135,9 @@ This could be helpful in situations where:
 * you have actions that do the same thing, but operate in different modes
 * you have actions that do the same thing, but operate on different data types
 
-## Routing:Modules
+## Modules
 
-Modules which contain routes can be imported into your application in two ways:
+[Modules](modules.html) which contain routes can be imported into your application in two ways:
 
 First method: Importing routes as-is using the following in the `conf/routes` file:
 
@@ -196,6 +196,8 @@ routes would also work:
 Using auto-routing as a catch-all (e.g. last route in the file) is useful for
 quickly hooking up actions to non-vanity URLs, especially in conjunction with
 the reverse router..
+
+<a name="ReverseRouting"></a>
 
 ## Reverse Routing
 

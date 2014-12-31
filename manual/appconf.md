@@ -6,10 +6,10 @@ layout: manual
 ## Overview
 
 The application config file is named `app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/revel/config), which are similar to 
+[goconfig](https://github.com/revel/config)  which is similar to 
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
-Here's an example file:
+Here's an example file with two sections for `dev` and `prod`:
 
 	app.name=chat
 	app.secret=pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
@@ -17,6 +17,7 @@ Here's an example file:
 	http.port=9000
 
 	[dev]
+	# Development settings
 	results.pretty=true
 	watch=true
 
@@ -26,6 +27,7 @@ Here's an example file:
 	log.error.output = stderr
 
 	[prod]
+	# Production settings
 	results.pretty=false
 	watch=false
 
@@ -34,14 +36,16 @@ Here's an example file:
 	log.warn.output  = %(app.name)s.log
 	log.error.output = %(app.name)s.log
 
-Each section is a **Run Mode**.  The keys at the top level (not within any
-section) apply to all run modes.  The key under the `[prod]` section applies
-only to `prod` mode.  This allows default values to be supplied that apply
-across all modes, and overridden as required.
+- Each section is a **Run Mode**.  
+- The keys at the top level (`app`, `http`) are not within any section and apply to all run modes.  
+- The *keys* under the `[prod]` section applies only to `prod` mode.  
+- This allows default values to be supplied that apply across all modes, and overridden as required.
+- The run mode is chosen at runtime by the argument provided to [`revel run`](tool.html). eg:
+  - `revel run`  - will start `dev` mode as the default
+  - `revel run prod` - will start with `prod` mode.
 
-New apps start with **dev** and **prod** run modes defined, but the user may
-create any sections they wish.  The run mode is chosen at runtime by the
-argument provided to "revel run" (the [command-line tool](tool.html)).
+Revel creates new apps with **dev** and **prod** run modes defined, but the user may
+create any sections they wish.
 
 ## Dynamic parameters
 
@@ -104,6 +108,23 @@ Example:
 
 ## Built-in properties
 
+- [Application](#Application)
+- [HTTP](#HTTP)
+- [Results](#Results)
+- [Internationalization](#Internationalization)
+- [Watchers](#Watchers)
+- [Cookies](#Cookies)
+- [Session](#Session)
+- [Formatting](#Formatting)
+- [Database](#Database)
+- [Build](#Build)
+- [Logging](#Logging)
+- [Cache](#Cache)
+- [Jobs](#Jobs)
+- [Modules](#Modules)
+
+<a name="Application"></a>
+
 ### Application settings
 
 #### app.name
@@ -131,6 +152,9 @@ Example:
 	app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
 
 Default: no value
+
+
+<a name="HTTP"></a>
 
 ### HTTP settings
 
@@ -187,6 +211,9 @@ Specifies the path to an X509 certificate key.
 
 Default: ""
 
+
+<a name="Results"></a>
+
 ### Results
 
 #### results.chunked
@@ -210,7 +237,12 @@ XML/JSON.  For example:
 
 Default: false
 
+<a name="Internationalization"></a>
+
 ### Internationalization (i18n)
+
+
+<a name="i18n.default_language"></a>
 
 #### i18n.default_language
 
@@ -223,12 +255,17 @@ For example:
 
 Default: ""
 
+<a name="i18n.cookie"></a>
 
 #### i18n.cookie
 
 Specifies the name of the cookie used to store the user's locale.
 
 Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
+
+
+<a name="Watchers"></a>
+
 
 ### Watchers
 
@@ -330,6 +367,10 @@ The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"
 
 Default: "\{\{ \}\}"
 
+
+<a name="Formatting"></a>
+
+
 ### Formatting
 
 #### format.date
@@ -379,6 +420,9 @@ Specifies the data source name of your database/sql database (used in
 
 Default: ""
 
+
+<a name="Build"></a>
+
 ### Build
 
 #### build.tags
@@ -388,9 +432,12 @@ when building an application.
 
 Default: ""
 
+
+<a name="Logging"></a>
+
 ### Logging
 
-TODO
+See [logging](logging.html) for details.
 
 <a name="Cache"></a>
 
@@ -456,28 +503,31 @@ Default: ""
 
 ### Scheduled Jobs
 
-The [jobs](jobs.html) module allows you to run scheduled or ad-hoc jobs.
+The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJobs) or [ad-hoc](jobs.html#OneOff) jobs.
 
 #### Named schedules
 
-Named cron schedules may be configured by setting a key of the form:
-
-	cron.schedulename = @hourly
-
-That schedule may then be referenced upon submission to the job runner. For
+[Named cron schedules](jobs.html#NamedSchedules) may be configured by setting a key of the form:
+{% highlight ini %}
+cron.schedulename = @hourly
+{% endhighlight %}
+The names schedule may be referenced upon submission to the job runner. For
 example:
-
-	jobs.Schedule("cron.schedulename", job)
+{% highlight go %}
+jobs.Schedule("cron.schedulename", job)
+{% endhighlight %}
 
 <a name="jobs.pool"></a>
 	
 #### jobs.pool
 
-The number of jobs allowed to run concurrently. Default is 10. For example:
+- The number of jobs allowed to run concurrently. 
+- Default is `10`.
+- If zero `0`, then there is no limit imposed.
 
-	jobs.pool = 4
-
-If 0, then there is no limit imposed.
+{% highlight ini %}
+jobs.pool = 4
+{% endhighlight %}
 
 
 <a name="jobs.selfconcurrent"></a>
@@ -486,18 +536,24 @@ If 0, then there is no limit imposed.
 
 If `true` (default is `false`), allows a job to run even if previous instances of that job are still in
 progress.
-
+{% highlight ini %}
+jobs.selfconcurrent = true
+{% endhighlight %}
 
 <a name="Modules"></a>
 
 
 ### Modules
 
-[Modules](modules.html) may be added to an application by specifying their base
-import path.  For example:
+- [Modules](modules.html) may be added to an application by specifying their base import path. 
+- An empty import path disables the module.
+{% highlight ini %}
+module.testrunner = github.com/revel/modules/testrunner
 
-	module.testrunner = github.com/revel/modules/testrunner
-
+## FIXME mymodule crashes so disabled for now
+# module.mymodulename = /path/to/mymodule 
+module.mymodulename =
+{% endhighlight %}
 ## Areas for development
 
 * Allow inserting command line arguments as config values or otherwise
