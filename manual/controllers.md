@@ -21,8 +21,7 @@ The `revel.Controller` is the context for the request.  It contains the
 Please refer to [Controller docs](../docs/godoc/controller.html)
 for the full story; but here is the definition, along with definitions of helper types:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Controller struct {
 	Name          string          // The controller name, e.g. "Application"
 	Type          *ControllerType // A description of the controller type.
@@ -54,19 +53,21 @@ type Params struct {
 type Request struct {
 	*http.Request
 	ContentType string
+	Format          string // "html", "xml", "json", or "txt"
+    AcceptLanguages AcceptLanguages
+    Locale          string
+    Websocket       *websocket.Conn
 }
 
 type Response struct {
 	Status      int
 	ContentType string
 	Headers     http.Header
-	Cookies     []*http.Cookie
-
+	Cookies     []*http.Cookiec
 	Out http.ResponseWriter
 }
-</pre>
-{% endraw %}
-As part of handling a HTTP request, Revel instantiates an instance of your
+{% endhighlight %}
+As part of handling a HTTP request, Revel instantiates an instance of a
 Controller, and it sets all of these properties on the embedded
 `revel.Controller`.  Therefore, Revel does not share Controller instances between
 requests.

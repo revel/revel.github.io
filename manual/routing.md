@@ -7,7 +7,7 @@ Routes are defined in the separate `conf/routes` file.
 
 The basic syntax is:
 
-	(METHOD) (URL Pattern) (Controller.Action)
+	[METHOD] [URL Pattern] [Controller.Action]
 
 This example demonstrates all of the features:
 
@@ -29,7 +29,7 @@ GET    /public/*filepath      Static.Serve("public") # Map /app/public resources
 ~~~
 
 Let's go through the lines one at a time.  At the end, we'll see how to
-accomplish **reverse routing** -- generating the URL to invoke a particular action.
+accomplish [reverse routing](#ReverseRouting) ie generating the URL to invoke a particular action.
 
 ## A simple path
 
@@ -43,7 +43,7 @@ action on the App controller.
 	GET    /hotels/               Hotels.Index
 
 - This route invokes `Hotels.Index` for both `/hotels` and `/hotels/`
-- The reverse route to `Hotels.Index` will include the trailing slash/
+- The [reverse route](#ReverseRouting) to `Hotels.Index` will include the trailing slash/
 
 Trailing slashes should not be used to differentiate between actions. The
 simple path `/login` **will** be matched by a request to `/login/`.
@@ -57,28 +57,29 @@ simple path `/login` **will** be matched by a request to `/login/`.
 `/hotels/abc` would both be matched by the route above.
 - Extracted parameters are available in both the
   - [`Controller`](../docs/godoc/controller.html#Controller).[`Params`](../docs/godoc/params.html#Params) map
-  - and via Action method parameters.  
+  - and via Action method [parameters](binding.html).  
   
 For example:
-
-	func (c Hotels) Show(id int) revel.Result {
-		...
-	}
-
+{% highlight go %}
+func (c Hotels) Show(id int) revel.Result {
+    ...
+}
+{% endhighlight %}
 or
-
-	func (c Hotels) Show() revel.Result {
-		var id string = c.Params.Get("id")
-		...
-	}
-
+{% highlight go %}
+func (c Hotels) Show() revel.Result {
+    var id string = c.Params.Get("id")
+    ...
+}
+{% endhighlight %}
 or
-
-	func (c Hotels) Show() revel.Result {
-		var id int
-		c.Params.Bind(&id, "id")
-		...
-	}
+{% highlight go %}
+func (c Hotels) Show() revel.Result {
+    var id int
+    c.Params.Bind(&id, "id")
+    ...
+}
+{% endhighlight %}
 
 ## Star *parameters
 
@@ -87,15 +88,57 @@ or
 The router recognizes a second kind of wildcard. The starred parameter must be
 the first element in the path, and matches all remaining path elements.
 
-For example, in the case above it will match any path beginning with '/public/', and
-its value will be the path substring that follows the * prefix.
+For example, in the case above it will match any path beginning with `/public/`, and
+its value will be the path substring that follows the `*` prefix.
 
-## Websockets
+## Fixed Parameters
 
-	WS     /hotels/:id/feed       Hotels.Feed
+As demonstrated in the Static Serving section, routes may specify one or more
+parameters to the action.  For example:
 
-[Websockets](websockets.html) are routed the same way as other requests with the 'method'
-identifier of **WS**.
+    GET    /products/:id     ShowList("PRODUCT")
+    GET    /menus/:id        ShowList("MENU")
+
+The provided argument(s) are bound to a parameter name using their position.  In
+this case, the list type string would be bound to the name of the first action
+parameter.
+
+This could be helpful in situations where:
+
+* you have a couple similar actions
+* you have actions that do the same thing, but operate in different modes
+* you have actions that do the same thing, but operate on different data types
+
+## Auto Routing
+
+~~~
+POST   /hotels/:id/:action    Hotels.:action
+*      /:controller/:action   :controller.:action
+~~~
+
+URL argument extraction can also be used to determine the invoked action.
+Matching to controllers and actions is **case insensitive**.
+
+The first example route line would effect the following routes:
+
+    /hotels/1/show    => Hotels.Show
+    /hotels/2/details => Hotels.Details
+
+Similarly, the second example may be used to access any action in the
+application:
+
+    /app/login         => App.Login
+    /users/list        => Users.List
+
+Since matching to controllers and actions is case insensitive, the following
+routes would also work:
+
+    /APP/LOGIN         => App.Login
+    /Users/List        => Users.List
+
+Using auto-routing as a catch-all (e.g. last route in the file) is useful for
+quickly hooking up actions to non-vanity URLs, especially in conjunction with
+the [reverse router](#ReverseRouting).
 
 <a name="StaticFiles"></a>
 
@@ -117,23 +160,9 @@ controller.  Its Serve action takes two parameters:
 
 (Refer to [organization](organization.html) for the directory layout)
 
-## Fixed Parameters
 
-As demonstrated in the Static Serving section, routes may specify one or more
-parameters to the action.  For example:
 
-	GET    /products/:id     ShowList("PRODUCT")
-	GET    /menus/:id        ShowList("MENU")
 
-The provided argument(s) are bound to a parameter name using their position.  In
-this case, the list type string would be bound to the name of the first action
-parameter.
-
-This could be helpful in situations where:
-
-* you have a couple similar actions
-* you have actions that do the same thing, but operate in different modes
-* you have actions that do the same thing, but operate on different data types
 
 ## Modules
 
@@ -141,20 +170,20 @@ This could be helpful in situations where:
 
 First method: Importing routes as-is using the following in the `conf/routes` file:
 
-    # This is your routes file
+    # mymodule routes 
 	module:mymodule
 
-	# Your other routes
+	# Other routes
 	GET     /        Application.Index
 	GET     /bar     Application.Bar
 
 Second method: Importing the routes under a prefixed path:
 
 ~~~
-# This is your routes file
-*       /foo     module:mymodule # Must be defined with asterisk for the method
+# mymodule routes with prefix - Must be defined with asterisk `*` for the method
+*       /foo     module:mymodule 
 	
-# Your other routes
+# Other routes
 GET     /        Application.Index
 GET     /bar     Application.Bar
 ~~~
@@ -166,36 +195,15 @@ Assuming `mymodule` has a `routes` file containing:
 
 Then in the first example, the routes would be imported into your application with the URL patterns `/gopher` and `/gopher/add`. In the second example, the routes would be imported with the URL patterns `/foo/gopher` and `/foo/gopher/add`.
 
-## Auto Routing
 
-~~~
-POST   /hotels/:id/:action    Hotels.:action
-*      /:controller/:action   :controller.:action
-~~~
+## Websockets
 
-URL argument extraction can also be used to determine the invoked action.
-Matching to controllers and actions is **case insensitive**.
+    WS     /hotels/:id/feed       Hotels.Feed
 
-The first example route line would effect the following routes:
+[Websockets](websockets.html) are routed the same way as other requests with the 'method'
+identifier of `WS`.
 
-	/hotels/1/show    => Hotels.Show
-	/hotels/2/details => Hotels.Details
 
-Similarly, the second example may be used to access any action in the
-application:
-
-	/app/login         => App.Login
-	/users/list        => Users.List
-
-Since matching to controllers and actions is case insensitive, the following
-routes would also work:
-
-	/APP/LOGIN         => App.Login
-	/Users/List        => Users.List
-
-Using auto-routing as a catch-all (e.g. last route in the file) is useful for
-quickly hooking up actions to non-vanity URLs, especially in conjunction with
-the reverse router..
 
 <a name="ReverseRouting"></a>
 
@@ -225,7 +233,7 @@ Non-primitive parameters are typed as interface{}.
 
 Below is a more complete example:
 
-<pre class="prettyprint lang-go">{% capture html %}
+{% highlight go %}
 import (
 	"github.com/revel/revel"
 	"project/app/routes"
@@ -248,8 +256,8 @@ func (c App) ProcessForm(username, input string) revel.Result {
 	}
 	c.Flash.Success("Form processed!")
 	return c.Redirect(routes.App.ViewConfirmation(username, input))  // <--- REVERSE ROUTE
-}{% endcapture %}{{ html|escape }}
-</pre>
+}
+{% endhighlight %}
 
 
 
