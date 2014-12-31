@@ -88,14 +88,14 @@ title: The Revel Web Framework for Go
           <h2>Stateless</h2>
           <p>
             Revel provides primitives that keep the web tier stateless for
-            predictable scaling. For example, session data is stored in the user
-            cookie, and the cache is backed by a memcached cluster.
+            predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
+            cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
           </p>
         </div>
         <div class="span4">
           <h2>Modular</h2>
           <p>
-            Revel is built around composable middleware called <b>filters</b>,
+            Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
             which implement nearly all request-processing
             functionality. Developers have the freedom to replace the default
             filters with custom implementations (e.g. a custom router).
@@ -111,7 +111,7 @@ title: The Revel Web Framework for Go
         <div class="row">
           <div class="span6">
             <p>
-              Revel ships with sample applications to provide examples of
+              Revel ships with <a href="samples/">sample applications</a> to provide examples of
               real-world usage.
             </p>
             <p>

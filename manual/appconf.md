@@ -92,22 +92,30 @@ log.warn.output = chat.log
 log.error.output = chat.log
 {% endhighlight %}
 
+<a name="CustomProperties"></a>
+
 ## Custom properties
 
 The developer may define custom keys and access them via the
 [`revel.Config` variable](../docs/godoc/revel.html#variables), which exposes a
 [simple api](../docs/godoc/config.html).
 
-Example:
+Example `app.conf` entries:
+{% highlight ini %}
+myapp.remote = 120.2.3.5
+myapp.remote_enabled = true
+{% endhighlight %}
+Example go usage:
+{% highlight go %}
+var remote_server string
+if revel.Config.BoolDefault("myapp.remote_enabled", false) {
+    remote_server = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
+    init_remote(remote_server)
+} 
+{% endhighlight %}
 
-    var mode string
-    if revel.Config.BoolDefault("mode.prod", false) {
-      mode = "prod"
-    } else {
-      mode = "dev"    
-    }
-    revel.INFO.Printf("Running in %s mode.", mode)
-
+<a name="BuiltinProperties"></a>
+    
 ## Built-in properties
 
 - [Application](#Application)

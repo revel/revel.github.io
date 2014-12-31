@@ -27,6 +27,8 @@ application-provided data, Revel provides the following entries:
   [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap)
 * **flash** - the data [flashed](sessionflash.html#Flash) by the previous request.
 
+<a name="functions"></a>
+
 ## Template Functions
 
 - Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
@@ -41,6 +43,8 @@ A simple `a == b` test.
 	<div class="message {{if eq .User "you"}}you{{end}}">
 
 {% endraw %}
+
+<a name="set"></a>
 
 ### set
 
