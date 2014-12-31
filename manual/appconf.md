@@ -469,24 +469,24 @@ example:
 
 	jobs.Schedule("cron.schedulename", job)
 
-
+<a name="jobs.pool"></a>
+	
 #### jobs.pool
 
-The number of jobs allowed to run concurrently.  For example:
+The number of jobs allowed to run concurrently. Default is 10. For example:
 
 	jobs.pool = 4
 
-If 0, there is no limit imposed.
+If 0, then there is no limit imposed.
 
-Default: 10
 
+<a name="jobs.selfconcurrent"></a>
 
 #### jobs.selfconcurrent
 
-If true, allows a job to run even if previous instances of that job are still in
+If `true` (default is `false`), allows a job to run even if previous instances of that job are still in
 progress.
 
-Default: false
 
 <a name="Modules"></a>
 

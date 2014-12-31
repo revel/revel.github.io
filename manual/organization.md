@@ -6,7 +6,9 @@ layout: manual
 
 Revel requires itself and the user application to be installed into a GOPATH layout as prescribed by the go command line tool.  (See "GOPATH Environment Variable" in the [go command documentation](http://golang.org/cmd/go/))
 
-## Example layout
+<a name="DefaultLayout"></a>
+
+## Default Layout
 
 Here is the default layout of a Revel application called `sample`, within a
 typical Go installation.
@@ -64,22 +66,22 @@ order-sensitive initialization in the future.)
 
 ## The conf/ directory
 
-The `conf` directory contains the application's configuration files. There are
+The `conf/` directory contains the application's configuration files. There are
 two main configuration files:
 
-- `app.conf`, the main configuration file for the application, which contains
+- [`app.conf`](appconf.html) - the main configuration file for the application, which contains
   standard configuration parameters
-- `routes`, the routes definition file.
+- [`routes`](routing.html) - the URL routing definition file.
 
 ## The messages/ directory
 
-The `messages` directory contains all localized message files.
+The `messages/` directory contains all [localized](i18n-messages.html) message files.
 
 ## The public/ directory
 
-Resources stored in the `public` directory are static assets that are served
-directly by the Web server.  Typically it is split into three standard
-sub-directories for images, CSS stylesheets and JavaScript files.
+Resources stored in the `public/` directory are [static assets that are served
+directly by the web server](routing.html#StaticFiles).  Typically it is split into three standard
+sub-directories for `images/`, `css/` stylesheets and `js/` JavaScript files.
 
-The names of these directories may be anything; the developer need only update
-the routes.
+The names of these directories may be anything and  the developer need only update the [routes](routing.html).
+

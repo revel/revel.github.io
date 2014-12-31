@@ -97,6 +97,7 @@ its value will be the path substring that follows the * prefix.
 [Websockets](websockets.html) are routed the same way as other requests with the 'method'
 identifier of **WS**.
 
+<a name="StaticFiles"></a>
 
 ## Static Serving
 
