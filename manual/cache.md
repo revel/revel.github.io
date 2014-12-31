@@ -3,23 +3,22 @@ title: Cache
 layout: manual
 ---
 
-Revel provides a Cache library for server-side, temporary, low-latency
+Revel provides a [`Cache`](http://godoc.org/github.com/revel/revel/cache#Cache) library for server-side, temporary, low-latency
 storage.  It is a good replacement for frequent database access to slowly
 changing data, and it can also be using for implementing user sessions (if the
 cookie-based sessions are insufficient).
 
-Read the [interface](http://godoc.org/github.com/revel/revel/cache#Cache)
 
 ## Expiration
 
 Cache items are set with an expiration time, in one of three forms:
 
-* a time.Duration
-* `cache.DEFAULT`, the application-wide default expiration time (1 hour by default)
-* `cache.FOREVER`, which will cause the item to never expire.
+* a [`time.Duration`](http://golang.org/pkg/time/#Duration)
+* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#Cache))
+* `cache.FOREVER` - will cause the item to never expire.
 
-**Important**: Callers can **not** rely on items being present in the cache, as
-  the data is not durable, and a cache restart may clear all data.
+<div class="alert alert-info"><b>Important</b>: Callers can <b>not</b> rely on items being present in the cache, as
+  the data is not durable, and a cache restart may clear all data.</div>
 
 ## Serialization
 
@@ -40,19 +39,19 @@ The Cache may be configured to be backed by one of the following implementations
 
 ## Configuration
 
-Configure the cache using these keys in `app.conf`:
+Configure the cache using these keys in [`conf/app.conf`](appconf.html):
 
-* `cache.expires` - a string accepted by
+* [`cache.expires`](appconf.html#cache.expires) - a string accepted by
   [`time.ParseDuration`](http://golang.org/pkg/time/#ParseDuration) to specify
   the default expiration duration.  (default 1 hour)
-* `cache.memcached` - a boolean indicating whether or not memcached should be
-  used. (default false)
-* `cache.redis` - a boolean indicating whether or not redis should be
-  used. (default false)
-* `cache.hosts` - a comma separated list of hosts to use as backends.  If the used cache is Redis,
-  only the first host in this list is used.
+* [`cache.memcached`](appconf.html#cache.memcached) - a boolean indicating whether or not memcached should be
+  used. (default `false`)
+* [`cache.redis`](appconf.html#cache.redis) - a boolean indicating whether or not redis should be
+  used. (default `false`)
+* [`cache.hosts`](appconf.html#cache.hosts) - a comma separated list of hosts to use as backends.  If the backend is Redis,
+  then only the first host in this list will be used.
 
-## Example usage
+## Cache Example
 
 Here's an example of the common operations.  Note that callers may invoke cache
 operations in a new goroutine if they do not require the result of the

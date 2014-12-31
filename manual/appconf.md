@@ -305,11 +305,15 @@ Default: "REVEL"
 
 ### Session
 
+
+
+<a name="session.expires"></a>
+
 #### session.expires
 
-Revel uses this property to set the expiration of the session cookie.
+Revel uses this property to set the expiration of the [session](sessionflash.html#Session) cookie.
 Revel uses [ParseDuration](http://golang.org/pkg/time/#ParseDuration) to parse the string.
-The default value is 30 days. It can also be set to "session" to allow session only
+The default value is 30 days. It can also be set to `"session"` to allow session only
 expiry. Please note that the client behaviour is dependent on browser configuration so
 the result is not always guaranteed.
 
@@ -395,6 +399,10 @@ TODO
 
 The [cache](cache.html) module is a simple interface to a heap or distributed cache.
 
+<a name="cache.expires"></a>
+
+
+
 
 #### cache.expires
 
@@ -409,6 +417,9 @@ It is specified as a duration string acceptable to
 Default: "1h" (1 hour)
 
 
+
+<a name="cache.memcached"></a>
+
 #### cache.memcached
 
 If true, the cache module uses [memcached](http://memcached.org) instead of the
@@ -416,6 +427,19 @@ in-memory cache.
 
 Default: false
 
+
+
+
+<a name="cache.redis"></a>
+
+#### cache.redis
+
+If true, the cache module uses [redis](http://redis.io) instead of the
+in-memory cache.
+
+Default: false
+
+<a name="cache.hosts"></a>
 
 #### cache.hosts
 

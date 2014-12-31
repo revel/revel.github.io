@@ -23,18 +23,17 @@ type Flash struct {
 
 ## Session
 
-Revel's concept of "session" is a string map, stored as a cryptographically
-signed cookie.
+Revel's concept of *session* is a string map, stored as a cryptographically signed cookie.
 
-This has a couple implications:
+This has a some implications:
 
 * The size limit is 4kb.
-* All data must be serialized to a string for storage.
-* All data may be viewed by the user (it is not encrypted), but it is safe from modification.
+* All data must be serialized to a `string` for storage.
+* All data may be viewed by the user as it is **not encrypted**, but it is safe from modification.
 
 The default lifetime of the session cookie is the browser lifetime.  This
-can be overriden to a specific amount of time by setting the session.expires
-option in app.config.  The format is that of
+can be overriden to a specific amount of time by setting the [session.expires](appconf.html#session.expires)
+option in [conf/app.conf](appconf.html).  The format is that of
 [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
 
 <a name="Flash"></a>
@@ -85,7 +84,7 @@ It uses two convenience functions:
 1. `Flash.Success(message string)` is an abbreviation of `Flash.Out["success"] = message`
 2. `Flash.Error(message string)` is an abbreviation of `Flash.Out["error"] = message`
 
-Flash messages may be referenced by key in templates.  For example, to access
+Flash messages may be referenced by key in [templates](templates.html).  For example, to access
 the success and error messages set by the convenience functions, use these
 expressions:
 

@@ -3,21 +3,21 @@ title: Filters
 layout: manual
 ---
 
-Filters are the middleware -- they are individual functions that make up the
+**Filters** are the middlewareand are individual functions that make up the
 request processing pipeline.  They execute all of the framework's functionality.
 
-The filter type is a simple function:
+The filter `type` is a simple function:
 
 <pre class="prettyprint lang-go">
 type Filter func(c *Controller, filterChain []Filter)
 </pre>
 
 Each filter is responsible for pulling the next filter off of the filter chain
-and invoking it.  Here is the default filter stack:
+and invoking it. Below is the default filter stack:
 
 <pre class="prettyprint lang-go">
-// Filters is the default set of global filters.
-// It may be set by the application on initialization.
+// The default set of global filters.
+// Can be set in an application on initialization.
 var Filters = []Filter{
 	PanicFilter,             // Recover from panics and display an error page instead.
 	RouterFilter,            // Use the routing table to select the right Action
@@ -28,6 +28,7 @@ var Filters = []Filter{
 	ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 	I18nFilter,              // Resolve the requested language
 	InterceptorFilter,       // Run interceptors around the action.
+	CompressFilter,          // Compress the result.
 	ActionInvoker,           // Invoke the action.
 }
 </pre>
@@ -37,12 +38,12 @@ var Filters = []Filter{
 ### Global configuration
 
 Applications may configure the filter chain by re-assigning the `revel.Filters`
-variable in `init()` (by default this will be in `app/init.go` for newly
-generated apps).
+variable in `init()`. By default this will be in [`app/init.go`](https://github.com/revel/revel/blob/master/skeleton/app/init.go) for a newly
+generated app.
 
 <pre class="prettyprint lang-go">
 func init() {
-	// Filters is the default set of global filters.
+	// The filters for my app
 	revel.Filters = []Filter{
 		PanicFilter,             // Recover from panics and display an error page instead.
 		RouterFilter,            // Use the routing table to select the right Action
@@ -53,12 +54,13 @@ func init() {
 		ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 		I18nFilter,              // Resolve the requested language
 		InterceptorFilter,       // Run interceptors around the action.
+		CompressFilter,          // Compress the result.
 		ActionInvoker,           // Invoke the action.
 	}
 }
 </pre>
 
-Every request is sent down this chain, top to bottom.
+Every request is sent down this chain, from top to bottom.
 
 ### Per-Action configuration
 
@@ -105,6 +107,8 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 }
 </pre>
 
+<div class="alert alert-info">
 Note: this pattern is frequently an indicator that
 [interceptors](interceptors.html) may be a better mechanism to accomplish the
 desired functionality.
+</div>
