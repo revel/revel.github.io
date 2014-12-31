@@ -5,7 +5,7 @@ layout: manual
 
 Revel provides a testing framework that makes it easy to write and run functional tests against your application.
 
-The skeleton app comes with a simple test to use as a starting point.
+The [skeleton app](https://github.com/revel/revel/tree/master/skeleton) comes with a simple [`apptest.go`](https://github.com/revel/revel/blob/master/skeleton/tests/apptest.go) to use as a starting point.
 
 ## Overview
 
@@ -41,19 +41,19 @@ func (t *AppTest) After() {
 
 The example code above shows a couple things:
 
-* A test suite is any struct that embeds `revel.TestSuite`
+* A test suite is any struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite)
 * `Before()` and `After()` are invoked before and after every test method, if present.
 * The `revel.TestSuite` provides helpers for issuing requests to your application and for asserting things about the response.
 * An assertion failure generates a panic, which is caught by the test harness.
 
 You may run this test in two ways:
 
-* Interactively, from your web browser, useful during test development.
-* Non-interactively, from the command line, useful for integrating with a continuous build.
+* [Interactively](#interactively) - from your web browser, useful during test development.
+* [Non-interactively](#non-interactively) - from the command line, useful for integrating with a continuous build.
 
 ## Developing a test suite
 
-To create your own test suite, define a struct that embeds `revel.TestSuite`, which provides a HTTP client and a number of helper methods for making requests to your application.
+To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See tests docs](../docs/godoc/tests.html)
 
 <pre class="prettyprint lang-go">
 type TestSuite struct {
@@ -75,7 +75,7 @@ func (t *TestSuite) Assert(exp bool)
 func (t *TestSuite) Assertf(exp bool, formatStr string, args ...interface{})
 </pre>
 
-[See the godoc here](../docs/godoc/tests.html)
+
 
 All request methods behave similarly:
 
@@ -90,15 +90,17 @@ All assertions raise a panic if they are not fulfilled.  All panics are caught b
 
 ## Running a test suite
 
-In order to run any tests, the `testrunner` module must be activated.  This is done by including the following line in your `app.conf`:
+In order to run any tests, the `testrunner` [module](modules.html) must be activated.  This is done by including the following line in your [`app.conf`](appconf.html#modules):
 
 	module.testrunner = github.com/revel/modules/testrunner
 	
-You must also import the test module routes, by adding this line to your `routes` file:
+You must also import the test module's routes, by adding this line to your [`routes`](routing.html) file:
 
 	module:testrunner
 
-With that done, the tests may be run interactively or non-interactively.
+With that done, the tests may be run [interactively](#interactively) at the `/@tests` url, or [non-interactively](#non-interactively) on the command line.
+
+<a name="interactively"></a>
 
 ### Running tests interactively
 
@@ -137,6 +139,9 @@ Then they re-run the test:
 ![Test Runner interface](../img/Tests4.png)
 
 Success.
+
+
+<a name="non-interactively"></a>
 
 ### Running tests non-interactively
 
