@@ -19,6 +19,43 @@ The way Revel handles message files and internationalization in general is simil
 started straight away without going through the specifics, there is a sample application 
 [`samples/i18n`](https://github.com/revel/samples/tree/master/i18n) which demonstrates the basics.
 
+## Configuration
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 15%">File</th>
+            <th style="width: 25%">Option</th>
+            <th style="width: 60%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <code>app.conf</code>
+            </td>
+            <td>
+                <code><a href="appconf.html#i18n.cookie">i18n.cookie</a></code>
+            </td>
+            <td>
+                The name of the language cookie. Should always be prefixed with the Revel cookie prefix to avoid cookie name conflicts.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>app.conf</code>
+            </td>
+            <td>
+                <code><a href="appconf.html#i18n.default_language">i18n.default_language</a></code>
+            </td>
+            <td>
+                The default locale to use in case no preferred locale could be found.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
 ## Message Files
 
 Messages are defined in message files. These files contain the actual text that will be used while rendering the view (or elsewhere in your application if you so desire). 
@@ -60,22 +97,26 @@ Another approach would be to create *multiple files* for the *same language* and
 A message file is for all intents and purposes a [goconfig file](https://github.com/revel/goconfig). This means that messages should be defined according to the tried and
 tested key-value format:
 
-    key=value
+{% highlight ini %}
+key=value
+{% endhighlight %}
 
 For example:
-
-    greeting=Hello 
-    greeting.name=Rob
-    greeting.suffix=, welcome to Revel!
+{% highlight ini %}
+greeting=Hello 
+greeting.name=Rob
+greeting.suffix=, welcome to Revel!
+{% endhighlight %}
 
 ### Sections
 
 A goconfig file is separated into *sections*. The *default section* always exists and contains any messages that are not defined in a specific section. For example:
+{% highlight ini %}
+key=value
 
-    key=value
-
-    [SECTION]
-    key2=value2
+[SECTION]
+key2=value2
+{% endhighlight %}
 
 The `key=value` message is implicitly put in the default section as it was not defined under another specific section.
 
@@ -88,14 +129,15 @@ For message files all messages should be defined in the *default section* unless
 
 Region-specific messages should be defined in sections with the same name. For example, suppose that we want to greet all English speaking users with `"Hello"`, all British
 users with `"Hey"` and all American users with `"Howdy"`. In order to accomplish this, we could define the following message file `greeting.en`:
+{% highlight ini %}
+greeting=Hello
 
-    greeting=Hello
+[GB]
+greeting=Hey
 
-    [GB]
-    greeting=Hey
-
-    [US]
-    greeting=Howdy
+[US]
+greeting=Howdy
+{% endhighlight %}
 
 For users who have defined English (`en`) as their preferred language, Revel would resolve `greeting` to `Hello`. Only in specific cases where the user's locale has been
 explicitly defined as `en-GB` or `en-US` would the `greeting` message be resolved using the specific sections.
@@ -108,11 +150,12 @@ explicitly defined as `en-GB` or `en-US` would the `greeting` message be resolve
 
 Messages in message files can reference other messages. This allows users to compose a single message from one or more other messages. The syntax for referencing other messages 
 is `%(key)s`. For example:
-
-    greeting=Hello 
-    greeting.name=Rob
-    greeting.suffix=, welcome to Revel!
-    greeting.full=%(greeting)s %(greeting.name)s%(greeting.suffix)s
+{% highlight ini %}
+greeting=Hello 
+greeting.name=Rob
+greeting.suffix=, welcome to Revel!
+greeting.full=%(greeting)s %(greeting.name)s%(greeting.suffix)s
+{% endhighlight %}
 
 <div class="alert alert-info"> 
     <p><strong>Notes:</strong></p>
@@ -125,9 +168,9 @@ is `%(key)s`. For example:
 #### Arguments
 
 Messages support one or more arguments. Arguments in messages are resolved using the same rules as the go `fmt` package. For example:
-
-    greeting.name_arg=Hello %s!
-
+{% highlight ini %}
+greeting.name_arg=Hello %s!
+{% endhighlight %}
 Arguments are resolved in the same order as they are given, see [Resolving messages](#resolving_messages).
 
 ## Resolving the client locale
@@ -161,12 +204,12 @@ In order to figure out which locale the user prefers Revel will look for a usabl
 
 The application code can access the current locale from within a `Request` using the `Request.Locale` property. For example:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c App) Index() revel.Result {
 	currentLocale := c.Request.Locale
 	c.Render(currentLocale)
 }
-</pre>
+{% endhighlight %}
 
 From a [template](templates.html), the current locale can be retrieved from the `currentLocale` property of `renderArgs`. For example:
 
@@ -179,7 +222,7 @@ From a [template](templates.html), the current locale can be retrieved from the 
 In case the application needs access to the `Accept-Language` HTTP header for the current request it can retrieve it from the `Request` instance of the `Controller`. The `AcceptLanguages` field 
 - which is a slice of `AcceptLanguage` instances - contains all parsed values from the respective header, sorted per qualification with the most qualified values first in the slice. For example:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c App) Index() revel.Result {
     // Get the string representation of all parsed accept languages
     c.RenderArgs["acceptLanguageHeaderParsed"] = c.Request.AcceptLanguages.String()
@@ -188,7 +231,7 @@ func (c App) Index() revel.Result {
 
     c.Render()
 }
-</pre>
+{% endhighlight %}
 
 For more information see the [HTTP specification](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4).
 
@@ -200,12 +243,12 @@ Messages can be resolved from either a *controller* or a *view template*.
 
 Each controller has a `Message(message string, args ...interface{})` function that can be used to resolve messages using the current locale. For example:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c App) Index() revel.Result {
 	c.RenderArgs["controllerGreeting"] = c.Message("greeting")
 	c.Render()
 }
-</pre>
+{% endhighlight %}
 
 <a name="template"></a>
 
@@ -220,38 +263,4 @@ To resolve messages using the current locale from [templates](templates.html) th
 
 <div class="alert alert-info"><strong>Note:</strong> the signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</div>
 
-## Configuration
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 15%">File</th>
-            <th style="width: 25%">Option</th>
-            <th style="width: 60%">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <code>app.conf</code>
-            </td>
-            <td>
-                <code>i18n.cookie</code>
-            </td>
-            <td>
-                The name of the language cookie. Should always be prefixed with the Revel cookie prefix to avoid cookie name conflicts.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>app.conf</code>
-            </td>
-            <td>
-                <code>i18n.default_language</code>
-            </td>
-            <td>
-                The default locale to use in case no preferred locale could be found.
-            </td>
-        </tr>
-    </tbody>
-</table>

@@ -55,7 +55,7 @@ In all cases, any returned Result will take the place of any existing Result.
 
 Here's a simple example defining and registering a Func Interceptor.
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func checkUser(c *revel.Controller) revel.Result {
 	if user := connected(c); user == nil {
 		c.Flash.Error("Please log in first")
@@ -66,24 +66,21 @@ func checkUser(c *revel.Controller) revel.Result {
 
 func init() {
 	revel.InterceptFunc(checkUser, revel.BEFORE, &Hotels{})
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight %}
 
 ### Method Interceptor Example
 
 A method interceptor signature may have one of these two forms:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c AppController) example() revel.Result
 func (c *AppController) example() revel.Result
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 Here's the same example that operates only on the app controller.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c Hotels) checkUser() revel.Result {
 	if user := connected(c); user == nil {
 		c.Flash.Error("Please log in first")
@@ -95,5 +92,4 @@ func (c Hotels) checkUser() revel.Result {
 func init() {
 	revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
