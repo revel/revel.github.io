@@ -53,7 +53,7 @@ You may run this test in two ways:
 
 ## Developing a test suite
 
-To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See tests docs](../docs/godoc/tests.html)
+To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See testing docs](../docs/godoc/tests.html)
 
 <pre class="prettyprint lang-go">
 type TestSuite struct {

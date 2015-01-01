@@ -3,7 +3,7 @@ title: Sample applications
 layout: samples
 ---
 
-Revel provides a few samples applications to demonstrate typical usage. 
+Revel provides a few sample applications to demonstrate typical usage. 
 
 These are in a separate [github.com/revel/samples](https://github.com/revel/samples/) repository.
 
@@ -20,7 +20,7 @@ revel run github.com/revel/samples/booking
 * [Validation](validation.html) 
   - A demonstration of the [validation](../manual/validation.html) system.
 * [Upload](upload.html) 
-  - Demonstrations single and multiple file uploads.
+  - Demonstrates single and multiple file uploads.
 * [Twitter OAuth](twitter-oauth.html) 
   - A sample app that displays mentions and allows posting to a Twitter account using OAuth.
 * [Facebook OAuth2](facebook-oauth2.html) 
