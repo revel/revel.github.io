@@ -62,7 +62,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
   
 ### url
 
-Outputs the reverse route for a Controller.Action, eg:
+Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Action`, eg:
 
 {% raw %}
 
