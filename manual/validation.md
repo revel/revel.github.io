@@ -3,7 +3,7 @@ title: Validation
 layout: manual
 ---
 
-Revel provides built-in functionality for validating [parameters](binding.html). There are a couple parts:
+Revel provides built-in functionality for validating [parameters](parameters.html). There are a couple parts:
 
 * A Validation context collects and manages validation errors (keys and messages).
 * Helper functions that check data and put errors into the context.

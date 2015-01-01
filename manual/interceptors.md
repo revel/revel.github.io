@@ -28,7 +28,7 @@ In Revel, an interceptor can take one of two forms:
 
 An interceptor can be registered to run at four points in the request lifecycle (see [`When()`](../docs/godoc/intercept.html#When)):
 
-1. **BEFORE**: After the request has been [routed](routing.html), the [session, flash](sessionflash.html), and [parameters](binding.html) decoded, but before the action has been invoked.
+1. **BEFORE**: After the request has been [routed](routing.html), the [session, flash](sessionflash.html), and [parameters](parameters.html) decoded, but before the action has been invoked.
 2. **AFTER**: After the request has returned a Result, but before that Result has been applied.  These interceptors are not invoked if the action panicked.
 3. **PANIC**: After a panic exits an action or is raised from applying the returned Result.
 4. **FINALLY**: After an action has completed and the Result has been applied.

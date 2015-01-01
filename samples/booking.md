@@ -5,10 +5,10 @@ layout: samples
 
 The Booking sample app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/booking)):
 
-* Using an SQL (SQLite) database by configuring the Revel DB module.
-* Using a third party [GORP](https://github.com/coopernurse/gorp) "ORM-ish" library
+* Using an SQL (SQLite) database and configuring the Revel DB module.
+* Using the third party [GORP](https://github.com/coopernurse/gorp) *ORM-ish* library
 * [Interceptors](../manual/interceptors.html) for checking that an user is logged in.
-* Using [validation](../manual/validation) to display inline errors
+* Using [validation](../manual/validation) and displaying inline errors
 
 
 	booking/app/
@@ -31,7 +31,7 @@ The Booking sample app demonstrates ([browse the source](https://github.com/reve
 
 ## sqlite Installation
 
-The booking app uses [go-sqlite3](https://github.com/mattn/go-sqlite3) database driver (this wraps the C library).  
+The booking app uses [go-sqlite3](https://github.com/mattn/go-sqlite3) database driver (which wraps the native C library).  
 
 ### To install on OSX:
 

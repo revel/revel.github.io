@@ -387,7 +387,7 @@ Default: "\{\{ \}\}"
 
 Specifies the default date format for the application.  Revel uses this in two places:
 
-* Binding dates to a `time.Time` (see [binding](binding.html))
+* Binding dates to a `time.Time` (see [parameters](parameters.html))
 * Printing dates using the `date` template function (see [template funcs](templates.html))
 
 Default: "2006-01-02"
@@ -397,7 +397,7 @@ Default: "2006-01-02"
 
 Specifies the default datetime format for the application.  Revel uses this in two places:
 
-* Binding dates to a `time.Time` (see [binding](binding.html))
+* Binding dates to a `time.Time` (see [parameters](parameters.html))
 * Printing dates using the `datetime` template function (see [template funcs](templates.html))
 
 Default: "2006-01-02 15:04"

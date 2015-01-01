@@ -1,29 +1,28 @@
 ---
-title: Binding Parameters
+title: Request Parameters and Binding
 layout: manual
 ---
 
-- Revel tries to make the conversion of request parameters into their desired Go types as
-easy and painless as possible. 
-- The conversion from a string to another type is referred to as **data binding**.
+- Revel tries to make the conversion of request parameters into the desired Go type as easy and painless as possible. 
+- The conversion from a http request `string`s sent by client to another type is referred to as **data binding**.
 
-## Params
+## Request Parameters
 
-All request parameters are collected into a single `Params` object and includes:
+All request parameters are collected into the single `Params` object which includes:
 
 * The URL **/:path** parameters
 * The URL **?query** parameters
-* **Form** values 
+* Submitted **Form** values 
 * **File** multipart uploads
 
 The Go struct is:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Params struct {
 	url.Values
 	Files map[string][]*multipart.FileHeader
 }
-</pre>
+{% endhighlight %}
 
 - Golang's native [`url.Values`]([godoc](http://www.golang.org/pkg/net/url/#Values)) provides accessors for simple values
 - Revel's data-binding mechanisms helps with non-string values such as dates or floats

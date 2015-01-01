@@ -3,18 +3,16 @@ title: Overview
 layout: manual
 ---
 
-A **Controller** is any type that embeds [`*revel.Controller`](../docs/godoc/controller.html#Controller), either directly or indirectly.
-    
-Typically:
-{% raw %}
-<pre class="prettyprint lang-go">
-type AppController struct {
-	*revel.Controller
-}
-</pre>
-{% endraw %}
+A **Controller** is any type that embeds the [`*revel.Controller`](../docs/godoc/controller.html#Controller).
 
-**Note:** `*revel.Controller` must be embedded as the first type in your struct.
+{% highlight html %}
+type MyAppController struct {
+	*revel.Controller
+	OtherStuff string
+}
+{% endhighlight %}
+
+<div class="alert alert-warn">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
 
 The `revel.Controller` is the context for the request.  It contains the 
 [`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.  

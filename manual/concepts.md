@@ -3,11 +3,15 @@ title: Concepts
 layout: manual
 ---
 
-**Revel** is a batteries-included web framework in the spirit of [Rails](http://rubyonrails.org/) or [Play!](http://www.playframework.org)
-Framework.  Many of the same *proven* ideas are incorporated in the framework
-design and interface.
+**Revel** is almost afull stack web framework in the spirit of 
+- [Rails](http://rubyonrails.org/) 
+- [Play!](http://www.playframework.org)
+- DJango 
 
-Revel makes it easy to build web applications using the [Model-View-Controller
+- Many  *proven* ideas are incorporated into the framework, its design and interface. 
+- Also using golang.. it's also hackable ;-)
+
+Revel attempt to makes it easy to build web applications using the [Model-View-Controller
 (MVC)](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 pattern by relying on conventions that require a certain structure in an
 application.  In return, it is very light on [configuration](appconf.html) 
@@ -109,7 +113,7 @@ func (c AppController) ShowLogin(username string) revel.Result {
 {% endraw %}
 
 The example invokes `revel.Controller.Render` to execute a [template](templates.html), passing it the
-username as a [parameter](binding.html).  There are many methods on **revel.Controller** that
+username as a [parameter](parameters.html).  There are many methods on **revel.Controller** that
 produce **revel.Result**, but applications are also [free to create their own](results.html#CustomResult).
 
 ## Results

@@ -1,15 +1,15 @@
 ---
-title: Routing
+title: URL Routing
 layout: manual
 ---
 
-Routes are defined in the separate `conf/routes` file.
+URL's and Routes are defined in the `conf/routes` file, and the basic syntax is three columns as example below:
+{% highlight ini %}
+[METHOD] [URL Pattern] [Controller.Action]
+GET      /             MySite.Welcome
+{% endhighlight %}
 
-The basic syntax is:
 
-	[METHOD] [URL Pattern] [Controller.Action]
-
-This example demonstrates all of the features:
 
 ~~~
 # conf/routes
@@ -31,12 +31,13 @@ GET    /public/*filepath      Static.Serve("public") # Map /app/public resources
 Let's go through the lines one at a time.  At the end, we'll see how to
 accomplish [reverse routing](#ReverseRouting) ie generating the URL to invoke a particular action.
 
-## A simple path
+## A Fixed Path
 
 	GET    /login                 App.Login
+	GET    /about                 App.About
 
-The simplest route uses an exact match of method and path.  It invokes the Login
-action on the App controller.
+The routes above use an 'exact match' of HTTP method and path and invoke the Login and About
+*action* on the *App* controller.
 
 ## Trailing slashes/
 
@@ -57,7 +58,7 @@ simple path `/login` **will** be matched by a request to `/login/`.
 `/hotels/abc` would both be matched by the route above.
 - Extracted parameters are available in both the
   - [`Controller`](../docs/godoc/controller.html#Controller).[`Params`](../docs/godoc/params.html#Params) map
-  - and via Action method [parameters](binding.html).  
+  - and via Action method [parameters](parameters.html).  
   
 For example:
 {% highlight go %}
