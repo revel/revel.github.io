@@ -45,7 +45,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 - Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
-  - [`eq`](#eq)
+  - [`url`](#url)
   - [`set`](#set)
   - [`append`](#append)
   - [`field`](#field)
@@ -58,15 +58,15 @@ Go Templates allow you to compose templates by inclusion.  For example:
   - [`msg`](#msg)
   - [Custom Functions](#CustomFunctions)
   
-<a name="eq"></a>
+<a name="url"></a>
   
-### eq
+### url
 
-A simple `a == b` test.
+Outputs the reverse route for a Controller.Action, eg:
 
 {% raw %}
 
-	<div class="message {{if eq .User "you"}}you{{end}}">
+	Click <a href="{{url "Application.ShowProduct", 123}}">here</a>
 
 {% endraw %}
 
