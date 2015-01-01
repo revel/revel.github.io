@@ -3,10 +3,10 @@ title: Chat room
 layout: samples
 ---
 
-The Chat app demonstrates:
+The Chat app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/chat)):
 
-* Using channels to implement a chat room (a pub-sub model).
-* Using Comet and Websockets
+* Using channels to implement a chat room with a [publish-subscribe](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) model.
+* Using Comet and [Websockets](../manual/websockets.html)
 
 Here are the contents of the app:
 
@@ -23,25 +23,24 @@ Here are the contents of the app:
 		views
 			...            # HTML and Javascript
 
-[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/chat)
 
 ## The Chat Room
 
 First, let's look at how the chat room is implemented, in
-[**chatroom.go**](https://github.com/revel/revel/tree/master/samples/chat/app/chatroom/chatroom.go).
+[`app/chatroom/chatroom.go`](https://github.com/revel/samples/blob/master/chat/app/chatroom/chatroom.go).
 
 The chat room runs as an independent go-routine, started on initialization:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
 	go chatroom()
 }
-</pre>
+{% endhighlight %}
 
 The `chatroom()` function simply selects on three channels and executes the
 requested action.
 
-<pre class="prettyprint lang-go">{% capture chatroom %}{% raw %}
+{% highlight go %}
 var (
 	// Send a channel here to get room events back.  It will send the entire
 	// archive initially, and then new messages as they come in.
@@ -67,22 +66,22 @@ func chatroom() {
 		}
 	}
 }
-{% endraw %}{% endcapture %}{{ chatroom|escape }}</pre>
+{% endhighlight %}
 
 Let's see how each of those is implemented.
 
 ### Subscribe
 
-<pre class="prettyprint lang-go">{% capture subscribe %}{% raw %}
-	case ch := <-subscribe:
-		var events []Event
-		for e := archive.Front(); e != nil; e = e.Next() {
-			events = append(events, e.Value.(Event))
-		}
-		subscriber := make(chan Event, 10)
-		subscribers.PushBack(subscriber)
-		ch <- Subscription{events, subscriber}
-{% endraw %}{% endcapture %}{{ subscribe|escape }}</pre>
+{% highlight go %}
+case ch := <-subscribe:
+    var events []Event
+    for e := archive.Front(); e != nil; e = e.Next() {
+        events = append(events, e.Value.(Event))
+    }
+    subscriber := make(chan Event, 10)
+    subscribers.PushBack(subscriber)
+    ch <- Subscription{events, subscriber}
+{% endhighlight %}
 
 A Subscription is created with two properties:
 
@@ -95,30 +94,30 @@ supplied.
 
 ### Publish
 
-<pre class="prettyprint lang-go">{% capture publish %}{% raw %}
-	case event := <-publish:
-		for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
-			ch.Value.(chan Event) <- event
-		}
-		if archive.Len() >= archiveSize {
-			archive.Remove(archive.Front())
-		}
-		archive.PushBack(event)
-{% endraw %}{% endcapture %}{{ publish|escape }}</pre>
+{% highlight go %}
+case event := <-publish:
+    for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
+        ch.Value.(chan Event) <- event
+    }
+    if archive.Len() >= archiveSize {
+        archive.Remove(archive.Front())
+    }
+    archive.PushBack(event)
+{% endhighlight %}
 
 The published event is sent to the subscribers' channels one by one.  Then the
 event is added to the archive, which is trimmed if necessary.
 
 ### Unsubscribe
 
-<pre class="prettyprint lang-go">{% capture unsub %}{% raw %}
-	case unsub := <-unsubscribe:
-		for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
-			if ch.Value.(chan Event) == unsub {
-				subscribers.Remove(ch)
-			}
-		}
-{% endraw %}{% endcapture %}{{ unsub|escape }}</pre>
+{% highlight go %}
+case unsub := <-unsubscribe:
+    for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
+        if ch.Value.(chan Event) == unsub {
+            subscribers.Remove(ch)
+        }
+    }
+{% endhighlight %}
 
 The subscriber channel is removed from the list.
 
@@ -129,31 +128,29 @@ expose that functionality using different techniques.
 
 ### Active Refresh
 
-The Active Refresh chat room javascript refreshes the page every 5 seconds to
-get any new messages:
+The Active Refresh chat room javascript refreshes the page every five seconds to
+get any new messages (see [`Refresh/Room.html`](https://github.com/revel/samples/blob/master/chat/app/views/Refresh/Room.html)):
 
-<pre class="prettyprint lang-js">
-  // Scroll the messages panel to the end
-  var scrollDown = function() {
-    $('#thread').scrollTo('max')
-  }
+{% highlight js %}
+// Scroll the messages panel to the end
+var scrollDown = function() {
+    $('#thread').scrollTo('max');
+}
 
-  // Reload the whole messages panel
-  var refresh = function() {
+// Reload the whole messages panel
+var refresh = function() {
     $('#thread').load('/refresh/room?user={{.user}} #thread .message', function() {
-      scrollDown()
+        scrollDown();
     })
-  }
+}
 
-  // Call refresh every 5 seconds
-  setInterval(refresh, 5000)
-</pre>
+// Call refresh every 5 seconds
+setInterval(refresh, 5000);
+{% endhighlight %}
 
-> [Refresh/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/Refresh/Room.html)
+This is the handler to serve the above in [`app/controllers/refresh.go`](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/refresh.go):
 
-This is the handler to serve that:
-
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c Refresh) Room(user string) revel.Result {
 	subscription := chatroom.Subscribe()
 	defer subscription.Cancel()
@@ -165,54 +162,51 @@ func (c Refresh) Room(user string) revel.Result {
 	}
 	return c.Render(user, events)
 }
-</pre>
+{% endhighlight %}
 
-> [refresh.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/refresh.go)
 
 It subscribes to the chatroom and passes the archive to the template to be
 rendered (after changing the user name to "you" as necessary).
 
-Nothing much to see here.
+
 
 ### Long Polling (Comet)
 
-The Long Polling chat room javascript makes an ajax request that the server
-keeps open until a new message comes in.  The javascript provides a
+The Long Polling chat room (see [`LongPolling/Room.html`](https://github.com/revel/revel/tree/master/samples/chat/app/views/LongPolling/Room.html))
+makes an ajax request that the server keeps open until a new message comes in. The javascript uses a
 `lastReceived` timestamp to tell the server the last message it knows about.
 
-<pre class="prettyprint lang-js">
-  var lastReceived = 0
-  var waitMessages = '/longpolling/room/messages?lastReceived='
-  var say = '/longpolling/room/messages?user={{.user}}'
+{% highlight js %}
+var lastReceived = 0;
+var waitMessages = '/longpolling/room/messages?lastReceived=';
+var say = '/longpolling/room/messages?user={{.user}}';
 
-  $('#send').click(function(e) {
-    var message = $('#message').val()
-    $('#message').val('')
-    $.post(say, {message: message})
-  });
+$('#send').click(function(e) {
+    var message = $('#message').val();
+    $('#message').val('');
+    $.post(say, {message: message});
+});
 
-  // Retrieve new messages
-  var getMessages = function() {
+// Retrieve new messages
+var getMessages = function() {
     $.ajax({
-      url: waitMessages + lastReceived,
-      success: function(events) {
-        $(events).each(function() {
-          display(this)
-          lastReceived = this.Timestamp
-        })
-        getMessages()
-      },
-      dataType: 'json'
+        url: waitMessages + lastReceived,
+        success: function(events) {
+            $(events).each(function() {
+                display(this);
+                lastReceived = this.Timestamp;
+            });
+            getMessages();
+        },
+        dataType: 'json'
     });
-  }
-  getMessages();
-</pre>
+}
+getMessages();
+{% endhighlight %}
 
-> [LongPolling/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/LongPolling/Room.html)
+The handler for the above in [`app/controllers/longpolling.go`](https://github.com/revel/samples/blob/master/chat/app/controllers/longpolling.go)
 
-and here is the handler
-
-<pre class="prettyprint lang-go">{% capture WaitMessages %}{% raw %}
+{% highlight go %}
 func (c LongPolling) WaitMessages(lastReceived int) revel.Result {
 	subscription := chatroom.Subscribe()
 	defer subscription.Cancel()
@@ -234,33 +228,33 @@ func (c LongPolling) WaitMessages(lastReceived int) revel.Result {
 	event := <-subscription.New
 	return c.RenderJson([]chatroom.Event{event})
 }
-{% endraw %}{% endcapture %}{{ WaitMessages|escape }}</pre>
+{% endhighlight %}
 
-> [longpolling.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/longpolling.go)
 
-In this implementation, it can simply block on the subscription channel
-(assuming it has already sent back everything in the archive).
+In this implementation, it can simply block on the subscription channel, 
+assuming it has already sent back everything in the archive.
 
 ### Websocket
 
-The Websocket chat room javascript opens a websocket connection as soon as the
-user has loaded the chat room page.
+The Websocket chat room (see  [WebSocket/Room.html](https://github.com/revel/samples/blob/master/chat/app/views/WebSocket/Room.html#L51))
+opens a [websocket](../manual/websockets.html) connection as soon as the
+user has loaded the page.
 
-<pre class="prettyprint lang-js">
-  // Create a socket
-  var socket = new WebSocket('ws://127.0.0.1:9000/websocket/room/socket?user={{.user}}')
+{% highlight js %}
+// Create a socket
+var socket = new WebSocket('ws://127.0.0.1:9000/websocket/room/socket?user={{.user}}');
 
-  // Message received on the socket
-  socket.onmessage = function(event) {
-    display(JSON.parse(event.data))
-  }
+// Message received on the socket
+socket.onmessage = function(event) {
+    display(JSON.parse(event.data));
+}
 
-  $('#send').click(function(e) {
-    var message = $('#message').val()
-    $('#message').val('')
-    socket.send(message)
-  });
-</pre>
+$('#send').click(function(e) {
+    var message = $('#message').val();
+    $('#message').val('');
+    socket.send(message);
+});
+{% endhighlight %}
 
 > [WebSocket/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/WebSocket/Room.html#L51)
 

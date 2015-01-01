@@ -3,14 +3,13 @@ title: Booking
 layout: samples
 ---
 
-The Booking sample app demonstrates:
+The Booking sample app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/booking)):
 
-* Using a SQL database by configuring the Revel DB module.
-* Using the GORP "ORM-ish" library
-* Interceptors for checking that the user is logged in.
-* Using validation to display inline errors
+* Using an SQL (SQLite) database by configuring the Revel DB module.
+* Using a third party [GORP](https://github.com/coopernurse/gorp) "ORM-ish" library
+* [Interceptors](../manual/interceptors.html) for checking that an user is logged in.
+* Using [validation](../manual/validation) to display inline errors
 
-Here are the contents of the app ([browse the code](https://github.com/revel/samples/tree/master/booking)):
 
 	booking/app/
 		models		   # Structs and validation.
@@ -30,27 +29,24 @@ Here are the contents of the app ([browse the code](https://github.com/revel/sam
 
 
 
-## Installation
+## sqlite Installation
 
-This app uses [go-sqlite3](https://github.com/mattn/go-sqlite3), which wraps the
-C library.  
+The booking app uses [go-sqlite3](https://github.com/mattn/go-sqlite3) database driver (this wraps the C library).  
 
-### To install (OSX):
+### To install on OSX:
 
 1. Install [Homebrew](http://mxcl.github.com/homebrew/) if you don't already have it.
-
 2. Install pkg-config and sqlite3:
 
 ~~~
 $ brew install pkgconfig sqlite3
 ~~~
 
-### To install (Ubuntu):
+### To install on Ubuntu:
 
 	$ sudo apt-get install sqlite3 libsqlite3-dev
 
-Once you have SQLite installed, it should be possible to run the booking app as 
-usual:
+Once you have SQLite installed, it will be possible to run the booking app:
 
 	$ revel run github.com/revel/samples/booking
 

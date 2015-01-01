@@ -207,6 +207,8 @@ func (c App) Index() revel.Result {
 }
 </pre>
 
+<a name="template"></a>
+
 ### Template
 
 To resolve messages using the current locale from [templates](templates.html) there is a *template function* `msg` that you can use. For example:

@@ -6,17 +6,17 @@ layout: manual
 Revel uses [Go Templates](http://www.golang.org/pkg/text/template/).  It
 searches two directories for templates:
 
-1. Firstly, the application's `app/views` directory, and all subdirectories.
-2. Then Revel's own `templates` directory.
+1. Firstly, the application's `app/views/` directory, and all subdirectories.
+2. Then Revel's own `templates/` directory.
 
 Given a controller named `Hello` with an action named `World`, Revel will
 look for a template file named `views/Hello/World.html`. Template file names
 are case insensitive so `views/hello/world.html` will work the same as
 `views/HeLlO/wOrLd.HtMl`.
 
-Revel provides templates for error pages (that display the friendly compilation
-errors in DEV mode), but an application may override them by creating a
-template of the equivalent name, e.g. `app/views/errors/500.html`.
+Revel provides templates for error pages and these display the friendly compilation
+errors in [`dev` mode](appconf.html). An application may override them by creating a
+template of the equivalent name, e.g. `app/views/errors/404.html`.
 
 ## Render Context
 
@@ -27,13 +27,39 @@ application-provided data, Revel provides the following entries:
   [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap)
 * **flash** - the data [flashed](sessionflash.html#Flash) by the previous request.
 
+## Including Other Templates
+
+Go Templates allow you to compose templates by inclusion.  For example:
+
+{% raw %}
+
+    {{template "header.html" .}}
+
+{% endraw %}
+<div class="alert alert-info">Note: Paths are relative to <code>app/views</code></div>
+
+
 <a name="functions"></a>
 
 ## Template Functions
 
 - Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
-
+  - [`eq`](#eq)
+  - [`set`](#set)
+  - [`append`](#append)
+  - [`field`](#field)
+  - [`option`](#option)
+  - [`radio`](#radio)
+  - [`nl2br`](#nl2br)
+  - [`pluralize`](#pluralize)
+  - [`raw`](#raw)
+  - [`even`](#even)
+  - [`msg`](#msg)
+  - [Custom Functions](#CustomFunctions)
+  
+<a name="eq"></a>
+  
 ### eq
 
 A simple `a == b` test.
@@ -58,6 +84,8 @@ Set a variable in the given context.
 
 {% endraw %}
 
+<a name="append"></a>
+
 ### append
 
 Add a variable to an array, or create an array; in the given context.
@@ -71,6 +99,8 @@ Add a variable to an array, or create an array; in the given context.
     {{end}}
 
 {% endraw %}
+
+<a name="field"></a>
 
 ### field
 
@@ -102,6 +132,8 @@ Example:
 
 {% endraw %}
 
+<a name="option"></a>
+
 ### option
 
 Assists in constructing HTML `option` elements, in conjunction with the field
@@ -119,6 +151,8 @@ helper, eg:
 
 {% endraw %}
 
+<a name="radio"></a>
+
 ### radio
 
 Assists in constructing HTML radio `input` elements, in conjunction with the field
@@ -133,6 +167,8 @@ helper, eg:
 
 {% endraw %}
 
+<a name="nl2br"></a>
+
 ### nl2br
 
 Convert newlines to HTML breaks.
@@ -144,6 +180,8 @@ Convert newlines to HTML breaks.
 
 {% endraw %}
 
+<a name="pluralize"></a>
+
 ### pluralize
 
 A helper for correctly pluralizing words.
@@ -153,6 +191,8 @@ A helper for correctly pluralizing words.
 	There are {{.numComments}} comment{{pluralize (len comments) "" "s"}}
 
 {% endraw %}
+
+<a name="raw"></a>
 
 ### raw
 
@@ -165,10 +205,11 @@ Prints raw, unescaped, text.
 
 {% endraw %}
 
+<a name="even"></a>
+
 ### even
 
 Perform `$in % 2 == 0`. This is a convenience function that assists with table row coloring.
-
 
 {% raw %}
 
@@ -180,24 +221,34 @@ Perform `$in % 2 == 0`. This is a convenience function that assists with table r
 
 {% endraw %}
 
-## Including
+<a name="msg"></a>
 
-Go Templates allow you to compose templates by inclusion.  For example:
+### msg
+ - See [internationalization](i18n-messages.html#template)
 
-{% raw %}
+<a name="CustomFunctions"></a>
+ 
+## Custom Functions
 
-	{{template "header.html" .}}
+Applications may register custom functions for use in templates.
 
-{% endraw %}
+Here is an example:
 
-There are two things to note:
+{% highlight go %}
+func init() {
+    revel.TemplateFuncs["my_eq"] = func(a, b interface{}) bool { 
+        return a == 0  || a == b
+    }
+}
+{% endhighlight %}
 
-* Paths are relative to `app/views`
 
-## Tips
 
-The [sample applications](https://github.com/revel/samples) try to demonstrate effective use of
-Go Templates.  In particular, please take a look at:
+
+## Examples
+
+The [sample applications](../samples/index.html) try to demonstrate effective use of
+Go Templates.  In particular, please take a look at [Booking app](../samples/booking.html) templates:
 
 * [`samples/booking/app/views/header.html`](https://github.com/revel/samples/blob/master/booking/app/views/header.html)
 * [`samples/booking/app/views/hotels/book.html`](https://github.com/revel/samples/blob/master/booking/app/views/hotels/book.html)
@@ -238,16 +289,4 @@ And templates that include it look like this:
 
 {% endraw %}
 
-## Custom Functions
 
-Applications may register custom functions to use in templates.
-
-Here is an example:
-
-{% raw %}
-<pre class="prettyprint lang-go">
-func init() {
-	revel.TemplateFuncs["my_eq"] = func(a, b interface{}) bool { return a == b || a == 0 }
-}
-</pre>
-{% endraw %}
