@@ -25,7 +25,7 @@ type Flash struct {
 
 Revel's concept of *session* is a string map, stored as a cryptographically signed cookie.
 
-This has a some implications:
+This has some implications:
 
 * The size limit is 4kb.
 * All data must be serialized to a `string` for storage.

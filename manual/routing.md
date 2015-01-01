@@ -29,7 +29,7 @@ GET    /public/*filepath      Static.Serve("public") # Map /app/public resources
 ~~~
 
 Let's go through the lines one at a time.  At the end, we'll see how to
-accomplish [reverse routing](#ReverseRouting) ie generating the URL to invoke a particular action.
+accomplish [reverse routing](#ReverseRouting) i.e generating the URL to invoke a particular action.
 
 ## A Fixed Path
 
@@ -87,20 +87,20 @@ func (c Hotels) Show() revel.Result {
 	GET    /public/*filepath            Static.Serve("public")
 
 The router recognizes a second kind of wildcard. The starred parameter must be
-the first element in the path, and matches all remaining path elements.
+the first element in the path, and match all remaining path elements.
 
 For example, in the case above it will match any path beginning with `/public/`, and
 its value will be the path substring that follows the `*` prefix.
 
 ## Fixed Parameters
 
-As demonstrated in the Static Serving section, routes may specify one or more
+As demonstrated in the [Static Serving](#StaticFiles) section, routes may specify one or more
 parameters to the action.  For example:
 
     GET    /products/:id     ShowList("PRODUCT")
     GET    /menus/:id        ShowList("MENU")
 
-The provided argument(s) are bound to a parameter name using their position.  In
+The provided argument(s) are bound to a parameter name using their position. In
 this case, the list type string would be bound to the name of the first action
 parameter.
 
@@ -224,7 +224,7 @@ routes.Controller.Action(param1, param2)
 </pre>
 
 
-The above statement returns an URL (type string) to `Controller.Action` with the
+The above statement returns an URL string to `Controller.Action` with the
 given parameters.  
 
 <div class="alert alert-info"><strong>Limitation:</strong> Only primitive
