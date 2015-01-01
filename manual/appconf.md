@@ -45,7 +45,7 @@ log.error.output = %(app.name)s.log
   - `revel run`  - will start `dev` mode as the default
   - `revel run prod` - will start with `prod` mode.
 
-Revel creates new apps with **dev** and **prod** run modes defined, but the user may
+Revel creates new apps with **dev** and **prod** run modes defined, but the developer may
 create any sections they wish.
 
 ## Dynamic parameters

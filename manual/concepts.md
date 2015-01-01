@@ -3,7 +3,7 @@ title: Concepts
 layout: manual
 ---
 
-**Revel** is almost afull stack web framework in the spirit of 
+**Revel** is almost a full stack web framework in the spirit of 
 - [Rails](http://rubyonrails.org/) 
 - [Play!](http://www.playframework.org)
 - DJango 
@@ -11,7 +11,7 @@ layout: manual
 - Many  *proven* ideas are incorporated into the framework, its design and interface. 
 - Also using golang.. it's also hackable ;-)
 
-Revel attempt to makes it easy to build web applications using the [Model-View-Controller
+Revel attempts to makes it easy to build web applications using the [Model-View-Controller
 (MVC)](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 pattern by relying on conventions that require a certain structure in an
 application.  In return, it is very light on [configuration](appconf.html) 

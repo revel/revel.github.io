@@ -61,7 +61,7 @@ type Response struct {
 	Status      int
 	ContentType string
 	Headers     http.Header
-	Cookies     []*http.Cookiec
+	Cookies     []*http.Cookie
 	Out http.ResponseWriter
 }
 {% endhighlight %}
