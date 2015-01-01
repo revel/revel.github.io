@@ -137,7 +137,7 @@ In order to figure out which locale the user prefers Revel will look for a usabl
 1. Language cookie
 
     - For every request, Revel will look for a cookie with the name defined in the application configuration [`i18n.cookie`](appconf.html#i18n.cookie). 
-    - If such a cookie is found,  its value is assumed to be the current locale. 
+    - If such a cookie is found, its value is assumed to be the current locale. 
     - All other resolution methods will be skipped when a cookie has been found.
 
 2. `Accept-Language` HTTP header
