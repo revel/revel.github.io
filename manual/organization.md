@@ -29,7 +29,7 @@ typical Go installation.
                 - `routes`         -  [routes](routes.html) definition file
             - `messages/`        - [message](i18n-messages.html) files
             - `public/`          - [static/public assets](routing.html#StaticFiles)
-              - `css/`           - stylesheets files
+              - `css/`           - stylesheet files
               - `js/`            - javascript files
               - `images/`        - image files
 

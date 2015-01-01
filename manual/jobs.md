@@ -121,8 +121,8 @@ func init() {
 
 ## Named schedules
 
-You can [configure schedules ](appconf.html#Jobs) in your [`app.conf`](appconf.html) file and reference them anywhere.
-This provides and easy way to reuse, and a useful description for crontab specs.
+You can [configure schedules ](appconf.html#Jobs) in the [`app.conf`](appconf.html) file and reference them anywhere.
+This provides an easy way to reuse, and a useful description for crontab specs.
 
 Here is an example **named cron schedule**, in an [`app.conf`](appconf.html) file:
 
@@ -213,7 +213,7 @@ resources that could be potentially in use by asynchronous jobs -- typically
 interactive responsiveness is valued above asynchronous processing.  When a pool
 is full of running jobs, new jobs block to wait for running jobs to complete.
 
-**Implementation note**: The implementation blocks on a channel receive, which is
+**Implementation Note**: The implementation blocks on a channel receive, which is
 implemented to be [FIFO](http://en.wikipedia.org/wiki/FIFO) for waiting goroutines (but not specified/required to be
 so). [See here for discussion](https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/CPwv8WlqKag).
 
