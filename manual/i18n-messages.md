@@ -37,16 +37,16 @@ language. This means that you are free to organize the message files however you
 
 For example, you may want to take a traditional approach and define one single message file per language:
 
-    /app/
-        /messages/
+    app/
+        messages/
             messages.en
             messages.fr
             ...
 
 Another approach would be to create *multiple files* for the *same language* and organize them based on the kind of messages they contain:
 
-    /app
-        /messages
+    app/
+        messages/
             labels.en
             warnings.en
             labels.fr
