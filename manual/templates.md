@@ -24,7 +24,7 @@ Revel executes the template using the [`RenderArgs`](../docs/godoc/controller.ht
 application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by
-  [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap)
+  [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap) (see [validation](validation.html))
 * **flash** - the data [flashed](sessionflash.html#Flash) by the previous request.
 
 ## Including Other Templates
@@ -281,7 +281,7 @@ Set a variable in the given context.
 
 ### slug
 
- Created a slug
+ Create a slug
 
 {% raw %}
     TODO
@@ -300,7 +300,7 @@ Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Actio
 
 {% raw %}
 
-    Click <a href="{{url "Application.ShowProduct", 123}}">here</a>
+    Click <a href="{{url "Application.ShowProduct" 123}}">here</a>
 
 {% endraw %}
 
