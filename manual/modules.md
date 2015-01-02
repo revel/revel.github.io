@@ -13,16 +13,21 @@ A module should have the [same layout](organization.html#DefaultLayout) as a Rev
 3. The assets are made available, via a route action of the form `Static.ServeModule("modulename","public")`
 4. Routes can be included in your application with a route line of `module:modulename`
 
+Revel somes with some built in modules such as [testing](testing.html) and [jobs](jobs.html).
+
 ### Enabling a module
 
 In order to add a module to your app, add a line to [`conf/app.conf`](appconf.html):
-
-	module.mymodulename = go/import/path/to/module
+{% highlight ini %}
+module.mymodulename = go/import/path/to/module
+{% endhighlight %}
 
 An empty import path disables the module:
-
-	module.mymodulename =
+{% highlight ini %}
+module.mymodulename =
+{% endhighlight %}
 
 For example, to enable the test runner module:
-
-	module.testrunner = github.com/revel/modules/testrunner
+{% highlight ini %}
+module.testrunner = github.com/revel/modules/testrunner
+{% endhighlight %}

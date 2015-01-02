@@ -8,14 +8,14 @@ request processing pipeline.  They execute all of the framework's functionality.
 
 The filter `type` is a simple function:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Filter func(c *Controller, filterChain []Filter)
-</pre>
+{% endhighlight %}
 
 Each filter is responsible for pulling the next filter off of the filter chain
 and invoking it. Below is the default filter stack:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // The default set of global filters.
 // Can be set in an application on initialization.
 var Filters = []Filter{
@@ -31,7 +31,7 @@ var Filters = []Filter{
 	CompressFilter,          // Compress the result.
 	ActionInvoker,           // Invoke the action.
 }
-</pre>
+{% endhighlight %}
 
 ## Filter chain configuration
 
@@ -41,7 +41,7 @@ Applications may configure the filter chain by re-assigning the `revel.Filters`
 variable in `init()`. By default this will be in [`app/init.go`](https://github.com/revel/revel/blob/master/skeleton/app/init.go) for a newly
 generated app.
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
 	// The filters for my app
 	revel.Filters = []Filter{
@@ -58,7 +58,7 @@ func init() {
 		ActionInvoker,           // Invoke the action.
 	}
 }
-</pre>
+{% endhighlight %}
 
 Every request is sent down this chain, from top to bottom.
 
@@ -80,7 +80,7 @@ filter stage.
 Filters are responsible for invoking the next filter to continue the request
 processing.  This is generally done with an expression as shown here:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 	// .. do some pre-processing ..
 
@@ -88,7 +88,7 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 	// .. do some post-processing ..
 }
-</pre>
+{% endhighlight %}
 
 ### Getting the app Controller type
 
@@ -97,7 +97,7 @@ argument, rather than the actual Controller type that was invoked.  If your
 filter requires access to the actual Controller type that was invoked, it may
 grab it with the following trick:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 	if ac, err := c.AppController.(*MyController); err == nil {
 		// Have an instance of *MyController...
@@ -105,7 +105,7 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 	fc[0](c, fc[1:]) // Execute the next filter stage.
 }
-</pre>
+{% endhighlight %}
 
 <div class="alert alert-info">
 Note: this pattern is frequently an indicator that

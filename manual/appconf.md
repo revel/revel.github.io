@@ -464,8 +464,6 @@ The [cache](cache.html) module is a simple interface to a heap or distributed ca
 <a name="cache.expires"></a>
 
 
-
-
 #### cache.expires
 
 Sets the default duration before cache entries are expired from the cache.  It
