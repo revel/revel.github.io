@@ -42,12 +42,12 @@ func (c App) Action() revel.Result {
 
 You can override the default status code by setting one yourself:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c *App) CreateEntity() revel.Result {
     c.Response.Status = 201
     return c.Render()
 }
-</pre>
+{% endhighlight %}
 
 <a name="Render">
 
