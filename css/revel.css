@@ -181,7 +181,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
 /* page header and imporve button */
 .page-header {
     margin: 0px;
-    margin: 30px 0 10px 0;
+    margin: 20px 0 10px 0;
     border-bottom: 3px solid #dddddd;
 }
 .page-header h1 {
