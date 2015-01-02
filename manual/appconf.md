@@ -370,6 +370,8 @@ the result is not always guaranteed.
 
 ### Templates
 
+<a name="template.delimiters"></a>
+
 #### template.delimiters
 
 Specifies an override for the left and right delimiters used in the templates.  
@@ -383,6 +385,8 @@ Default: "\{\{ \}\}"
 
 ### Formatting
 
+<a name="format.date"></a>
+
 #### format.date
 
 Specifies the default date format for the application.  Revel uses this in two places:
@@ -392,6 +396,7 @@ Specifies the default date format for the application.  Revel uses this in two p
 
 Default: "2006-01-02"
 
+<a name="format.datetime"></a>
 
 #### format.datetime
 
