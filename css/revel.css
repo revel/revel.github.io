@@ -170,15 +170,23 @@ ul ul, ul ol, ol ol, ol ul, ul {
     font-size: 11px;
 }
 
-
+.leftnav .nav li  a {
+    padding: 2px 0 2px 20px;
+}
+.leftnav .nav li.active a {
+  color: #eee !important;
+  background-color: #999999 !important;
+}
 
 /* page header and imporve button */
 .page-header {
-    border-bottom: 1px solid #dddddd;
+    margin: 0px;
+    margin: 30px 0 10px 0;
+    border-bottom: 3px solid #dddddd;
 }
 .page-header h1 {
-    color: #222222;
-    font-family: sans-serif;
+    color: #666666 !important;
+    font-family: "Open Sans", sans-serif !important;
 }
 .improve-page {
   float: right;
@@ -187,10 +195,17 @@ ul ul, ul ol, ol ol, ol ul, ul {
 }
 
 .container {
-    width: 1100px;
+    max-width: 1100px;
 }
 
 
+h2 {
+    font-size: 25px;
+    color: #666666 !important;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 2px;
+    margin-top: 25px;
+}
 
 
 
