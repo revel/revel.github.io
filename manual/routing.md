@@ -185,8 +185,8 @@ Second method: Importing the routes under a prefixed path:
 *       /foo     module:mymodule 
 	
 # Other routes
-GET     /        Application.Index
-GET     /bar     Application.Bar
+GET     /        Application.MyAction
+GET     /foo     Application.FooAction
 ~~~
 
 Assuming `mymodule` has a `routes` file containing:
