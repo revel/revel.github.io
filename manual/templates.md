@@ -45,44 +45,29 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 - Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
-  - [`url`](#url)
-  - [`set`](#set)
+  
+  
   - [`append`](#append)
-  - [`field`](#field)
-  - [`option`](#option)
-  - [`radio`](#radio)
-  - [`nl2br`](#nl2br)
-  - [`pluralize`](#pluralize)
-  - [`raw`](#raw)
+  - [`checkbox`](#checkbox)
+  - [`date`](#date), [`datetime`](#datetime)
   - [`even`](#even)
+  - [`field`](#field)
   - [`msg`](#msg)
+  - [`nl2br`](#nl2br)
+  - [`option`](#option)
+  - [`pad`](#pad)
+  - [`pluralize`](#pluralize)
+  - [`radio`](#radio)
+  - [`raw`](#raw)
+  - [`set`](#set)
+  - [`url`](#url)
   - [Custom Functions](#CustomFunctions)
   
-<a name="url"></a>
+
   
-### url
 
-Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Action`, eg:
 
-{% raw %}
 
-	Click <a href="{{url "Application.ShowProduct", 123}}">here</a>
-
-{% endraw %}
-
-<a name="set"></a>
-
-### set
-
-Set a variable in the given context.
-
-{% raw %}
-
-	{{set . "title" "Basic Chat room"}}
-
-	<h1>{{.title}}</h1>
-
-{% endraw %}
 
 <a name="append"></a>
 
@@ -99,6 +84,52 @@ Add a variable to an array, or create an array; in the given context.
     {{end}}
 
 {% endraw %}
+
+
+<a name="checkbox"></a>
+
+### checkbox
+
+Assists in constructing a HTML checkbox `input` element, eg:
+
+{% raw %}
+      TODO
+      {{checkbox $name $value }}
+
+{% endraw %}
+
+
+<a name="date"></a><a name="datetime"></a>
+
+### date, datetime
+
+Format a date according to the application's default date(time) format..
+
+{% raw %}
+
+    {date .MyDate}}
+    {datetime .MyDateTime}}
+
+{% endraw %}
+
+
+<a name="even"></a>
+
+### even
+
+Perform `$in % 2 == 0`. This is a convenience function that assists with table row coloring.
+
+{% raw %}
+
+    {{range $index, $element := .results}}
+    <tr class="{{if even $index}}light-row{{else}}dark-row{{end}}">
+        ...
+    </tr>
+    {{end}}
+
+{% endraw %}
+
+
 
 <a name="field"></a>
 
@@ -121,51 +152,27 @@ Example:
 
 {% raw %}
 
-	{{with $field := field "booking.CheckInDate" .}}
-	  <p class="{{$field.ErrorClass}}">
-	    <strong>Check In Date:</strong>
-	    <input type="text" size="10" name="{{$field.Name}}" 
-	          class="datepicker" value="{{$field.Flash}}"> *
-	    <span class="error">{{$field.Error}}</span>
-	  </p>
-	{{end}}
+    {{with $field := field "booking.CheckInDate" .}}
+      <p class="{{$field.ErrorClass}}">
+        <strong>Check In Date:</strong>
+        <input type="text" size="10" name="{{$field.Name}}" 
+              class="datepicker" value="{{$field.Flash}}"> *
+        <span class="error">{{$field.Error}}</span>
+      </p>
+    {{end}}
 
 {% endraw %}
 
-<a name="option"></a>
 
-### option
 
-Assists in constructing HTML `option` elements, in conjunction with the field
-helper, eg:
 
-{% raw %}
 
-	{{with $field := field "booking.Beds" .}}
-	<select name="{{$field.Name}}">
-	  {{option $field "1" "One king-size bed"}}
-	  {{option $field "2" "Two double beds"}}
-	  {{option $field "3" "Three beds"}}
-	</select>
-	{{end}}
 
-{% endraw %}
+<a name="msg"></a>
 
-<a name="radio"></a>
-
-### radio
-
-Assists in constructing HTML radio `input` elements, in conjunction with the field
-helper, eg:
-
-{% raw %}
-
-	{{with $field := field "booking.Smoking" .}}
-	  {{radio $field "true"}} Smoking
-	  {{radio $field "false"}} Non smoking
-	{{end}}
-
-{% endraw %}
+### msg
+ - See [internationalization](i18n-messages.html#template)
+ 
 
 <a name="nl2br"></a>
 
@@ -180,6 +187,39 @@ Convert newlines to HTML breaks.
 
 {% endraw %}
 
+<a name="option"></a>
+
+### option
+
+Assists in constructing HTML `option` elements, in conjunction with the field
+helper, eg:
+
+{% raw %}
+
+    {{with $field := field "booking.Beds" .}}
+    <select name="{{$field.Name}}">
+      {{option $field "1" "One king-size bed"}}
+      {{option $field "2" "Two double beds"}}
+      {{option $field "3" "Three beds"}}
+    </select>
+    {{end}}
+
+{% endraw %}
+
+
+<a name="pad"></a>
+
+### pad
+
+ Pads the given string with `&nbsp;`  to the given width, eg:.
+
+{% raw %}
+
+    {{pad "my string", 8}}
+
+{% endraw %}
+
+
 <a name="pluralize"></a>
 
 ### pluralize
@@ -191,6 +231,23 @@ A helper for correctly pluralizing words.
 	There are {{.numComments}} comment{{pluralize (len comments) "" "s"}}
 
 {% endraw %}
+
+<a name="radio"></a>
+
+### radio
+
+Assists in constructing HTML radio `input` elements, in conjunction with the field
+helper, eg:
+
+{% raw %}
+
+    {{with $field := field "booking.Smoking" .}}
+      {{radio $field "true"}} Smoking
+      {{radio $field "false"}} Non smoking
+    {{end}}
+
+{% endraw %}
+
 
 <a name="raw"></a>
 
@@ -205,26 +262,47 @@ Prints raw, unescaped, text.
 
 {% endraw %}
 
-<a name="even"></a>
+<a name="set"></a>
 
-### even
+### set
 
-Perform `$in % 2 == 0`. This is a convenience function that assists with table row coloring.
+Set a variable in the given context.
 
 {% raw %}
 
-	{{range $index, $element := .results}}
-	<tr class="{{if even $index}}light-row{{else}}dark-row{{end}}">
-		...
-	</tr>
-	{{end}}
+    {{set . "title" "Basic Chat room"}}
+
+    <h1>{{.title}}</h1>
 
 {% endraw %}
 
-<a name="msg"></a>
 
-### msg
- - See [internationalization](i18n-messages.html#template)
+<a name="slug"></a>
+
+### slug
+
+ Created a slug
+
+{% raw %}
+    TODO
+    {{slug TODO}}
+
+{% endraw %}
+
+
+
+
+<a name="url"></a>
+
+### url
+
+Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Action`, eg:
+
+{% raw %}
+
+    Click <a href="{{url "Application.ShowProduct", 123}}">here</a>
+
+{% endraw %}
 
 <a name="CustomFunctions"></a>
  
