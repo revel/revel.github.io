@@ -103,7 +103,7 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 ### date, datetime
 
-Format a date according to the application's default date(time) format..
+Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format.
 
 {% raw %}
 
