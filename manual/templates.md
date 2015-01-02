@@ -93,9 +93,9 @@ Add a variable to an array, or create an array; in the given context.
 Assists in constructing a HTML checkbox `input` element, eg:
 
 {% raw %}
-      TODO
-      {{checkbox $name $value }}
-
+    {{with $checkboxField := field "testField" .}}
+        {{checkbox $checkboxField "someValue"}}
+    {{end}}
 {% endraw %}
 
 
@@ -103,7 +103,7 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 ### date, datetime
 
-Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format.
+Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format. The example below assumes `dateArg := time.Now()`:
 
 {% raw %}
 
@@ -284,9 +284,7 @@ Set a variable in the given context.
  Create a slug
 
 {% raw %}
-    TODO
-    {{slug TODO}}
-
+     {{slug "SomeThing String"}}
 {% endraw %}
 
 
@@ -300,7 +298,8 @@ Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Actio
 
 {% raw %}
 
-    Click <a href="{{url "Application.ShowProduct" 123}}">here</a>
+    <a href="{{url "MyApp.ContactPage"}}">Contact</a>
+    Click <a href="{{url "Products.ShowProduct" 123}}">here</a> for more.
 
 {% endraw %}
 
