@@ -1,31 +1,32 @@
-    <div class="navbar" style="margin:0 auto 2px auto;">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="{{ page.root }}/index.html">
-            <img class="revel-hat-img"
-                 src="{{ page.root }}/img/revelhat.png"
-                 height="40" width="87">
-          </a>
-          <div class="navbar-collapse">
-            <ul class="nav  navbar-nav">
-              <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
-              <li {% if page.layout == 'manual' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/manual/index.html">Manual</a></li>
-              <li {% if page.layout == 'samples' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/samples/index.html">Samples</a></li>
-              <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">github <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="https://github.com/revel/" starget="github">Revel project</a></li>
-                    <li><a href="https://github.com/revel/" starget="github">Revel source code</a></li>
-                    <li><a href="https://github.com/revel/" starget="github">Revel issues</a></li>
-                </ul>
-            </li>
-            </ul>
-          </div>
+<div class="navbar navbar-default navbar-static-top" ssstyle="margin:0 auto 2px auto;">
+    <div class="container">
+        <div class="navbar-header">
+            <a id="revel-logo" href="{{ page.root }}/index.html">
+                <img class="revel-hat-img"
+                    src="{{ page.root }}/img/revelhat.png"
+                    height="40" width="87">
+            </a>
         </div>
-      </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
+                <li {% if page.layout == 'manual' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/manual/index.html">Manual</a></li>
+                <li {% if page.layout == 'samples' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/samples/index.html">Samples</a></li>
+                <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">github <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="https://github.com/revel/" starget="github">Revel project</a></li>
+                        <li><a href="https://github.com/revel/" starget="github">Revel source code</a></li>
+                        <li><a href="https://github.com/revel/" starget="github">Revel issues</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
     </div>
+</div>

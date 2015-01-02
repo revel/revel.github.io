@@ -1,4 +1,4 @@
-body {
+DEADbody {
   padding: 0 0 40px 0;
 }
 
@@ -37,7 +37,7 @@ pre {
   overflow-x:auto;
 }
 
-#header {
+#deadheader {
   position: absolute;
   width: 100%;
   min-width: 940px;
@@ -50,27 +50,27 @@ pre {
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
 }
 
-#header #wrapper {
+#deadheader #wrapper {
   width: 940px;
   margin: 0 auto;
   position: relative;
 }
 
-#header #nav {
+#deadheader #nav {
   width: 900px;
   height: 65px;
   margin: 0 auto;
   text-align: center;
 }
 
-#header #nav li {
+#deadheader #nav li {
   margin: 0 40px;
   font-size:28px;
   line-height: 26px;
   display: inline;
 }
 
-#header #nav li.active a {
+#deadheader #nav li.active a {
   font-weight:bold;
   color:#eee !important;
 }
@@ -90,29 +90,26 @@ a:hover {
   padding-right: 5px;
 }
 
-.navbar {
+.deadnavbar {
   min-width: 1062px;
 }
 
-.navbar .container {
+.DEADnavbar .container {
   width: 940px;
 }
 
-.leftnav {
-  border-right: 1px solid #eee;
-  padding-top: 15px;
+
+
+.nav-brand {
+  padding: 0 20px 7px !important;
 }
 
-.brand {
-  padding: 5px 20px 7px !important;
-}
-
-.navbar .nav > li > a {
+.deadnavbar .nav > li > a {
   padding-top: 29px !important;
   padding-bottom: 5px !important;
 }
 
-.navbar-inner {
+.deadnavbar-inner {
   min-height: 0 !important;
   height: 55px !important;
   background: #FFF;
@@ -146,26 +143,36 @@ ul ul, ul ol, ol ol, ol ul, ul {
   margin-bottom: 1em;
 }
 
-.improve-page {
-  float: right;
-  margin: 0 5px;
-  position: relative;
+/* revel logo and header */
+.navbar-header {
+    width: 250px; 
+}
+#revel-logo {
+    margin: 0;
+    padding: 0;
+}
+#revel-logo img {
+    margin: 2px 0 0 0;
 }
 
-.container {
-    width: 1100px;
-}
+/* Left navigation */
 
 .leftnav {
     border-right: 1px solid #dddddd;
 }
 .leftnav .nav-header {
-    background-color: #eeeeee;
-    border-top: 1px solid #dddddd;
+    padding: 2px 0;
+    background-color: #eeeeee !important;
+    border-top: 1px solid #dddddd !important;
     padding-left: 2px;
-    
+    color: #888888;
+    text-transform: uppercase;
+    font-size: 11px;
 }
 
+
+
+/* page header and imporve button */
 .page-header {
     border-bottom: 1px solid #dddddd;
 }
@@ -173,5 +180,18 @@ ul ul, ul ol, ol ol, ol ul, ul {
     color: #222222;
     font-family: sans-serif;
 }
+.improve-page {
+  float: right;
+  margin: 0 2px;
+  position: relative;
+}
+
+.container {
+    width: 1100px;
+}
+
+
+
+
 
 
