@@ -4,7 +4,7 @@ layout: manual
 ---
 
 - Revel tries to make the conversion of request parameters into the desired Go type as easy and painless as possible. 
-- The conversion from a http request `string`s sent by client to another type is referred to as **data binding**.
+- The conversion from a http request `string` sent by client to another type is referred to as **data binding**.
 
 ## Request Parameters
 
