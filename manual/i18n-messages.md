@@ -142,7 +142,7 @@ greeting=Howdy
 For users who have defined English (`en`) as their preferred language, Revel would resolve `greeting` to `Hello`. Only in specific cases where the user's locale has been
 explicitly defined as `en-GB` or `en-US` would the `greeting` message be resolved using the specific sections.
 
-<div class="alert alert-block"><strong>Important note:</strong> messages defined under a section that is not a valid region are technically allowed but ultimately useless (as they will never be resolved).</div>
+<div class="alert alert-danger"><strong>Important:</strong> messages defined under a [section] that is not a valid region are technically allowed but ultimately useless as they will never be resolved.</div>
 
 ### Referencing and arguments
 
@@ -158,11 +158,11 @@ greeting.full=%(greeting)s %(greeting.name)s%(greeting.suffix)s
 {% endhighlight %}
 
 <div class="alert alert-info"> 
-    <p><strong>Notes:</strong></p>
-    <ul>
-        <li>Referencing is a <em>goconfig</em> feature.</li>
-        <li>Because message files are merged, it's perfectly possible to reference messages in other files provided they are defined for the same language.</li>
-    </ul>
+<p><strong>Notes:</strong></p>
+<ul>
+    <li>Referencing is a <em>goconfig</em> feature.</li>
+    <li>Because message files are merged, it's perfectly possible to reference messages in other files provided they are defined for the same language.</li>
+</ul>
 </div>
 
 #### Arguments
@@ -213,9 +213,10 @@ func (c App) Index() revel.Result {
 
 From a [template](templates.html), the current locale can be retrieved from the `currentLocale` property of `renderArgs`. For example:
 
-<pre class="prettyprint lang-html">
-    &#x3c;p&#x3e;My Locale is: &#x7b;&#x7b;.currentLocale&#x7d;&#x7d;&#x3c;/p&#x3e;
-</pre>
+{% capture ex %}{% raw %}
+    <p>My Locale is: {{.currentLocale}}</p>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 ### Parsed Accept-Language HTTP header
 
@@ -256,10 +257,11 @@ func (c App) Index() revel.Result {
 
 To resolve messages using the current locale from [templates](templates.html) there is a *template function* `msg` that you can use. For example:
 
-<pre class="prettyprint lang-html">
-    &#x3c;p&#x3e;Greetings without arguments: &#x7b;&#x7b;msg . "greeting"&#x7d;&#x7d;&#x3c;/p&#x3e;
-    &#x3c;p&#x3e;Greetings: &#x7b;&#x7b;msg . "greeting.full.name" "Tommy Lee Jones"&#x7d;&#x7d;&#x3c;/p&#x3e;
-</pre>
+{% capture ex %}{% raw %}
+<p>Greetings without arguments: {{msg . "greeting"}}</p>
+<p>Greetings: {{msg . "greeting.full.name" "Tommy Lee Jones"}}</p>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <div class="alert alert-info"><strong>Note:</strong> the signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</div>
 

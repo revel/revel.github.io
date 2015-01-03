@@ -88,7 +88,8 @@ Flash messages may be referenced by key in [templates](templates.html).  For exa
 the success and error messages set by the convenience functions, use these
 expressions:
 
-{% raw %}
+{% capture ex %}{% raw %}
 	{{.flash.success}}
 	{{.flash.error}}
-{% endraw %}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}

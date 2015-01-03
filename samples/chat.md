@@ -256,12 +256,10 @@ $('#send').click(function(e) {
 });
 {% endhighlight %}
 
-> [WebSocket/Room.html](https://github.com/revel/revel/tree/master/samples/chat/app/views/WebSocket/Room.html#L51)
-
 The first thing to do is to subscribe to new events, join the room, and send
-down the archive.  Here is what that looks like:
+down the archive.  Here is what [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L17) looks like:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
 	// Join the room.
 	subscription := chatroom.Subscribe()
@@ -277,33 +275,30 @@ func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
 			return nil
 		}
 	}
-{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+	....
+{% endhighlight %}
 
-> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L17)
 
 Next, we have to listen for new events from the subscription.  However, the
 websocket library only provides a blocking call to get a new frame.  To select
-between them, we have to wrap it:
+between them, we have to wrap it ([websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L33)):
 
-<pre class="prettyprint lang-go">{% capture WebSocket2 %}{% raw %}
-	// In order to select between websocket messages and subscription events, we
-	// need to stuff websocket events into a channel.
-	newMessages := make(chan string)
-	go func() {
-		var msg string
-		for {
-			err := websocket.Message.Receive(ws, &msg)
-			if err != nil {
-				close(newMessages)
-				return
-			}
-			newMessages <- msg
-		}
-	}()
-{% endraw %}{% endcapture %}{{ WebSocket2|escape }}</pre>
-
-> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L33)
+{% highlight go %}
+// In order to select between websocket messages and subscription events, we
+// need to stuff websocket events into a channel.
+newMessages := make(chan string)
+go func() {
+    var msg string
+    for {
+        err := websocket.Message.Receive(ws, &msg)
+        if err != nil {
+            close(newMessages)
+            return
+        }
+        newMessages <- msg
+    }
+}()
+{% endhighlight %}
 
 Now we can select for new websocket messages on the `newMessages` channel.
 
@@ -311,28 +306,28 @@ The last bit does exactly that -- it waits for a new message from the websocket
 (if the user has said something) or from the subscription (someone else in the
 chat room has said something) and propagates the message to the other.
 
-<pre class="prettyprint lang-go">{% capture WebSocket3 %}{% raw %}
-	// Now listen for new events from either the websocket or the chatroom.
-	for {
-		select {
-		case event := <-subscription.New:
-			if websocket.JSON.Send(ws, &event) != nil {
-				// They disconnected.
-				return nil
-			}
-		case msg, ok := <-newMessages:
-			// If the channel is closed, they disconnected.
-			if !ok {
-				return nil
-			}
+{% highlight go %}
+// Now listen for new events from either the websocket or the chatroom.
+for {
+    select {
+    case event := <-subscription.New:
+        if websocket.JSON.Send(ws, &event) != nil {
+            // They disconnected.
+            return nil
+        }
+    case msg, ok := <-newMessages:
+        // If the channel is closed, they disconnected.
+        if !ok {
+            return nil
+        }
 
-			// Otherwise, say something.
-			chatroom.Say(user, msg)
-		}
-	}
-	return nil
+        // Otherwise, say something.
+        chatroom.Say(user, msg)
+    }
 }
-{% endraw %}{% endcapture %}{{ WebSocket3|escape }}</pre>
+return nil
+
+{% endhighlight %}
 
 > [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L48)
 

@@ -47,19 +47,19 @@ validated, and uses that as the default key in the validation context (to be loo
 6. Revel returns a [redirect](results.html#Redirect) to the `Hotels.Settings` action.
 
 The `Hotels.Settings` action renders a template:
-{% raw %}
 
-	{{/* app/views/Hotels/Settings.html */}}
-	...
-	{{if .errors}}Please fix errors marked below!{{end}}
-	...
-	<p class="{{if .errors.username}}error{{end}}">
-		Username:
-		<input name="username" value="{{.flash.username}}"/>
-		<span class="error">{{.errors.username.Message}}</span>
-	</p>
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{{/* app/views/Hotels/Settings.html */}}
+...
+{{if .errors}}Please fix errors marked below!{{end}}
+...
+<p class="{{if .errors.username}}error{{end}}">
+    Username:
+    <input name="username" value="{{.flash.username}}"/>
+    <span class="error">{{.errors.username.Message}}</span>
+</p>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 It does three things:
 
@@ -104,19 +104,18 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 .. and the template:
 
-{% raw %}
-
-	{{/* app/views/Hotels/Settings.html */}}
-	...
-	{{if .errors}}
-	<div class="error">
-		<ul>
-		{{range .errors}}
-			<li> {{.Message}}</li>
-		{{end}}
-		</ul>
-	</div>
-	{{end}}
-	...
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{{/* app/views/Hotels/Settings.html */}}
+...
+{{if .errors}}
+<div class="error">
+    <ul>
+    {{range .errors}}
+        <li> {{.Message}}</li>
+    {{end}}
+    </ul>
+</div>
+{{end}}
+...
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}

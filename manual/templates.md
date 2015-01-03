@@ -103,11 +103,13 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 ### date, datetime
 
-Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format. The example below assumes `dateArg := time.Now()`:
+Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format. 
+
+The example below assumes `dateArg := time.Now()`:
 
 {% capture ex %}{% raw %}
-{date .MyDate}}
-{datetime .MyDateTime}}
+{{date .MyDate}}
+{{datetime .MyDateTime}}
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 

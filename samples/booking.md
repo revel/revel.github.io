@@ -126,15 +126,16 @@ Subsequently, the
 [Hotels/Book.html](https://github.com/revel/samples/blob/master/booking/app/views/Hotels/Book.html)
 template can easily access them using the [`field`](../manual/templates.html#field) helper:
 
-
-    {{with $field := field "booking.CheckInDate" .}}
-    <p class="{{$field.ErrorClass}}">
-        <strong>Check In Date:</strong>
-        <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}">
-        * <span class="error">{{$field.Error}}</span>
-    ss</p>
-    {{end}}
- 
+{% capture ex %}{% raw %}
+{{with $field := field "booking.CheckInDate" .}}
+<p class="{{$field.ErrorClass}}">
+    <strong>Check In Date:</strong>
+    <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}">
+    * <span class="error">{{$field.Error}}</span>
+ss</p>
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %} 
 
 
 The [`field`](../manual/templates.html#field) template helper looks for errors in the validation context, using
