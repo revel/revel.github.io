@@ -70,7 +70,7 @@ to refer to [the source code of](../docs/src/binder.html) if more detail is requ
 
 ### Booleans
 
-The string values "true", "on", and "1" are all treated as **true**,  otherwise it is **false**.
+The string values `"true"`, `"on"`, and `"1"` are all treated as `true`,  otherwise it is `false`.
 
 ### Slices
 
@@ -125,12 +125,12 @@ type User struct {
 ### Date / Time
 
 - The SQL standard date time formats of `2006-01-02`, `2006-01-02 15:04` are built in.
-- Alternative formats may be added to the application, using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
-- Add a pattern to recognize to the `TimeFormats` variable, like this:
+- Alternative formats may be added to the application (see [appconf](appconf.html#formatting)), using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
+- Add a pattern to recognize to the `TimeFormats` variable, like the example below.
 
 {% highlight go %}
 func init() {
-revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
+    revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
 }
 {% endhighlight %}
 
@@ -147,6 +147,8 @@ This is a wrapper around the upload handling provided by
 [Go's multipart package](http://golang.org/pkg/mime/multipart/).  The bytes
 stay in memory unless they exceed a threshold (10MB by default), in which case
 they are written to a temp file.
+
+- See the [upload sample app](https://github.com/revel/samples/tree/master/upload)
 
 <div class="alert alert-info">Note: Binding a file upload to <i>os.File</i> requires Revel to write it to a
 temp file (if it wasn't already), making it less efficient than the other types.</div>

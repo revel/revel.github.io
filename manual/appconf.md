@@ -124,13 +124,13 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Watchers](#watchers)
 - [Cookies](#Cookies)
 - [Session](#session)
-- [Formatting](#Formatting)
-- [Database](#Database)
-- [Build](#Build)
-- [Logging](#Logging)
-- [Cache](#Cache)
-- [Jobs](#Jobs)
-- [Modules](#Modules)
+- [Formatting](#formatting)
+- [Database](#database)
+- [Build](#build)
+- [Logging](#logging)
+- [Cache](#cache)
+- [Jobs](#jobs)
+- [Modules](#modules)
 
 
 ### Application settings

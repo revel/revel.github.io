@@ -4,7 +4,7 @@ layout: manual
 ---
 
 Revel provides the **jobs** framework for performing work asynchronously, outside of the
-request flow.  This may take the form of [recurring tasks](#RecurringJobs) that updates cached data
+request flow.  This may take the form of [recurring tasks](#jobs) that updates cached data
 or [one-off tasks](#OneOff) such as sending emails.
 
 ## Activation
@@ -22,7 +22,7 @@ this line to the `conf/routes` file, which will insert the `/@jobs` url:
 
 ## Options
 
-There are a couple of [configuration settings](appconf.html#Jobs) that tell the framework what sort of limitations
+There are a couple of [configuration settings](appconf.html#jobs) that tell the framework what sort of limitations
 to place on the jobs that it runs. These are listed below with their default values;
 
 - [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
@@ -113,7 +113,7 @@ func init() {
 
 ## Named schedules
 
-You can [configure schedules ](appconf.html#Jobs) in the [`app.conf`](appconf.html) file and reference them anywhere.
+You can [configure schedules ](appconf.html#jobs) in the [`app.conf`](appconf.html) file and reference them anywhere.
 This provides an easy way to reuse, and a useful description for crontab specs.
 
 Here is an example **named cron schedule**, in an [`app.conf`](appconf.html) file:
