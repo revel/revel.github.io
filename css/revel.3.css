@@ -151,11 +151,15 @@ ul ul, ul ol, ol ol, ol ul, ul {
 h2 {
     font-size: 25px;
     color: #4444 !important;
-    padding-bottom: 2px;
-    padding-left: 4px;
+    padding: 5px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    background-color: #dddddd;
+      -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 
 h3 {
@@ -163,6 +167,14 @@ h3 {
     color: #4444 !important;
     padding-bottom: 2px;
     margin-top: 25px;
+    margin-left: 15px;
+}
+
+h4 {
+    font-size: 18px;
+    color: #2222 !important;
+    padding-bottom: 2px;
+    margin-top: 20px;
     margin-left: 15px;
 }
 
