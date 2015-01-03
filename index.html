@@ -5,11 +5,7 @@ title: The Revel Web Framework for Go
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% include head.html %}
-    <link href="{{ page.root }}/css/prettify.css" type="text/css" rel="stylesheet" />
-    <script src="{{ page.root }}/js/prettify.js" type="text/javascript"></script>
-    <script src="{{ page.root }}/js/lang-go-rich.js" type="text/javascript"></script>
-    
+    {% include head.html %}   
     <style>
     .revel-top-nav {
         margin-bottom: 0;
@@ -17,182 +13,200 @@ title: The Revel Web Framework for Go
     </style>
   </head>
 
-  <body onload="prettyPrint()">
-    <a href="https://github.com/revel/revel" target="_blank">
-      <img style="position: absolute; top: 0; right: 0; border: 0; z-index:40000;"
-           src="img/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+<body>
 
-    {% include topnav.html %}
+<!-- fork git hub -->
+<a href="https://github.com/revel/revel" target="_blank">
+<img style="position: absolute; top: 0; right: 0; border: 0; z-index:40000;"
+        src="img/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
-    <header class="hero-unit">
-      <div class="container">
-        <div class="row" style="margin-left:-50px;">
-          <div class="hero-img"><img src="img/RevelWhiteLines.png" height="500" width="350"></div>
-          <div class="hero-text">
-            <h1>Revel</h1>
-            <p>A high-productivity web framework for the Go language.</p>
-          </div>
-        </div>
-      </div>
-    </header>
+{% include topnav.html %}
 
+<!-- Banner at top -->
+<header class="hero-unit">
     <div class="container">
-      <div class="page-header">
+        <div class="row" style="margin-left:-50px;">
+            <div class="hero-img"><img src="img/RevelWhiteLines.png" height="500" width="350"></div>
+            <div class="hero-text">
+                <h1>Revel</h1>
+                <p>A high-productivity web framework for the Go language.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- features -->
+    <div class="page-header">
         <h1>Features</h1>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-md-4">
-          <h2>Hot Code Reload</h2>
-          <p>
-            Edit, save, and refresh.  Revel compiles your code and templates for
-            you, so you don't miss a beat.  Code doesn't compile?  It gives you a
-            <a href="img/CompilationError.png">helpful description</a>.
-            Run-time code panic?  Revel <a href="img/Panic.png">has you
-            covered</a>.
-          </p>
+            <h2>Hot Code Reload</h2>
+            <p>
+                Edit, save, and refresh.  Revel compiles your code and templates for
+                you, so you don't miss a beat.  Code doesn't compile?  It gives you a
+                <a href="img/CompilationError.png">helpful description</a>.
+                Run-time code panic?  Revel <a href="img/Panic.png">has you
+                covered</a>.
+            </p>
         </div>
         <div class="col-md-4">
-          <h2>Comprehensive</h2>
-          <p>
-            Revel provides
-            <a href="manual/routing.html">routing</a>,
-            <a href="manual/binding.html">parameter parsing</a>,
-            <a href="manual/validation.html">validation</a>,
-            <a href="manual/sessionflash.html">session/flash</a>,
-            <a href="manual/templates.html">templating</a>,
-            <a href="manual/cache.html">caching</a>,
-            <a href="manual/jobs.html">job running</a>,
-            <a href="manual/testing.html">a testing framework</a>,
-            and even <a href="manual/i18n-messages.html">internationalization</a>.
-          </p>
+            <h2>Comprehensive</h2>
+            <p>
+                Revel provides
+                <a href="manual/routing.html">routing</a>,
+                <a href="manual/binding.html">parameter parsing</a>,
+                <a href="manual/validation.html">validation</a>,
+                <a href="manual/sessionflash.html">session/flash</a>,
+                <a href="manual/templates.html">templating</a>,
+                <a href="manual/cache.html">caching</a>,
+                <a href="manual/jobs.html">job running</a>,
+                <a href="manual/testing.html">a testing framework</a>,
+                and even <a href="manual/i18n-messages.html">internationalization</a>.
+            </p>
         </div>
         <div class="col-md-4">
-          <h2>High Performance</h2>
-          <p>
-            Revel builds on top of the Go HTTP server, which was
-            <a href="http://www.techempower.com/benchmarks/#section=data-r8">recently
-            benchmarked</a> to serve <b>three to ten times</b> as many requests
-            as Rails across a variety of loads.
-          </p>
+            <h2>High Performance</h2>
+            <p>
+                Revel builds on top of the Go HTTP server, which was
+                <a href="http://www.techempower.com/benchmarks/#section=data-r8">recently
+                benchmarked</a> to serve <b>three to ten times</b> as many requests
+                as Rails across a variety of loads.
+            </p>
         </div>
-      </div>
-      <div class="page-header">
+    </div>
+      
+     <!-- framework -->
+    <div class="page-header">
         <h1>Framework Design</h1>
-      </div>
-      <div class="row">
+    </div>
+    <div class="row">
         <div class="col-md-4">
-          <h2>Synchronous</h2>
-          <p>
-            The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
-            runs each request in its own
-            <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
-            Write simple callback-free code without guilt.
-          </p>
+            <h2>Synchronous</h2>
+            <p>
+                The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
+                runs each request in its own
+                <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
+                Write simple callback-free code without guilt.
+            </p>
         </div>
         <div class="col-md-4">
-          <h2>Stateless</h2>
-          <p>
-            Revel provides primitives that keep the web tier stateless for
-            predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
-            cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
-          </p>
+            <h2>Stateless</h2>
+            <p>
+                Revel provides primitives that keep the web tier stateless for
+                predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
+                cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
+            </p>
         </div>
         <div class="col-md-4">
-          <h2>Modular</h2>
-          <p>
-            Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
-            which implement nearly all request-processing
-            functionality. Developers have the freedom to replace the default
-            filters with custom implementations (e.g. a custom router).
-          </p>
+            <h2>Modular</h2>
+            <p>
+                Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
+                which implement nearly all request-processing
+                functionality. Developers have the freedom to replace the default
+                filters with custom implementations (e.g. a custom router).
+            </p>
         </div>
-      </div>
-      <div class="row">
-      </div>
-      <section id="quickstart">
+    </div>
+        
+     <!-- quickstart -->    
+    <section id="quickstart">
         <div class="page-header">
           <h1>Quick Start</h1>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <p>
-              Revel has some <a href="samples/">sample applications</a> to demonstrate typical usage.
-            </p>
-            <p>The commands at right will:</p>
-              <ol>
-                <li>Install Revel into your GOPATH
-                <li>Install and Build the Revel command-line tool</li>
-                <li>Install the sample applications</li>
-                <li>Run the Chat sample application</li>
-                <li>Open <a href="http://localhost:9000/">http://localhost:9000/</a></li>
-              </ol>
-              </p><a href="samples/chat.html">Read how the chat demo is implemented</a></p>.
-            
-          </div>
-          <div class="col-md-6" style="vertical-align:bottom;">
-            <pre>
-  # get revel framework          
-  go get github.com/revel/revel
-  
-  # get 'revel' command
-  go get github.com/revel/cmd/revel
-  
-  # get samples and run chat app
-  go get github.com/revel/samples
-  revel run github.com/samples/chat
-            </pre>
-          </div>
+            <div class="col-md-6">
+                <p>
+                Revel has some <a href="samples/">sample applications</a> to demonstrate typical usage.
+                </p>
+                <p>The commands at right will:</p>
+                <ul>
+                    <li>Install Revel into your GOPATH
+                    <li>Install and Build the Revel command-line tool</li>
+                    <li>Install the sample applications</li>
+                    <li>Run the Chat sample application</li>
+                    <li>Open <a href="http://localhost:9000/">http://localhost:9000/</a></li>
+                </ul>
+                </p><a href="samples/chat.html">Read how the chat demo is implemented</a></p>.
+
+            </div>
+            <div class="col-md-6" style="vertical-align:bottom;">
+<pre>
+# get revel framework          
+go get github.com/revel/revel
+
+# get 'revel' command
+go get github.com/revel/cmd/revel
+
+# get samples and run chat app
+go get github.com/revel/samples
+revel run github.com/samples/chat
+</pre>
+<pre>
+# create a new app and run
+revel new github.com/myaccount/my-app
+revel run github.com/myaccount/my-app
+</pre>
+            </div>
         </div>
-      </section>
+    </section>
 
 
-
-      <section id="teaser">
+    <!-- Overview -->
+    <section id="teaser">
         <div class="page-header">
-          <h1>Overview</h1>
+            <h1>Overview</h1>
         </div>
-        <p>
-          This section gives you a taste of various parts of the framework:
-        </p>
-
-        <dl class="dl-horizontal">
-          <dt><a href="#routing">Routing</a></dt>
-          <dd>A simple declarative routing syntax.  Type-safe reverse routing.</dd>
-
-          <dt><a href="#controllers">Controllers</a></dt>
-          <dd>
-            Revel organizes endpoints into Controllers. They provide easy
-            data binding and form validation.
-          </dd>
-
-          <dt><a href="#templates">Templates</a></dt>
-          <dd>Revel makes Go Templates simple to use at scale.</dd>
-
-          <dt><a href="#interceptors">Interceptors</a></dt>
-          <dd>
-            Register functionality to be called before or after actions.  They
-            can be activated per Controller.
-          </dd>
-
-          <dt><a href="#filters">Filters</a></dt>
-          <dd>
-            More general functionality can be implemented with Filters.
-          </dd>
-
-        </dl>
-
         <div class="row">
-          <div class="col-md-8">
-            <h2 id="routing">Routing</h2>
             <p>
-              Revel uses a declarative <a href="manual/routing.html">routing</a> syntax. It collects all routes
-              for an app in a single file, with a simple syntax for matching
-              requests, extracting arguments from URIs, and specifying
-              route-specific arguments to the action. Here's a commented
-              sample.
+                This section gives you a taste of various parts of the framework:
             </p>
-          </div>
-          <div class="col-md-12">
+
+            <dl class="dl-horizontal">
+                <dt><a href="#routing">Routing</a></dt>
+                <dd>A simple declarative routing syntax.  Type-safe reverse routing.</dd>
+
+                <dt><a href="#controllers">Controllers</a></dt>
+                <dd>
+                    Revel organizes endpoints into Controllers. They provide easy
+                    data binding and form validation.
+                </dd>
+
+                <dt><a href="#templates">Templates</a></dt>
+                <dd>Revel makes Go Templates simple to use at scale.</dd>
+
+                <dt><a href="#interceptors">Interceptors</a></dt>
+                <dd>
+                    Register functionality to be called before or after actions.  They
+                    can be activated per Controller.
+                </dd>
+
+                <dt><a href="#filters">Filters</a></dt>
+                <dd>
+                    More general functionality can be implemented with Filters.
+                </dd>
+
+            </dl>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="routing">Routing</h2>
+                <p>
+                Revel uses a declarative <a href="manual/routing.html">routing</a> syntax. It collects all routes
+                for an app in a single file, with a simple syntax for matching
+                requests, extracting arguments from URIs, and specifying
+                route-specific arguments to the action. Here's a commented
+                sample.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
             <pre>
 # conf/routes
 # This file defines all application routes (Higher priority routes first)
@@ -204,14 +218,17 @@ POST   /hotels/:id/:action   Hotels.:action          <b># Automatically route so
 GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /public/...</b>
 *      /:controller/:action  :controller.:action     <b># Catch all; Automatic URL generation</b></pre>
 
-          </div>
-          <div class="col-md-8">
-						<p>
-							<a href="manual/routing.html#ReverseRouting">Reverse routes</a> can be generated in a type-safe manner.  For example:
-						</p>
-          </div>
-          <div class="col-md-12">
-            <pre class="prettyprint lang-go">
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <p>
+                    <a href="manual/routing.html#ReverseRouting">Reverse routes</a> can be generated in a type-safe manner.  For example:
+                </p>
+          
+{% highlight go %}
 // Show the hotel information.
 func (c Hotels) Show(id int) revel.Result {
 	hotel := HotelById(id)
@@ -221,36 +238,40 @@ func (c Hotels) Show(id int) revel.Result {
 // Save the updated hotel information and redirect back to Show.
 func (c Hotels) Save(hotel Hotel) revel.Result {
 	// validate and save hotel
-	return c.Redirect(<b>routes.Hotels.Show(hotel.Id)</b>)
-}</pre>
-					</div>
+	return c.Redirect(routes.Hotels.Show(hotel.Id))
+}
+{% endhighlight  %}
+			</div>
         </div>
 
         <div class="row">
-          <div class="col-md-8">
-            <h2 id="controllers">Controllers</h2>
-            <p>
-              All Actions are methods on a <a href="manual/controllers.html">Controller</a>.  This teaser shows a couple cool things:
-              <ul>
-                <li> <b>Data binding.</b>  Revel <a href="manual/parameters.html">binds</a> simple values and structs from
-                  the URL or form and passes them as parameters to your method.
-                  (If you prefer to access them directly from a parameter map, that's ok too!)
-                <li> <b>Validation.</b> Helpers to manage <a href="manual/validation.html">validation</a> errors.
-                <li> <b>Flash.</b> The <a href="manual/sessionflash.html#Flash">flash</a> is a cookie that lives for one
-                  request (errors, success messages, etc).
-                <li> <b>Session.</b> The <a href="manual/sessionflash.html#Session">session</a> is a cryptographically signed
-                  cookie, exposed as a <code>map[string]string</code>.
-                <li> <b>Results.</b> Redirections take advantage of reverse
-                  routing.  <a href="manual/templates.html">Template rendering</a> makes your data available using the
-                  name of the local variable!
-              </ul>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="controllers">Controllers</h2>
+                <p>
+                All Actions are methods on a <a href="manual/controllers.html">Controller</a>.  This teaser shows a couple cool things:
+                <ul>
+                    <li> <b>Data binding.</b>  Revel <a href="manual/parameters.html">binds</a> simple values and structs from
+                    the URL or form and passes them as parameters to your method.
+                    (If you prefer to access them directly from a parameter map, that's ok too!)
+                    <li> <b>Validation.</b> Helpers to manage <a href="manual/validation.html">validation</a> errors.
+                    <li> <b>Flash.</b> The <a href="manual/sessionflash.html#Flash">flash</a> is a cookie that lives for one
+                    request (errors, success messages, etc).
+                    <li> <b>Session.</b> The <a href="manual/sessionflash.html#Session">session</a> is a cryptographically signed
+                    cookie, exposed as a <code>map[string]string</code>.
+                    <li> <b>Results.</b> Redirections take advantage of reverse
+                    routing.  <a href="manual/templates.html">Template rendering</a> makes your data available using the
+                    name of the local variable!
+                </ul>
 
-              Here's an example:
-            </p>
-          </div>
-
-          <div class="col-md-12">
-            <pre class="prettyprint lang-go">
+                Here's an example:
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+{% highlight go %}
 // app/controllers/app.go
 
 type Application struct {
@@ -285,35 +306,38 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 	c.Flash.Success("Welcome, " + user.Name)
 	return c.Redirect(routes.Hotels.Index())
 }
-            </pre>
-          </div>
+{% endhighlight %}
+            </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <h2 id="templates">Templates</h2>
-            <p>
-              By convention, Revel manages to integrate
-              <a href="http://golang.org/pkg/text/template/">Go Templates</a>
-              easily into the rest of the web app. Here is part of the template
-              rendered in the <b>Register</b> action shown above.
-            </p>
-            Note that:
-            <ul>
-              <li> Revel found it automatically using the name of the action.
-              <li> <b>field</b> is a simple helper function that returns a map
-                of validation errors and parameter values for the named field.
-                The app may inject any helper funcs that it wants.
-              <li> The <b>title</b> variable is available in the template as if
-                it had been explicitly put in the RenderArgs.  (It's used in
-                <a href="http://github.com/samples/booking/app/views/header.html">
-                  header.html</a> in this case)
-            </ul>
-          </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="templates">Templates</h2>
+                <p>
+                By convention, Revel manages to integrate
+                <a href="http://golang.org/pkg/text/template/">Go Templates</a>
+                easily into the rest of the web app. Here is part of the template
+                rendered in the <b>Register</b> action shown above.
+                </p>
+                Note that:
+                <ul>
+                <li> Revel found it automatically using the name of the action.
+                <li> <b>field</b> is a simple helper function that returns a map
+                    of validation errors and parameter values for the named field.
+                    The app may inject any helper funcs that it wants.
+                <li> The <b>title</b> variable is available in the template as if
+                    it had been explicitly put in the RenderArgs.  (It's used in
+                    <a href="http://github.com/samples/booking/app/views/header.html">
+                    header.html</a> in this case)
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            {% capture teaser_template %}{% raw %}
 
-          <div class="col-md-12">
-            <pre class="prettyprint lang-html">{% capture teaser_template %}{% raw %}
-{{/* app/views/Application/Register.html */}}
 
 {{template "header.html" .}}
 
@@ -334,33 +358,37 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
   </p>
 </form>
 
-{{template "footer.html" .}}{% endraw %}{% endcapture %}{{ teaser_template|escape }}</pre>
+{{template "footer.html" .}}{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ teaser_template }}{% endhighlight %}
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <h2 id="interceptors">Interceptors</h2>
-            <p>
-              <a href="manual/interceptors.html">Interceptors</a> are controller methods that are run before or after
-              requests, or in response to panics.  By embedding a controller
-              into another, a developer can share interceptors and fields across
-              many controllers.
-            </p>
-						<p>
-							As an example, the database module may be used to open a
-							connection on initialization, made available through a global
-							handle.  Additionally, embedding the <b>db.Transactional</b> type
-							adds a <b>sql.Txn</b> field plus interceptors that begin and commit
-							transactions (or rollback on panic).
-						</p>
-						<p>
-							Here's what the interceptor looks like (minus error handling):
-						</p>
-          </div>
-
-          <div class="col-md-12">
-            <pre class="prettyprint">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="interceptors">Interceptors</h2>
+                <p>
+                <a href="manual/interceptors.html">Interceptors</a> are controller methods that are run before or after
+                requests, or in response to panics.  By embedding a controller
+                into another, a developer can share interceptors and fields across
+                many controllers.
+                </p>
+                            <p>
+                                As an example, the database module may be used to open a
+                                connection on initialization, made available through a global
+                                handle.  Additionally, embedding the <b>db.Transactional</b> type
+                                adds a <b>sql.Txn</b> field plus interceptors that begin and commit
+                                transactions (or rollback on panic).
+                            </p>
+                            <p>
+                                Here's what the interceptor looks like (minus error handling):
+                            </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            {% highlight go %}
 // github.com/revel/modules/db/app/db.go
 
 var Db *sql.DB
@@ -401,13 +429,14 @@ func init() {
 	revel.InterceptMethod((*Transactional).Begin, revel.BEFORE)
 	revel.InterceptMethod((*Transactional).Commit, revel.AFTER)
 	revel.InterceptMethod((*Transactional).Rollback, revel.PANIC)
-}</pre>
+}
+{% endhighlight %}
 
-						<p>
-							Here is how it can be mixed in to an application controller:
-						</p>
+    <p>
+        Here is how it can be mixed in to an application controller:
+    </p>
 
-            <pre class="prettyprint">
+{% highlight go %}
 type Bookings struct {
 	*revel.Controller
 	db.Transactional  // Adds .Txn
@@ -422,27 +451,30 @@ select id, hotel_id, user_id, price, nights
  limit 1`, c.User.Id)
 	...
 	return c.Render(booking)
-}</pre>
-          </div>
+}{% endhighlight %}
+            </div>
         </div>
 
         <div class="row">
-          <div class="col-md-6">
-            <h2 id="filters">Filters</h2>
-            <p>
-              <a href="manual/filters.html">Filters</a> are the middleware of the application.  They are simple
-              functions with a specific signature:
-            </p>
-            <pre class="prettyprint">
-type Filter func(c *Controller, filterChain []Filter)</pre>
-            <p>
-              Even complicated "built-in" functionality like the <a href="manual/interceptors.html">interceptor</a>
-              framework is implemented as a filter:
-            </p>
-          </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h2 id="filters">Filters</h2>
+                <p>
+                <a href="manual/filters.html">Filters</a> are the middleware of the application.  They are simple
+                functions with a specific signature:
+                </p>
+                {% highlight go %}type Filter func(c *Controller, filterChain []Filter){% endhighlight %}
+                <p>
+                Even complicated "built-in" functionality like the <a href="manual/interceptors.html">interceptor</a>
+                framework is implemented as a filter:
+                </p>
+            </div>
+        </div>
+        <div class="row">
 
-          <div class="col-md-12">
-            <pre class="prettyprint">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+ {% highlight go %}
 // github.com/revel/revel/intercept.go
 
 var InterceptorFilter = func(c *Controller, fc []Filter) {
@@ -462,15 +494,15 @@ var InterceptorFilter = func(c *Controller, fc []Filter) {
 
 	fc[0](c, fc[1:])
 	invokeInterceptors(AFTER, c)
-}</pre>
-						<p>
-							Revel provides a default stack of Filters which the developer can
-							override.  This makes it easy for the developer to select exactly
-							the parts of the framework that they want to use.
-						</p>
+}
+{% endhighlight %}
+        <p>
+            Revel provides a default stack of Filters which the developer can
+            override.  This makes it easy for the developer to select exactly
+            the parts of the framework that they want to use.
+        </p>
 
-            <pre class="prettyprint">
-// github.com/revel/revel/filter.go
+{% highlight go %}
 
 // Filters is the default set of global filters.
 // It may be set by the application on initialization.
@@ -481,12 +513,12 @@ var Filters = []Filter{
 	ParamsFilter,            // Parse parameters into Controller.Params.
 	SessionFilter,           // Restore and write the session cookie.
 	FlashFilter,             // Restore and write the flash cookie.
-	ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
+	ValidationFilter,        // Restore kept validation errors  from cookie.
 	I18nFilter,              // Resolve the requested language
 	InterceptorFilter,       // Run interceptors around the action.
 	ActionInvoker,           // Invoke the action.
 }
-						</pre>
+{% endhighlight %}
 
 						<p>
 							Nearly all framework functionality is implemented in the filters,
@@ -498,7 +530,7 @@ var Filters = []Filter{
 							the <a href="https://github.com/revel/revel/blob/master/server.go">
 								main server handler</a> is:
 						</p>
-            <pre class="prettyprint">
+{% highlight go %}
 // github.com/revel/revel/server.go
 
 func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) {
@@ -513,12 +545,13 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
 	if c.Result != nil {
 		c.Result.Apply(req, resp)
 	}
-}</pre>
-          </div>
-				</div>
-      </section>
+}
+{% endhighlight %}
+            </div>
+		</div>
+    </section>
 
-        <section id="development">
+    <section id="development">
         <div class="page-header">
           <h1>Development Status - <small>Early adopters only.  Pull requests welcome.</small></h1>
         </div>
