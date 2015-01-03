@@ -64,7 +64,7 @@ import (
 )
 
 func (c App) ShowProduct(id string) revel.Result {
-	var product Product
+	var product *Product 
 	if err := cache.Get("product_"+id, &amp;product); err != nil {
 	    product = loadProduct(id)
 	    go cache.Set("product_"+id, product, 30*time.Minute)
