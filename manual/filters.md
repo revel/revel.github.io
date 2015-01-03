@@ -112,3 +112,6 @@ Note: this pattern is frequently an indicator that
 <a href="interceptors.html"><code>interceptors</code></a>s may be a better mechanism to accomplish the
 desired functionality.
 </div>
+
+<hr>
+See the godocs for [filter.go](../docs/godoc/filterconfig.html), [filter.go](../docs/godoc/filterconfig.html)

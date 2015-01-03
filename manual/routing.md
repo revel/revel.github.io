@@ -265,5 +265,6 @@ func (c App) ProcessForm(username, input string) revel.Result {
 }
 {% endhighlight %}
 
-
+<hr>
+See the godocs for [router.go](../docs/godoc/router.html)
 

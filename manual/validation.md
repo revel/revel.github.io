@@ -119,3 +119,8 @@ func (c MyApp) SaveUser(username string) revel.Result {
 ...
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
+
+
+<hr>
+See the godocs for [validation.go](../docs/godoc/validation.html), [validators.go](../docs/godoc/validators.html)
+

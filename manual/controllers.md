@@ -16,8 +16,8 @@ type MyAppController struct {
 
 The `revel.Controller` is the context for the request.  It contains the 
 [`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.  
-Please refer to [Controller docs](../docs/godoc/controller.html)
-for the full story; but here is the definition, along with definitions of helper types:
+Please refer to [Controller godocs](../docs/godoc/controller.html)
+for the full story; but below is core definition, along with helper types:
 
 {% highlight go %}
 type Controller struct {
@@ -66,8 +66,9 @@ type Response struct {
 }
 {% endhighlight %}
 
-As part of handling a HTTP request, Revel instantiates an instance of a
-Controller, and it sets all of these properties on the embedded
-`revel.Controller`.  Therefore, Revel does not share Controller instances between
-requests.
+- As part of handling a HTTP request, Revel instantiates an instance of a `Controller`.
+- It then sets all of these properties on the embedded `revel.Controller`.  
+- Revel does not share `Controller` instances between requests.
 
+<hr>
+See the godocs for [controller.go](../docs/godoc/controller.html), [results.go](../docs/godoc/results.html)

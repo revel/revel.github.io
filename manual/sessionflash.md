@@ -91,3 +91,7 @@ expressions:
 	{{.flash.error}}
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
+
+<hr>
+See the godocs for [session.go](../docs/godoc/session.html), [flash.go](../docs/godoc/flash.html)
+

@@ -141,3 +141,5 @@ func (c *MyApp) Action() revel.Result {
 {% endhighlight %}
 
 
+<hr>
+See the godocs for [results.go](../docs/godoc/results.html)

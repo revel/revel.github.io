@@ -93,3 +93,7 @@ func init() {
 	revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
 }
 {% endhighlight %}
+
+<hr>
+See the godocs for [intercept.go](../docs/godoc/intercept.html)
+

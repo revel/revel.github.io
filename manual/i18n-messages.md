@@ -265,4 +265,5 @@ To resolve messages using the current locale from [templates](templates.html) th
 
 <div class="alert alert-info"><strong>Note:</strong> the signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</div>
 
-
+<hr>
+See the godocs for [i18n.go](../docs/godoc/i18n.html)

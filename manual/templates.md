@@ -353,3 +353,5 @@ And templates that include it look like this:
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
+<hr>
+See the godocs for [template.go](../docs/godoc/template.html)
