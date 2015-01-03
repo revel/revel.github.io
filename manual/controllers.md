@@ -12,7 +12,7 @@ type MyAppController struct {
 }
 {% endhighlight %}
 
-<div class="alert alert-warning">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
+<div class="alert alert-danger">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
 
 The `revel.Controller` is the context for the request.  It contains the 
 [`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.  
@@ -21,21 +21,21 @@ for the full story; but here is the definition, along with definitions of helper
 
 {% highlight go %}
 type Controller struct {
-	Name          string          // The controller name, e.g. "Application"
-	Type          *ControllerType // A description of the controller type.
-	MethodType    *MethodType     // A description of the invoked action type.
-	AppController interface{}     // The controller that was instantiated.
+    Name          string          // The controller name, e.g. "Application"
+    Type          *ControllerType // A description of the controller type.
+    MethodType    *MethodType     // A description of the invoked action type.
+    AppController interface{}     // The controller that was instantiated.
 
-	Request  *Request
-	Response *Response
-	Result   Result
+    Request  *Request
+    Response *Response
+    Result   Result
 
-	Flash      Flash                  // User cookie, cleared after 1 request.
-	Session    Session                // Session, stored in cookie, signed.
-	Params     *Params                // Parameters from URL and form (including multipart).
-	Args       map[string]interface{} // Per-request scratch space.
-	RenderArgs map[string]interface{} // Args passed to the template.
-	Validation *Validation            // Data validation helpers
+    Flash      Flash                  // User cookie, cleared after 1 request.
+    Session    Session                // Session, stored in cookie, signed.
+    Params     *Params                // Parameters from URL and form (including multipart).
+    Args       map[string]interface{} // Per-request scratch space.
+    RenderArgs map[string]interface{} // Args passed to the template.
+    Validation *Validation            // Data validation helpers
 }
 
 // These provide a unified view of the request params.
@@ -44,25 +44,25 @@ type Controller struct {
 // - Form values
 // - File uploads
 type Params struct {
-	url.Values
-	Files map[string][]*multipart.FileHeader
+    url.Values
+    Files map[string][]*multipart.FileHeader
 }
 
 type Request struct {
-	*http.Request
-	ContentType string
-	Format          string // "html", "xml", "json", or "txt"
+    *http.Request
+    ContentType string
+    Format          string // "html", "xml", "json", or "txt"
     AcceptLanguages AcceptLanguages
     Locale          string
     Websocket       *websocket.Conn
 }
 
 type Response struct {
-	Status      int
-	ContentType string
-	Headers     http.Header
-	Cookies     []*http.Cookie
-	Out http.ResponseWriter
+    Status      int
+    ContentType string
+    Headers     http.Header
+    Cookies     []*http.Cookie
+    Out http.ResponseWriter
 }
 {% endhighlight %}
 
