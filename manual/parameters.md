@@ -44,7 +44,7 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 ## Binder
 
 - To bind a parameter to a data type, use Revel's [`Binder`](../docs/godoc/binder.html).  
-- The [`Binder`](../docs/godoc/binder.html) is integrated with the [`Params`](../docs/godoc/params.html) object.
+- The [`Binder`](../docs/godoc/binder.html) is integrated with the [`Params`](../docs/godoc/params.html#Params) object.
 
 {% highlight go %}
 // Example params to binder
@@ -111,14 +111,14 @@ Structs are bound using simple dot notation:
 	&user.Father.Name=Hermes
 
 Will bind the struct:
-    
-    type User struct {
-        Id int
-        Name string
-        Friends []int
-        Father User
-    }
-
+{% highlight go %}
+type User struct {
+    Id int
+    Name string
+    Friends []int
+    Father User
+}
+{% endhighlight %}
 
 <div class="alert alert-info">Note: Properties must be exported in order to be bound.</div>
 
@@ -130,7 +130,7 @@ Will bind the struct:
 
 {% highlight go %}
 func init() {
-	revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
+revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
 }
 {% endhighlight %}
 
