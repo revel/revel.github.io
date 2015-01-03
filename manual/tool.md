@@ -5,7 +5,8 @@ layout: manual
 
 ## Build and Run
 
-You must build the command line tool in order to use Revel:
+- You must build the `revel` command line tool in order to use Revel:
+- The code is in a seperate repository, and not included with the framework
 
 	$ go get github.com/revel/cmd/revel
 
@@ -28,5 +29,16 @@ Now run it:
 
 	Use "revel help [command]" for more information.
 
-Please refer to the tool's built-in help functionality for information on the
+Please refer to the tool's built-in help functionality for the latest information on the
 individual commands.
+
+## Examples
+
+#### `revel new`
+
+Create a new application
+
+    revel new bitbucket.org/mycorp/my-app
+    
+#### `revel run`
+

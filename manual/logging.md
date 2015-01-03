@@ -17,7 +17,7 @@ revel.TRACE.Printf("%s", now.String())
 {% endhighlight %}
 Each of these is a variable to a default [go logger](http://golang.org/pkg/log/).
 
-Loggers may be configured in [app.conf](appconf.html).  Here is an example:
+Loggers may be configured in [app.conf](appconf.html#Logging).  Here is an example:
 {% highlight ini %}
 app.name = sampleapp
 
