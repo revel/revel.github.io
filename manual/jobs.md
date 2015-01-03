@@ -11,9 +11,9 @@ or [one-off tasks](#OneOff) such as sending emails.
 
 The framework is included as an optional [module](modules.html), that is not enabled in an
 application by default.  To activate it, add `module.jobs` to the [app.conf](appconf.html) file:
-
-	module.jobs = github.com/revel/modules/jobs
-
+{% highlight ini %}
+module.jobs = github.com/revel/modules/jobs
+{% endhighlight %}
 Additionally, in order to access the job monitoring page, you will need to add
 this line to the `conf/routes` file, which will insert the `/@jobs` url:
 
@@ -208,3 +208,6 @@ so). [See here for discussion](https://groups.google.com/forum/?fromgroups=#!top
 * Allow access to the job status page with HTTP Basic Authentication credentials
 * Allow administrators to run scheduled jobs interactively from the status page
 * Provide more visibility into the job runner, e.g. the pool size, the job queue length, etc.
+
+<hr>
+- Issues tagged with [`jobs`](https://github.com/revel/revel/labels/jobs)

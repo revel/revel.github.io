@@ -59,3 +59,6 @@ the format `01:23:23 /a/b/c/d.go:23 Message` requires the flags
 Areas for development:
 
 * Revel should create the log directory if it does not already exist.
+
+<hr>
+- Issues tagged with [`log`](https://github.com/revel/revel/labels/log)

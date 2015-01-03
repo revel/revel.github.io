@@ -114,4 +114,5 @@ desired functionality.
 </div>
 
 <hr>
-See the godocs for [filter.go](../docs/godoc/filterconfig.html), [filter.go](../docs/godoc/filterconfig.html)
+- See the godocs for [filter.go](../docs/godoc/filterconfig.html), [filter.go](../docs/godoc/filterconfig.html)
+- Issues tagged with [`filter`](https://github.com/revel/revel/labels/filter)

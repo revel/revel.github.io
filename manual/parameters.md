@@ -172,4 +172,4 @@ func init() {
 {% endhighlight %}
 
 <hr>
-See the godocs for [binder.go](../docs/godoc/binder.html), [params.go](../docs/godoc/params.html)
+- See the godocs for [binder.go](../docs/godoc/binder.html), [params.go](../docs/godoc/params.html)
