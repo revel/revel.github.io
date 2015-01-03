@@ -10,10 +10,13 @@ Revel does not come *configured* with a database or ORM interface, and its up to
 
 ## Example Db Setup
 
-Create an `InitDB()` function in for example  `github.com/username/my-app/app/init.go`
+Create an `InitDB()` function in for example  `github.com/username/my-app/app/init.go`.
 
 {% highlight go %}
+package app
+
 import (
+    "github.com/revel/revel"
     _ "github.com/lib/pq"
     "database/sql"
 )
@@ -29,6 +32,19 @@ func InitDB() {
         revel.INFO.Println("DB Error", err)
     }
     revel.INFO.Println("DB Connected")
+}
+
+func init() {
+
+    revel.Filters = []revel.Filter{
+        revel.PanicFilter,             // Recover from panics and display an error page instead.
+        ... snipped ...
+        revel.CompressFilter,          // Compress the result.
+        revel.ActionInvoker,           // Invoke the action.
+    }
+    
+    revel.OnAppStart(InitDB)
+    ...
 }
 
 {% endhighlight %}
