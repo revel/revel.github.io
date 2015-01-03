@@ -2,7 +2,7 @@
 title: Frequently Asked Questions
 layout: manual
 ---
-#### How do I integrate existing http.Handlers with Revel?
+#### How do I integrate existing http.Handlers with Revel ?
 
 As shown in the [concept diagram](concepts.html), the http.Handler is where Go
 hands off the user's request for processing.  Revel's handler is extraordinarily
@@ -13,22 +13,22 @@ Applications may integrate existing http.Handlers by overriding the default Hand
 
 {% highlight go %}
 func installHandlers() {
-	var (
-		serveMux     = http.NewServeMux()
-		revelHandler = revel.Server.Handler
-	)
-	serveMux.Handle("/",     revelHandler)
-	serveMux.Handle("/path", myHandler)
-	revel.Server.Handler = serveMux
+    var (
+        serveMux     = http.NewServeMux()
+        revelHandler = revel.Server.Handler
+    )
+    serveMux.Handle("/",     revelHandler)
+    serveMux.Handle("/path", myHandler)
+    revel.Server.Handler = serveMux
 }
 
 func init() {
-	revel.OnAppStart(installHandlers)
+    revel.OnAppStart(installHandlers)
 }
 {% endhighlight %}
 
 
-#### What is the relationship between interceptors, filters, and modules?
+#### What is the relationship between interceptors, filters, and modules ?
 
 1. [Modules](modules.html) are packages that can be plugged into an application. They allow
 sharing of controllers, views, assets, and other code between multiple Revel
@@ -43,4 +43,14 @@ embedding a type imports its interceptors and fields.  This makes interceptors
 useful for things like verifying the login cookie and saving that information
 into a field.  Interceptors can be applied to one or more controllers.
 
+#### Hot Reload is really slow with sqlite3 ?
+
+- The [`github.com/mattn/go-sqlite3`](https://github.com/mattn/go-sqlite3) package has a five megabyte `.c` file.
+- When building the package, this `.c` file is compiled and building a 5mb `.c` takes a while.
+- So unless you `go install` it. the package is built every time you build a package which depends on it.
+- See [bug 290](https://github.com/revel/revel/issues/290)
+
+{% raw %}
+    go install github.com/mattn/go-sqlite3
+{% endraw %}
 

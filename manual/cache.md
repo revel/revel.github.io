@@ -106,3 +106,6 @@ cache.Set(c.Session.Id(), products)
 err := cache.Get(c.Session.Id(), &amp;products)
 {% endhighlight %}
 
+<hr>
+- See the godocs for [cache](http://godoc.org/github.com/revel/revel/cache) package
+- Issues tagged with [`cache`](https://github.com/revel/revel/labels/cache)

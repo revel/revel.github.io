@@ -87,11 +87,12 @@ the success and error messages set by the convenience functions, use these
 expressions:
 
 {% capture ex %}{% raw %}
-	{{.flash.success}}
-	{{.flash.error}}
+{{.flash.success}}
+{{.flash.error}}
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <hr>
-See the godocs for [session.go](../docs/godoc/session.html), [flash.go](../docs/godoc/flash.html)
+- See the godocs for [session.go](../docs/godoc/session.html), [flash.go](../docs/godoc/flash.html)
+- Issues tagged with [`session`](https://github.com/revel/revel/labels/session)
 

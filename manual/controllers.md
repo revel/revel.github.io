@@ -71,4 +71,5 @@ type Response struct {
 - Revel does not share `Controller` instances between requests.
 
 <hr>
-See the godocs for [controller.go](../docs/godoc/controller.html), [results.go](../docs/godoc/results.html)
+- See the godocs for [controller.go](../docs/godoc/controller.html), [results.go](../docs/godoc/results.html)
+- Issues tagged with [`controller`](https://github.com/revel/revel/labels/controller)

@@ -354,4 +354,5 @@ And templates that include it look like this:
 
 
 <hr>
-See the godocs for [template.go](../docs/godoc/template.html)
+- See the godocs for [template.go](../docs/godoc/template.html)
+- Issues tagged with [`template`](https://github.com/revel/revel/labels/template)
