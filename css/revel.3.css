@@ -178,6 +178,15 @@ h4 {
     margin-left: 15px;
 }
 
+/* uses mainly on appconf */
+h4 code {
+    font-weight: bold;
+    color: #992086 !important;
+    margin-left: 0;
+    padding-left: 0;
+    
+}
+
 .alert {
     margin-left: 30px;
     margin-right: 40px;

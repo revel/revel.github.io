@@ -137,19 +137,19 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 
 ### Application settings
 
-#### app.name
+#### `app.name`
 
 The human-readable application name. This is used for some console output and
 development web pages.
 
 Example:
-
+{% highlight ini %}
     app.name = Booking example application
-
+{% endhighlight %}
 Default: no value
 
 
-#### app.secret
+#### `app.secret`
 
 The secret key used for cryptographic operations
 ([`revel.Sign`](../docs/godoc/util.html#Sign)).  Revel also uses it internally
@@ -158,9 +158,9 @@ to sign session cookies.  Setting it to empty string disables signing.
 It is set to a random string when initializing a new project (using `revel new`)
 
 Example:
-
+{% highlight ini %}
 	app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-
+{% endhighlight %}
 Default: no value
 
 
@@ -168,16 +168,16 @@ Default: no value
 
 ### HTTP settings
 
-#### http.port
+#### `http.port`
 
 The port to listen on.
 
 Example:
-
+{% highlight ini %}
 	http.port = 9000
+{% endhighlight %}
 
-
-#### http.addr
+#### `http.addr`
 
 The IP address on which to listen.
 
@@ -187,7 +187,7 @@ silently converted to `"localhost"`
 Default: ""
 
 
-#### harness.port
+#### `harness.port`
 
 Specifies the port for the application to listen on, when run by the harness.
 For example, when the harness is running, it will listen on `http.port`, run the
@@ -200,7 +200,7 @@ when running in an environment that restricts socket access by the program.
 Default: 0
 
 
-#### http.ssl
+#### `http.ssl`
 
 If true, Revel's web server will configure itself to accept SSL connections. This
 requires an X509 certificate and a key file.
@@ -208,14 +208,14 @@ requires an X509 certificate and a key file.
 Default: false
 
 
-#### http.sslcert
+#### `http.sslcert`
 
 Specifies the path to an X509 certificate file.
 
 Default: ""
 
 
-#### http.sslkey
+#### `http.sslkey`
 
 Specifies the path to an X509 certificate key.
 
@@ -226,7 +226,7 @@ Default: ""
 
 ### Results
 
-#### results.chunked
+#### `results.chunked`
 
 Determines whether the template rendering should use
 [chunked encoding](en.wikipedia.org/wiki/Chunked_transfer_encoding).  Chunked
@@ -237,14 +237,14 @@ Default: false
 
 <a name="results.pretty"></a>
 
-#### results.pretty
+#### `results.pretty`
 
 Configures [`RenderXml`](../docs/godoc/controller.html#RenderXml) and
 [`RenderJson`](../docs/godoc/controller.html#RenderJson) to produce indented
 XML/JSON.  For example:
-
+{% highlight ini %}
 	results.pretty = true
-
+{% endhighlight %}
 Default: false
 
 <a name="Internationalization"></a>
@@ -254,20 +254,20 @@ Default: false
 
 <a name="i18n.default_language"></a>
 
-#### i18n.default_language
+#### `i18n.default_language`
 
 Specifies the default language for messages when the requested locale is not
 recognized.  If left unspecified, a dummy message is returned to those requests.
 
 For example:
-
+{% highlight ini %}
 	i18n.default_language = en
-
+{% endhighlight %}
 Default: ""
 
 <a name="i18n.cookie"></a>
 
-#### i18n.cookie
+#### `i18n.cookie`
 
 Specifies the name of the cookie used to store the user's locale.
 
@@ -281,23 +281,23 @@ Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
 
 Revel watches your project and supports hot-reload for a number of types of
 source. To enable watching:
-
+{% highlight ini %}
 	watch = true
-
+{% endhighlight %}
 If false, nothing will be watched, regardless of the other `watch.*`
 configuration keys.  (This is appropriate for production deployments)
 
 Default: true
 
 
-#### watch.templates
+#### `watch.templates`
 
 If true, Revel will watch your views for changes and reload them as necessary.
 
 Default: true
 
 
-#### watch.routes
+#### `watch.routes`
 
 If true, Revel will watch your `routes` file for changes and reload as
 necessary.
@@ -305,7 +305,7 @@ necessary.
 Default: true
 
 
-#### watch.code
+#### `watch.code`
 
 If true, Revel will watch your Go code for changes and rebuild your application
 as necessary.  (This runs the harness as a reverse-proxy to the application)
@@ -327,15 +327,15 @@ Revel components use the following cookies by default:
 * REVEL_ERRORS
 
 
-#### cookie.prefix
+#### `cookie.prefix`
 
 Revel uses this property as the prefix for the Revel-produced cookies. This is
 so that multiple REVEL applications can coexist on the same host.
 
 For example,
-
+{% highlight ini %}
 	cookie.prefix = MY
-
+{% endhighlight %}
 would result in the following cookie names:
 
 * MY_SESSION
@@ -356,7 +356,7 @@ Default: "REVEL"
 
 <a name="session.expires"></a>
 
-#### session.expires
+#### `session.expires`
 
 Revel uses this property to set the expiration of the [session](sessionflash.html#Session) cookie.
 Revel uses [ParseDuration](http://golang.org/pkg/time/#ParseDuration) to parse the string.
@@ -372,7 +372,7 @@ the result is not always guaranteed.
 
 <a name="template.delimiters"></a>
 
-#### template.delimiters
+#### `template.delimiters`
 
 Specifies an override for the left and right delimiters used in the templates.  
 The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"
@@ -387,7 +387,7 @@ Default: "\{\{ \}\}"
 
 <a name="format.date"></a>
 
-#### format.date
+#### `format.date`
 
 Specifies the default date format for the application.  Revel uses this in two places:
 
@@ -398,7 +398,7 @@ Default: "2006-01-02"
 
 <a name="format.datetime"></a>
 
-#### format.datetime
+#### `format.datetime`
 
 Specifies the default datetime format for the application.  Revel uses this in two places:
 
@@ -413,14 +413,14 @@ Default: "2006-01-02 15:04"
 
 ### Database
 
-#### db.import
+#### `db.import`
 
 Specifies the import path of the desired database/sql driver for the db module.
 
 Default: ""
 
 
-#### db.driver
+#### `db.driver`
 
 Specifies the name of the database/sql driver (used in
 [`sql.Open`](http://golang.org/pkg/database/sql/#Open)).
@@ -428,7 +428,7 @@ Specifies the name of the database/sql driver (used in
 Default: ""
 
 
-#### db.spec
+#### `db.spec`
 
 Specifies the data source name of your database/sql database (used in
 [`sql.Open`](http://golang.org/pkg/database/sql/#Open)).
@@ -440,7 +440,7 @@ Default: ""
 
 ### Build
 
-#### build.tags
+#### `build.tags`
 
 [Build tags](http://golang.org/cmd/go/#Compile_packages_and_dependencies) to use
 when building an application.
@@ -464,7 +464,7 @@ The [cache](cache.html) module is a simple interface to a heap or distributed ca
 <a name="cache.expires"></a>
 
 
-#### cache.expires
+#### `cache.expires`
 
 Sets the default duration before cache entries are expired from the cache.  It
 is used when the caller passes the constant `cache.DEFAULT`.
@@ -480,7 +480,7 @@ Default: "1h" (1 hour)
 
 <a name="cache.memcached"></a>
 
-#### cache.memcached
+#### `cache.memcached`
 
 If true, the cache module uses [memcached](http://memcached.org) instead of the
 in-memory cache.
@@ -492,7 +492,7 @@ Default: false
 
 <a name="cache.redis"></a>
 
-#### cache.redis
+#### `cache.redis`
 
 If true, the cache module uses [redis](http://redis.io) instead of the
 in-memory cache.
@@ -501,7 +501,7 @@ Default: false
 
 <a name="cache.hosts"></a>
 
-#### cache.hosts
+#### `cache.hosts`
 
 A comma-separated list of memcached hosts.  Cache entries are automatically
 sharded among available hosts using a deterministic mapping of cache key to host
@@ -532,7 +532,7 @@ jobs.Schedule("cron.schedulename", job)
 
 <a name="jobs.pool"></a>
 	
-#### jobs.pool
+#### `jobs.pool`
 
 - The number of jobs allowed to run concurrently. 
 - Default is `10`.
@@ -545,7 +545,7 @@ jobs.pool = 4
 
 <a name="jobs.selfconcurrent"></a>
 
-#### jobs.selfconcurrent
+#### `jobs.selfconcurrent`
 
 If `true` (default is `false`), allows a job to run even if previous instances of that job are still in
 progress.

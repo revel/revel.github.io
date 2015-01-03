@@ -86,7 +86,7 @@ func (c Hotels) Show() revel.Result {
 
 	GET    /public/*filepath            Static.Serve("public")
 
-The router recognizes a second kind of wildcard. The starred parameter must be
+The starred parameter must be
 the first element in the path, and match all remaining path elements.
 
 For example, in the case above it will match any path beginning with `/public/`, and
@@ -94,7 +94,7 @@ its value will be the path substring that follows the `*` prefix.
 
 ## Fixed Parameters
 
-As demonstrated in the [Static Serving](#StaticFiles) section, routes may specify one or more
+As also demonstrated in [Static Serving](#StaticFiles) below, routes may specify one or more
 parameters to the action.  For example:
 
     GET    /products/:id     ShowList("PRODUCT")
@@ -104,7 +104,7 @@ The provided argument(s) are bound to a parameter name using their position. In
 this case, the list type string would be bound to the name of the first action
 parameter.
 
-This could be helpful in situations where:
+This is helpful in situations where:
 
 * you have a couple similar actions
 * you have actions that do the same thing, but operate in different modes
@@ -147,30 +147,35 @@ the [reverse router](#ReverseRouting).
 
 	GET    /public/*filepath            Static.Serve("public")
 	GET    /favicon.ico                 Static.Serve("public","img/favicon.png")
-	
-For the two parameters version of Static.Serve, blank spaces are not allowed between
-**"** and **,** due to how encoding/csv works.
-
+    GET    /img/icon.png                Static.Serve("public", "img/icon.png") << space causes error
+    
 For serving directories of static assets, Revel provides the **static** module,
 which contains a single
-[Static](http://godoc.org/github.com/revel/modules/static/app/controllers)
+[Static](http://godoc.org/github.com/revel/revel/modules/static/app/controllers)
 controller.  Its Serve action takes two parameters:
 
-* prefix (string) - A (relative or absolute) path to the asset root.
-* filepath (string) - A relative path that specifies the requested file.
+* `prefix` (string) - A (relative or absolute) path to the asset root.
+* `filepath` (string) - A relative path that specifies the requested file.
 
-(Refer to [organization](organization.html) for the directory layout)
+<div class="alert alert-warning">
+Important:<br>For the two parameters version of <code>Static.Serve</code>, blank spaces are not allowed between
+<code>"</code> and <code>,</code> due to how <a href="http://golang.org/pkg/encoding/csv/"><code>encoding/csv</code></a> works.
+</div>
 
 
 
+- Refer to [organization](organization.html) for the directory layout
 
+
+
+<a name="modules"></a>
 
 ## Modules
 
 [Modules](modules.html) which contain routes can be imported into your application in two ways:
 
 In the example below, its assumed `mymodule` has a `routes` file containing:
-
+    
     GET      /gopher        MyModule.FetchGopher
     POST     /gopher/add    MyModule.AddGopher
     
