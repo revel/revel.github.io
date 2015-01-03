@@ -274,16 +274,16 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
 {% highlight go %}
 // app/controllers/app.go
 
-type Application struct {
+type MyApplication struct {
 	*revel.Controller
 }
 
-func (c Application) Register() revel.Result {
+func (c MyApplication) Register() revel.Result {
 	title := "Register"
 	return c.Render(title)
 }
 
-func (c Application) SaveUser(user models.User, verifyPassword string) revel.Result {
+func (c MyApplication) SaveUser(user models.User, verifyPassword string) revel.Result {
 	c.Validation.Required(verifyPassword)
 	c.Validation.Required(verifyPassword == user.Password).
 		Message("Password does not match")
