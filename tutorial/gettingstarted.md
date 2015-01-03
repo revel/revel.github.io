@@ -5,11 +5,11 @@ layout: tutorial
 
 This article walks through the installation process.
 
-#### Install Go
+## Install Go
 
 To use Revel, you first need to [install Go](http://golang.org/doc/install).
 
-#### Set up your GOPATH
+### Set up your GOPATH
 
 If you did not create a GOPATH as part of installation, do so now.  Your GOPATH
 is a directory tree where all of your Go code will live.  Here are the steps to do that:
@@ -20,14 +20,14 @@ is a directory tree where all of your Go code will live.  Here are the steps to 
 
 Now your Go installation is complete.
 
-#### Install git and hg
+## Install git and hg
 
 Both Git and Mercurial are required to allow `go get` to clone various dependencies.
 
 * [Installing Git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
 * [Installing Mercurial](http://mercurial.selenic.com/wiki/Download)
 
-#### Get the Revel framework
+## Get the Revel framework
 
 To get the Revel framework, run
 
@@ -40,7 +40,7 @@ This command does a couple things:
 
 *__Note:__ if you are upgrading from v0.8 or earlier, see the [v0.9.0 release notes](https://github.com/revel/revel/releases/tag/v0.9.0) for detailed instructions.*
 
-#### Build the Revel command line tool
+### Build the Revel command line tool
 
 The Revel command line tool is how you build, run, and package Revel applications.
 

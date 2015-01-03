@@ -189,6 +189,7 @@ pre {
     color: #222222;
     margin-left: 15px;
     font-family: monospace;
+    white-space:pre;
 }
 
 .highlight .kd {

@@ -7,7 +7,7 @@ In the [previous page](createapp.html) we created a new Revel application
 called **myapp**. In this article we look at how Revel handles the HTTP request
 to `http://localhost:9000/`, resulting in the welcome message.
 
-### Routes
+## Routes
 
 The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing)):
 
@@ -16,7 +16,7 @@ The first thing that Revel does is check the `conf/routes` file (see [routing](.
 This tells Revel to invoke the **Index** method of the **App**
 [controller](../controllers.html) when it receives a **GET** request to **/**.
 
-### Actions
+## Actions
 
 Let's follow this call to the code, in **app/controllers/app.go**:
 {% highlight go %}
@@ -41,7 +41,7 @@ The Revel controller provides many useful methods for generating Results. In
 this example, it calls [`Render()`](../docs/godoc/controller.html#Controller.Render),
 which tells Revel to find and render a [template](../manual/templates.html) as the response with `200 OK`.
 
-### Templates
+## Templates
 
 All [templates](../manual/templates.html) are kept in the **app/views** directory. When an explicit
 template name is not specified, Revel looks for a template matching the action.
@@ -115,9 +115,10 @@ You can see the [set](../manual/templates.html#set) `.title` being used, and als
 files included from calling templates in the **moreStyles** and **moreScripts**
 variables.
 
-### Hot-reload
+## Hot-reload
 
 Let's change the welcome message.  In **Index.html**, change
+
 {% highlight html %}
 <h1>It works!</h1>
 {% endhighlight %}
@@ -144,7 +145,7 @@ return c.Render()
 {% endhighlight %}
 to
 {% highlight go %}
-return c.RenderCrashMe()
+return c.Renderx()
 {% endhighlight %}
 Refresh the page and Revel will display a helpful error message:
 
@@ -154,7 +155,7 @@ Lastly, let's pass some data into the template.
 
 In **app/controllers/app.go**, change:
 {% highlight go %}
-return c.RenderCrashMe()
+return c.Renderx()
 {% endhighlight %}
 to:
 {% highlight go %}

@@ -66,7 +66,7 @@ Once you have SQLite installed, it will be possible to run the booking app:
 [`app/controllers/init.go`](https://github.com/revel/samples/blob/master/booking/app/controllers/init.go) 
 registers the [interceptors](../manual/interceptors.html) that run before every action:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
 	revel.OnAppStart(Init)
 	revel.InterceptMethod((*GorpController).Begin, revel.BEFORE)
@@ -75,12 +75,12 @@ func init() {
 	revel.InterceptMethod((*GorpController).Commit, revel.AFTER)
 	revel.InterceptMethod((*GorpController).Rollback, revel.FINALLY)
 }
-</pre>
+{% endhighlight %}
 
 As an example, `checkUser` looks up the username in the session and redirects
 the user to log in if they are not already.
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c Hotels) checkUser() revel.Result {
 	if user := c.connected(); user == nil {
 		c.Flash.Error("Please log in first")
@@ -88,7 +88,7 @@ func (c Hotels) checkUser() revel.Result {
 	}
 	return nil
 }
-</pre>
+{% endhighlight %}
 
 [Check out the user management code in app.go](https://github.com/revel/samples/blob/master/booking/app/controllers/app.go)
 
@@ -99,7 +99,7 @@ The booking app does quite a bit of validation.
 For example, here is the routine to validate a booking, from
 [models/booking.go](https://github.com/revel/samples/blob/master/booking/app/models/booking.go):
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (booking Booking) Validate(v *revel.Validation) {
 	v.Required(booking.User)
 	v.Required(booking.Hotel)
@@ -115,7 +115,7 @@ func (booking Booking) Validate(v *revel.Validation) {
 		revel.MaxSize{70},
 	)
 }
-</pre>
+{% endhighlight %}
 
 Revel applies the validation and records errors using the name of the
 validated variable (unless overridden).  For example, `booking.CheckInDate` is
@@ -124,17 +124,18 @@ the validation context under the key "booking.CheckInDate".
 
 Subsequently, the
 [Hotels/Book.html](https://github.com/revel/samples/blob/master/booking/app/views/Hotels/Book.html)
-template can easily access them using the **field** helper:
+template can easily access them using the [`field`](../manual/templates.html#field) helper:
 
-<pre class="prettyprint lang-go">{% capture tmpl %}{% raw %}
-  {{with $field := field "booking.CheckInDate" .}}
+
+    {{with $field := field "booking.CheckInDate" .}}
     <p class="{{$field.ErrorClass}}">
-      <strong>Check In Date:</strong>
-      <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}">
-      * <span class="error">{{$field.Error}}</span>
-    </p>
-  {{end}}
-{% endraw %}{% endcapture %}{{ tmpl|escape }}</pre>
+        <strong>Check In Date:</strong>
+        <input type="text" size="10" name="{{$field.Name}}" class="datepicker" value="{{$field.Flash}}">
+        * <span class="error">{{$field.Error}}</span>
+    ss</p>
+    {{end}}
+ 
 
-The **field** template helper looks for errors in the validation context, using
+
+The [`field`](../manual/templates.html#field) template helper looks for errors in the validation context, using
 the field name as the key.
