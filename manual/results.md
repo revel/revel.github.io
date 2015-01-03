@@ -88,15 +88,15 @@ type (usually a struct).  Revel will serialize it using
 [`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
-If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html), serialization will be done using
-`MarshalIndent` instead, to produce nicely indented output for human
-consumption.
+If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html)  then serialization will be done using
+`MarshalIndent` instead, to produce nicely indented output for human consumption.
 
 <a name="Redirect"></a>
 
 ## Redirect
 
-A helper function is provided for generating redirects.  It may be used in two ways.
+A helper function is provided for generating redirects.  It may be used in two ways and both 
+return a `302 Temporary Redirect` HTTP status code..
 
 ### Redirect to an action with no arguments:
 
@@ -104,22 +104,20 @@ A helper function is provided for generating redirects.  It may be used in two w
     return c.Redirect(Hotels.Settings)
 {% endhighlight %}
 
-This form is useful as it provides a degree of type safety and independence from
-the routing.  (It generates the URL automatically.)
+- This form is useful as it provides a degree of type safety and independence from the routing and generates the URL automatically.
 
 ### Redirect to a formatted string:
 
 {% highlight go %}return c.Redirect("/hotels/%d/settings", hotelId){% endhighlight %}
 
-This form is necessary to pass arguments.
-
-It returns a `302 Temporary Redirect` status code.
+- This form is necessary to pass arguments.
+- It returns a `302 Temporary Redirect` status code.
 
 <a name="CustomResult">
 
 ## Adding your own Result
 
-Here is an example of adding a simple Result.
+Below is a simple example of creating a custom `Result`.
 
 Create this type:
 
@@ -137,7 +135,7 @@ func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 Then use it in an action:
 
 {% highlight go %}
-func (c *App) Action() revel.Result {
+func (c *MyApp) Action() revel.Result {
 	return MyHtml("<html><body>Hello Result</body></html>")
 }
 {% endhighlight %}

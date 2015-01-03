@@ -12,7 +12,7 @@ type MyAppController struct {
 }
 {% endhighlight %}
 
-<div class="alert alert-warn">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
+<div class="alert alert-warning">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
 
 The `revel.Controller` is the context for the request.  It contains the 
 [`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.  

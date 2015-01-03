@@ -13,16 +13,16 @@ which is useful for some common concerns such as:
 
 In Revel, an interceptor can take one of two forms:
 
-1. [Func Interceptor](docs/godoc/intercept.html#InterceptFunc): A function meeting the
+1. A [Function Interceptor](docs/godoc/intercept.html#InterceptFunc): A function meeting the
    [`InterceptorFunc`](../docs/godoc/intercept.html#InterceptorFunc) interface.
 	* Does not have access to specific application Controller invoked.
 	* May be applied to any / all Controllers in an application.
 
-2. [Method Interceptor](/docs/godoc/intercept.html#InterceptMethod): A controller method accepting no arguments and returning a `revel.Result`
+2. A [Method Interceptor](/docs/godoc/intercept.html#InterceptMethod): A controller method accepting no arguments and returning a `revel.Result`
 	* May only intercept calls to the bound Controller.
 	* May modify the invoked controller as desired.
 
-<div class="alert alert-warn">Interceptors are called in the order that they are added.</div>
+<div class="alert alert-warning">Interceptors are called in the order that they are added.</div>
 
 ## Intercept Times
 
