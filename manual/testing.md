@@ -19,7 +19,7 @@ Tests are kept in the tests directory:
 
 A simple test looks like the following:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type AppTest struct {
   revel.TestSuite
 }
@@ -37,7 +37,7 @@ func (t *AppTest) TestThatIndexPageWorks() {
 func (t *AppTest) After() {
 	println("Tear down")
 }
-</pre>
+{% endhighlight %}
 
 The example code above shows a couple things:
 
@@ -55,7 +55,7 @@ You may run this test in two ways:
 
 To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See testing docs](../docs/godoc/tests.html)
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type TestSuite struct {
 	Client       *http.Client
 	Response     *http.Response
@@ -73,7 +73,7 @@ func (t *TestSuite) AssertOk()
 func (t *TestSuite) AssertContentType(contentType string)
 func (t *TestSuite) Assert(exp bool)
 func (t *TestSuite) Assertf(exp bool, formatStr string, args ...interface{})
-</pre>
+{% endhighlight %}
 
 
 
@@ -112,13 +112,13 @@ For example, the developer loads `/@tests` in their browser:
 
 Then they add a test method:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (t AppTest) TestSomethingImportant() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/xml")
 }
-</pre>
+{% endhighlight %}
 
 Then they refresh their browser to see their new test:
 

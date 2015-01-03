@@ -6,11 +6,11 @@ layout: manual
 Actions must return a [`revel.Result`](../docs/godoc/results.html#Result), which
 handles the HTTP response generation.  It adheres to the simple interface:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Result interface {
 	Apply(req *Request, resp *Response)
 }
-</pre>
+{% endhighlight %}
 
 [`revel.Controller`](../docs/godoc/controller.html#Controller) provides a few
 methods to produce Results:
@@ -63,12 +63,12 @@ If unsuccessful (e.g. it could not find the template), it returns an `ErrorResul
 
 This allows the developer to write:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c MyApp) Action() revel.Result {
 	myValue := calculateValue()
 	return c.Render(myValue)
 }
-</pre>
+{% endhighlight %}
 
 and to use `myValue` in their template.  This is usually more convenient than
 constructing an explicit map, since in many cases the data will need to be
@@ -88,7 +88,7 @@ type (usually a struct).  Revel will serialize it using
 [`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
-If [`results.pretty=true`]((appconf.html#results.pretty) in [`conf/app.conf`](appconf.html), serialization will be done using
+If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html), serialization will be done using
 `MarshalIndent` instead, to produce nicely indented output for human
 consumption.
 
@@ -123,7 +123,7 @@ Here is an example of adding a simple Result.
 
 Create this type:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import ("net/http")
 
 type MyHtml string
@@ -132,14 +132,14 @@ func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
 	resp.Out.Write([]byte(r))
 }
-</pre>
+{% endhighlight %}
 
 Then use it in an action:
 
-<pre class="prettyprint lang-go">{% capture html %}
+{% highlight go %}
 func (c *App) Action() revel.Result {
 	return MyHtml("<html><body>Hello Result</body></html>")
-}{% endcapture %}{{ html|escape }}
-</pre>
+}
+{% endhighlight %}
 
 

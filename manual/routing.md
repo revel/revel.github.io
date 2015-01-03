@@ -4,10 +4,10 @@ layout: manual
 ---
 
 URL's and Routes are defined in the `conf/routes` file, and the basic syntax is three columns as example below:
-{% highlight ini %}
-[METHOD] [URL Pattern] [Controller.Action]
-GET      /             MySite.Welcome
-{% endhighlight %}
+
+    [METHOD] [URL Pattern] [Controller.Action]
+    GET      /             MySite.Welcome
+
 
 
 
