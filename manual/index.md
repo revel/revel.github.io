@@ -18,7 +18,9 @@ This manual documents aspects of the **Revel** framework.
     - [Open an issue on github.](https://github.com/revel/revel/issues)
 - Want to contribute ?
     - Read [CONTRIBUTING](https://github.com/revel/revel/blob/master/CONTRIBUTING.md)
-    
+    - Check the [Roadmap](https://github.com/revel/revel/wiki/Roadmap) wiki page
+    - Check the [Development Workflow](https://github.com/revel/revel/wiki/Revel-Workflow)
+  
 ### Documentation Updates
 
 You may have noticed the **Improve this page** button at the top right of most documentation pages. Please note:
