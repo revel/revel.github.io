@@ -35,7 +35,7 @@ started straight away without going through the specifics, there is a sample app
                 <code>app.conf</code>
             </td>
             <td>
-                <code><a href="appconf.html#i18n.cookie">i18n.cookie</a></code>
+                <code><a href="appconf.html#i18ncookie">i18n.cookie</a></code>
             </td>
             <td>
                 The name of the language cookie. Should always be prefixed with the Revel cookie prefix to avoid cookie name conflicts.
@@ -46,7 +46,7 @@ started straight away without going through the specifics, there is a sample app
                 <code>app.conf</code>
             </td>
             <td>
-                <code><a href="appconf.html#i18n.default_language">i18n.default_language</a></code>
+                <code><a href="appconf.html#i18ndefault_language">i18n.default_language</a></code>
             </td>
             <td>
                 The default locale to use in case no preferred locale could be found.
@@ -179,7 +179,7 @@ In order to figure out which locale the user prefers Revel will look for a usabl
 
 1. Language cookie
 
-    - For every request, Revel will look for a cookie with the name defined in the application configuration [`i18n.cookie`](appconf.html#i18n.cookie). 
+    - For every request, Revel will look for a cookie with the name defined in the application configuration [`i18n.cookie`](appconf.html#i18ncookie). 
     - If such a cookie is found, its value is assumed to be the current locale. 
     - All other resolution methods will be skipped when a cookie has been found.
 
@@ -193,7 +193,7 @@ In order to figure out which locale the user prefers Revel will look for a usabl
 
 3. Default language
 
-    - When all of the look-up methods above have returned no usable client locale, Revel will use the [`i18n.default_language`](appconf.html#i18n.default_language) as 
+    - When all of the look-up methods above have returned no usable client locale, Revel will use the [`i18n.default_language`](appconf.html#i18ndefault_language) as 
       defined in the [`conf/app.conf`](appconf.html) file.
 
 **Note:** When the requested message could not be resolved at all, a specially formatted string containing the original message is returned.

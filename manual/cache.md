@@ -14,7 +14,7 @@ cookie-based sessions are insufficient).
 Cache items are set with an expiration time, in one of three forms:
 
 * a [`time.Duration`](http://golang.org/pkg/time/#Duration)
-* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#Cache))
+* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#cache))
 * `cache.FOREVER` - will cause the item to never expire.
 
 <div class="alert alert-info"><b>Important</b>: Callers can <b>not</b> rely on items being present in the cache, as
@@ -41,14 +41,14 @@ The Cache may be configured to be backed by one of the following implementations
 
 Configure the cache using these keys in [`conf/app.conf`](appconf.html):
 
-* [`cache.expires`](appconf.html#cache.expires) - a string accepted by
+* [`cache.expires`](appconf.html#cacheexpires) - a string accepted by
   [`time.ParseDuration`](http://golang.org/pkg/time/#ParseDuration) to specify
   the default expiration duration.  (default 1 hour)
-* [`cache.memcached`](appconf.html#cache.memcached) - a boolean indicating whether or not memcached should be
+* [`cache.memcached`](appconf.html#cachememcached) - a boolean indicating whether or not memcached should be
   used. (default `false`)
-* [`cache.redis`](appconf.html#cache.redis) - a boolean indicating whether or not redis should be
+* [`cache.redis`](appconf.html#cacheredis) - a boolean indicating whether or not redis should be
   used. (default `false`)
-* [`cache.hosts`](appconf.html#cache.hosts) - a comma separated list of hosts to use as backends.  If the backend is Redis,
+* [`cache.hosts`](appconf.html#cachehosts) - a comma separated list of hosts to use as backends.  If the backend is Redis,
   then only the first host in this list will be used.
 
 ## Cache Example

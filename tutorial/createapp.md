@@ -34,6 +34,6 @@ Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a n
 ![Your Application Is Ready](../img/YourApplicationIsReady.png)
 
 - The generated project structure is described in [organization](../manual/organization.html)
-- The HTTP port settings is in [`conf/appconf`](../manual/appconf.html#HTTP)
+- The HTTP port settings is in [`conf/appconf`](../manual/appconf.html#httpport)
 
 **Next: [Learn how Revel handles requests.](requestflow.html)**

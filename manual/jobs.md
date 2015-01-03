@@ -25,8 +25,8 @@ this line to the `conf/routes` file, which will insert the `/@jobs` url:
 There are a couple of [configuration settings](appconf.html#Jobs) that tell the framework what sort of limitations
 to place on the jobs that it runs. These are listed below with their default values;
 
-- [`jobs.pool = 10`](appconf.html#jobs.pool) - The number of jobs allowed to run simultaneously
-- [`jobs.selfconcurrent = false`](appconf.html#jobs.selfconcurrent)  -  Allow a job to run only if previous instances are done
+- [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
+- [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent)  -  Allow a job to run only if previous instances are done
 
 ## Implementing Jobs
 

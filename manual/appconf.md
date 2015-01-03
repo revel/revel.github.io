@@ -92,7 +92,6 @@ log.warn.output = chat.log
 log.error.output = chat.log
 {% endhighlight %}
 
-<a name="CustomProperties"></a>
 
 ## Custom properties
 
@@ -118,13 +117,13 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
     
 ## Built-in properties
 
-- [Application](#Application)
+- [Application](#application)
 - [HTTP](#HTTP)
-- [Results](#Results)
-- [Internationalization](#Internationalization)
-- [Watchers](#Watchers)
+- [Results](#results)
+- [Internationalization](#internationalization)
+- [Watchers](#watchers)
 - [Cookies](#Cookies)
-- [Session](#Session)
+- [Session](#session)
 - [Formatting](#Formatting)
 - [Database](#Database)
 - [Build](#Build)
@@ -133,7 +132,6 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Jobs](#Jobs)
 - [Modules](#Modules)
 
-<a name="Application"></a>
 
 ### Application settings
 
@@ -164,8 +162,6 @@ Example:
 Default: no value
 
 
-<a name="HTTP"></a>
-
 ### HTTP settings
 
 #### `http.port`
@@ -181,8 +177,8 @@ Example:
 
 The IP address on which to listen.
 
-On Linux, empty string indicates a wildcard -- on Windows, empty string is
-silently converted to `"localhost"`
+- On Linux, an empty string indicates a wildcard
+- on Windows, an empty string is silently converted to `"localhost"`
 
 Default: ""
 
@@ -222,7 +218,6 @@ Specifies the path to an X509 certificate key.
 Default: ""
 
 
-<a name="Results"></a>
 
 ### Results
 
@@ -235,7 +230,6 @@ before the entire template has been fully rendered.
 
 Default: false
 
-<a name="results.pretty"></a>
 
 #### `results.pretty`
 
@@ -247,12 +241,10 @@ XML/JSON.  For example:
 {% endhighlight %}
 Default: false
 
-<a name="Internationalization"></a>
-
-### Internationalization (i18n)
 
 
-<a name="i18n.default_language"></a>
+### Internationalization
+
 
 #### `i18n.default_language`
 
@@ -265,7 +257,6 @@ For example:
 {% endhighlight %}
 Default: ""
 
-<a name="i18n.cookie"></a>
 
 #### `i18n.cookie`
 
@@ -274,7 +265,6 @@ Specifies the name of the cookie used to store the user's locale.
 Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
 
 
-<a name="Watchers"></a>
 
 
 ### Watchers
@@ -315,7 +305,6 @@ watched.
 
 Default: true
 
-<a name="Cookies"></a>
 
 ### Cookies
 
@@ -347,25 +336,21 @@ would result in the following cookie names:
 Default: "REVEL"
 
 
-<a name="Session"></a>
-
 
 ### Session
 
 
 
-<a name="session.expires"></a>
 
 #### `session.expires`
 
-Revel uses this property to set the expiration of the [session](sessionflash.html#Session) cookie.
+Revel uses this property to set the expiration of the [session](sessionflash.html#session) cookie.
 Revel uses [ParseDuration](http://golang.org/pkg/time/#ParseDuration) to parse the string.
 The default value is 30 days. It can also be set to `"session"` to allow session only
 expiry. Please note that the client behaviour is dependent on browser configuration so
 the result is not always guaranteed.
 
 
-<a name="Templates"></a>
 
 
 ### Templates
@@ -380,12 +365,10 @@ The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"
 Default: "\{\{ \}\}"
 
 
-<a name="Formatting"></a>
 
 
 ### Formatting
 
-<a name="format.date"></a>
 
 #### `format.date`
 
@@ -396,7 +379,6 @@ Specifies the default date format for the application.  Revel uses this in two p
 
 Default: "2006-01-02"
 
-<a name="format.datetime"></a>
 
 #### `format.datetime`
 
@@ -408,7 +390,6 @@ Specifies the default datetime format for the application.  Revel uses this in t
 Default: "2006-01-02 15:04"
 
 
-<a name="Database"></a>
 
 
 ### Database
@@ -436,7 +417,6 @@ Specifies the data source name of your database/sql database (used in
 Default: ""
 
 
-<a name="Build"></a>
 
 ### Build
 
@@ -448,20 +428,16 @@ when building an application.
 Default: ""
 
 
-<a name="Logging"></a>
-
 ### Logging
 
 See [logging](logging.html) for details.
 
-<a name="Cache"></a>
 
 
 ### Cache
 
 The [cache](cache.html) module is a simple interface to a heap or distributed cache.
 
-<a name="cache.expires"></a>
 
 
 #### `cache.expires`
@@ -478,7 +454,6 @@ Default: "1h" (1 hour)
 
 
 
-<a name="cache.memcached"></a>
 
 #### `cache.memcached`
 
@@ -489,9 +464,6 @@ Default: false
 
 
 
-
-<a name="cache.redis"></a>
-
 #### `cache.redis`
 
 If true, the cache module uses [redis](http://redis.io) instead of the
@@ -499,7 +471,6 @@ in-memory cache.
 
 Default: false
 
-<a name="cache.hosts"></a>
 
 #### `cache.hosts`
 
@@ -509,7 +480,6 @@ name.  Hosts may be listed multiple times to increase their share of cache
 space.
 
 Default: ""
-
 
 <a name="Jobs"></a>
 
@@ -530,7 +500,7 @@ example:
 jobs.Schedule("cron.schedulename", job)
 {% endhighlight %}
 
-<a name="jobs.pool"></a>
+
 	
 #### `jobs.pool`
 
@@ -543,7 +513,7 @@ jobs.pool = 4
 {% endhighlight %}
 
 
-<a name="jobs.selfconcurrent"></a>
+
 
 #### `jobs.selfconcurrent`
 
@@ -553,7 +523,7 @@ progress.
 jobs.selfconcurrent = true
 {% endhighlight %}
 
-<a name="Modules"></a>
+
 
 
 ### Modules

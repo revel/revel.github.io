@@ -29,7 +29,7 @@ GET    /public/*filepath      Static.Serve("public") # Map /app/public resources
 ~~~
 
 Let's go through the lines one at a time.  At the end, we'll see how to
-accomplish [reverse routing](#ReverseRouting) i.e generating the URL to invoke a particular action.
+accomplish [reverse routing](#reverse-routing) i.e generating the URL to invoke a particular action.
 
 ## A Fixed Path
 
@@ -44,7 +44,7 @@ The routes above use an 'exact match' of HTTP method and path and invoke the Log
 	GET    /hotels/               Hotels.Index
 
 - This route invokes `Hotels.Index` for both `/hotels` and `/hotels/`
-- The [reverse route](#ReverseRouting) to `Hotels.Index` will include the trailing slash/
+- The [reverse route](#reverse-routing) to `Hotels.Index` will include the trailing slash/
 
 Trailing slashes should not be used to differentiate between actions. The
 simple path `/login` **will** be matched by a request to `/login/`.
@@ -139,7 +139,7 @@ routes would also work:
 
 Using auto-routing as a catch-all (e.g. last route in the file) is useful for
 quickly hooking up actions to non-vanity URLs, especially in conjunction with
-the [reverse router](#ReverseRouting).
+the [reverse router](#reverse-routing).
 
 <a name="StaticFiles"></a>
 
@@ -212,9 +212,6 @@ GET     /foo     Application.FooAction
 [Websockets](websockets.html) are routed the same way as other requests with the 'method'
 identifier of `WS`.
 
-
-
-<a name="ReverseRouting"></a>
 
 ## Reverse Routing
 

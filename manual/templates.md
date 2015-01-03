@@ -25,7 +25,7 @@ application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by
   [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap) (see [validation](validation.html))
-* **flash** - the data [flashed](sessionflash.html#Flash) by the previous request.
+* **flash** - the data [flashed](sessionflash.html#flash) by the previous request.
 
 ## Including Other Templates
 
@@ -101,7 +101,7 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 ### date, datetime
 
-Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format. 
+Format a date according to the application's default [date](appconf.html#formatdate) and [datetime](appconf.html#formatdatetime) format. 
 
 The example below assumes `dateArg := time.Now()`:
 
@@ -141,7 +141,7 @@ Given a field name, it returns a struct containing the following members:
 * **Id**: the field name, converted to be suitable as a HTML element ID.
 * **Name**: the field name
 * **Value**: the value of the field in the current `RenderArgs`
-* **Flash**: the [flash](sessionflash.html#Flash) value of the field.
+* **Flash**: the [flash](sessionflash.html#flash) value of the field.
 * **Error**: the error message, if any is associated with this field.
 * **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.
 
@@ -283,7 +283,7 @@ Set a variable in the given context.
 
 ### url
 
-Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Action`, eg:
+Outputs the [reverse route](routing.html#reverse-routing) for a `Controller.Action`, eg:
 
 {% capture ex %}{% raw %}
 <a href="{{url "MyApp.ContactPage"}}">Contact</a>

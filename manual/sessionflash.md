@@ -19,7 +19,6 @@ type Flash struct {
 }
 {% endhighlight %}
 
-<a name="Session"></a>
 
 ## Session
 
@@ -36,7 +35,6 @@ can be overriden to a specific amount of time by setting the [session.expires](a
 option in [conf/app.conf](appconf.html).  The format is that of
 [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
 
-<a name="Flash"></a>
 
 ## Flash
 
