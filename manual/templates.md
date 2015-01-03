@@ -150,18 +150,19 @@ Given a field name, it returns a struct containing the following members:
 
 Example:
 
-{% raw %}
+{% capture ex %}{% raw %}
 
-    {{with $field := field "booking.CheckInDate" .}}
-      <p class="{{$field.ErrorClass}}">
-        <strong>Check In Date:</strong>
-        <input type="text" size="10" name="{{$field.Name}}" 
-              class="datepicker" value="{{$field.Flash}}"> *
-        <span class="error">{{$field.Error}}</span>
-      </p>
-    {{end}}
+{{with $field := field "booking.CheckInDate" .}}
+    <p class="{{$field.ErrorClass}}">
+    <strong>Check In Date:</strong>
+    <input type="text" size="10" name="{{$field.Name}}" 
+            class="datepicker" value="{{$field.Flash}}"> *
+    <span class="error">{{$field.Error}}</span>
+    </p>
+{{end}}
 
-{% endraw %}
+{% endraw %}{% endcapture %}
+{% highlight django %}{{ex}}{% endhighlight %}
 
 
 
