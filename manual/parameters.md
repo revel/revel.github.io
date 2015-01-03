@@ -32,11 +32,11 @@ type Params struct {
 Parameters may be accepted directly as method arguments by the action.  For
 example:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c AppController) Action(name string, ids []int, user User, img []byte) revel.Result {
 	...
 }
-</pre>
+{% endhighlight %}
 
 - Before invoking the action, Revel asks its Binder to convert parameters of those names to the requested data type.  
 - If the binding is unsuccessful for any reason, the parameter will have the zero value for its type.
@@ -46,16 +46,14 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 - To bind a parameter to a data type, use Revel's [`Binder`](../docs/godoc/binder.html).  
 - The [`Binder`](../docs/godoc/binder.html) is integrated with the [`Params`](../docs/godoc/params.html) object.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // Example params to binder
 func (c SomeController) Action() revel.Result {
 	var ids []int
 	c.Params.Bind(&amp;ids, "ids")
 	...
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 The following data types are supported by Revel out of the box:
 

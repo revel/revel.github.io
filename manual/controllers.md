@@ -5,12 +5,12 @@ layout: manual
 
 A **Controller** is any type that embeds the [`*revel.Controller`](../docs/godoc/controller.html#Controller).
 
-{% highlight html %}
+<pre class="prettyprint lang-go">
 type MyAppController struct {
 	*revel.Controller
 	OtherStuff string
 }
-{% endhighlight %}
+</pre>
 
 <div class="alert alert-warn">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
 
