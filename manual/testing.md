@@ -130,9 +130,9 @@ They run the test:
 
 Uh oh.  It doesn't work.  They fix the code to expect a content type of "text/html" instead of "text/xml":
 
-<pre class="prettyprint lang-go">
-	t.AssertContentType("text/html")
-</pre>
+{% highlight go %}
+t.AssertContentType("text/html")
+{% endhighlight %}
 
 Then they re-run the test:
 

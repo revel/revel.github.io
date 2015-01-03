@@ -57,8 +57,7 @@ Here's an example of the common operations.  Note that callers may invoke cache
 operations in a new goroutine if they do not require the result of the
 invocation to process the request.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import (
 	"github.com/revel/revel"
 	"github.com/revel/revel/cache"
@@ -93,19 +92,17 @@ func (c App) DeleteProduct(id string) revel.Result {
 	go cache.Delete("product_"+id)
 	return c.Redirect("/products")
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 ## Session usage
 
 The Cache has a global key space -- to use it as a session store, callers should
 take advantage of the session's UUID, as shown below:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 cache.Set(c.Session.Id(), products)
 
 // and then in subsequent requests
 err := cache.Get(c.Session.Id(), &amp;products)
-</pre>
-{% endraw %}
+{% endhighlight %}
+

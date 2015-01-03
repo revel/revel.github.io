@@ -219,9 +219,9 @@ It is good practice to use a reverse router to generate URL's instead of hardcod
 Upon building your application, Revel generates an `app/routes` package.  Use it
 with a statement of the form:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 routes.Controller.Action(param1, param2)
-</pre>
+{% endhighlight %}
 
 
 The above statement returns an URL string to `Controller.Action` with the

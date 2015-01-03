@@ -128,11 +128,11 @@ Will bind the struct:
 - Alternative formats may be added to the application, using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
 - Add a pattern to recognize to the `TimeFormats` variable, like this:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
 	revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
 }
-</pre>
+{% endhighlight %}
 
 ### File Uploads
 
@@ -158,7 +158,7 @@ The application may define its own binders to take advantage of this framework.
 It need only implement the [binder interface](../docs/godoc/binder.html#Binder) and register the type for which it
 should be called:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 var myBinder = revel.Binder{
 	Bind: func(params *revel.Params, name string, typ reflect.Type) reflect.Value {...},
 	Unbind: func(output map[string]string, name string, val interface{}) {...},
@@ -167,4 +167,4 @@ var myBinder = revel.Binder{
 func init() {
 	revel.TypeBinders[reflect.TypeOf(MyType{})] = myBinder
 }
-</pre>
+{% endhighlight %}

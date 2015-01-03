@@ -20,13 +20,11 @@ Add this to the [`conf/routes`](routing.html) file:
 
 Then write an action like this:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import "code.google.com/p/go.net/websocket"
 
 func (c App) Feed(user string, ws *websocket.Conn) revel.Result {
 	...
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 

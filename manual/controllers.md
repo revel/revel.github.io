@@ -5,12 +5,12 @@ layout: manual
 
 A **Controller** is any type that embeds the [`*revel.Controller`](../docs/godoc/controller.html#Controller).
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type MyAppController struct {
 	*revel.Controller
 	OtherStuff string
 }
-</pre>
+{% endhighlight %}
 
 <div class="alert alert-warn">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
 
@@ -65,6 +65,7 @@ type Response struct {
 	Out http.ResponseWriter
 }
 {% endhighlight %}
+
 As part of handling a HTTP request, Revel instantiates an instance of a
 Controller, and it sets all of these properties on the embedded
 `revel.Controller`.  Therefore, Revel does not share Controller instances between

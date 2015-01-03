@@ -89,13 +89,11 @@ Controller, and it sets all of these properties on the embedded
 `revel.Controller`.  Revel does not share Controller instances between requests.
 
 A **Controller** is any type that embeds `*revel.Controller` (directly or indirectly).
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type AppController struct {
   *revel.Controller
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 An **Action** is any method on a **Controller** that meets the following criteria:
 
@@ -103,14 +101,12 @@ An **Action** is any method on a **Controller** that meets the following criteri
 * returns a [`revel.Result`](results.html)
 
 For example:
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c AppController) ShowLogin(username string) revel.Result {
 	..
 	return c.Render(username)
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 The example invokes `revel.Controller.Render` to execute a [template](templates.html), passing it the
 username as a [parameter](parameters.html).  There are many methods on **revel.Controller** that
@@ -119,13 +115,12 @@ produce **revel.Result**, but applications are also [free to create their own](r
 ## Results
 
 A Result is anything conforming to the interface:
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Result interface {
 	Apply(req *Request, resp *Response)
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
+
 Typically, nothing is written to the response until the **action** and all
 [filters](filters.html) have returned.  At that point, Revel writes response headers and cookies
 (e.g. setting the [session](sessionflash.html) cookie), and then invokes `Result.Apply` to write the

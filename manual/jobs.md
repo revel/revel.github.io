@@ -32,26 +32,22 @@ to place on the jobs that it runs. These are listed below with their default val
 
 To create a Job, implement the [`cron.Job`](https://github.com/robfig/cron/) interface.  The `Job` interface has the following signature:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // https://github.com/robfig/cron/blob/master/cron.go
 type Job interface {
 	Run()
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 For example:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type MyJob struct {}
 
 func (j MyJob) Run() {
    // Do something
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 ## Startup jobs
 
@@ -61,13 +57,11 @@ Revel runs these tasks serially, before starting the server.  Note that this
 functionality does not actually use the jobs module, but it can be used to
 submit a job for execution that doesn't block server startup.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
     revel.OnAppStart(func() { jobs.Now(populateCache{}) })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 <a name="RecurringJobs"></a>
 
@@ -89,8 +83,7 @@ registered at any later time as well.
 
 Here are some examples:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import (
     "github.com/revel/revel"
     "github.com/revel/modules/jobs/app/jobs"
@@ -114,8 +107,7 @@ func init() {
         jobs.Every(24 * time.Hour,    ReminderEmails{})
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 <a name="NamedSchedules"></a>
 
@@ -130,15 +122,13 @@ Here is an example **named cron schedule**, in an [`app.conf`](appconf.html) fil
 
 Use the named schedule by referencing it anywhere you would have used a cron spec.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
     revel.OnAppStart(func() {
         jobs.Schedule("cron.workhours_15m", ReminderEmails{})
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 > **Note:** The cron schedule name must begin with `cron.`
 
@@ -152,8 +142,7 @@ cases, the jobs module allows you to submit a job to be run a single time.
 
 The only control offered is how long to wait until the job should be run.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type AppController struct { *revel.Controller }
 
 func (c AppController) Action() revel.Result {
@@ -166,16 +155,14 @@ func (c AppController) Action() revel.Result {
     // Or, send them email asynchronously after a minute.
     jobs.In(time.Minute, SendConfirmationEmail{})
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 ## Registering functions
 
 It is possible to register a `func()` as a job by wrapping it in the `jobs.Func`
 type.  For example:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func sendReminderEmails() {
     // Query the DB
     // Send some email
@@ -186,8 +173,7 @@ func init() {
         jobs.Schedule("@midnight", jobs.Func(sendReminderEmails))
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 
 ## Job Status

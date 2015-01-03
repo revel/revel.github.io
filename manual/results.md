@@ -98,20 +98,20 @@ consumption.
 
 A helper function is provided for generating redirects.  It may be used in two ways.
 
-1. Redirect to an action with no arguments:
+### Redirect to an action with no arguments:
 
-    <pre class="prettyprint lang-go">
-      return c.Redirect(Hotels.Settings)</pre>
+{% highlight go %}
+    return c.Redirect(Hotels.Settings)
+{% endhighlight %}
 
-    This form is useful as it provides a degree of type safety and independence from
-    the routing.  (It generates the URL automatically.)
+This form is useful as it provides a degree of type safety and independence from
+the routing.  (It generates the URL automatically.)
 
-2. Redirect to a formatted string:
+### Redirect to a formatted string:
 
-    <pre class="prettyprint lang-go">
-      return c.Redirect("/hotels/%d/settings", hotelId)</pre>
+{% highlight go %}return c.Redirect("/hotels/%d/settings", hotelId){% endhighlight %}
 
-    This form is necessary to pass arguments.
+This form is necessary to pass arguments.
 
 It returns a `302 Temporary Redirect` status code.
 

@@ -5,7 +5,7 @@ layout: manual
 
 Revel provides two cookie-based storage mechanisms.
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // A signed cookie (and thus limited to 4kb in size).
 // Restriction: Keys may not have a colon in them.
 type Session map[string]string
@@ -17,7 +17,7 @@ type Session map[string]string
 type Flash struct {
 	Data, Out map[string]string
 }
-</pre>
+{% endhighlight %}
 
 <a name="Session"></a>
 
@@ -46,7 +46,7 @@ or for transient "Operation Successful!" or "Operation Failed!" messages.
 
 Here's an example of that pattern:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // Show the Settings form
 func (c App) ShowSettings() revel.Result {
 	return c.Render()
@@ -70,7 +70,7 @@ func (c App) SaveSettings(setting string) revel.Result {
     c.Flash.Success("Settings saved!")
     return c.Redirect(App.ShowSettings)
 }
-</pre>
+{% endhighlight %}
 
 Walking through this example:
 
