@@ -14,7 +14,7 @@ title: The Revel Web Framework for Go
 
   <body onload="prettyPrint()">
     <a href="https://github.com/revel/revel">
-      <img style="position: absolute; top: 0; right: 0; border: 0; z-index:1000;"
+      <img style="position: absolute; top: 0; right: 0; border: 0; z-index:40000;"
            src="img/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
     {% include topnav.html %}
@@ -36,7 +36,7 @@ title: The Revel Web Framework for Go
         <h1>Features</h1>
       </div>
       <div class="row">
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Hot Code Reload</h2>
           <p>
             Edit, save, and refresh.  Revel compiles your code and templates for
@@ -46,7 +46,7 @@ title: The Revel Web Framework for Go
             covered</a>.
           </p>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Comprehensive</h2>
           <p>
             Revel provides
@@ -61,7 +61,7 @@ title: The Revel Web Framework for Go
             and even <a href="manual/i18n-messages.html">internationalization</a>.
           </p>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>High Performance</h2>
           <p>
             Revel builds on top of the Go HTTP server, which was
@@ -75,7 +75,7 @@ title: The Revel Web Framework for Go
         <h1>Framework Design</h1>
       </div>
       <div class="row">
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Synchronous</h2>
           <p>
             The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
@@ -84,7 +84,7 @@ title: The Revel Web Framework for Go
             Write simple callback-free code without guilt.
           </p>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Stateless</h2>
           <p>
             Revel provides primitives that keep the web tier stateless for
@@ -92,7 +92,7 @@ title: The Revel Web Framework for Go
             cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
           </p>
         </div>
-        <div class="span4">
+        <div class="col-md-4">
           <h2>Modular</h2>
           <p>
             Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
@@ -130,7 +130,7 @@ title: The Revel Web Framework for Go
               <a href="samples/chat.html">read how the chat demo is implemented</a>.
             </p>
           </div>
-          <div class="span6" style="vertical-align:bottom;">
+          <div class="col-md-6" style="vertical-align:bottom;">
             <pre>
   go get github.com/revel/cmd/revel
   revel run github.com/samples/chat
@@ -198,7 +198,7 @@ title: The Revel Web Framework for Go
         </dl>
 
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <h2 id="routing">Routing</h2>
             <p>
               Revel uses a declarative routing syntax. It collects all routes
@@ -208,7 +208,7 @@ title: The Revel Web Framework for Go
               sample...
             </p>
           </div>
-          <div class="span12">
+          <div class="col-md-12">
             <pre>
 # conf/routes
 # This file defines all application routes (Higher priority routes first)
@@ -221,12 +221,12 @@ GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /pu
 *      /:controller/:action  :controller.:action     <b># Catch all; Automatic URL generation</b></pre>
 
           </div>
-          <div class="span6">
+          <div class="col-md-6">
 						<p>
 							Reverse routes can be generated in a type-safe manner.  For example:
 						</p>
           </div>
-          <div class="span12">
+          <div class="col-md-12">
             <pre class="prettyprint lang-go">
 // Show the hotel information.
 func (c Hotels) Show(id int) revel.Result {
@@ -243,7 +243,7 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
         </div>
 
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <h2 id="controllers">Controllers</h2>
             <p>
               All Actions are methods on a Controller.  This teaser shows a couple cool things:
@@ -265,7 +265,7 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
             </p>
           </div>
 
-          <div class="span12">
+          <div class="col-md-12">
             <pre class="prettyprint lang-go">
 // app/controllers/app.go
 
@@ -306,7 +306,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
         </div>
 
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <h2 id="templates">Templates</h2>
             <p>
               By convention, Revel manages to integrate
@@ -327,7 +327,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
             </ul>
           </div>
 
-          <div class="span12">
+          <div class="col-md-12">
             <pre class="prettyprint lang-html">{% capture teaser_template %}{% raw %}
 {{/* app/views/Application/Register.html */}}
 
@@ -355,7 +355,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
         </div>
 
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <h2 id="interceptors">Interceptors</h2>
             <p>
               Interceptors are controller methods that are run before or after
@@ -375,7 +375,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 						</p>
           </div>
 
-          <div class="span12">
+          <div class="col-md-12">
             <pre class="prettyprint">
 // github.com/revel/modules/db/app/db.go
 
@@ -443,7 +443,7 @@ select id, hotel_id, user_id, price, nights
         </div>
 
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <h2 id="filters">Filters</h2>
             <p>
               Filters are the middleware of the application.  They are simply
@@ -457,7 +457,7 @@ type Filter func(c *Controller, filterChain []Filter)</pre>
             </p>
           </div>
 
-          <div class="span12">
+          <div class="col-md-12">
             <pre class="prettyprint">
 // github.com/revel/revel/intercept.go
 
