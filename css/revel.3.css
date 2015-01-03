@@ -172,7 +172,7 @@ h3 {
 } 
 
 
-/* Prefer horizontal scroll to wrapping code */
+/* pygments and code */
 deadpre {
   white-space:pre;
   word-wrap:normal;
@@ -196,4 +196,9 @@ pre {
 }
 .highlight .c1 {
     color: #111111;
+}
+
+.highlight .language-htmldjango .nv {
+     color: #219277;
+    font-weight: bold;
 }

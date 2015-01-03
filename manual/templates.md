@@ -31,11 +31,11 @@ application-provided data, Revel provides the following entries:
 
 Go Templates allow you to compose templates by inclusion.  For example:
 
-{% raw %}
+{% capture ex %}{% raw %}
+{{template "header.html" .}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-    {{template "header.html" .}}
-
-{% endraw %}
 <div class="alert alert-info">Note: Paths are relative to <code>app/views</code></div>
 
 
@@ -75,15 +75,14 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 Add a variable to an array, or create an array; in the given context.
 
-{% raw %}
+{% capture ex %}{% raw %}
+{{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
 
-	{{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
-
-    {{range .moreStyles}}
-      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-    {{end}}
-
-{% endraw %}
+{{range .moreStyles}}
+    <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="checkbox"></a>
@@ -92,11 +91,12 @@ Add a variable to an array, or create an array; in the given context.
 
 Assists in constructing a HTML checkbox `input` element, eg:
 
-{% raw %}
-    {{with $checkboxField := field "testField" .}}
-        {{checkbox $checkboxField "someValue"}}
-    {{end}}
-{% endraw %}
+{% capture ex %}{% raw %}
+{{with $checkboxField := field "testField" .}}
+    {{checkbox $checkboxField "someValue"}}
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="date"></a><a name="datetime"></a>
@@ -105,12 +105,11 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 Format a date according to the application's default [date](appconf.html#format.date) and [datetime](appconf.html#format.datetime) format. The example below assumes `dateArg := time.Now()`:
 
-{% raw %}
-
-    {date .MyDate}}
-    {datetime .MyDateTime}}
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{date .MyDate}}
+{datetime .MyDateTime}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="even"></a>
@@ -119,15 +118,15 @@ Format a date according to the application's default [date](appconf.html#format.
 
 Perform `$in % 2 == 0`. This is a convenience function that assists with table row coloring.
 
-{% raw %}
+{% capture ex %}{% raw %}
 
-    {{range $index, $element := .results}}
-    <tr class="{{if even $index}}light-row{{else}}dark-row{{end}}">
-        ...
-    </tr>
-    {{end}}
-
-{% endraw %}
+{{range $index, $element := .results}}
+<tr class="{{if even $index}}light-row{{else}}dark-row{{end}}">
+    ...
+</tr>
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 
@@ -158,7 +157,7 @@ Example:
     </p>
 {{end}}
 {% endraw %}{% endcapture %}
-{% highlight django %}{{ex}}{% endhighlight %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 
@@ -177,12 +176,12 @@ Example:
 
 Convert newlines to HTML breaks.
 
-{% raw %}
+{% capture ex %}{% raw %}
+You said:
+<div class="comment">{{nl2br .commentText}}</div>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-    You said:
-    <div class="comment">{{nl2br .commentText}}</div>
-
-{% endraw %}
 
 <a name="option"></a>
 
@@ -191,17 +190,16 @@ Convert newlines to HTML breaks.
 Assists in constructing HTML `option` elements, in conjunction with the field
 helper, eg:
 
-{% raw %}
-
-    {{with $field := field "booking.Beds" .}}
-    <select name="{{$field.Name}}">
-      {{option $field "1" "One king-size bed"}}
-      {{option $field "2" "Two double beds"}}
-      {{option $field "3" "Three beds"}}
-    </select>
-    {{end}}
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{{with $field := field "booking.Beds" .}}
+<select name="{{$field.Name}}">
+    {{option $field "1" "One king-size bed"}}
+    {{option $field "2" "Two double beds"}}
+    {{option $field "3" "Three beds"}}
+</select>
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="pad"></a>
@@ -210,11 +208,10 @@ helper, eg:
 
  Pads the given string with `&nbsp;`  to the given width, eg:.
 
-{% raw %}
-
-    {{pad "my string", 8}}
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{{pad "my string", 8}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="pluralize"></a>
@@ -223,11 +220,10 @@ helper, eg:
 
 A helper for correctly pluralizing words.
 
-{% raw %}
-
-	There are {{.numComments}} comment{{pluralize (len comments) "" "s"}}
-
-{% endraw %}
+{% capture ex %}{% raw %}
+There are {{.numComments}} comment{{pluralize (len comments) "" "s"}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <a name="radio"></a>
 
@@ -236,15 +232,13 @@ A helper for correctly pluralizing words.
 Assists in constructing HTML radio `input` elements, in conjunction with the field
 helper, eg:
 
-{% raw %}
-
-    {{with $field := field "booking.Smoking" .}}
-      {{radio $field "true"}} Smoking
-      {{radio $field "false"}} Non smoking
-    {{end}}
-
-{% endraw %}
-
+{% capture ex %}{% raw %}
+{{with $field := field "booking.Smoking" .}}
+    {{radio $field "true"}} Smoking
+    {{radio $field "false"}} Non smoking
+{{end}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <a name="raw"></a>
 
@@ -252,12 +246,10 @@ helper, eg:
 
 Prints raw, unescaped, text.
 
-
-{% raw %}
-
-	<div class="body">{{raw .blogBody}}</div>
-
-{% endraw %}
+{% capture ex %}{% raw %}
+<div class="body">{{raw .blogBody}}</div>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <a name="set"></a>
 
@@ -265,13 +257,12 @@ Prints raw, unescaped, text.
 
 Set a variable in the given context.
 
-{% raw %}
+{% capture ex %}{% raw %}
+{{set . "title" "Basic Chat room"}}
 
-    {{set . "title" "Basic Chat room"}}
-
-    <h1>{{.title}}</h1>
-
-{% endraw %}
+<h1>{{.title}}</h1>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 <a name="slug"></a>
@@ -280,9 +271,10 @@ Set a variable in the given context.
 
  Create a slug
 
-{% raw %}
-     {{slug "SomeThing String"}}
-{% endraw %}
+{% capture ex %}{% raw %}
+{{slug "SomeThing String"}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 
@@ -293,12 +285,11 @@ Set a variable in the given context.
 
 Outputs the [reverse route](routing.html#ReverseRouting) for a `Controller.Action`, eg:
 
-{% raw %}
-
-    <a href="{{url "MyApp.ContactPage"}}">Contact</a>
-    Click <a href="{{url "Products.ShowProduct" 123}}">here</a> for more.
-
-{% endraw %}
+{% capture ex %}{% raw %}
+<a href="{{url "MyApp.ContactPage"}}">Contact</a>
+Click <a href="{{url "Products.ShowProduct" 123}}">here</a> for more.
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <a name="CustomFunctions"></a>
  
@@ -332,35 +323,33 @@ the template itself.
 
 For example, the header looks like this:
 
-{% raw %}
-
-	<html>
-	  <head>
-	    <title>{{.title}}</title>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css">
-	    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-	    {{range .moreStyles}}
-	      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-	    {{end}}
-	    <script src="/public/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
-	    <script src="/public/js/sessvars.js" type="text/javascript" charset="utf-8"></script>
-	    {{range .moreScripts}}
-	      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-	    {{end}}
-	  </head>
-
-{% endraw %}
+{% capture ex %}{% raw %}
+<html>
+    <head>
+    <title>{{.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    {{range .moreStyles}}
+        <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+    <script src="/public/js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/js/sessvars.js" type="text/javascript" charset="utf-8"></script>
+    {{range .moreScripts}}
+        <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+    {{end}}
+    </head>
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 And templates that include it look like this:
 
-{% raw %}
-
-	{{set . title "Hotels"}}
-	{{append . "moreStyles" "ui-lightness/jquery-ui-1.7.2.custom.css"}}
-	{{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
-	{{template "header.html" .}}
-
-{% endraw %}
+{% capture ex %}{% raw %}
+{{set . title "Hotels"}}
+{{append . "moreStyles" "ui-lightness/jquery-ui-1.7.2.custom.css"}}
+{{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
+{{template "header.html" .}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
