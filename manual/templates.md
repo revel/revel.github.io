@@ -146,12 +146,9 @@ Given a field name, it returns a struct containing the following members:
 * **Error**: the error message, if any is associated with this field.
 * **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.
 
-
-
 Example:
 
 {% capture ex %}{% raw %}
-
 {{with $field := field "booking.CheckInDate" .}}
     <p class="{{$field.ErrorClass}}">
     <strong>Check In Date:</strong>
@@ -160,7 +157,6 @@ Example:
     <span class="error">{{$field.Error}}</span>
     </p>
 {{end}}
-
 {% endraw %}{% endcapture %}
 {% highlight django %}{{ex}}{% endhighlight %}
 
