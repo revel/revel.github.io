@@ -16,8 +16,10 @@ This manual documents aspects of the **Revel** framework.
     - Try your luck at [StackOverflow](http://stackoverflow.com/questions/tagged/revel)
 - Found a bug or want a feature ?  
     - [Open an issue on github.](https://github.com/revel/revel/issues)
-
-### Update the Docs
+- Want to contribute ?
+    - Read [CONTRIBUTING](https://github.com/revel/revel/blob/master/CONTRIBUTING.md)
+    
+### Documentation Updates
 
 You may have noticed the **Improve this page** button at the top right of most documentation pages. Please note:
 
