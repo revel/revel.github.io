@@ -3,10 +3,7 @@ title: Concepts
 layout: manual
 ---
 
-**Revel** is almost a full stack web framework in the spirit of 
-- [Rails](http://rubyonrails.org/) 
-- [Play!](http://www.playframework.org)
-- DJango 
+**Revel** is almost a full stack web framework in the spirit of [Rails](http://rubyonrails.org/) and [Play!](http://www.playframework.org) frameworks.
 
 - Many  *proven* ideas are incorporated into the framework, its design and interface. 
 - Also using golang.. it's also hackable ;-)
@@ -90,8 +87,8 @@ Controller, and it sets all of these properties on the embedded
 
 A **Controller** is any type that embeds `*revel.Controller` (directly or indirectly).
 {% highlight go %}
-type AppController struct {
-  *revel.Controller
+type MyAppController struct {
+    *revel.Controller
 }
 {% endhighlight %}
 
@@ -102,15 +99,15 @@ An **Action** is any method on a **Controller** that meets the following criteri
 
 For example:
 {% highlight go %}
-func (c AppController) ShowLogin(username string) revel.Result {
+func (c MyAppController) ShowLogin(username string) revel.Result {
 	..
 	return c.Render(username)
 }
 {% endhighlight %}
 
-The example invokes `revel.Controller.Render` to execute a [template](templates.html), passing it the
-username as a [parameter](parameters.html).  There are many methods on **revel.Controller** that
-produce **revel.Result**, but applications are also [free to create their own](results.html#CustomResult).
+The example invokes `Controller.Render()` to execute a [template](templates.html), passing it the
+username as a parameter.  There are many methods on **[revel.Controller](..//docs/godoc/controller.html)** that
+produce **[revel.Result](../docs/godoc/results.html)**, but applications are also [free to create their own](results.html#CustomResult).
 
 ## Results
 
