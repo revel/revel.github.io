@@ -43,25 +43,23 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 ## Template Functions
 
-- Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).  
+- Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
-  
-  
-  - [`append`](#append)
-  - [`checkbox`](#checkbox)
-  - [`date`](#date), [`datetime`](#datetime)
-  - [`even`](#even)
-  - [`field`](#field)
-  - [`msg`](#msg)
-  - [`nl2br`](#nl2br)
-  - [`option`](#option)
-  - [`pad`](#pad)
-  - [`pluralize`](#pluralize)
-  - [`radio`](#radio)
-  - [`raw`](#raw)
-  - [`set`](#set)
-  - [`url`](#url)
-  - [Custom Functions](#CustomFunctions)
+    - [`append`](#append)
+    - [`checkbox`](#checkbox)
+    - [`date`](#date), [`datetime`](#datetime)
+    - [`even`](#even)
+    - [`field`](#field)
+    - [`msg`](#msg)
+    - [`nl2br`](#nl2br)
+    - [`option`](#option)
+    - [`pad`](#pad)
+    - [`pluralize`](#pluralize)
+    - [`radio`](#radio)
+    - [`raw`](#raw)
+    - [`set`](#set)
+    - [`url`](#url)
+    - [Custom Functions](#CustomFunctions)
   
 
   
