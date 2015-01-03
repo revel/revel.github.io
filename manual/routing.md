@@ -149,10 +149,10 @@ the [reverse router](#reverse-routing).
 	GET    /favicon.ico                 Static.Serve("public","img/favicon.png")
     GET    /img/icon.png                Static.Serve("public", "img/icon.png") << space causes error
     
-For serving directories of static assets, Revel provides the **static** module,
+For serving directories of static assets, Revel provides the **static** built in module,
 which contains a single
 [Static](http://godoc.org/github.com/revel/revel/modules/static/app/controllers)
-controller.  Its Serve action takes two parameters:
+controller.  [`Static.Serve`](http://godoc.org/github.com/revel/revel/modules/static/app/controllers#Static.Serve) action takes two parameters:
 
 * `prefix` (string) - A (relative or absolute) path to the asset root.
 * `filepath` (string) - A relative path that specifies the requested file.
@@ -165,7 +165,8 @@ Important:<br>For the two parameters version of <code>Static.Serve</code>, blank
 
 
 - Refer to [organization](organization.html) for the directory layout
-
+- See the godocs for [static.go](http://godoc.org/github.com/revel/revel/modules/static/app/controllers)
+- Issues tagged with [`static`](https://github.com/revel/revel/labels/static)
 
 
 <a name="modules"></a>
@@ -266,5 +267,6 @@ func (c App) ProcessForm(username, input string) revel.Result {
 {% endhighlight %}
 
 <hr>
-See the godocs for [router.go](../docs/godoc/router.html)
+- See the godocs for [router.go](../docs/godoc/router.html)
+- Issues tagged with [`routing`](https://github.com/revel/revel/labels/routing)
 

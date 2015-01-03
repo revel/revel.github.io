@@ -13,7 +13,7 @@ A module should have the [same layout](organization.html#DefaultLayout) as a Rev
 3. The assets are made available, via a route action of the form `Static.ServeModule("modulename","public")`
 4. Routes can be included in your application with the route line of `module:modulename` - see [routing](routing.html#modules)
 
-Revel somes with some built in modules such as [testing](testing.html) and [jobs](jobs.html).
+Revel comes with some built in modules such as [testing](testing.html) and [jobs](jobs.html).
 
 There is also a seperate [modules repository](https://github.com/revel/modules), although this is under development.
 

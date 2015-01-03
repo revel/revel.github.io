@@ -541,3 +541,8 @@ module.mymodulename =
 
 * Allow inserting command line arguments as config values or otherwise
   specifying config values from the command line.
+
+  
+<hr>
+- See the godocs for [config.go](../docs/godoc/config.html)
+- Issues tagged with [`config`](https://github.com/revel/revel/labels/config)

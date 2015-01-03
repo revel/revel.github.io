@@ -48,7 +48,7 @@ into a field.  Interceptors can be applied to one or more controllers.
 - The [`github.com/mattn/go-sqlite3`](https://github.com/mattn/go-sqlite3) package has a five megabyte `.c` file.
 - When building the package, this `.c` file is compiled and building a 5mb `.c` takes a while.
 - So unless you `go install` it. the package is built every time you build a package which depends on it.
-- See [bug 290](https://github.com/revel/revel/issues/290)
+- See [bug 290](https://github.com/revel/revel/issues/290#issuecomment-52385218)
 
 {% raw %}
     go install github.com/mattn/go-sqlite3
