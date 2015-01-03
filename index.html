@@ -10,10 +10,15 @@ title: The Revel Web Framework for Go
     <script src="{{ page.root }}/js/prettify.js" type="text/javascript"></script>
     <script src="{{ page.root }}/js/lang-go-rich.js" type="text/javascript"></script>
     {% include analytics.html %}
+    <style>
+    .revel-top-nav {
+        margin-bottom: 0;
+    }
+    </style>
   </head>
 
   <body onload="prettyPrint()">
-    <a href="https://github.com/revel/revel">
+    <a href="https://github.com/revel/revel" target="_blank">
       <img style="position: absolute; top: 0; right: 0; border: 0; z-index:40000;"
            src="img/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
@@ -109,7 +114,7 @@ title: The Revel Web Framework for Go
           <h1>Quick Start</h1>
         </div>
         <div class="row">
-          <div class="span6">
+          <div class="col-md-6">
             <p>
               Revel ships with <a href="samples/">sample applications</a> to provide examples of
               real-world usage.
@@ -122,8 +127,9 @@ title: The Revel Web Framework for Go
               The commands at right will:
               <ol>
                 <li>Install Revel into your GOPATH
-                <li>Build the Revel command-line tool
-                <li>Run the Chat sample application
+                <li>Install and Build the Revel command-line tool</li>
+                <li>Install the sample applications</li>
+                <li>Run the Chat sample application</li>
               </ol>
               Once it's running, open a browser to
               <a href="http://localhost:9000/">http://localhost:9000/</a>, and
@@ -132,36 +138,21 @@ title: The Revel Web Framework for Go
           </div>
           <div class="col-md-6" style="vertical-align:bottom;">
             <pre>
+  # get revel framework          
+  go get github.com/revel/revel
+  
+  # get 'revel' command
   go get github.com/revel/cmd/revel
+  
+  # get samples and run chat app
+  go get github.com/revel/samples
   revel run github.com/samples/chat
             </pre>
           </div>
         </div>
       </section>
 
-      <section id="development">
-        <div class="page-header">
-          <h1>Development Status <small>Early adopters only.  Pull requests welcome.</small></h1>
-        </div>
-        <p>
-          Development is closing in on the "final" 1.0 design, but the rate of
-          change is still high. Expect to get your hands dirty.
-        </p>
-        <p style="font-weight:bold;">
-          Join our <a href="https://groups.google.com/forum/#!forum/revel-framework">Google Group</a>
-          to take part in the design and development, or in IRC at 
-          <a href="http://webchat.freenode.net/?channels=revel&amp;uio=d4">Freenode #revel</a>.
-          You may join <a href="https://groups.google.com/group/revel-framework-announce">our
-          announcement list</a> to only be notified for new releases.
-        </p>
-        <p>
-          <a href="https://twitter.com/revelframework" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @revelframework</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-          <a href="https://twitter.com/share" class="twitter-share-button" data-via="revelframework" data-size="large" data-count="none" data-hashtags="golang">Tweet</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </p>
-      </section>
 
       <section id="teaser">
         <div class="page-header">
@@ -198,14 +189,14 @@ title: The Revel Web Framework for Go
         </dl>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2 id="routing">Routing</h2>
             <p>
-              Revel uses a declarative routing syntax. It collects all routes
+              Revel uses a declarative <a href="manual/routing.html">routing</a> syntax. It collects all routes
               for an app in a single file, with a simple syntax for matching
               requests, extracting arguments from URIs, and specifying
               route-specific arguments to the action. Here's a commented
-              sample...
+              sample.
             </p>
           </div>
           <div class="col-md-12">
@@ -221,9 +212,9 @@ GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /pu
 *      /:controller/:action  :controller.:action     <b># Catch all; Automatic URL generation</b></pre>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
 						<p>
-							Reverse routes can be generated in a type-safe manner.  For example:
+							<a href="manual/routing.html#ReverseRouting">Reverse routes</a> can be generated in a type-safe manner.  For example:
 						</p>
           </div>
           <div class="col-md-12">
@@ -243,21 +234,21 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2 id="controllers">Controllers</h2>
             <p>
-              All Actions are methods on a Controller.  This teaser shows a couple cool things:
+              All Actions are methods on a <a href="manual/controllers.html">Controller</a>.  This teaser shows a couple cool things:
               <ul>
-                <li> <b>Data binding.</b>  Revel binds simple values and structs from
+                <li> <b>Data binding.</b>  Revel <a href="manual/parameters.html">binds</a> simple values and structs from
                   the URL or form and passes them as parameters to your method.
                   (If you prefer to access them directly from a parameter map, that's ok too!)
-                <li> <b>Validation.</b> Helpers to manage validation errors.
-                <li> <b>Flash.</b> The flash is a cookie that lives for one
+                <li> <b>Validation.</b> Helpers to manage <a href="manual/validation.html">validation</a> errors.
+                <li> <b>Flash.</b> The <a href="manual/sessionflash.html#Flash">flash</a> is a cookie that lives for one
                   request (errors, success messages, etc).
-                <li> <b>Session.</b> The session is a cryptographically signed
+                <li> <b>Session.</b> The <a href="manual/sessionflash.html#Session">session</a> is a cryptographically signed
                   cookie, exposed as a <code>map[string]string</code>.
                 <li> <b>Results.</b> Redirections take advantage of reverse
-                  routing.  Template rendering makes your data available using the
+                  routing.  <a href="manual/templates.html">Template rendering</a> makes your data available using the
                   name of the local variable!
               </ul>
 
@@ -358,7 +349,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
           <div class="col-md-6">
             <h2 id="interceptors">Interceptors</h2>
             <p>
-              Interceptors are controller methods that are run before or after
+              <a href="manual/interceptors.html">Interceptors</a> are controller methods that are run before or after
               requests, or in response to panics.  By embedding a controller
               into another, a developer can share interceptors and fields across
               many controllers.
@@ -446,13 +437,13 @@ select id, hotel_id, user_id, price, nights
           <div class="col-md-6">
             <h2 id="filters">Filters</h2>
             <p>
-              Filters are the middleware of the application.  They are simply
-              funcs with a specific signature:
+              <a href="manual/filters.html">Filters</a> are the middleware of the application.  They are simple
+              functions with a specific signature:
             </p>
             <pre class="prettyprint">
 type Filter func(c *Controller, filterChain []Filter)</pre>
             <p>
-              Even complicated "built-in" functionality like the interceptor
+              Even complicated "built-in" functionality like the <a href="manual/interceptors.html">interceptor</a>
               framework is implemented as a filter:
             </p>
           </div>
@@ -534,6 +525,31 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
 				</div>
       </section>
 
+        <section id="development">
+        <div class="page-header">
+          <h1>Development Status - <small>Early adopters only.  Pull requests welcome.</small></h1>
+        </div>
+        <p>
+          Development is closing in on the "final" 1.0 design, but the rate of
+          change is still high. Expect to get your hands dirty.
+        </p>
+        <p style="font-weight:bold;">
+          Join our <a href="https://groups.google.com/forum/#!forum/revel-framework">Google Group</a>
+          to take part in the design and development, or in IRC at 
+          <a href="http://webchat.freenode.net/?channels=revel&amp;uio=d4">Freenode #revel</a>.
+          You may join <a href="https://groups.google.com/group/revel-framework-announce">our
+          announcement list</a> to only be notified for new releases.
+        </p>
+        <p>
+          <a href="https://twitter.com/revelframework" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @revelframework</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-via="revelframework" data-size="large" data-count="none" data-hashtags="golang">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </p>
+      </section>
+      
+      
       <section id="wishlist">
         <div class="page-header">
           <h1>Wishlist</h1>
