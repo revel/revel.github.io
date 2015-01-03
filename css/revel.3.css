@@ -206,10 +206,15 @@ pre {
     color: #21922F;
     font-weight: bold;
 }
+.highlight .nb {
+    font-weight: bold;
+}
 .highlight .c1 {
     color: #111111;
 }
-
+.highlight .kc {
+    color: #92214E;
+}
 .highlight .language-htmldjango .nv {
      color: #219277;
     font-weight: bold;
