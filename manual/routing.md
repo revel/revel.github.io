@@ -169,7 +169,12 @@ controller.  Its Serve action takes two parameters:
 
 [Modules](modules.html) which contain routes can be imported into your application in two ways:
 
-First method: Importing routes as-is using the following in the `conf/routes` file:
+In the example below, its assumed `mymodule` has a `routes` file containing:
+
+    GET      /gopher        MyModule.FetchGopher
+    POST     /gopher/add    MyModule.AddGopher
+    
+### 1) Importing routes as-is
 
     # mymodule routes 
 	module:mymodule
@@ -177,24 +182,22 @@ First method: Importing routes as-is using the following in the `conf/routes` fi
 	# Other routes
 	GET     /        Application.Index
 	GET     /bar     Application.Bar
+	
+- The routes would be 'imported' into your application with the URL's `/gopher` and `/gopher/add`
 
-Second method: Importing the routes under a prefixed path:
+### 2) Importing the routes under a prefixed path
 
 ~~~
-# mymodule routes with prefix - Must be defined with asterisk `*` for the method
-*       /foo     module:mymodule 
+# mymodule routes with prefix - Must be defined with an asterisk * for the method
+*       /myurl     module:mymodule 
 	
 # Other routes
 GET     /        Application.MyAction
 GET     /foo     Application.FooAction
 ~~~
 
-Assuming `mymodule` has a `routes` file containing:
+- The routes would be imported with the URL's `/myurl/gopher` and `/myurl/gopher/add`.
 
-	GET      /gopher        MyModule.FetchGopher
-	POST     /gopher/add    MyModule.AddGopher
-
-Then in the first example, the routes would be imported into your application with the URL patterns `/gopher` and `/gopher/add`. In the second example, the routes would be imported with the URL patterns `/foo/gopher` and `/foo/gopher/add`.
 
 
 ## Websockets
