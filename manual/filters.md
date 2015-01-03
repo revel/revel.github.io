@@ -109,6 +109,6 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 <div class="alert alert-info">
 Note: this pattern is frequently an indicator that
-[interceptors](interceptors.html) may be a better mechanism to accomplish the
+<a href="interceptors.html"><code>interceptors</code></a>s may be a better mechanism to accomplish the
 desired functionality.
 </div>
