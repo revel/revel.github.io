@@ -4,7 +4,10 @@ DEADbody {
 
 p, li {
   line-height: 1.5em;
+  margin-left: 30px;
+  margin-right: 30px;
 }
+
 
 .hero-unit {
   background-color: #222;
@@ -30,50 +33,18 @@ p, li {
 }
 
 /* Prefer horizontal scroll to wrapping code */
-pre {
+deadpre {
   white-space:pre;
   word-wrap:normal;
   word-break:normal;
   overflow-x:auto;
 }
-
-#deadheader {
-  position: absolute;
-  width: 100%;
-  min-width: 940px;
-  top: 0;
-  height: 60px;
-  border-bottom: 1px solid #322;
-  opacity:0.5;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
+pre {
+    font-size: 12px;   
+    color: #222222;
+    margin-left: 30px;
 }
 
-#deadheader #wrapper {
-  width: 940px;
-  margin: 0 auto;
-  position: relative;
-}
-
-#deadheader #nav {
-  width: 900px;
-  height: 65px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#deadheader #nav li {
-  margin: 0 40px;
-  font-size:28px;
-  line-height: 26px;
-  display: inline;
-}
-
-#deadheader #nav li.active a {
-  font-weight:bold;
-  color:#eee !important;
-}
 
 a {
   color: #0088cc;
@@ -90,30 +61,10 @@ a:hover {
   padding-right: 5px;
 }
 
-.deadnavbar {
-  min-width: 1062px;
-}
-
-.DEADnavbar .container {
-  width: 940px;
-}
 
 
 
-.nav-brand {
-  padding: 0 20px 7px !important;
-}
 
-.deadnavbar .nav > li > a {
-  padding-top: 29px !important;
-  padding-bottom: 5px !important;
-}
-
-.deadnavbar-inner {
-  min-height: 0 !important;
-  height: 55px !important;
-  background: #FFF;
-}
 
 
 .nav-list > .active > a, .nav-list > .active > a:hover {
@@ -155,6 +106,15 @@ ul ul, ul ol, ol ol, ol ul, ul {
     margin: 2px 0 0 0;
 }
 
+/* Top navigation */
+.navbar-static-top ul li a {
+    color: #222222 !important;
+    font-size: 30px;
+    font-family: "Open Sans", sans-serif !important;
+}
+.navbar-static-top ul li.active a {
+    color: #333333 !important;
+}
 /* Left navigation */
 
 .leftnav {
@@ -171,7 +131,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
 }
 
 .leftnav .nav li  a {
-    padding: 2px 0 2px 20px;
+    padding: 3px 0 3px 20px;
 }
 .leftnav .nav li.active a {
   color: #eee !important;
@@ -201,12 +161,18 @@ ul ul, ul ol, ol ol, ol ul, ul {
 
 h2 {
     font-size: 25px;
-    color: #666666 !important;
-    border-bottom: 1px solid #dddddd;
+    color: #4444 !important;
     padding-bottom: 2px;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
+h3 {
+    font-size: 20px;
+    color: #4444 !important;
+    padding-bottom: 2px;
+    margin-top: 25px;
+    margin-left: 30px;
+}
 
 
 

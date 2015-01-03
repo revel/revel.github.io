@@ -3,7 +3,7 @@ title: Filters
 layout: manual
 ---
 
-**Filters** are the middlewareand are individual functions that make up the
+**Filters** are the middleware and are individual functions that make up the
 request processing pipeline.  They execute all of the framework's functionality.
 
 The filter `type` is a simple function:
