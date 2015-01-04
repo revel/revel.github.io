@@ -36,7 +36,7 @@ individual commands.
 
 ## Quick Ref
 
-
+<a name="new"></a>
 
 #### `revel new [import_path] [skeleton]`
 
@@ -45,6 +45,8 @@ Creates a few files to get a new Revel application running quickly.
 - Skeleton is an optional argument, provided as an alternate skeleton path
 
     revel new bitbucket.org/mycorp/my-app
+
+<a name="run"></a>
     
 #### `revel run [import_path] [run_mode] [port]`
 
@@ -54,6 +56,8 @@ Creates a few files to get a new Revel application running quickly.
     // run in prod mode on port 9999
     revel new bitbucket.org/mycorp/my-app prod 9999
     
+<a name="build"></a>
+
 #### `revel build [import_path] [target_path]`
 
 Build the Revel web application named by the given import path. This allows it to be deployed and run on a machine that lacks a Go installation.
@@ -62,7 +66,7 @@ Build the Revel web application named by the given import path. This allows it t
     
 <div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
 
-
+<a name="clean"></a>
     
 #### `revel clean [import_path]`
 
@@ -70,6 +74,8 @@ Clean the Revel web application named by the given import path, removes the `app
 
     revel clean github.com/revel/samples/booking 
 
+<a name="test"></a>
+    
 #### `revel test [import_path] [run_mode] [suite.method]`
 
 Run all tests for the Revel app named by the given import path.

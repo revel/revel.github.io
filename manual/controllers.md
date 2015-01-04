@@ -3,19 +3,27 @@ title: Overview
 layout: manual
 ---
 
-A **Controller** is any type that embeds the [`*revel.Controller`](../docs/godoc/controller.html#Controller).
+A **Controller** is any type that embeds a [`*revel.Controller`](../docs/godoc/controller.html#Controller).
 
 {% highlight go %}
 type MyAppController struct {
 	*revel.Controller
-	OtherStuff string
+}
+type MyOtherController struct {
+    *revel.Controller
+    OtherStuff string
+    ImportanNo int64
 }
 {% endhighlight %}
 
-<div class="alert alert-danger">Note: <code>*revel.Controller</code> must be embedded as the first type in the struct</div>
+<div class="alert alert-danger">Note: <code>*revel.Controller</code> must be 'embedded' as the first type in 
+the struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>, the Go way for 'inheritance'</div>
 
-The `revel.Controller` is the context for the request.  It contains the 
-[`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.  
+The `revel.Controller` is the context for a request and  contains the 
+[`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.
+
+Below are the most used Controller, Request, Params and Response structs and their definitions.
+
 Please refer to [Controller godocs](../docs/godoc/controller.html)
 for the full story; but below is core definition, along with helper types:
 
@@ -37,7 +45,20 @@ type Controller struct {
     RenderArgs map[string]interface{} // Args passed to the template.
     Validation *Validation            // Data validation helpers
 }
+{% endhighlight %}
 
+{% highlight go %}
+type Request struct {
+    *http.Request
+    ContentType string
+    Format          string // "html", "xml", "json", or "txt"
+    AcceptLanguages AcceptLanguages
+    Locale          string
+    Websocket       *websocket.Conn
+}
+{% endhighlight %}
+
+{% highlight go %}
 // These provide a unified view of the request params.
 // Includes:
 // - URL query string
@@ -47,16 +68,9 @@ type Params struct {
     url.Values
     Files map[string][]*multipart.FileHeader
 }
+{% endhighlight %}
 
-type Request struct {
-    *http.Request
-    ContentType string
-    Format          string // "html", "xml", "json", or "txt"
-    AcceptLanguages AcceptLanguages
-    Locale          string
-    Websocket       *websocket.Conn
-}
-
+{% highlight go %}
 type Response struct {
     Status      int
     ContentType string
@@ -67,8 +81,8 @@ type Response struct {
 {% endhighlight %}
 
 - As part of handling a HTTP request, Revel instantiates an instance of a `Controller`.
-- It then sets all of these properties on the embedded `revel.Controller`.  
-- Revel does not share `Controller` instances between requests.
+- It then sets all of the properties on the embedded `revel.Controller`.  
+- Revel does not share a `Controller` instance between requests.
 
 <hr>
 - See the godocs for [controller.go](../docs/godoc/controller.html), [results.go](../docs/godoc/results.html)

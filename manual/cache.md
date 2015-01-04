@@ -5,29 +5,8 @@ layout: manual
 
 Revel provides a [`Cache`](http://godoc.org/github.com/revel/revel/cache#Cache) library for server-side, temporary, low-latency
 storage.  It is a good replacement for frequent database access to slowly
-changing data, and it can also be using for implementing user sessions (if the
-cookie-based sessions are insufficient).
-
-
-## Expiration
-
-Cache items are set with an expiration time, in one of three forms:
-
-* a [`time.Duration`](http://golang.org/pkg/time/#Duration)
-* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#cache))
-* `cache.FOREVER` - will cause the item to never expire.
-
-<div class="alert alert-info"><b>Important</b>: Callers can <b>not</b> rely on items being present in the cache, as
-  the data is not durable, and a cache restart may clear all data.</div>
-
-## Serialization
-
-The Cache getters and setters automatically serialize values for callers, to
-and from any type.  It uses the following mechanisms:
-
-* if the value is already of type `[]byte`, the data is not touched
-* if the value is of any integer type, it is stored as the ASCII representation
-* else, the value is encoded using [`encoding/gob`](http://golang.org/pkg/encoding/gob/)
+changing data. It can also be using for implementing user sessions if for example
+cookie-based sessions are insufficient.
 
 ## Implementations
 
@@ -35,21 +14,46 @@ The Cache may be configured to be backed by one of the following implementations
 
 * a list of [memcached](http://memcached.org/) hosts
 * a single [redis](http://redis.io) host
-* an in-memory implementation
+* the 'in-memory' implementation
+
+## Expiration
+
+Cache items are set with an expiration time, in one of three forms:
+
+* a [`time.Duration`](http://golang.org/pkg/time/#Duration)
+* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#cache))
+* `cache.FOREVER` - will cause the item to never expire
+
+<div class="alert alert-info"><b>Important</b>: Callers can <b>not</b> rely on items being present in the cache, as
+  the data is not durable, and a cache restart may clear all data.</div>
+
+## Serialization
+
+The [`Cache'](http://godoc.org/github.com/revel/revel/cache) getters and setters automatically serialize values for callers, to
+and from any type.  It uses the following mechanisms:
+
+* If the value is already of type `[]byte`, the data is not touched
+* If the value is of any integer type, it is stored as the ASCII representation
+* Else, the value is encoded using [`encoding/gob`](http://golang.org/pkg/encoding/gob/)
+
+
 
 ## Configuration
 
 Configure the cache using these keys in [`conf/app.conf`](appconf.html):
 
-* [`cache.expires`](appconf.html#cacheexpires) - a string accepted by
-  [`time.ParseDuration`](http://golang.org/pkg/time/#ParseDuration) to specify
-  the default expiration duration.  (default 1 hour)
-* [`cache.memcached`](appconf.html#cachememcached) - a boolean indicating whether or not memcached should be
-  used. (default `false`)
-* [`cache.redis`](appconf.html#cacheredis) - a boolean indicating whether or not redis should be
-  used. (default `false`)
-* [`cache.hosts`](appconf.html#cachehosts) - a comma separated list of hosts to use as backends.  If the backend is Redis,
-  then only the first host in this list will be used.
+* [`cache.expires`](appconf.html#cacheexpires) 
+    - a string accepted by  [`time.ParseDuration`](http://golang.org/pkg/time/#ParseDuration) to specify
+        the default expiration duration.  (default 1 hour)
+* [`cache.memcached`](appconf.html#cachememcached) 
+    - a boolean indicating whether or not memcached should be
+        used. (default `false`)
+* [`cache.redis`](appconf.html#cacheredis) 
+    - a boolean indicating whether or not redis should be
+        used. (default `false`)
+* [`cache.hosts`](appconf.html#cachehosts) 
+    - a comma separated list of hosts to use as backends.  If the backend is Redis,
+        then only the first host in this list will be used.
 
 ## Cache Example
 
@@ -96,7 +100,7 @@ func (c App) DeleteProduct(id string) revel.Result {
 
 ## Session usage
 
-The Cache has a global key space -- to use it as a session store, callers should
+The Cache has a global key space,  to use it as a [session](sessionflash.html) store, callers should
 take advantage of the session's UUID, as shown below:
 
 {% highlight go %}

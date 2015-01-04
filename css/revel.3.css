@@ -18,6 +18,7 @@
 
 .hero-img {
   float:left;
+  margin-left: 100px;
 }
 
 .hero-text {
@@ -54,10 +55,6 @@ a:hover {
   background-color: #999 !important;
 }
 
-.navbar .nav .active > a, .navbar .nav .active > a:hover {
-  color: #fff !important;
-  background-color: #999 !important;
-}
 
 .navbar .nav li a {
   font-size: 16px;
@@ -77,6 +74,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
   margin-bottom: 1em;
 }
 
+/************************************************/
 /* revel logo and header */
 .navbar-header {
     width: 250px; 
@@ -89,21 +87,22 @@ ul ul, ul ol, ol ol, ol ul, ul {
     margin: 2px 0 0 0;
 }
 
+/************************************************/
 /* Top navigation */
-
-.revel-top-nav ul li a {
-    color: #222222 !important;
-    font-size: 30px;
-    font-family: "Open Sans", sans-serif !important;
-}
-.revel-top-nav ul li.active a {
-    color: #333333 !important;
-}
 .revel-top-nav li {
     margin-left: 0;
     margin-right: 0;
 }
+.revel-top-nav ul li a {
+    color: #444444 !important;
+    font-size: 36px;
+    font-family: sans-serif !important;
+}
+.revel-top-nav ul li.active a {
+    color: #222222 !important;
+}
 
+/************************************************/
 /* Left navigation */
 
 .leftnav {
@@ -135,7 +134,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
 }
 .page-header h1 {
     color: #666666 !important;
-    font-family: "Open Sans", sans-serif !important;
+    font-family: sans-serif !important;
 }
 .improve-page {
   float: right;
@@ -161,17 +160,18 @@ hr {
 
 
 h2 {
+    font-family: sans-serif !important;
     font-size: 25px;
     color: #4444 !important;
-    padding: 5px;
+    padding: 2px 0 2px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+      -webkit-border-top-right-radius: 12px;
+     -moz-border-top-right-radius: 12px;
+          border-top-right-radius: 12px;
     background-color: #dddddd;
-      -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
 }
 
 h3 {

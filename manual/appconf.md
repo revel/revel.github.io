@@ -16,8 +16,8 @@ app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
 http.addr =
 http.port = 9000
 
-[dev]
 # Development settings
+[dev]
 results.pretty = true
 watch = true
 
@@ -26,10 +26,11 @@ log.info.output  = stderr
 log.warn.output  = stderr
 log.error.output = stderr
 
-[prod]
 # Production settings
+[prod]
 results.pretty = false
 watch = false
+http.port = 9999
 
 log.trace.output = off
 log.info.output  = off

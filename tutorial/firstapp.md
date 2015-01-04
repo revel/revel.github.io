@@ -1,13 +1,12 @@
 ---
-title: The "Hello World" app
+title: The 'Hello World' app
 layout: tutorial
 ---
 
-This article runs through the quick exercise of implementing the "Hello World"
-application from
-[the Play! example](http://www.playframework.org/documentation/1.2.4/firstapp).
+This page runs through the quick exercise of implementing a "Hello World"
+application.
 
-Let's start with the **myapp** project that [we created previously](createapp.html).
+Let's start with the **myapp** project that was [created previously](createapp.html).
 
 Edit the **app/views/App/Index.html** template to add this form, under the
 included `flash.html` template:
@@ -116,3 +115,8 @@ Now when we submit a single letter as our name:
 ![Example error](../img/HelloNameNotLongEnough.png)
 
 Success, we got an appropriate error and our input was saved for us to edit.
+
+<hr>
+#### Next >>
+- Read more the [concepts](../manual/concepts.html)
+- Look at the [samples](../samples/)

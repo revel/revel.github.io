@@ -3,10 +3,24 @@ title: Database
 layout: manual
 ---
 
-Revel does not come *configured* with a database or ORM interface, and its up to the developer what and how to use. 
+Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
 
+- The [booking sample application](../samples/booking.html) has an example ORM using GORM.
+
+## Config
 - The [appconf](appconf.html) does have a [`database`](appconf.html#database) section for usage.
-- The [booking sample app](../samples/booking) has the initialisation for the an example ORM.
+- Use [`revel.Config`](../docs/godoc/config.html) to access.
+{% highlight go %}
+func InitDB() {
+    driver := revel.Config.StringDefault("db.user", "root")
+    connect_string := revel.Config.StringDefault("db.spec", "")
+    
+    Db, err = sql.Open(driver, connect_string)
+    ....
+}
+{% endhighlight %}
+
+
 
 ## Example Db Setup
 

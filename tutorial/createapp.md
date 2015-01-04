@@ -3,7 +3,7 @@ title: Creating a new Revel application
 layout: tutorial
 ---
 
-Use the `revel` [command line tool](../manual/tool.html) to create an empty project in your GOPATH and run it:
+Use the [`revel`](../manual/tool.html#mew) command line tool to create a new application in your GOPATH and run it:
 {% highlight sh %}
 $ export GOPATH="/home/me/gostuff"
 $ cd $GOPATH
@@ -26,8 +26,8 @@ $ revel run myapp
 {% endhighlight %}
 Another Example
 {% highlight sh %}
-$ revel new github.com/myaccount/mynewapp
-$ revel run github.com/myaccount/mynewapp
+$ revel new github.com/myaccount/myapp
+$ revel run github.com/myaccount/myapp
 {% endhighlight %}
 Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a notification that your app is ready.
 
@@ -36,4 +36,4 @@ Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a n
 - The generated project structure is described in [organization](../manual/organization.html)
 - The HTTP port settings is in [`conf/appconf`](../manual/appconf.html#httpport)
 
-**Next: [Learn how Revel handles requests.](requestflow.html)**
+<a href="requestflow.html" class="btn btn-sm btn-success" role="button">Next &gt;&gt;</a> [How Revel handles requests.](requestflow.html)
