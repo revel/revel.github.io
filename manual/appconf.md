@@ -273,38 +273,34 @@ Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
 Revel watches your project and supports hot-reload for a number of types of
 source. To enable watching:
 {% highlight ini %}
-	watch = true
+watch = true
 {% endhighlight %}
-If false, nothing will be watched, regardless of the other `watch.*`
+If `false`, nothing will be watched, regardless of the other `watch.*`
 configuration keys.  (This is appropriate for production deployments)
 
-Default: true
+Default: `true`
 
 
 #### `watch.templates`
 
-If true, Revel will watch your views for changes and reload them as necessary.
-
-Default: true
+If `true` (default `false`), Revel will watch the `views/` template for changes and reload them as necessary.
 
 
 #### `watch.routes`
 
-If true, Revel will watch your `routes` file for changes and reload as
+If `true` (default `false`), Revel will watch the [`routes`](routing.html) file for changes and reload as
 necessary.
 
-Default: true
 
 
 #### `watch.code`
 
-If true, Revel will watch your Go code for changes and rebuild your application
-as necessary.  (This runs the harness as a reverse-proxy to the application)
+If `true`, Revel will watch the Go code for changes and rebuild your application
+as necessary.  This runs the [`harness`](#harnessport) as a reverse-proxy to the application.
 
-All code within the application's `app/` directory (or any sub-directory) is
-watched.
+All code within the application's `app/` directory, or any sub-directory is watched.
 
-Default: true
+Default: `true`
 
 
 ### Cookies
