@@ -98,31 +98,32 @@ nav:
 ---
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     {% include head.html %}   
-  </head>
+</head>
 
-  <body>
+<body>
 
     {% include topnav.html %}
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          {% include leftnav.html %}
-        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {% include leftnav.html %}
+            </div>
 
-        <div class="col-md-9">
-            <div class="page-header">
-                <a href="https://github.com/revel/revel.github.io/edit/develop/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
-                <h1>{{ page.title }}</h1>
-          </div>
-          {{ content }}
-          
-          {% include disqus.html %}
+            <div class="col-md-9">
+                <div class="page-header">
+                    <a href="https://github.com/revel/revel.github.io/edit/develop/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
+                    <h1>{{ page.title }}</h1>
+                </div>
+                {{ content }}
+
+                {% include disqus.html %}
+            </div>
         </div>
-      </div>
-       {% include footer.html %}
+        
+        {% include footer.html %}
     </div>
-  </body>
+</body>
 </html>

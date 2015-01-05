@@ -138,9 +138,9 @@ ul ul, ul ol, ol ol, ol ul, ul {
     font-family: sans-serif !important;
 }
 .improve-page {
-  float: right;
-  margin: 0 2px;
-  position: relative;
+    float: right;
+    margin: 0 2px;
+    position: relative;
 }
 
 /************************************************/
