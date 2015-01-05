@@ -23,18 +23,18 @@ typical Go installation.
             - `models/`          - app domain models
             - `routes/`          - [reverse routes](routing.html#ReverseRouting) (generated code)
             - `views/`           - [templates](templates.html)
-            - `tests/`           -  [test suites](testing.html)
-            - `conf/`            - configuration files
-                - `app.conf`       - [main configuration](appconf.html) file
-                - `routes`         -  [routes](routes.html) definition file
-            - `messages/`        - [message](i18n-messages.html) files
-            - `public/`          - [static/public assets](routing.html#StaticFiles)
-              - `css/`           - stylesheet files
-              - `js/`            - javascript files
-              - `images/`        - image files
+        - `tests/`           -  [test suites](testing.html)
+        - `conf/`            - configuration files
+            - `app.conf`       - [main configuration](appconf.html) file
+            - `routes`         -  [routes](routes.html) definition file
+        - `messages/`        - i18n [message](i18n-messages.html) files
+        - `public/`          - [static/public assets](routing.html#StaticFiles)
+            - `css/`           - stylesheet files
+            - `js/`            - javascript files
+            - `images/`        - image files
 
 
-## The app/ directory
+## app/ directory
 
 The `app/` directory contains the source code and templates for your application.
 
@@ -63,20 +63,19 @@ interceptor definitions into the same file allows the developer to specify (and
 know) the order in which they are run.  (It could also be used for other
 order-sensitive initialization in the future.)
 
-## The conf/ directory
+## conf/ directory
 
 The `conf/` directory contains the application's configuration files. There are
 two main configuration files:
 
-- [`app.conf`](appconf.html) - the main configuration file for the application, which contains
-  standard configuration parameters
+- [`app.conf`](appconf.html) - the main configuration file for the application
 - [`routes`](routing.html) - the URL routing definition file.
 
-## The messages/ directory
+## messages/ directory
 
 The `messages/` directory contains all [localized](i18n-messages.html) message files.
 
-## The public/ directory
+## public/ directory
 
 Resources stored in the `public/` directory are [static assets that are served
 directly by the web server](routing.html#StaticFiles).  Typically it is split into three standard

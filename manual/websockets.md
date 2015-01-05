@@ -12,7 +12,7 @@ To handle a Websocket connection:
 
 See the example [chat application](https://github.com/revel/samples/tree/master/chat)
 
-### Simple example
+## Simple Websocket Example
 
 Add this to the [`conf/routes`](routing.html) file:
 

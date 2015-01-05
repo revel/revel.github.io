@@ -20,7 +20,7 @@ template of the equivalent name, e.g. `app/views/errors/404.html`.
 
 ## Render Context
 
-Revel executes the template using the [`RenderArgs`](../docs/godoc/controller.html#Controller) data map.  Aside from
+Revel executes the template using the [`RenderArgs`](../docs/godoc/controller.html#Controller) data `map[string]interface{}`.  Aside from
 application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by

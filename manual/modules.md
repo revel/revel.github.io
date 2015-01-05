@@ -1,5 +1,5 @@
 ---
-title: Modules
+title: Modules Overview
 layout: manual
 ---
 
@@ -17,9 +17,9 @@ Revel comes with some built in modules such as [testing](testing.html) and [jobs
 
 There is also a seperate [modules repository](https://github.com/revel/modules), although this is under development.
 
-### Enabling a module
+## Enabling a module
 
-In order to add a module to your app, add a line to [`conf/app.conf`](appconf.html):
+In order to add a module to your app, add a line to [`conf/app.conf`](appconf.html#modules):
 {% highlight ini %}
 module.mymodulename = go/import/path/to/module
 {% endhighlight %}
@@ -33,3 +33,6 @@ For example, to enable the [test runner](testing.html) module:
 {% highlight ini %}
 module.testrunner = github.com/revel/modules/testrunner
 {% endhighlight %}
+
+## Routing a module
+- See the [modules config](routing.html#modules) in [`app/routes`](routing.html)

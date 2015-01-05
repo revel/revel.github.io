@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Controllers Overview
 layout: manual
 ---
 
@@ -7,12 +7,12 @@ A **Controller** is any type that embeds a [`*revel.Controller`](../docs/godoc/c
 
 {% highlight go %}
 type MyAppController struct {
-	*revel.Controller
+    *revel.Controller
 }
 type MyOtherController struct {
     *revel.Controller
     OtherStuff string
-    ImportanNo int64
+    MyNo int64
 }
 {% endhighlight %}
 

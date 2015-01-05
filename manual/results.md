@@ -1,5 +1,5 @@
 ---
-title: Results
+title: Results & Responses
 layout: manual
 ---
 
@@ -15,16 +15,24 @@ type Result interface {
 [`revel.Controller`](../docs/godoc/controller.html#Controller) provides a few
 methods to produce Results:
 
-* [Render](#Render), [RenderTemplate](#RenderTemplate) - render a template, passing arguments.
-* [RenderJson](#RenderJson), [RenderXml](#RenderXml) - serialize a structure to json or xml.
-* RenderText - return a plaintext response.
-* [Redirect](#Redirect) - redirect to another action or URL
-* RenderFile - return a file, generally to be downloaded as an attachment.
-* RenderError - return a 500 response that renders the errors/500.html template.
-* NotFound - return a 404 response that renders the errors/404.html template.
-* Todo - return a stub response (500)
+* [Render](#Render), [RenderTemplate](#RenderTemplate) 
+    - render a template, passing arguments.
+* [RenderJson](#RenderJson), [RenderXml](#RenderXml) 
+    - serialize a structure to json or xml.
+* RenderText 
+    - return a plaintext response.
+* [Redirect](#Redirect) 
+    - redirect to another action or URL
+* RenderFile 
+    - return a file, generally to be downloaded as an attachment.
+* RenderError 
+    - return a 500 response that renders the errors/500.html template.
+* NotFound 
+    - return a 404 response that renders the errors/404.html template.
+* Todo 
+    - return a stub response (500)
 
-Additionally, the developer may [define their own `revel.Result`](#CustomResult) and return that.
+Additionally, the developer may [define a custom `revel.Result`](#CustomResult) and return that.
 
 ### Setting the Status Code / Content Type
 
@@ -95,8 +103,8 @@ If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](app
 
 ## Redirect
 
-A helper function is provided for generating redirects.  It may be used in two ways and both 
-return a `302 Temporary Redirect` HTTP status code..
+- A helper function is provided for generating [HTTP redirects](http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx).  
+- It may be used in two ways and both return a `302 Temporary Redirect` HTTP status code..
 
 ### Redirect to an action with no arguments:
 
@@ -115,7 +123,7 @@ return a `302 Temporary Redirect` HTTP status code..
 
 <a name="CustomResult">
 
-## Adding your own Result
+## Custom Result
 
 Below is a simple example of creating a custom `Result`.
 
