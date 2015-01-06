@@ -5,11 +5,14 @@ layout: manual
 
 ## Build and Run
 
-- You must build the `revel` command line tool in order to use Revel:
-- The code is in a seperate repository, and not included with the framework
+- The `revel` command line tool is required to use Revel:
+- The code/app is in a seperate repository ([revel/cmd](https://github.com/revel/cmd)), and not included with the main framework
+- To install, run the command below
 
 	$ go get github.com/revel/cmd/revel
 
+<div class="alert alert-danger">Gotcha: The command is in the subdirectory '/revel' ie <code>revel/cmd/revel</code> and not <code>revel/cmd</code></div>	
+	
 Now run it:
 
 	$ bin/revel
@@ -29,12 +32,14 @@ Now run it:
 
 	Use "revel help [command]" for more information.
 
-Please refer to the tool's built-in help functionality for the latest information on the
-individual commands.
 
-<div class="alert alert-info">If not specified, <code>run_mode</code> defaults to <b>dev</b></div>
 
 ## Quick Ref
+ 
+ - Please refer to the tool's built-in help functionality for the latest information on the individual commands.
+ 
+<div class="alert alert-success">If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
+
 
 <a name="new"></a>
 
@@ -51,10 +56,10 @@ Creates a few files to get a new Revel application running quickly.
 #### `revel run [import_path] [run_mode] [port]`
 
     // run in dev mode
-    revel new bitbucket.org/mycorp/my-app
+    revel run bitbucket.org/mycorp/my-app
     
     // run in prod mode on port 9999
-    revel new bitbucket.org/mycorp/my-app prod 9999
+    revel run bitbucket.org/mycorp/my-app prod 9999
     
 <a name="build"></a>
 
@@ -63,6 +68,17 @@ Creates a few files to get a new Revel application running quickly.
 Build the Revel web application named by the given import path. This allows it to be deployed and run on a machine that lacks a Go installation.
 
     revel build github.org/mememe/mega-app /path/to/deploy/mega-app
+    
+<div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
+
+<a name="package"></a>
+
+#### `revel package [import_path] [run_mode]`
+
+Build the Revel web application named by the given import path. This allows it to be deployed and run on a machine that lacks a Go installation.
+
+    revel package github.com/revel/revel/samples/chat
+    > Your archive is ready: chat.tar.gz
     
 <div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
 

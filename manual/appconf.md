@@ -5,21 +5,25 @@ layout: manual
 
 ## Overview
 
-The application config file is named `app.conf` and uses the syntax accepted by
+The application config file is at `conf/app.conf` and uses the syntax accepted by
 [goconfig](https://github.com/revel/config)  which is similar to 
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
-Here's an example file with two sections for `dev` and `prod`:
+Here's an example file with two sections, `dev` (develop) and `prod` (production).
 {% highlight ini %}
-app.name = chat
+app.name = myapp
 app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-http.addr =
+http.addr = 
 http.port = 9000
+
+my_stuff.foo = 1234
+my_stuff.bar = Sheebang!
 
 # Development settings
 [dev]
 results.pretty = true
 watch = true
+http.addr = 192.168.1.2
 
 log.trace.output = off
 log.info.output  = stderr
@@ -38,13 +42,18 @@ log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
 {% endhighlight %}
 
-- Each section is a **Run Mode**.  
-- The keys at the top level (`app`, `http`) are not within any section and apply to all run modes.  
-- The *keys* under the `[prod]` section applies only to `prod` mode.  
-- This allows default values to be supplied that apply across all modes, and overridden as required.
-- The run mode is chosen at runtime by the argument provided to [`revel run`](tool.html). eg:
-  - `revel run`  - will start `dev` mode as the default
-  - `revel run prod` - will start with `prod` mode.
+## Run Modes
+Each section is a **Run Mode** and selected with the [`revel run`](tool.html#run) command, eg.
+
+    revel run bitbucket.org/mycorp/my-app dev
+
+
+- The keys at the top level (eg `app`, `http`) are not within any `[section]`  and apply to all run modes (ie default).  
+- This allows values to be overridden (or introduced) as required in each run mode `[section]`.
+- Also not in the example above,  *keys* under the `[prod]` section applies only to `prod` mode.  
+- The run mode is chosen at runtime by the argument provided to the [`revel run`](tool.html#run). eg:
+  - `revel run my-app`  - will start in `dev` mode as the default
+  - `revel run my-app prod` - will start with `prod` mode.
 
 Revel creates new apps with **dev** and **prod** run modes defined, but the developer may
 create any sections they wish.
