@@ -159,11 +159,10 @@ Default: no value
 
 #### `app.secret`
 
-The secret key used for cryptographic operations
-([`revel.Sign`](../docs/godoc/util.html#Sign)).  Revel also uses it internally
-to sign session cookies.  Setting it to empty string disables signing.
-
-It is set to a random string when initializing a new project (using `revel new`)
+The secret key used for cryptographic operations, see [`revel.Sign`](../docs/godoc/util.html#Sign).  
+- Revel also uses it internally to sign [session](session.html) cookies.  
+- Setting it to empty string disables signing and is not recommended.
+- It is set to a random string when initializing a new project with [`revel new`](tool.html#new)
 
 Example:
 {% highlight ini %}
@@ -494,20 +493,8 @@ Default: ""
 
 The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJobs) or [ad-hoc](jobs.html#OneOff) jobs.
 
-#### Named schedules
 
-[Named cron schedules](jobs.html#NamedSchedules) may be configured by setting a key of the form:
-{% highlight ini %}
-cron.schedulename = @hourly
-{% endhighlight %}
-The names schedule may be referenced upon submission to the job runner. For
-example:
-{% highlight go %}
-jobs.Schedule("cron.schedulename", job)
-{% endhighlight %}
-
-
-	
+    
 #### `jobs.pool`
 
 - The number of jobs allowed to run concurrently. 
@@ -528,6 +515,21 @@ progress.
 {% highlight ini %}
 jobs.selfconcurrent = true
 {% endhighlight %}
+
+
+#### Named Schedules
+
+[Named cron schedules](jobs.html#NamedSchedules) may be configured by setting a key of the form:
+{% highlight ini %}
+cron.schedulename = @hourly
+{% endhighlight %}
+The names schedule may be referenced upon submission to the job runner. For
+example:
+{% highlight go %}
+jobs.Schedule("cron.schedulename", job)
+{% endhighlight %}
+
+
 
 
 

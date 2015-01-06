@@ -2,7 +2,10 @@
 title: Frequently Asked Questions
 layout: manual
 ---
-#### How do I integrate existing http.Handlers with Revel ?
+
+- [Revel at StackOverflow](http://stackoverflow.com/questions/tagged/revel)
+
+## How do I integrate existing http.Handlers with Revel ?
 
 As shown in the [concept diagram](concepts.html), the http.Handler is where Go
 hands off the user's request for processing.  Revel's handler is extraordinarily
@@ -28,7 +31,7 @@ func init() {
 {% endhighlight %}
 
 
-#### What is the relationship between interceptors, filters, and modules ?
+## What is the relationship between interceptors, filters, and modules ?
 
 1. [Modules](modules.html) are packages that can be plugged into an application. They allow
 sharing of controllers, views, assets, and other code between multiple Revel
@@ -43,7 +46,7 @@ embedding a type imports its interceptors and fields.  This makes interceptors
 useful for things like verifying the login cookie and saving that information
 into a field.  Interceptors can be applied to one or more controllers.
 
-#### Hot Reload is really slow with sqlite3 ?
+## Hot Reload is really slow with sqlite3 ?
 
 - The [`github.com/mattn/go-sqlite3`](https://github.com/mattn/go-sqlite3) package has a five megabyte `.c` file.
 - When building the package, this `.c` file is compiled and building a 5mb `.c` takes a while.
@@ -55,7 +58,7 @@ into a field.  Interceptors can be applied to one or more controllers.
 {% endraw %}
 
 
-### Is there an SMTP mailer ?
+## Is there an SMTP mailer ?
 
 Revel previously had a mailer, but this was removed ([#633](https://github.com/revel/revel/pull/633))
 in favour of a third party flexibility/quality/DRY. See:
