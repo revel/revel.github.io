@@ -54,3 +54,11 @@ into a field.  Interceptors can be applied to one or more controllers.
     go install github.com/mattn/go-sqlite3
 {% endraw %}
 
+
+### Is there an SMTP mailer ?
+
+Revel previously had a mailer, but this was removed ([#633](https://github.com/revel/revel/pull/633))
+in favour of a third party flexibility/quality/DRY. See:
+
+- [github.com/jordan-wright/email](https://github.com/jordan-wright/email)
+- [Native Go](https://github.com/golang/go/wiki/SendingMail)
