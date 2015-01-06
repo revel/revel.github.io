@@ -62,3 +62,4 @@ in favour of a third party flexibility/quality/DRY. See:
 
 - [github.com/jordan-wright/email](https://github.com/jordan-wright/email)
 - [Native Go](https://github.com/golang/go/wiki/SendingMail)
+
