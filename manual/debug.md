@@ -15,12 +15,12 @@ As part of the development cycle, Revel can be configured to 'watch' for local f
 
 Go applications can be debugged using the [GNU Debugger (GDB)](http://www.gnu.org/software/gdb/).
 
-- See Go's [official guide](http://golang.org/doc/gdb)
-- This [lincon loop blog post] (https://lincolnloop.com/blog/introduction-go-debugging-gdb/)
-- This [StackOverflow - Revel debugging HOWTO](http://stackoverflow.com/questions/23952886/revel-debugging-how-to) post 
+- [Debugging with GDB](http://sourceware.org/gdb/current/onlinedocs/gdb/)
+- See Go's [official GDB guide](http://golang.org/doc/gdb)
+- This excellent go example at [lincon loop blog post](https://lincolnloop.com/blog/introduction-go-debugging-gdb/)
+- A [StackOverflow - Revel debugging HOWTO](http://stackoverflow.com/questions/23952886/revel-debugging-how-to) question 
 
-The material below is a quick shortened version of the above and thanks ;-)
+TODO - put example here
 
-*Work in progress* and soon
 
 

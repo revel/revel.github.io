@@ -131,7 +131,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
 .page-header {
     margin: 0px;
     margin: 20px 0 10px 0;
-    border-bottom: 3px solid #dddddd;
+    border-bottom: 1px solid #cccccc;
 }
 .page-header h1 {
     color: #666666 !important;
@@ -178,6 +178,7 @@ h2 {
      -moz-border-top-right-radius: 12px;
           border-top-right-radius: 12px;
     background-color: #dddddd;
+    background-image: linear-gradient(to bottom,#dbdbdb 0,#efefef 100%);
 }
 
 h3 {
