@@ -3,6 +3,11 @@ title: Deployment
 layout: manual
 ---
 
+<div class="alert alert-success">
+Revel does NOT have connection/resource management and all production deployments 
+should have a HTTP proxy that is properly configured in front of all Revel HTTP requests.
+</div>
+
 ## Overview
 
 There are a couple common deployment routes:
