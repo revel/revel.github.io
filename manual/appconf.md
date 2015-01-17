@@ -288,6 +288,12 @@ configuration keys.  (This is appropriate for production deployments)
 
 Default: `true`
 
+#### `watch.mode`
+
+- If `watcher.mode = "eager"`, the server starts to recompile the application every time your application's files change.
+- If `watcher.mode = "normal"`, the server starts recompiles with a request eg abrowser refresh.
+
+Default: `"normal"`
 
 #### `watch.templates`
 
