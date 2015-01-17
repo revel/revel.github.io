@@ -3,13 +3,18 @@ title: Debugging
 layout: manual
 ---
 
-By default, the `revel run` without a [`run_mode`] default to `dev`.
+By default, the [`revel run`](tool.html) command without a [`run_mode`](appconf.html#runmodes) defaults to `dev`.
 
 ## Hot Reload
 
 As part of the development cycle, Revel can be configured to 'watch' for local file changes, and recompile as necessary.
 
 - See the [`watchers`](appconf.html#watchers) in [`conf/appconf`](appconf.html)
+
+## Testing Module
+
+Revel comes with a test suite, see the [Testing Module](testing.html)
+
 
 ## Debug using gdb
 

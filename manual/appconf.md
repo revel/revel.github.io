@@ -290,20 +290,19 @@ Default: `true`
 
 #### `watch.mode`
 
-- If `watcher.mode = "eager"`, the server starts to recompile the application every time your application's files change.
-- If `watcher.mode = "normal"`, the server starts recompiles with a request eg abrowser refresh.
+- If `watcher.mode = "eager"`, the server starts to recompile the application every time the application's files change.
+- If `watcher.mode = "normal"`, the server recompiles with a request eg a browser refresh.
 
 Default: `"normal"`
 
 #### `watch.templates`
 
-If `true` (default `false`), Revel will watch the `views/` template for changes and reload them as necessary.
+If `true` (default `false`), Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
 
 
 #### `watch.routes`
 
-If `true` (default `false`), Revel will watch the [`routes`](routing.html) file for changes and reload as
-necessary.
+If `true` (default `false`), Revel will watch the [`app/routes`](routing.html) file for changes and reload as necessary.
 
 
 
