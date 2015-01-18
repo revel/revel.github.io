@@ -3,43 +3,59 @@ title: Testing
 layout: manual
 ---
 
-Revel provides a testing framework that makes it easy to write and run functional tests against your application.
+Revel provides a testing framework that makes it easy to write and run functional tests against an application.
 
 The [skeleton app](https://github.com/revel/revel/tree/master/skeleton) comes with a simple [`apptest.go`](https://github.com/revel/revel/blob/master/skeleton/tests/apptest.go) to use as a starting point.
 
-## Overview
+## Testing Overview
 
-Tests are kept in the tests directory:
+Tests needs to be in the `tests/` directory:
 
-	corp/myapp
+	myapp/
 		app/
 		conf/
 		public/
 		tests/    <----
 
-A simple test looks like the following:
+A simple test file looks like the following:
 
 {% highlight go %}
-type AppTest struct {
-  revel.TestSuite
+// Must Embed `revel.TestSuite` 
+type MyAppTest struct {
+    revel.TestSuite
 }
 
-func (t *AppTest) Before() {
-	println("Set up")
+// Run this before a request
+func (t *MyAppTest) Before() {
+    println("Set up")
 }
 
-func (t *AppTest) TestThatIndexPageWorks() {
+// Run this after request
+func (t *MyAppTest) After() {
+    println("Tear down")
+}
+
+// Check main page is kinda there
+func (t *MyAppTest) TestIndexPage() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/html")
 }
-
-func (t *AppTest) After() {
-	println("Tear down")
+// Check if robots.txt exists
+func (t *MyAppTest) TestRobotsPage() {
+    t.Get("/robots.txt")
+    t.AssertOk()
+    t.AssertContentType("text/html")
+}
+// Will not appear in panel as it not start with `Test` case sensitive
+func (t *MyAppTest) TEstFavIcon() {
+    t.Get("/favicon.ico")
+    t.AssertOk()
+    t.AssertContentType("text/html")
 }
 {% endhighlight %}
 
-The example code above shows a couple things:
+The example code above shows a vew features things:
 
 * A test suite is any struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite)
 * `Before()` and `After()` are invoked before and after every test method, if present.

@@ -3,14 +3,19 @@ title: Templates
 layout: manual
 ---
 
-Revel uses [Go Templates](http://www.golang.org/pkg/text/template/).  It
+Revel uses Go's built in [html/templates](http://golang.org/pkg/html/template/) package.  It
 searches two directories for templates:
 
-1. Firstly, the application's `app/views/` directory, and all subdirectories.
+1. First, the application's `app/views/` directory and subdirectories.
 2. Then Revel's own `templates/` directory.
+3. Otherwise its an error, template not found
 
-Given a controller named `Hello` with an action named `World`, Revel will
-look for a template file named `views/Hello/World.html`. Template file names
+Given a controller/action `Hello.World()`, Revel will
+- look for a template file named `views/Hello/World.html`. 
+- and if not found, show `views/errors/404.html`
+- and if thats not found, use revels in build `templates/errors/404.html`
+
+Template file names
 are case insensitive so `views/hello/world.html` will work the same as
 `views/HeLlO/wOrLd.HtMl`.
 
