@@ -3,25 +3,30 @@ title: Templates
 layout: manual
 ---
 
-Revel uses Go's built in [html/templates](http://golang.org/pkg/html/template/) package.  It
+Revel uses Go's built in [html/template](http://golang.org/pkg/html/template/) package.  It
 searches two directories for templates:
 
 1. First, the application's `app/views/` directory and subdirectories.
 2. Then Revel's own `templates/` directory.
-3. Otherwise its an error, template not found
+3. Otherwise its a `500` error as template not found (but in [dev mode](appconf.html#run-modes) shows debug info)
 
-Given a controller/action `Hello.World()`, Revel will
+For example, given a controller/action `Hello.World()`, Revel will:
+
 - look for a template file named `views/Hello/World.html`. 
-- and if not found, show `views/errors/404.html`
-- and if thats not found, use revels in build `templates/errors/404.html`
+- and if not found, show `views/errors/500.html`
+- and if thats not found, use revels in build `templates/errors/500.html`
 
-Template file names
-are case insensitive so `views/hello/world.html` will work the same as
-`views/HeLlO/wOrLd.HtMl`.
+Template file names are case insensitive so the following will be treated as the same:
 
-Revel provides templates for error pages and these display the friendly compilation
-errors in [`dev` mode](appconf.html). An application may override them by creating a
-template of the equivalent name, e.g. `app/views/errors/404.html`.
+- `views/hello/world.html`
+- `views/HeLlO/wOrLd.HtMl`
+
+However, on **nix based file systems (and for example with `index.html` and `IndeX.html`), duplicate cased file names are
+to be avoided as its unpredictable which one will be considered.
+
+Revel provides templates for error pages ([see code](https://github.com/revel/revel/tree/master/templates/errors))  and 
+these display the developer friendly compilation errors in [`dev` mode](appconf.html). An 
+application may override them by creating a template of the equivalent template name, e.g. `app/views/errors/404.html`.
 
 ## Render Context
 

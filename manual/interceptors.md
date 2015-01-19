@@ -15,13 +15,13 @@ In Revel, an interceptor can take one of two forms:
 
 1. A [Function Interceptor](docs/godoc/intercept.html#InterceptFunc)
     * A function meeting the [`InterceptorFunc`](../docs/godoc/intercept.html#InterceptorFunc) interface.
-	* Does not have access to specific application Controller invoked.
-	* May be applied to any / all Controllers in an application.
+    * Does not have access to specific application Controller invoked.
+    * May be applied to any / all Controllers in an application.
 
 2. A [Method Interceptor](/docs/godoc/intercept.html#InterceptMethod)
     * A controller method accepting no arguments and returning a [`revel.Result`](results.html).
-	* May only intercept calls to the bound [Controller](controllers.html).
-	* May modify the invoked controller as desired.
+    * May only intercept calls to the bound [Controller](controllers.html).
+    * May modify the invoked controller as desired.
 
 <div class="alert alert-warning">Interceptors are called in the order that they are added.</div>
 
@@ -68,15 +68,15 @@ Here's a simple example defining and registering a Func Interceptor.
 
 {% highlight go %}
 func checkUser(c *revel.Controller) revel.Result {
-	if user := connected(c); user == nil {
-		c.Flash.Error("Please log in first")
-		return c.Redirect(App.Index)
-	}
-	return nil
+    if user := connected(c); user == nil {
+        c.Flash.Error("Please log in first")
+        return c.Redirect(App.Index)
+    }
+    return nil
 }
 
 func init() {
-	revel.InterceptFunc(checkUser, revel.BEFORE, &Hotels{})
+    revel.InterceptFunc(checkUser, revel.BEFORE, &Hotels{})
 }
 {% endhighlight %}
 
@@ -93,15 +93,15 @@ Here's the same example that operates only on the app controller.
 
 {% highlight go %}
 func (c Hotels) checkUser() revel.Result {
-	if user := connected(c); user == nil {
-		c.Flash.Error("Please log in first")
-		return c.Redirect(App.Index)
-	}
-	return nil
+    if user := connected(c); user == nil {
+        c.Flash.Error("Please log in first")
+        return c.Redirect(App.Index)
+    }
+    return nil
 }
 
 func init() {
-	revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
+    revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
 }
 {% endhighlight %}
 

@@ -161,7 +161,7 @@ controller.  [`Static.Serve`](http://godoc.org/github.com/revel/revel/modules/st
 Important:<br>For the two parameters version of <code>Static.Serve</code>, blank spaces are not allowed between
 <code>"</code> and <code>,</code> due to how <a href="http://golang.org/pkg/encoding/csv/"><code>encoding/csv</code></a> works.
 </div>
-
+<div class="alert alert-danger">Static content can only be served from within the application root for security reasons. To include `external assets` consider symbolic links or a git submodule</div>
 
 
 - Refer to [organization](organization.html) for the directory layout
