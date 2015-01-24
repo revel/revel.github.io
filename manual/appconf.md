@@ -502,24 +502,34 @@ The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJo
     
 #### `jobs.pool`
 
-- The number of jobs allowed to run concurrently. 
+- The number of jobs allowed to run concurrently.
 - Default is `10`.
-- If zero `0`, then there is no limit imposed.
+- If zero (`0`), then there is no limit imposed.
 
 {% highlight ini %}
 jobs.pool = 4
 {% endhighlight %}
 
 
-
-
 #### `jobs.selfconcurrent`
 
 If `true` (default is `false`), allows a job to run even if previous instances of that job are still in
 progress.
+
 {% highlight ini %}
 jobs.selfconcurrent = true
 {% endhighlight %}
+
+
+#### `jobs.acceptproxyaddress`
+
+If `true` (default is `false`), the status page will accept the `X-Forwarded-For` header as the remote
+address used to allow or deny public access.
+
+{% highlight ini %}
+jobs.acceptproxyaddress = true
+{% endhighlight %}
+
 
 
 #### Named Schedules
@@ -533,7 +543,6 @@ example:
 {% highlight go %}
 jobs.Schedule("cron.schedulename", job)
 {% endhighlight %}
-
 
 
 

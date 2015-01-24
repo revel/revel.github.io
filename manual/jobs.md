@@ -26,7 +26,8 @@ There are a couple of [configuration settings](appconf.html#jobs) that tell the 
 to place on the jobs that it runs. These are listed below with their default values;
 
 - [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
-- [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent)  -  Allow a job to run only if previous instances are done
+- [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent) - Allow a job to run only if previous instances are done
+- [`jobs.acceptproxyaddress = false`](appconf#jobsacceptproxyaddress) - Accept `X-Forwarded-For` header value to allow or deny status page access
 
 ## Implementing Jobs
 
