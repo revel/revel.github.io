@@ -55,7 +55,7 @@ Another approach would be to create *multiple files* for the *same language* and
 
 <div class="alert alert-block"><strong>Important note:</strong> while it's technically possible to define the same <em>message key</em> in multiple files with the same language, this will result in unpredictable behaviour. When using multiple files per language, take care to keep your message keys unique so that keys will not be overwritten after the files are merged!</div>
 
-### Message keys and values
+### Message keys and valuesr
 
 A message file is for all intents and purposes a [goconfig file](https://github.com/revel/goconfig). This means that messages should be defined according to the tried and
 tested key-value format:
@@ -215,7 +215,12 @@ To resolve messages using the current locale from templates there is a *template
     &#x3c;p&#x3e;Greetings: &#x7b;&#x7b;msg . "greeting.full.name" "Tommy Lee Jones"&#x7d;&#x7d;&#x3c;/p&#x3e;
 </pre>
 
-<div class="alert alert-info"><strong>Note:</strong> the signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</div>
+<div class="alert alert-info"><p><strong>Notes:</strong></p>
+    <ul>
+        <li>The signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</li>
+        <li>The <em>I18nFilter</em> filter must be enabled (default) or the <code>currentLocale</code> RenderArg set for message substituion to work.</li>
+    </ul>
+</div>
 
 ## Configuration
 
