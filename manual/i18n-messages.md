@@ -55,7 +55,7 @@ Another approach would be to create *multiple files* for the *same language* and
 
 <div class="alert alert-block"><strong>Important note:</strong> while it's technically possible to define the same <em>message key</em> in multiple files with the same language, this will result in unpredictable behaviour. When using multiple files per language, take care to keep your message keys unique so that keys will not be overwritten after the files are merged!</div>
 
-### Message keys and valuesr
+### Message keys and values
 
 A message file is for all intents and purposes a [goconfig file](https://github.com/revel/goconfig). This means that messages should be defined according to the tried and
 tested key-value format:
