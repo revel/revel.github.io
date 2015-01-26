@@ -121,7 +121,7 @@ If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](app
 - This form is necessary to pass arguments.
 - It returns a `302 Temporary Redirect` status code.
 
-<a name="CustomResult">
+<a name="CustomResult"></a>
 
 ## Custom Result
 
