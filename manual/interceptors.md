@@ -56,7 +56,7 @@ own Result.
 
 ### Func Interceptor
 
-Here's a simple example defining and registering a Func Interceptor.
+Here's a simple example defining and registering a Func Interceptor for all controller requests.
 
 <pre class="prettyprint lang-go">{% capture guy %}{% raw %}
 func checkUser(c *revel.Controller) revel.Result {
@@ -68,7 +68,7 @@ func checkUser(c *revel.Controller) revel.Result {
 }
 
 func init() {
-	revel.InterceptFunc(checkUser, revel.BEFORE, &Hotels{})
+	revel.InterceptFunc(checkUser, revel.BEFORE, &App{})
 }{% endraw %}{% endcapture %}{{ guy|escape }}
 </pre>
 
