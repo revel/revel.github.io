@@ -263,7 +263,12 @@ To resolve messages using the current locale from [templates](templates.html) th
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-<div class="alert alert-info"><strong>Note:</strong> the signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</div>
+<div class="alert alert-info"><p><strong>Notes:</strong></p>
+    <ul>
+        <li>The signature of the <code>msg</code> function is <code>msg . "message name" "argument" "argument"</code>. If there are no arguments, simply do not include any.</li>
+        <li>The <em>I18nFilter</em> filter must be enabled (default) or the <code>currentLocale</code> RenderArg set for message substitution to work.</li>
+    </ul>
+</div>
 
 <hr>
 See the godocs for [i18n.go](../docs/godoc/i18n.html)
