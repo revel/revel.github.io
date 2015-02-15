@@ -10,7 +10,8 @@ This article walks through the installation process.
 To use Revel, you first need to [install Go](http://golang.org/doc/install).
 
 #### Set up your GOPATH
-
+ - See [Code Organization](http://golang.org/doc/code.html#Organization) and [GOPATH](http://golang.org/doc/code.html#GOPATH) for detailed info.
+ 
 If you did not create a GOPATH as part of installation, do so now.  Your GOPATH
 is a directory tree where all of your Go code will live.  Here are the steps to do that:
 
