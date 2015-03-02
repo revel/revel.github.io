@@ -3,59 +3,52 @@ title: Jobs
 layout: manual
 ---
 
-Revel provides a framework for performing work asynchronously, outside of the
-request flow.  This may take the form of recurring tasks that update cached data
-or one-off tasks for sending emails.
+Revel provides the **jobs** framework for performing work asynchronously, outside of the
+request flow.  This may take the form of [recurring tasks](#jobs) that updates cached data
+or [one-off tasks](#OneOff) such as sending emails.
 
 ## Activation
 
-The framework is included as an optional module, that is not included in your
-application by default.  To activate it, add the module to your app
-configuration:
-
-	module.jobs = github.com/revel/revel/modules/jobs
-
+The framework is included as an optional [module](modules.html), that is not enabled in an
+application by default.  To activate it, add `module.jobs` to the [app.conf](appconf.html) file:
+{% highlight ini %}
+module.jobs = github.com/revel/modules/jobs
+{% endhighlight %}
 Additionally, in order to access the job monitoring page, you will need to add
-this line to your routes:
+this line to the `conf/routes` file, which will insert the `/@jobs` url:
 
 	module:jobs
 
-This statement will insert the `/@jobs` route at that location.
 
 ## Options
 
-There are a couple of options that tell the framework what sort of limitations
-to place on the jobs that it runs.
+There are a couple of [configuration settings](appconf.html#jobs) that tell the framework what sort of limitations
+to place on the jobs that it runs. These are listed below with their default values;
 
-This example shows them set to their default values.
-
-    jobs.pool = 10                # Number of jobs allowed to run simultaneously
-    jobs.selfconcurrent = false   # Allow a job to run only if previous instances are done
+- [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
+- [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent) - Allow a job to run only if previous instances are done
+- [`jobs.acceptproxyaddress = false`](appconf#jobsacceptproxyaddress) - Accept `X-Forwarded-For` header value (which is spoofable) to allow or deny status page access
 
 ## Implementing Jobs
 
-To create a Job, implement the `cron.Job` interface defined by the [Cron API](https://github.com/robfig/cron/).  The `Job` interface has the following signature:
+To create a Job, implement the [`cron.Job`](https://github.com/robfig/cron/) interface.  The `Job` interface has the following signature:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 // https://github.com/robfig/cron/blob/master/cron.go
 type Job interface {
 	Run()
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 For example:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type MyJob struct {}
 
 func (j MyJob) Run() {
    // Do something
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 ## Startup jobs
 
@@ -65,15 +58,15 @@ Revel runs these tasks serially, before starting the server.  Note that this
 functionality does not actually use the jobs module, but it can be used to
 submit a job for execution that doesn't block server startup.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
     revel.OnAppStart(func() { jobs.Now(populateCache{}) })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
-## Recurring jobs
+<a name="RecurringJobs"></a>
+
+## Recurring Jobs
 
 Jobs may be scheduled to run on any schedule.  There are two options for expressing the schedule:
 
@@ -91,11 +84,10 @@ registered at any later time as well.
 
 Here are some examples:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import (
     "github.com/revel/revel"
-    "github.com/revel/revel/modules/jobs/app/jobs"
+    "github.com/revel/modules/jobs/app/jobs"
     "time"
 )
 
@@ -116,42 +108,42 @@ func init() {
         jobs.Every(24 * time.Hour,    ReminderEmails{})
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
+
+<a name="NamedSchedules"></a>
 
 ## Named schedules
 
-You can configure schedules in your `app.conf` file and reference them anywhere.
-This can help provide easy reuse and a useful description for crontab specs.
+You can [configure schedules ](appconf.html#jobs) in the [`app.conf`](appconf.html) file and reference them anywhere.
+This provides an easy way to reuse, and a useful description for crontab specs.
 
-To define your named cron schedule, put this in your `app.conf`:
+Here is an example **named cron schedule**, in an [`app.conf`](appconf.html) file:
 
     cron.workhours_15m = 0 */15 9-17 ? * MON-FRI
 
-Use the named schedule by referencing it anywhere you would have used a
-cron spec.
+Use the named schedule by referencing it anywhere you would have used a cron spec.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func init() {
     revel.OnAppStart(func() {
         jobs.Schedule("cron.workhours_15m", ReminderEmails{})
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
-> Note: Your cron schedule name must begin with "cron."
+> **Note:** The cron schedule name must begin with `cron.`
 
-## One-off jobs
 
-Sometimes you will want to do something in response to a user action.  In these
+<a name="OneOff"></a>
+
+## One-off Jobs
+
+Sometimes it is necessary to do something in response to a user action.  In these
 cases, the jobs module allows you to submit a job to be run a single time.
 
 The only control offered is how long to wait until the job should be run.
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type AppController struct { *revel.Controller }
 
 func (c AppController) Action() revel.Result {
@@ -164,16 +156,14 @@ func (c AppController) Action() revel.Result {
     // Or, send them email asynchronously after a minute.
     jobs.In(time.Minute, SendConfirmationEmail{})
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
 
 ## Registering functions
 
 It is possible to register a `func()` as a job by wrapping it in the `jobs.Func`
 type.  For example:
 
-{% raw %}
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func sendReminderEmails() {
     // Query the DB
     // Send some email
@@ -184,19 +174,23 @@ func init() {
         jobs.Schedule("@midnight", jobs.Func(sendReminderEmails))
     })
 }
-</pre>
-{% endraw %}
+{% endhighlight %}
+
 
 ## Job Status
 
-The jobs module provides a status page that shows a list of the scheduled jobs
-it knows about, their current status (**IDLE** or **RUNNING**), and their
-previous and next run times.
+The jobs module provides a status page (`/@jobs` url) that shows:
+
+- a list of the scheduled jobs it knows about
+- the current status; **IDLE** or **RUNNING**
+- the  previous and next run times
+
+<div class="alert alert-info">For security purposes, the status page is restricted to requests that originate
+from 127.0.0.1.</div>
 
 ![Job Status Page](../img/jobs-status.png)
 
-For security purposes, the status page is restricted to requests that originate
-from 127.0.0.1.
+
 
 ## Constrained pool size
 
@@ -206,12 +200,15 @@ resources that could be potentially in use by asynchronous jobs -- typically
 interactive responsiveness is valued above asynchronous processing.  When a pool
 is full of running jobs, new jobs block to wait for running jobs to complete.
 
-Implementation note: The implementation blocks on a channel receive, which is
-implemented to be FIFO for waiting goroutines (but not specified/required to be
+**Implementation Note**: The implementation blocks on a channel receive, which is
+implemented to be [FIFO](http://en.wikipedia.org/wiki/FIFO) for waiting goroutines (but not specified/required to be
 so). [See here for discussion](https://groups.google.com/forum/?fromgroups=#!topic/golang-nuts/CPwv8WlqKag).
 
-## Areas for development
+## Future areas for development
 
 * Allow access to the job status page with HTTP Basic Authentication credentials
 * Allow administrators to run scheduled jobs interactively from the status page
 * Provide more visibility into the job runner, e.g. the pool size, the job queue length, etc.
+
+<hr>
+- Issues tagged with [`jobs`](https://github.com/revel/revel/labels/jobs)

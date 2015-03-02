@@ -3,59 +3,75 @@ title: Testing
 layout: manual
 ---
 
-Revel provides a testing framework that makes it easy to write and run functional tests against your application.
+Revel provides a testing framework that makes it easy to write and run functional tests against an application.
 
-The skeleton app comes with a simple test to use as a starting point.
+The [skeleton app](https://github.com/revel/revel/tree/master/skeleton) comes with a simple [`apptest.go`](https://github.com/revel/revel/blob/master/skeleton/tests/apptest.go) to use as a starting point.
 
-## Overview
+## Testing Overview
 
-Tests are kept in the tests directory:
+Tests needs to be in the `tests/` directory:
 
-	corp/myapp
+	myapp/
 		app/
 		conf/
 		public/
 		tests/    <----
 
-A simple test looks like the following:
+A simple test file looks like the following:
 
-<pre class="prettyprint lang-go">
-type AppTest struct {
-  revel.TestSuite
+{% highlight go %}
+// Must Embed `revel.TestSuite` 
+type MyAppTest struct {
+    revel.TestSuite
 }
 
-func (t *AppTest) Before() {
-	println("Set up")
+// Run this before a request
+func (t *MyAppTest) Before() {
+    println("Set up")
 }
 
-func (t *AppTest) TestThatIndexPageWorks() {
+// Run this after request
+func (t *MyAppTest) After() {
+    println("Tear down")
+}
+
+// Check main page is kinda there
+func (t *MyAppTest) TestIndexPage() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/html")
 }
-
-func (t *AppTest) After() {
-	println("Tear down")
+// Check if robots.txt exists
+func (t *MyAppTest) TestRobotsPage() {
+    t.Get("/robots.txt")
+    t.AssertOk()
+    t.AssertContentType("text/html")
 }
-</pre>
+// Will not appear in panel as it not start with `Test` case sensitive
+func (t *MyAppTest) TEstFavIcon() {
+    t.Get("/favicon.ico")
+    t.AssertOk()
+    t.AssertContentType("text/html")
+}
+{% endhighlight %}
 
-The example code above shows a couple things:
+The example code above shows a vew features things:
 
-* A test suite is any struct that embeds `revel.TestSuite`
+* A test suite is any struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite)
 * `Before()` and `After()` are invoked before and after every test method, if present.
 * The `revel.TestSuite` provides helpers for issuing requests to your application and for asserting things about the response.
 * An assertion failure generates a panic, which is caught by the test harness.
 
 You may run this test in two ways:
 
-* Interactively, from your web browser, useful during test development.
-* Non-interactively, from the command line, useful for integrating with a continuous build.
+* [Interactively](#interactively) - from your web browser, useful during test development.
+* [Non-interactively](#non-interactively) - from the command line, useful for integrating with a continuous build.
 
 ## Developing a test suite
 
-To create your own test suite, define a struct that embeds `revel.TestSuite`, which provides a HTTP client and a number of helper methods for making requests to your application.
+To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See testing docs](../docs/godoc/tests.html)
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type TestSuite struct {
 	Client       *http.Client
 	Response     *http.Response
@@ -73,9 +89,9 @@ func (t *TestSuite) AssertOk()
 func (t *TestSuite) AssertContentType(contentType string)
 func (t *TestSuite) Assert(exp bool)
 func (t *TestSuite) Assertf(exp bool, formatStr string, args ...interface{})
-</pre>
+{% endhighlight %}
 
-[See the godoc here](../docs/godoc/tests.html)
+
 
 All request methods behave similarly:
 
@@ -90,15 +106,17 @@ All assertions raise a panic if they are not fulfilled.  All panics are caught b
 
 ## Running a test suite
 
-In order to run any tests, the `testrunner` module must be activated.  This is done by including the following line in your `app.conf`:
+In order to run any tests, the `testrunner` [module](modules.html) must be activated.  This is done by including the following line in your [`app.conf`](appconf.html#modules):
 
-	module.testrunner = github.com/revel/revel/modules/testrunner
+	module.testrunner = github.com/revel/modules/testrunner
 	
-You must also import the test module routes, by adding this line to your `routes` file:
+You must also import the test module's routes, by adding this line to your [`routes`](routing.html) file:
 
 	module:testrunner
 
-With that done, the tests may be run interactively or non-interactively.
+With that done, the tests may be run [interactively](#interactively) at the `/@tests` url, or [non-interactively](#non-interactively) on the command line.
+
+<a name="interactively"></a>
 
 ### Running tests interactively
 
@@ -110,13 +128,13 @@ For example, the developer loads `/@tests` in their browser:
 
 Then they add a test method:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (t AppTest) TestSomethingImportant() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/xml")
 }
-</pre>
+{% endhighlight %}
 
 Then they refresh their browser to see their new test:
 
@@ -128,9 +146,9 @@ They run the test:
 
 Uh oh.  It doesn't work.  They fix the code to expect a content type of "text/html" instead of "text/xml":
 
-<pre class="prettyprint lang-go">
-	t.AssertContentType("text/html")
-</pre>
+{% highlight go %}
+t.AssertContentType("text/html")
+{% endhighlight %}
 
 Then they re-run the test:
 
@@ -138,20 +156,23 @@ Then they re-run the test:
 
 Success.
 
+
+<a name="non-interactively"></a>
+
 ### Running tests non-interactively
 
 The Revel [command line tool](tool.html) provides a `test` command that allows all application tests to be run from the command line.
 
 Here is an example session:
 
-	$ revel test github.com/revel/revel/samples/booking dev
+	$ revel test github.com/revel/samples/booking dev
 	~
 	~ revel! http://revel.github.io
 	~
 	INFO  2012/11/09 19:21:02 revel.go:237: Loaded module testrunner
 	Open DB
 	Listening on port 9000...
-	INFO  2012/11/09 19:21:06 test.go:95: Testing Booking example (github.com/revel/revel/samples/booking) in dev mode
+	INFO  2012/11/09 19:21:06 test.go:95: Testing Booking example (github.com/revel/samples/booking) in dev mode
 	Go to /@tests to run the tests.
 
 	1 test suite to run.
@@ -162,12 +183,12 @@ Here is an example session:
 
 You can also run a single test suite, or method within that suite, with a period-separated parameter:
 
-	$ revel test github.com/revel/revel/samples/booking dev ApplicationTest
-	$ revel test github.com/revel/revel/samples/booking dev ApplicationTest.TestThatIndexPageWorks
+	$ revel test github.com/revel/samples/booking dev ApplicationTest
+	$ revel test github.com/revel/samples/booking dev ApplicationTest.TestThatIndexPageWorks
 
 In the console only a simple PASSED/FAILED overview by test suite is displayed.  The tool writes more detailed results to the filesystem:
 
-	$ cd src/github.com/revel/revel/samples/booking
+	$ cd src/github.com/revel/samples/booking
 	$ find test-results
 	test-results
 	test-results/app.log

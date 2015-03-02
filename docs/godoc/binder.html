@@ -3,89 +3,89 @@ layout: godoc
 ---
 
 <!--
-	Copyright 2009 The Go Authors. All rights reserved.
-	Use of this source code is governed by a BSD-style
-	license that can be found in the LICENSE file.
+    Copyright 2009 The Go Authors. All rights reserved.
+    Use of this source code is governed by a BSD-style
+    license that can be found in the LICENSE file.
 -->
 <h1>Binder</h1>
 
-	
-		
-		<!-- The package's Name is printed as title by the top-level template -->
-		
-		
+    
+        
+        <!-- The package's Name is printed as title by the top-level template -->
+        
+        
 
-		<div id="pkg-index" class="toggleVisible">
-		<div class="collapsed">
-			<h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
-		</div>
-		<div class="expanded">
-			<h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
+        <div id="pkg-index" class="toggleVisible">
+        <div class="collapsed">
+            <h2 class="toggleButton" title="Click to show Index section">Index &#9657;</h2>
+        </div>
+        <div class="expanded">
+            <h2 class="toggleButton" title="Click to hide Index section">Index &#9662;</h2>
 
-		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
-			<div id="manual-nav">
-			<dl>
-			
-				<dd><a href="#pkg-constants">Constants</a></dd>
-			
-			
-				<dd><a href="#pkg-variables">Variables</a></dd>
-			
-			
-				
-				<dd><a href="#Bind">func Bind(params *Params, name string, typ reflect.Type) reflect.Value</a></dd>
-			
-				
-				<dd><a href="#BindFile">func BindFile(fileHeader *multipart.FileHeader, typ reflect.Type) reflect.Value</a></dd>
-			
-				
-				<dd><a href="#BindValue">func BindValue(val string, typ reflect.Type) reflect.Value</a></dd>
-			
-				
-				<dd><a href="#Unbind">func Unbind(output map[string]string, name string, val interface{})</a></dd>
-			
-				
-				<dd><a href="#ValueBinder">func ValueBinder(f func(value string, typ reflect.Type) reflect.Value) func(*Params, string, reflect.Type) reflect.Value</a></dd>
-			
-			
-				
-				<dd><a href="#Binder">type Binder</a></dd>
-				
-				
-			
-			
-			</dl>
-			</div><!-- #manual-nav -->
+        <!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+            <div id="manual-nav">
+            <dl>
+            
+                <dd><a href="#pkg-constants">Constants</a></dd>
+            
+            
+                <dd><a href="#pkg-variables">Variables</a></dd>
+            
+            
+                
+                <dd><a href="#Bind">func Bind(params *Params, name string, typ reflect.Type) reflect.Value</a></dd>
+            
+                
+                <dd><a href="#BindFile">func BindFile(fileHeader *multipart.FileHeader, typ reflect.Type) reflect.Value</a></dd>
+            
+                
+                <dd><a href="#BindValue">func BindValue(val string, typ reflect.Type) reflect.Value</a></dd>
+            
+                
+                <dd><a href="#Unbind">func Unbind(output map[string]string, name string, val interface{})</a></dd>
+            
+                
+                <dd><a href="#ValueBinder">func ValueBinder(f func(value string, typ reflect.Type) reflect.Value) func(*Params, string, reflect.Type) reflect.Value</a></dd>
+            
+            
+                
+                <dd><a href="#Binder">type Binder</a></dd>
+                
+                
+            
+            
+            </dl>
+            </div><!-- #manual-nav -->
 
-		
+        
 
-		
-			<h4>File</h4>
-			<p>
-			<span style="font-size:90%">
-			
-				<a href="../src/binder.html">binder.go</a>
-			
-			</span>
-			</p>
-		
-		</div><!-- .expanded -->
-		</div><!-- #pkg-index -->
+        
+            <h4>File</h4>
+            <p>
+            <span style="font-size:90%">
+            
+                <a href="../src/binder.html">binder.go</a>
+            
+            </span>
+            </p>
+        
+        </div><!-- .expanded -->
+        </div><!-- #pkg-index -->
 
-		
-			<h2 id="pkg-constants">Constants</h2>
-			
-				<pre>const (
+        
+            <h2 id="pkg-constants">Constants</h2>
+            
+                <pre>const (
     <span id="DEFAULT_DATE_FORMAT">DEFAULT_DATE_FORMAT</span>     = &#34;2006-01-02&#34;
     <span id="DEFAULT_DATETIME_FORMAT">DEFAULT_DATETIME_FORMAT</span> = &#34;2006-01-02 15:04&#34;
 )</pre>
-				
-			
-		
-		
-			<h2 id="pkg-variables">Variables</h2>
-			
-				<pre>var (
+                
+            
+        
+        
+            <h2 id="pkg-variables">Variables</h2>
+            
+                <pre>var (
     <span class="comment">// These are the lookups to find a Binder for any type of data.</span>
     <span class="comment">// The most specific binder found will be used (Type before Kind)</span>
     <span id="TypeBinders">TypeBinders</span> = <a href="/pkg/builtin/#make">make</a>(map[<a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>]<a href="#Binder">Binder</a>)
@@ -219,58 +219,58 @@ layout: godoc
         <a href="#Unbind">Unbind</a>: <a href="#unbindMap">unbindMap</a>,
     }
 )</pre>
-				
-			
-		
-		
-			
-			
-			<h2 id="Bind">func <a href="../src/binder.html?s=13770:13840#L463">Bind</a></h2>
-			<pre>func Bind(params *<a href="#Params">Params</a>, name <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
-			<p>
+                
+            
+        
+        
+            
+            
+            <h2 id="Bind">func <a href="../src/binder.html?s=13770:13840#L463">Bind</a></h2>
+            <pre>func Bind(params *<a href="#Params">Params</a>, name <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
+            <p>
 Bind takes the name and type of the desired parameter and constructs it
 from one or more values from Params.
 Returns the zero value of the type upon any sort of failure.
 </p>
 
-			
-		
-			
-			
-			<h2 id="BindFile">func <a href="../src/binder.html?s=14099:14178#L474">BindFile</a></h2>
-			<pre>func BindFile(fileHeader *<a href="/pkg/mime/multipart/">multipart</a>.<a href="/pkg/mime/multipart/#FileHeader">FileHeader</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
-			
-			
-		
-			
-			
-			<h2 id="BindValue">func <a href="../src/binder.html?s=13964:14022#L470">BindValue</a></h2>
-			<pre>func BindValue(val <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
-			
-			
-		
-			
-			
-			<h2 id="Unbind">func <a href="../src/binder.html?s=14276:14343#L478">Unbind</a></h2>
-			<pre>func Unbind(output map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>, name <a href="/pkg/builtin/#string">string</a>, val interface{})</pre>
-			
-			
-		
-			
-			
-			<h2 id="ValueBinder">func <a href="../src/binder.html?s=1051:1171#L33">ValueBinder</a></h2>
-			<pre>func ValueBinder(f func(value <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a>) func(*<a href="#Params">Params</a>, <a href="/pkg/builtin/#string">string</a>, <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
-			<p>
+            
+        
+            
+            
+            <h2 id="BindFile">func <a href="../src/binder.html?s=14099:14178#L474">BindFile</a></h2>
+            <pre>func BindFile(fileHeader *<a href="/pkg/mime/multipart/">multipart</a>.<a href="/pkg/mime/multipart/#FileHeader">FileHeader</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
+            
+            
+        
+            
+            
+            <h2 id="BindValue">func <a href="../src/binder.html?s=13964:14022#L470">BindValue</a></h2>
+            <pre>func BindValue(val <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
+            
+            
+        
+            
+            
+            <h2 id="Unbind">func <a href="../src/binder.html?s=14276:14343#L478">Unbind</a></h2>
+            <pre>func Unbind(output map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>, name <a href="/pkg/builtin/#string">string</a>, val interface{})</pre>
+            
+            
+        
+            
+            
+            <h2 id="ValueBinder">func <a href="../src/binder.html?s=1051:1171#L33">ValueBinder</a></h2>
+            <pre>func ValueBinder(f func(value <a href="/pkg/builtin/#string">string</a>, typ <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a>) func(*<a href="#Params">Params</a>, <a href="/pkg/builtin/#string">string</a>, <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Type">Type</a>) <a href="/pkg/reflect/">reflect</a>.<a href="/pkg/reflect/#Value">Value</a></pre>
+            <p>
 An adapter for easily making one-key-value binders.
 </p>
 
-			
-		
-		
-			
-			
-			<h2 id="Binder">type <a href="../src/binder.html?s=191:994#L6">Binder</a></h2>
-			<pre>type Binder struct {
+            
+        
+        
+            
+            
+            <h2 id="Binder">type <a href="../src/binder.html?s=191:994#L6">Binder</a></h2>
+            <pre>type Binder struct {
     <span class="comment">// Bind takes the name and type of the desired parameter and constructs it</span>
     <span class="comment">// from one or more values from Params.</span>
     <span class="comment">//</span>
@@ -295,25 +295,24 @@ An adapter for easily making one-key-value binders.
     <span class="comment">// name.</span>
     Unbind func(output map[<a href="/pkg/builtin/#string">string</a>]<a href="/pkg/builtin/#string">string</a>, name <a href="/pkg/builtin/#string">string</a>, val interface{})
 }</pre>
-			<p>
+            <p>
 A Binder translates between string parameters and Go data structures.
 </p>
 
 
-			
+            
 
-			
+            
 
-			
+            
 
-			
+            
 
-			
-		
-	
+            
+        
+    
 
-	
-
+    
 
 
 
