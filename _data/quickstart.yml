@@ -1,0 +1,24 @@
+- text: Home
+  url: /quickstart/
+- text: Introduction
+  url: /quickstart/introduction/
+  subitems:
+    - text: Concepts
+      url: /quickstart/introduction/concepts/
+    - text: Organization
+      url: /quickstart/introduction/organization/
+- text: Controller
+  url: /quickstart/controller/
+  subitems:
+    - text: Overview
+      url: /quickstart/controller/overview
+    - text: Input
+      url: /quickstart/controller/input
+      subitems:
+          - text: Routing
+            url: /quickstart/controller/input/routing
+          - text: Parameters
+            url: /quickstart/controller/input/parameters
+    - text: Returns
+      url: /quickstart/controller/returns
+
