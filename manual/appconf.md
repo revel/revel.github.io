@@ -573,7 +573,7 @@ module.mymodulename =
  - Disabled by default; does not wrap error location with link.
  - An example using Sublime Text's custom URI scheme:
 {% highlight ini %}
-error.link = "subl://open?url=file://\{\{Path\}\}&line=\{\{Line\}\}"
+error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %}{{Line}}{% endraw %}"
 {% endhighlight %}
 
 
