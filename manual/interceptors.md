@@ -77,8 +77,8 @@ func checkUser(c *revel.Controller) revel.Result {
 
 func init() {
 	revel.InterceptFunc(checkUser, revel.BEFORE, &App{})
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight %}
 
 ### Method Interceptor Example
 
