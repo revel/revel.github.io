@@ -1,32 +1,49 @@
+---
+root: ..
+name: quickstart
+section_title: Revel Quicl Start
+nav:
+-
+  name: QQQQQQQq
+  articles:
+  -
+    title: Concepts
+    url: concepts.html
+  -
+    title: Controller
+    url: concepts.html
+  -
+    title: Organization
+    url: organization.html
+---
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% include head.html %}
-    <link href="{{ page.root }}/css/manual.css" type="text/css" rel="stylesheet" />
-    <link href="{{ page.root }}/css/prettify.css" type="text/css" rel="stylesheet" />
-    <script src="{{ page.root }}/js/prettify.js" type="text/javascript"></script>
-    <script src="{{ page.root }}/js/lang-go-rich.js" type="text/javascript"></script>
-		{% include analytics.html %}
-  </head>
+<head>
+    {% include head.html %}   
+</head>
 
-  <body onload="prettyPrint()">
+<body>
 
     {% include topnav.html %}
 
     <div class="container">
-      <div class="row">
-        <div class="span2">
-          {% include nav.html nav=site.data.quickstart  %}
-        </div>
+        <div class="row">
+            <div class="col-md-3">
+                {% include leftnav.html %}
+            </div>
 
-        <div class="span10">
-          <div class="page-header">
-            <h1>{{ page.title }}</h1>
-            <a href="https://github.com/revel/revel.github.io/edit/master/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
-          </div>
-          {{ content }}
+            <div class="col-md-9">
+                <div class="page-header">
+                    <a href="https://github.com/revel/revel.github.io/edit/develop/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
+                    <h1>{{ page.title }}</h1>
+                </div>
+                {{ content }}
+
+                {% include disqus.html %}
+            </div>
         </div>
-      </div>
+        
+        {% include footer.html %}
     </div>
-  </body>
+</body>
 </html>
