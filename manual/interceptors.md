@@ -64,7 +64,7 @@ In all cases, any returned [Result](results.html) will take the place of any exi
 
 ### Func Interceptor Example
 
-Here's a simple example defining and registering a Func Interceptor.
+Here's a simple example defining and registering a Func Interceptor for all controller requests.
 
 {% highlight go %}
 func checkUser(c *revel.Controller) revel.Result {
@@ -76,9 +76,9 @@ func checkUser(c *revel.Controller) revel.Result {
 }
 
 func init() {
-    revel.InterceptFunc(checkUser, revel.BEFORE, &Hotels{})
-}
-{% endhighlight %}
+	revel.InterceptFunc(checkUser, revel.BEFORE, &App{})
+}{% endraw %}{% endcapture %}{{ guy|escape }}
+</pre>
 
 ### Method Interceptor Example
 
