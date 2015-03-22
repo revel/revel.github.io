@@ -1,23 +1,61 @@
-    <div class="navbar" style="margin:0 auto 2px auto;">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="{{ page.root }}/index.html">
-            <img class="revel-hat-img"
-                 src="{{ page.root }}/img/revelhat.png"
-                 height="40" width="87">
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
-              <li {% if page.layout == 'manual' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/manual/index.html">Manual</a></li>
-              <li {% if page.layout == 'samples' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/samples/index.html">Samples</a></li>
-              <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
-            </ul>
-          </div>
+<div class="navbar navbar-default navbar-static-top revel-top-nav" ssstyle="margin:0 auto 2px auto;">
+    <div class="container">
+        <div class="navbar-header">
+            <a id="revel-logo" href="{{ page.root }}/index.html">
+                <img class="revel-hat-img"
+                    src="{{ page.root }}/img/revelhat.png"
+                    height="40" width="87">
+            </a>
         </div>
-      </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
+                <li {% if page.layout == 'manual' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/manual/index.html">Manual</a></li>
+                <li {% if page.layout == 'samples' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/samples/index.html">Samples</a></li>
+                <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">github <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="https://github.com/revel/" target="github">The Revel project</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Revel core</li>
+                        <li><a href="https://github.com/revel/revel" target="github">Revel source code</a></li>
+                        <li><a href="https://github.com/revel/revel/issues" starget="github">Revel issues</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Revel command</li>
+                        <li><a href="https://github.com/revel/cmd" target="github">Source code</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Samples</li>
+                        <li><a href="https://github.com/revel/samples" target="github">Source code</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="http://godoc.org/github.com/revel/revel" target="_blank">Revel at godoc.org</a></li>
+                        <li><a href="https://groups.google.com/forum/#!forum/revel-framework" target="_blank">Mailing List</a></li>
+                        <li><a href="irc://irc.freenode.net#revel" target="_blank">Chat at irc.freenode.net#revel</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/revel" target="_blank">Revel at StackOverflow</a></li>
+                    </ul>
+                <li>        
+            </ul>
+            {% comment %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Translations <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Chinese</a></li>
+                        <li><a href="#">Russian</a></li>
+                        <li><a href="#">Welsh - TODO</a></li>
+                    </ul>
+                </li>    
+            </ul>  
+            {% endcomment %}
+        </div>
+        
     </div>
+</div>

@@ -1,8 +1,7 @@
 ---
-title: Binding Parameters
-layout: manual
----
-
+layout: quickstart
+title: Quickstart
+--- 
 Revel tries to make the conversion of parameters into their desired Go types as
 easy as possible.  This conversion from string to another type is referred to as
 "data binding".

@@ -11,34 +11,34 @@ Revel provides four loggers:
 * ERROR - someone should take a look at this.
 
 Example usage within a Revel app:
-
-	now := time.Now()
-	revel.TRACE.Printf("%s", now.String())
-
+{% highlight go %}
+now := time.Now()
+revel.TRACE.Printf("%s", now.String())
+{% endhighlight %}
 Each of these is a variable to a default [go logger](http://golang.org/pkg/log/).
 
-Loggers may be configured in [app.conf](appconf.html).  Here is an example:
+Loggers may be configured in [app.conf](appconf.html#Logging).  Here is an example:
+{% highlight ini %}
+app.name = sampleapp
 
-	app.name = sampleapp
+[dev]
+log.trace.output = stdout
+log.info.output  = stdout
+log.warn.output  = stderr
+log.error.output = stderr
 
-	[dev]
-	log.trace.output = stdout
-	log.info.output  = stdout
-	log.warn.output  = stderr
-	log.error.output = stderr
+log.trace.prefix = "TRACE "
+log.info.prefix  = "INFO  "
 
-	log.trace.prefix = "TRACE "
-	log.info.prefix  = "INFO  "
+log.trace.flags  = 10
+log.info.flags   = 10
 
-	log.trace.flags  = 10
-	log.info.flags   = 10
-
-	[prod]
-	log.trace.output = off
-	log.info.output  = off
-	log.warn.output  = log/%(app.name)s.log
-	log.error.output = log/%(app.name)s.log
-
+[prod]
+log.trace.output = off
+log.info.output  = off
+log.warn.output  = log/%(app.name)s.log
+log.error.output = log/%(app.name)s.log
+{% endhighlight %}
 
 In **dev** mode:
 
@@ -59,3 +59,6 @@ the format `01:23:23 /a/b/c/d.go:23 Message` requires the flags
 Areas for development:
 
 * Revel should create the log directory if it does not already exist.
+
+<hr>
+- Issues tagged with [`log`](https://github.com/revel/revel/labels/log)

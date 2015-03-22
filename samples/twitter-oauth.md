@@ -17,7 +17,7 @@ Here are the contents of the app:
 		controllers
 			app.go    # All code
 
-[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/twitter-oauth)
+[Browse the code on Github](https://github.com/revel/samples/tree/master/twitter-oauth)
 
 ## OAuth Overview
 

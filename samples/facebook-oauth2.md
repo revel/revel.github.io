@@ -16,21 +16,21 @@ Here are the contents of the app:
 		controllers
 			app.go    # All code
 
-[Browse the code on Github](https://github.com/revel/revel/tree/master/samples/facebook-oauth2)
+[Browse the code on Github](https://github.com/revel/samples/tree/master/facebook-oauth2)
 
 ## OAuth2 Overview
 
 The entire OAuth process is governed by this configuration:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 var FACEBOOK = &oauth.Config{
 	ClientId:     "95341411595",
 	ClientSecret: "8eff1b488da7fe3426f9ecaf8de1ba54",
 	AuthURL:      "https://graph.facebook.com/oauth/authorize",
 	TokenURL:     "https://graph.facebook.com/oauth/access_token",
 	RedirectURL:  "http://loisant.org:9000/Application/Auth",
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight  %}
 
 Here's an overview of the process:
 
@@ -44,7 +44,7 @@ Here's an overview of the process:
 
 Let's take a look at the first bit of code:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func (c Application) Index() revel.Result {
 	u := c.connected()
 	me := map[string]interface{}{}
@@ -55,8 +55,8 @@ func (c Application) Index() revel.Result {
 
 	authUrl := FACEBOOK.AuthCodeURL("foo")
 	return c.Render(me, authUrl)
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight  %}
 
 It doesn't do much since we don't have an access token yet.  All it does is
 generate an Authorization URL.  ("foo" is the "state", which is a parameter that
@@ -79,7 +79,7 @@ don't, we just ask the user to log in to Facebook.
 Assuming the user does so, the next time we see them is when Facebook sends them
 to `Auth`:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func (c Application) Auth(code string) revel.Result {
 	t := &oauth.Transport{Config: FACEBOOK}
 	tok, err := t.Exchange(code)
@@ -91,14 +91,14 @@ func (c Application) Auth(code string) revel.Result {
 	user := c.connected()
 	user.AccessToken = tok.AccessToken
 	return c.Redirect(Application.Index)
-}{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+}
+{% endhighlight  %}
 
 The `t.Exchange(code)` bit makes a request to the **TokenURL** to get the access
 token.  If successful, we store it on the user.  Either way, the user ends up
 back at `Index`:
 
-<pre class="prettyprint lang-go">{% capture guy %}{% raw %}
+{% highlight go %}
 func (c Application) Index() revel.Result {
 	u := c.connected()
 	me := map[string]interface{}{}
@@ -109,8 +109,9 @@ func (c Application) Index() revel.Result {
 		if err := json.NewDecoder(resp.Body).Decode(&me); err != nil {
 			revel.ERROR.Println(err)
 		}
-{% endraw %}{% endcapture %}{{ guy|escape }}
-</pre>
+		.......
+{% endhighlight  %}
+
 
 Now we have an AccessToken, so we make a request to get the associated user's
 information.  The information gets returned in JSON, so we decode it into a
