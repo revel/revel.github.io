@@ -13,8 +13,11 @@
                     <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
                 <li {% if page.layout == 'manual' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/manual/index.html">Manual</a></li>
+				<li {% if page.layout == 'quickstart' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/quickstart/index.html">Quick Start</a></li>
                 <li {% if page.layout == 'samples' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/samples/index.html">Samples</a></li>
+                    
                 <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
                 <li class="dropdown">
@@ -43,18 +46,6 @@
                     </ul>
                 <li>        
             </ul>
-            {% comment %}
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Translations <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Chinese</a></li>
-                        <li><a href="#">Russian</a></li>
-                        <li><a href="#">Welsh - TODO</a></li>
-                    </ul>
-                </li>    
-            </ul>  
-            {% endcomment %}
         </div>
         
     </div>
