@@ -141,6 +141,7 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Cache](#cache)
 - [Jobs](#jobs)
 - [Modules](#modules)
+- [Error Handling](#error-handling)
 
 
 ### Application settings
@@ -561,6 +562,25 @@ module.testrunner = github.com/revel/modules/testrunner
 # module.mymodulename = /path/to/mymodule 
 module.mymodulename =
 {% endhighlight %}
+
+
+
+
+
+### Error Handling
+
+ - An optional value to wrap error `path` and `line` locations with a hyper link.
+ - Disabled by default; does not wrap error location with link.
+ - An example using Sublime Text's custom URI scheme:
+{% highlight ini %}
+error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %}{{Line}}{% endraw %}"
+{% endhighlight %}
+
+
+
+
+
+
 ## Areas for development
 
 * Allow inserting command line arguments as config values or otherwise
