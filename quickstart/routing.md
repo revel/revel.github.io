@@ -1,9 +1,9 @@
 ---
 layout: quickstart
-title: Quickstart - Input Routing
+title:  Input Routing Quickstart
 --- 
 
-Routes are defined in a separate `routes` file.
+Routes are defined in a separate [`conf/routes`](../manual/routing.html) file.
 
 The basic syntax is:
 
@@ -17,6 +17,8 @@ This example demonstrates all of the features:
 
 module:jobs                                          # Import all routes from the jobs module
 
+GET    /                      App.Index              # Main landing page
+GET    /index                 App.Index              # Main landing page
 GET    /login                 App.Login              # A simple path
 GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ (optional trailing slash)
 GET    /hotels/:id            Hotels.Show            # Extract a URI argument
