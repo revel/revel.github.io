@@ -45,30 +45,34 @@ Now run it:
 
 #### `revel new [import_path] [skeleton]`
 
-Creates a few files to get a new Revel application running quickly. 
+Creates a few files to get a new Revel application running quickly.
+
 - Copies files from the [`revel/skeleton`](https://github.com/revel/revel/tree/master/skeleton) directory
 - Skeleton is an optional argument, provided as an alternate skeleton path
-
+{% highlight sh %}
     revel new bitbucket.org/mycorp/my-app
-
+{% endhighlight %}
 <a name="run"></a>
     
 #### `revel run [import_path] [run_mode] [port]`
-
+{% highlight sh %}
     // run in dev mode
     revel run bitbucket.org/mycorp/my-app
     
     // run in prod mode on port 9999
     revel run bitbucket.org/mycorp/my-app prod 9999
-    
+{% endhighlight %}   
 <a name="build"></a>
 
 #### `revel build [import_path] [target_path]`
 
-Build the Revel web application named by the given import path. This allows it to be deployed and run on a machine that lacks a Go installation.
+- Build the Revel web application named by the given import path. 
+- This allows it to be deployed and run on a machine that lacks a Go installation.
 
+{% highlight sh %}
     revel build github.org/mememe/mega-app /path/to/deploy/mega-app
-    
+{% endhighlight %}   
+
 <div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
 
 <a name="package"></a>
@@ -77,9 +81,11 @@ Build the Revel web application named by the given import path. This allows it t
 
 Build the Revel web application named by the given import path. This allows it to be deployed and run on a machine that lacks a Go installation.
 
+{% highlight sh %}
     revel package github.com/revel/revel/samples/chat
     > Your archive is ready: chat.tar.gz
-    
+{% endhighlight %}
+  
 <div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
 
 <a name="clean"></a>
