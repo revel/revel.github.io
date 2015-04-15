@@ -50,7 +50,7 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 // Example params to binder
 func (c SomeController) Action() revel.Result {
 	var ids []int
-	c.Params.Bind(&amp;ids, "ids")
+	c.Params.Bind(&ids, "ids")
 	...
 }
 {% endhighlight %}
