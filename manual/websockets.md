@@ -21,7 +21,7 @@ Add this to the [`conf/routes`](routing.html) file:
 Then write an action like this:
 
 {% highlight go %}
-import "code.google.com/p/go.net/websocket"
+import "golang.org/x/net/websocket"
 
 func (c App) Feed(user string, ws *websocket.Conn) revel.Result {
 	...
