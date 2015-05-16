@@ -69,7 +69,7 @@ import (
 
 func (c App) ShowProduct(id string) revel.Result {
 	var product *Product 
-	if err := cache.Get("product_"+id, &amp;product); err != nil {
+	if err := cache.Get("product_"+id, &product); err != nil {
 	    product = loadProduct(id)
 	    go cache.Set("product_"+id, product, 30*time.Minute)
 	}
@@ -107,7 +107,7 @@ take advantage of the session's UUID, as shown below:
 cache.Set(c.Session.Id(), products)
 
 // and then in subsequent requests
-err := cache.Get(c.Session.Id(), &amp;products)
+err := cache.Get(c.Session.Id(), &products)
 {% endhighlight %}
 
 <hr>
