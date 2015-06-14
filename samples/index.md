@@ -8,7 +8,7 @@ Revel provides a few sample applications to demonstrate typical usage.
 These are in a separate [github.com/revel/samples](https://github.com/revel/samples/) repository.
 
 {% highlight sh %}
-go get github.com/revel/samples
+go get -d github.com/revel/samples
 revel run github.com/revel/samples/booking
 {% endhighlight  %}
 
