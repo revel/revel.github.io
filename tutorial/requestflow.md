@@ -83,7 +83,7 @@ The template above : -
 1. Adds a new **title** variable to the render context with [set](../manual/templates.html#set).
 2. Includes the **header.html** template, which uses the **title** variable.
 3. Displays a welcome message.
-4. Includes the **flash.html** template, which shows any [flashed](sessionflash.html#Flash) messages.
+4. Includes the **flash.html** template, which shows any [flashed](../manual/sessionflash.html#flash) messages.
 5. Includes the **footer.html**.
 
 If you look at **header.html**, you can see some more template tags in action:
