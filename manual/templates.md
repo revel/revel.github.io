@@ -355,7 +355,7 @@ For example, the header looks like this:
 And templates that include it look like this:
 
 {% capture ex %}{% raw %}
-{{set . title "Hotels"}}
+{{set . "title" "Hotels"}}
 {{append . "moreStyles" "ui-lightness/jquery-ui-1.7.2.custom.css"}}
 {{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
 {{template "header.html" .}}
