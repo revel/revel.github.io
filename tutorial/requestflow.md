@@ -9,12 +9,12 @@ to `http://localhost:9000/` resulting in the welcome message.
 
 ## Routes
 
-The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing)):
+The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing.html)):
 
 	GET     /     App.Index
 
 This tells Revel to invoke the **`Index`** method of the **`App`**
-[controller](../controllers.html) when it receives a http **`GET`** request to **`/`**.
+[controller](../manual/controllers.html) when it receives a http **`GET`** request to **`/`**.
 
 ## Actions
 
@@ -33,7 +33,7 @@ func (c App) Index() revel.Result {
 }
 {% endhighlight %}
 
-All [controllers](../controllers.html) must be a `struct` that embeds a [`*revel.Controller`](../docs/godoc/controller.html)
+All [controllers](../manual/controllers.html) must be a `struct` that embeds a [`*revel.Controller`](../docs/godoc/controller.html)
 in the first slot. Any method on a controller that is
 exported and returns a [`revel.Result`](../manual/results.html) may be used as an **Action**.
 
