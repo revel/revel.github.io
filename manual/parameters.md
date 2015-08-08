@@ -24,7 +24,7 @@ type Params struct {
 }
 {% endhighlight %}
 
-- Golang's native [`url.Values`](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
+- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
 - Revel's data-binding mechanisms helps with non-string values such as dates or floats
 
 ## Action arguments
