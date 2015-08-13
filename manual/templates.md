@@ -53,7 +53,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 ## Template Functions
 
-- Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).
+- Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
     - [`append`](#append)
     - [`checkbox`](#checkbox)
