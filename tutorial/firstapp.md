@@ -20,7 +20,7 @@ Refresh the page to see our work.
 
 ![The Say Hello form](../img/AlohaForm.png)
 
-Let's try submitting that form.
+Enter some data and submit the form.
 
 ![Route not found](../img/HelloRouteNotFound.png)
 
