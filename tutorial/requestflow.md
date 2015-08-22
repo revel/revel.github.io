@@ -9,12 +9,12 @@ to `http://localhost:9000/` resulting in the welcome message.
 
 ## Routes
 
-The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing)):
+The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing.html)):
 
 	GET     /     App.Index
 
 This tells Revel to invoke the **`Index`** method of the **`App`**
-[controller](../controllers.html) when it receives a http **`GET`** request to **`/`**.
+[controller](../manual/controllers.html) when it receives a http **`GET`** request to **`/`**.
 
 ## Actions
 
@@ -33,7 +33,7 @@ func (c App) Index() revel.Result {
 }
 {% endhighlight %}
 
-All [controllers](../controllers.html) must be a `struct` that embeds a [`*revel.Controller`](../docs/godoc/controller.html)
+All [controllers](../manual/controllers.html) must be a `struct` that embeds a [`*revel.Controller`](../docs/godoc/controller.html)
 in the first slot. Any method on a controller that is
 exported and returns a [`revel.Result`](../manual/results.html) may be used as an **Action**.
 
@@ -83,7 +83,7 @@ The template above : -
 1. Adds a new **title** variable to the render context with [set](../manual/templates.html#set).
 2. Includes the **header.html** template, which uses the **title** variable.
 3. Displays a welcome message.
-4. Includes the **flash.html** template, which shows any [flashed](sessionflash.html#Flash) messages.
+4. Includes the **flash.html** template, which shows any [flashed](../manual/sessionflash.html#flash) messages.
 5. Includes the **footer.html**.
 
 If you look at **header.html**, you can see some more template tags in action:

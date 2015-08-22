@@ -28,12 +28,12 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
     <div class="container">
         <div class="row" style="margin-left:-50px;">
             <div style="float: right; margin-top: 10px; margin-right: 30px; font-size: 14pt;">
-		        <small>Latest Release:</small><br>
-		        <b><a href="https://github.com/revel/revel/releases">v{{site.data.version.revel}}</a></b> <br>
-		        <small>{{site.data.version.date}} - Daffodil release</small><br>
-		        Go: v{{site.data.version.golang}} required
-		    </div>
-    
+                <small>Latest Release:</small><br>
+                <b><a href="https://github.com/revel/revel/releases">v{{site.data.version.revel}}</a></b> <br>
+                <small>{{site.data.version.date}} - Daffodil release</small><br>
+                Go: v{{site.data.version.golang}} required
+            </div>
+
             <div class="hero-img"><img src="img/RevelWhiteLines.png" height="500" width="350"></div>
             <div class="hero-text">
                 <h1>Revel</h1>
@@ -87,7 +87,7 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
             </p>
         </div>
     </div>
-      
+
      <!-- framework -->
     <div class="page-header">
         <h1>Framework Design</h1>
@@ -120,7 +120,7 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
             </p>
         </div>
     </div>
-        
+
      <!-- quickstart -->    
     <section id="quickstart">
         <div class="page-header">
@@ -144,7 +144,7 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
             </div>
             <div class="col-md-6" style="vertical-align:bottom;">
 <pre>
-# get revel framework          
+# get revel framework
 go get github.com/revel/revel
 
 # get 'revel' command
@@ -199,7 +199,7 @@ revel new github.com/myaccount/my-app
 
             </dl>
         </div>
-        
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -229,14 +229,14 @@ GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /pu
 
             </div>
         </div>
-       
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <p>
                     <a href="manual/routing.html#ReverseRouting">Reverse routes</a> can be generated in a type-safe manner.  For example:
                 </p>
-          
+
 {% highlight go %}
 // Show the hotel information.
 func (c Hotels) Show(id int) revel.Result {
@@ -583,8 +583,8 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </p>
       </section>
-      
-      
+
+
       <section id="wishlist">
         <div class="page-header">
           <h1>Wishlist</h1>

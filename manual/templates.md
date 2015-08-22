@@ -53,7 +53,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 ## Template Functions
 
-- Go provides a few native [template functions](http://www.golang.org/pkg/text/template/#Functions).
+- Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
 - Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
     - [`append`](#append)
     - [`checkbox`](#checkbox)
@@ -355,7 +355,7 @@ For example, the header looks like this:
 And templates that include it look like this:
 
 {% capture ex %}{% raw %}
-{{set . title "Hotels"}}
+{{set . "title" "Hotels"}}
 {{append . "moreStyles" "ui-lightness/jquery-ui-1.7.2.custom.css"}}
 {{append . "moreScripts" "js/jquery-ui-1.7.2.custom.min.js"}}
 {{template "header.html" .}}

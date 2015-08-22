@@ -24,7 +24,7 @@ type Params struct {
 }
 {% endhighlight %}
 
-- Golang's native [`url.Values`]([godoc](http://www.golang.org/pkg/net/url/#Values)) provides accessors for simple values
+- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
 - Revel's data-binding mechanisms helps with non-string values such as dates or floats
 
 ## Action arguments
@@ -50,7 +50,7 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 // Example params to binder
 func (c SomeController) Action() revel.Result {
 	var ids []int
-	c.Params.Bind(&amp;ids, "ids")
+	c.Params.Bind(&ids, "ids")
 	...
 }
 {% endhighlight %}

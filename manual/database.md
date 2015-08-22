@@ -5,7 +5,7 @@ layout: manual
 
 Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
 
-- The [booking sample application](../samples/booking.html) has an example ORM using GORM.
+- The [booking sample application](../samples/booking.html) has an example ORM using GORP.
 
 ## Config
 - The [appconf](appconf.html) does have a [`database`](appconf.html#database) section for usage.
