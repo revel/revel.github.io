@@ -47,7 +47,7 @@ func (t *MyAppTest) TestRobotsPage() {
     t.AssertOk()
     t.AssertContentType("text/html")
 }
-// Will not appear in panel as it not start with `Test` case sensitive
+// Will not appear in panel as it does not start with `Test`.
 func (t *MyAppTest) TEstFavIcon() {
     t.Get("/favicon.ico")
     t.AssertOk()
@@ -55,12 +55,13 @@ func (t *MyAppTest) TEstFavIcon() {
 }
 {% endhighlight %}
 
-The example code above shows a vew features things:
+The example code above shows a few things:
 
 * A test suite is any struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite)
 * `Before()` and `After()` are invoked before and after every test method, if present.
 * The `revel.TestSuite` provides helpers for issuing requests to your application and for asserting things about the response.
 * An assertion failure generates a panic, which is caught by the test harness.
+* Each test method must contain the case-sensitive prefix 'Test'
 
 You may run this test in two ways:
 
