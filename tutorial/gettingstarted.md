@@ -6,20 +6,22 @@ layout: tutorial
 
 ## Install Go
 
-Before you can use Revel, first need to [install Go](http://golang.org/doc/install).
+Before you can use Revel, first you need to [install Go](http://golang.org/doc/install).
 
-- See official [Install Go](https://golang.org/doc/install) at [https://golang.org](https://golang.org)
+- See the official [Go installation guide](https://golang.org/doc/install).
     - [Ubuntu](https://github.com/golang/go/wiki/Ubuntu)
     - [Windows](https://golang.org/doc/install#windows)
 
 ### Set up your GOPATH
 
-If you did not create a GOPATH as part of installation, do so now.  The `GOPATH`
-is a directory tree where all of your Go code will live.  Here are the steps to do that:
+If you have not created a GOPATH as part of the installation, do so now. The `GOPATH`
+is a directory where all of your Go code will live. Here is one way of setting it up:
 
 1. Make a directory: `mkdir ~/gocode`
 2. Tell Go to use that as your GOPATH: `export GOPATH=~/gocode`
 3. Save your GOPATH so that it will apply to all future shell sessions: `echo export GOPATH=$GOPATH >> ~/.bash_profile`
+
+Note that depending on your shell, you may need to adjust (3) to write the export into a different configuration file (e.g. *~/.bashrc*, *~/.zshrc, etc.).
 
 Now your Go installation is complete.
 
@@ -36,7 +38,7 @@ To get the Revel framework, run
 
 	go get github.com/revel/revel
 
-This command does a couple things:
+This command does a couple of things:
 
 * Go uses git to clone the repository into `$GOPATH/src/github.com/revel/revel/`
 * Go transitively finds all of the dependencies and runs `go get` on them as well.
