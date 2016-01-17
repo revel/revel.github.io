@@ -6,7 +6,7 @@ layout: manual
 ## Overview
 
 The application config file is at `conf/app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/revel/config)  which is similar to 
+[revel/config](https://github.com/revel/config)  which is similar to 
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
 Here's an example file with two sections, `dev` (develop) and `prod` (production).
@@ -41,6 +41,10 @@ log.info.output  = off
 log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
 {% endhighlight %}
+
+<div class="alert alert-info">
+Config values can be accesed via the `revel.Config` variable, more [below](#customproperties)
+</div>
 
 ## Run Modes
 Each section is a **Run Mode** and selected with the [`revel run`](tool.html#run) command, eg.
@@ -102,29 +106,31 @@ log.warn.output = chat.log
 log.error.output = chat.log
 {% endhighlight %}
 
+<a name="customproperties"></a>
 
 ## Custom properties
 
 The developer may define custom keys and access them via the
-[`revel.Config` variable](../docs/godoc/revel.html#variables), which exposes a
-[simple api](../docs/godoc/config.html).
+`revel.Config` variable, which exposes a
+[simple api](https://godoc.org/github.com/revel/revel#MergedConfig).
 
 Example `app.conf` entries:
 {% highlight ini %}
 myapp.remote = 120.2.3.5
 myapp.remote_enabled = true
 {% endhighlight %}
+
 Example go usage:
 {% highlight go %}
 var remote_server string
 if revel.Config.BoolDefault("myapp.remote_enabled", false) {
     remote_server = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
-    init_remote(remote_server)
+    do_something_to( remote_server )
 } 
 {% endhighlight %}
 
 <a name="BuiltinProperties"></a>
-    
+
 ## Built-in properties
 
 - [Application](#application)
@@ -143,6 +149,7 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Modules](#modules)
 - [Error Handling](#error-handling)
 
+<a name="application"></a>
 
 ### Application settings
 
@@ -160,7 +167,7 @@ Default: no value
 
 #### `app.secret`
 
-The secret key used for cryptographic operations, see [`revel.Sign`](../docs/godoc/util.html#Sign).  
+The secret key used for cryptographic operations, see [`revel.Sign`](https://godoc.org/github.com/revel/revel#Sign).  
 - Revel also uses it internally to sign [session](session.html) cookies.  
 - Setting it to empty string disables signing and is not recommended.
 - It is set to a random string when initializing a new project with [`revel new`](tool.html#new)
@@ -171,7 +178,7 @@ Example:
 {% endhighlight %}
 Default: no value
 
-
+<a name="HTTP"></a>
 ### HTTP settings
 
 #### `http.port`
@@ -228,7 +235,7 @@ Specifies the path to an X509 certificate key.
 Default: ""
 
 
-
+<a name="results"></a>
 ### Results
 
 #### `results.chunked`

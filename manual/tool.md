@@ -39,12 +39,10 @@ Now run it:
 
 ## Quick Ref
 
-<div class="alert alert-info">These docs maybe be out of date with current command, expect sync soon</div>
 
-
- - Please refer to the tool's built-in help functionality for the latest information on the individual commands.
+ - Please refer to the tool's built-in help (`revel -h`) for the latest information on the individual commands.
  
-<div class="alert alert-success">If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
+<div class="alert alert-success">NOTE: If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
 
 
 <a name="new"></a>
@@ -56,17 +54,17 @@ Creates a few files to get a new Revel application running quickly.
 - Copies files from the [`revel/skeleton`](https://github.com/revel/revel/tree/master/skeleton) directory
 - Skeleton is an optional argument, provided as an alternate skeleton path
 {% highlight sh %}
-    revel new bitbucket.org/mycorp/my-app
+revel new bitbucket.org/myorg/my-app
 {% endhighlight %}
 <a name="run"></a>
     
 #### `revel run [import_path] [run_mode] [port]`
 {% highlight sh %}
-	// run in dev mode
-	revel run bitbucket.org/mycorp/my-app
+// run in dev mode
+revel run github.com/mycorp/mega-app
 
-	// run in prod mode on port 9999
-    revel run bitbucket.org/mycorp/my-app prod 9999
+// run in prod mode on port 9999
+revel run github.com/mycorp/mega-app prod 9999
 {% endhighlight %}   
 <a name="build"></a>
 

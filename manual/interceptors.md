@@ -3,7 +3,7 @@ title: Interceptors
 layout: manual
 ---
 
-An **interceptor** is a function that is invoked by the framework ''before'' or ''after'' an action invocation.  It allows a form of
+An **interceptor** is a function that is invoked by the framework `BEFORE` or `AFTER` an action invocation.  It allows a form of
 [Aspect Oriented Programming](http://en.wikipedia.org/wiki/Aspect-oriented_programming),
 which is useful for some common concerns such as:
 
@@ -12,18 +12,68 @@ which is useful for some common concerns such as:
 * Statistics logging
 
 In Revel, an interceptor can take one of two forms:
+    
+* A [Function Interceptor](#function_interceptor) 
+* A [Method Interceptor](#method_interceptor)
 
-1. A [Function Interceptor](docs/godoc/intercept.html#InterceptFunc)
-    * A function meeting the [`InterceptorFunc`](../docs/godoc/intercept.html#InterceptorFunc) interface.
-    * Does not have access to specific application Controller invoked.
-    * May be applied to any / all Controllers in an application.
+<div class="alert alert-warning">NOTE: Interceptors are called in the order that they are added.</div>
 
-2. A [Method Interceptor](/docs/godoc/intercept.html#InterceptMethod)
-    * A controller method accepting no arguments and returning a [`revel.Result`](results.html).
-    * May only intercept calls to the bound [Controller](controllers.html).
-    * May modify the invoked controller as desired.
+<a name="function_interceptor"></a>
 
-<div class="alert alert-warning">Interceptors are called in the order that they are added.</div>
+### Function Interceptor
+
+* A function meeting the [`InterceptorFunc`](https://godoc.org/github.com/revel/revel#InterceptorFunc) interface.
+* Does **not have access to the specific** `Controller` invoked.
+* May be applied to any / all Controllers in an application (by adding lines of code).
+
+''eg''
+{% highlight go %}
+// User auth simple example
+func checkUser(c *revel.Controller) revel.Result {
+    if user := check_auth(c); user == nil {
+        c.Flash.Error("Please log in first")
+        return c.Redirect(App.Index)
+    }
+    return nil // cool
+}
+    
+func init() {
+    revel.InterceptFunc(checkUser, revel.BEFORE, &App{})
+    revel.InterceptFunc(checkUser, revel.BEFORE, &AnotherApp{})
+}
+{% endhighlight %}
+
+
+
+<a name="method_interceptor"></a>
+
+### Method Interceptor
+
+* A [`InterceptorMethod`](https://godoc.org/github.com/revel/revel#InterceptorMethod) method accepting no arguments and returning a [`revel.Result`](results.html).
+* May **only intercept calls to the bound** [Controller](controllers.html).
+* May **modify the invoked controller** as desired.
+
+A method interceptor signature may have one of these two forms, or both:
+{% highlight go %}
+func (c AppController) example() revel.Result
+func (c *AppController) example() revel.Result // pointer
+{% endhighlight %}
+
+{% highlight go %}
+func (c Hotels) checkUser() revel.Result {
+    if user := connected(c); user == nil {
+        c.Flash.Error("Please log in first")
+        return c.Redirect(App.Index)
+    }
+    return nil
+}
+    
+func init() {
+    revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
+}
+{% endhighlight %}
+        
+
 
 ## Intercept Times
 
