@@ -15,7 +15,9 @@ In Revel, an interceptor can take one of two forms:
     
 * A [Function Interceptor](#function_interceptor) 
 * A [Method Interceptor](#method_interceptor)
-* And its [intercept](#intercept_times) point in the request, ie [`When()`](../docs/godoc/intercept.html#When)
+
+An Interceptor has an [intercept](#intercept_times) point in the request ([`When`](https://godoc.org/github.com/revel/revel#When)) 
+and returns a [Result](#results) or `nil`.
 
 <div class="alert alert-warning">NOTE: Interceptors are called in the order that they are added.</div>
 
@@ -37,12 +39,14 @@ func checkUser(c *revel.Controller) revel.Result {
         c.Flash.Error("Please log in first")
         return c.Redirect(App.Index)
     }
-    return nil // cool
+    return nil
 }
-    
+func doNothing(c *revel.Controller) revel.Result { return nil }
+
 func init() {
     revel.InterceptFunc(checkUser, revel.BEFORE, &App{})
-    revel.InterceptFunc(checkUser, revel.BEFORE, &Another{})
+    revel.InterceptFunc(doNothing, revel.AFTER, &App{})
+    revel.InterceptFunc(checkUser, revel.BEFORE, &AnotherController{})
 }
 {% endhighlight %}
 
@@ -55,12 +59,10 @@ func init() {
 * A [`InterceptorMethod`](https://godoc.org/github.com/revel/revel#InterceptorMethod) method accepting no arguments and returning a [`revel.Result`](results.html).
 * May **only intercept calls to the bound** [Controller](controllers.html).
 * May **modify the invoked controller** as desired.
+* A method interceptor signature may have one of these two forms, or both:
+  * `func (c AppController) example() revel.Result`
+  * `func (c *AppController) example() revel.Result // pointer`
 
-A method interceptor signature may have one of these two forms, or both:
-{% highlight go %}
-func (c AppController) example() revel.Result
-func (c *AppController) example() revel.Result // pointer
-{% endhighlight %}
 
 {% highlight go %}
 // Silly method example
@@ -84,7 +86,7 @@ func init() {
 
 ## Intercept Times
 
-An interceptor can be registered to run at four points in the request lifecycle; defined in [`When()`](../docs/godoc/intercept.html#When):
+An interceptor can be registered to run at four points in the request lifecycle; defined in [`When()`](https://godoc.org/github.com/revel/revel#When):
 
 1. **BEFORE**
     * After the request has been [routed](routing.html), the [session, flash](sessionflash.html), and [parameters](parameters.html) decoded, but before the action has been invoked.
@@ -95,13 +97,16 @@ An interceptor can be registered to run at four points in the request lifecycle;
 4. **FINALLY**
     * After an action has completed and the Result has been applied.
 
+
+<a name="results"></a>
+
 ## Results
 
 Interceptors typically return `nil`, in which case the request continues to
 be processed without interruption.
 
-The effect of returning a non-`nil` `revel.Result` depends on when the interceptor
-was invoked (see [`When()`](../docs/godoc/intercept.html#When)).
+The effect of returning a non-`nil` [`revel.Result`](results.html) depends on [`When()`](https://godoc.org/github.com/revel/revel#When) the interceptor
+was invoked.
 
 1. **BEFORE** 
     -  No further interceptors are invoked, and neither is the action.
