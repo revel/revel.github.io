@@ -67,7 +67,7 @@ code {
 }
 
 a code {
-  color: #08C;
+    color: #3050D8;
 }
 
 ul ul, ul ol, ol ol, ol ul, ul {
@@ -168,17 +168,15 @@ hr {
 h2 {
     font-family: sans-serif !important;
     font-size: 25px;
-    color: #4444 !important;
-    padding: 2px 0 2px 6px;
+    color: #eeeeee !important;
+    padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
-    border-top: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-      -webkit-border-top-right-radius: 12px;
-     -moz-border-top-right-radius: 12px;
-          border-top-right-radius: 12px;
-    background-color: #dddddd;
-    background-image: linear-gradient(to bottom,#dbdbdb 0,#efefef 100%);
+    border-top: 1px solid #aaaaaa;
+    border-right: 1px solid #aaaaaa;
+    border-top-right-radius: 20px;
+    background-color: #777777;
+    /*background-image: linear-gradient(to bottom,#cccccc 0,#efefef 100%); */
 }
 
 h3 {
@@ -186,11 +184,11 @@ h3 {
     color: #4444 !important;
     padding: 4px 6px;
     margin-top: 25px;
-    margin-left: 15px;
-    background-color: #dddddd;
+    margin-left: 2px;
+    background-image: linear-gradient(to bottom,#eeeeee 0,#efefef 100%);
     border: 1px solid #aaaaaa;
-    border-left: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
+    border-left: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
     border-top-right-radius: 20px;
 }
 
@@ -218,18 +216,17 @@ h4 code {
 
 
 /* pygments and code */
-deadpre {
-  white-space:pre;
-  word-wrap:normal;
-  word-break:normal;
-  overflow-x:auto;
-}
-pre {
+
+.highlight pre, pre {
+    border: none;
     font-size: 12px;   
     color: #222222;
-    margin-left: 15px;
+    background-color: #eeeeee;
+    box-shadow: 10px 10px 23px -8px rgba(158,158,158,1);
+    margin: 10px 30px 10px 30px;
+    border-radius: 5px;
     font-family: monospace;
-    white-space:pre;
+    white-space: pre;
 }
 
 .highlight .kd {

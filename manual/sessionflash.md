@@ -19,6 +19,14 @@ type Flash struct {
 }
 {% endhighlight %}
 
+NOTE: To set your own cookie, use [`Controller.SetCookie()`](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
+{% highlight go %}
+func (c MyController) MyAction() revel.Result {
+    new_cookie := &http.Cookie{Name: "foo", Value: "Bar"}
+    c.SetCookie(new_cookie)
+    return c.Render()
+}
+{% endhighlight %}
 
 ## Session
 
@@ -34,6 +42,15 @@ The default lifetime of the session cookie is the browser lifetime.  This
 can be overriden to a specific amount of time by setting the [session.expires](appconf.html#session.expires)
 option in [conf/app.conf](appconf.html).  The format is that of
 [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
+
+{% highlight go %}
+func (c MyController) MyAction() revel.Result {
+    c.Session["foo"] = "bar"
+    c.Session["bar"] = 1 // Error - value needs to be a string
+    delete(c.Session, "abc") // Removed item from session
+    return c.Render()
+}
+{% endhighlight %}
 
 
 ## Flash
@@ -93,6 +110,6 @@ expressions:
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <hr>
-- See the godocs for [session.go](../docs/godoc/session.html), [flash.go](../docs/godoc/flash.html)
-- Issues tagged with [`session`](https://github.com/revel/revel/labels/session)
+- See the godocs for [`Session`](https://godoc.org/github.com/revel/revel#Session) and [`Flash`](https://godoc.org/github.com/revel/revel#Flash)
+- Issues tagged with [session](https://github.com/revel/revel/labels/session)
 
