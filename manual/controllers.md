@@ -3,7 +3,7 @@ title: Controllers Overview
 layout: manual
 ---
 
-A **Controller** is any type that embeds a [`*revel.Controller`](../docs/godoc/controller.html#Controller).
+A **Controller** is any type that embeds a [`*revel.Controller`](https://godoc.org/github.com/revel/revel#Controller).
 
 {% highlight go %}
 type MyAppController struct {
@@ -20,12 +20,9 @@ type MyOtherController struct {
 the struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>, the Go way for 'inheritance'</div>
 
 The `revel.Controller` is the context for a request and  contains the 
-[`request`](../docs/godoc/http.html#Request) and [`response`](../docs/godoc/http.html#Response) data.
+[`Request`](https://godoc.org/github.com/revel/revel#Request) and [`Response`](https://godoc.org/github.com/revel/revel#Response) data.
 
 Below are the most used Controller, Request, Params and Response structs and their definitions.
-
-Please refer to [Controller godocs](../docs/godoc/controller.html)
-for the full story; but below is core definition, along with helper types:
 
 {% highlight go %}
 type Controller struct {
@@ -85,5 +82,5 @@ type Response struct {
 - Revel does not share a `Controller` instance between requests.
 
 <hr>
-- See the godocs for [controller.go](../docs/godoc/controller.html), [results.go](../docs/godoc/results.html)
-- Issues tagged with [`controller`](https://github.com/revel/revel/labels/controller)
+- See the godocs for [`Controller`](https://godoc.org/github.com/revel/revel#Controller)
+- Issues tagged with [controller](https://github.com/revel/revel/labels/%23controller)
