@@ -67,7 +67,7 @@ Called within an action (e.g. "Controller.Action"),
  1. Adds all arguments to the controller's `RenderArgs`, using their local identifier as the key.
  2. Executes the template "views/Controller/Action.html", passing in the controller's `RenderArgs` as the data map.
 
-If unsuccessful (e.g. it could not find the template), it returns an `ErrorResult` instead.
+If unsuccessful (e.g. it could not find the template), an [`ErrorResult`](https://godoc.org/github.com/revel/revel#ErrorResult) is returned instead.
 
 This allows the developer to write:
 
@@ -85,9 +85,10 @@ handled as a local variable anyway.
 <div class="alert alert-info">Note: Revel looks at the calling method name to determine the Template
 path and to look up the argument names.  Therefore, `c.Render()` may only be  called from Actions.</div>
 
-{% highlight go %}
+{% capture ex_render %}{% raw %}
 // Example using mix of render args and variables
-// This renders the `views/MyController/showSutuff.html` template
+// This renders the `views/MyController/showSutuff.html` template as
+// eg <pre>foo={{.foo}} bar={{.bar}} abc={{.abc}} xyz={{.xyz}}</pre>
 func (c MyController) ShowStuff() revel.Result {
     c.RenderArgs["foo"] = "bar"
     c.RenderArgs["bar"] = 1
@@ -102,7 +103,9 @@ func (c MyController) XTemp() revel.Result {
     c.RenderArgs["bar"] = 1
     return c.RenderTemplate("Foo/boo.xhtml")
 }
-{% endhighlight %}
+{% endraw %}{% endcapture %}
+
+{% highlight go %}{{ex_render}}{% endhighlight %}
 
 <a name="RenderJson"></a><a name="RenderXml"></a>
 

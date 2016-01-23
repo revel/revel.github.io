@@ -61,13 +61,15 @@ a:hover {
 }
 
 code {
-  color: #a14;
-  background: 0;
-  border: 0;
+    color: #196497;
+    background: 0;
+    border: 0;
+    font-family: monospace
 }
 
 a code {
-    color: #3050D8;
+    color: #196497;
+    text-decoration: none;
 }
 
 ul ul, ul ol, ol ol, ol ul, ul {
