@@ -3,7 +3,7 @@ title: URL Routing
 layout: manual
 ---
 
-URL's and Routes are defined in the `conf/routes` file, and the basic syntax is three columns as example below:
+URLs and Routes are defined in the `conf/routes` file, and the basic syntax is three columns as example below:
 
     [METHOD] [URL Pattern] [Controller.Action]
     GET      /             MySite.Welcome
