@@ -14,7 +14,7 @@ For example, given a controller/action `Hello.World()`, Revel will:
 
 - look for a template file named `views/Hello/World.html`. 
 - and if not found, show `views/errors/500.html`
-- and if thats not found, use revels in build `templates/errors/500.html`
+- and if that's not found, use Revel's built-in `templates/errors/500.html`
 
 Template file names are case insensitive so the following will be treated as the same:
 
