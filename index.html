@@ -26,19 +26,26 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
 <!-- Banner at top -->
 <header class="hero-unit">
     <div class="container">
-        <div class="row" style="margin-left:-50px;">
-            <div style="float: right; margin-top: 10px; margin-right: 30px; font-size: 14pt;">
-                <small>Latest Release:</small><br>
-                <b><a href="https://github.com/revel/revel/releases">v{{site.data.version.revel}}</a></b> <br>
-                <small>{{site.data.version.date}} - Daffodil release</small><br>
-                Go: v{{site.data.version.golang}} required
-            </div>
+        <div class="row">
+            <br />
+                <div class="col-md-4">
+                    <!-- Image -->
+                    <img src="img/RevelWhiteLines.png" width="250">
+                </div>
+                <div class="col-md-8">
+                    <h1>Revel</h1>
+                    <small style="font-size: 14pt;">A high-productivity web framework for the Go language.</small>
+                    
+                    <br /><br /><br />
 
-            <div class="hero-img"><img src="img/RevelWhiteLines.png" height="500" width="350"></div>
-            <div class="hero-text">
-                <h1>Revel</h1>
-                <p>A high-productivity web framework for the Go language.</p>
-            </div>
+                    <div style="font-size: 14pt;">
+                        <small>Latest Release:</small><br><br>
+                        <b><a href="https://github.com/revel/revel/releases">v{{site.data.version.revel}}</a></b> <br>
+                        <small>{{site.data.version.date}} - Daffodil release</small><br>
+                        Go: v{{site.data.version.golang}} required
+                    </div>
+                </div>
+            <br /><br />
         </div>
     </div>
 </header>
@@ -49,87 +56,97 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
 
     <!-- features -->
     <div class="page-header">
-        <h1>Features</h1>
+        <h1 style="font-size: 18pt;">Features</h1>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <h2>Hot Code Reload</h2>
-            <p>
-                Edit, save, and refresh.  Revel compiles your code and templates for
-                you, so you don't miss a beat.  Code doesn't compile?  It gives you a
-                <a href="img/CompilationError.png">helpful description</a>.
-                Run-time code panic?  Revel <a href="img/Panic.png">has you
-                covered</a>.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Comprehensive</h2>
-            <p>
-                Revel provides
-                <a href="manual/routing.html">routing</a>,
-                <a href="manual/parameters.html">parameter parsing</a>,
-                <a href="manual/validation.html">validation</a>,
-                <a href="manual/sessionflash.html">session/flash</a>,
-                <a href="manual/templates.html">templating</a>,
-                <a href="manual/cache.html">caching</a>,
-                <a href="manual/jobs.html">job running</a>,
-                <a href="manual/testing.html">a testing framework</a>,
-                and even <a href="manual/i18n-messages.html">internationalization</a>.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>High Performance</h2>
-            <p>
-                Revel builds on top of the Go HTTP server, which was
-                <a href="http://www.techempower.com/benchmarks/#section=data-r8">recently
-                benchmarked</a> to serve <b>three to ten times</b> as many requests
-                as Rails across a variety of loads.
-            </p>
+        <div class="col-md-12">
+            <div class="col-md-4" style="background-color: rgb(248, 248, 248);">
+                <p>
+                    <h1 style="font-size: 15pt;">Hot Code Reload</h1>
+                    Edit, save, and refresh.  Revel compiles your code and templates for
+                    you, so you don't miss a beat.  Code doesn't compile?  It gives you a
+                    <a href="img/CompilationError.png">helpful description</a>.
+                    Run-time code panic?  Revel <a href="img/Panic.png">has you
+                    covered</a>.
+                </p>
+            </div>
+            <div class="col-md-4" style="background-color: rgb(239, 239, 239);"> 
+                <p>
+                    <h1 style="font-size: 15pt;">Comprehensive</h1>
+                    Revel provides
+                    <a href="manual/routing.html">routing</a>,
+                    <a href="manual/parameters.html">parameter parsing</a>,
+                    <a href="manual/validation.html">validation</a>,
+                    <a href="manual/sessionflash.html">session/flash</a>,
+                    <a href="manual/templates.html">templating</a>,
+                    <a href="manual/cache.html">caching</a>,
+                    <a href="manual/jobs.html">job running</a>,
+                    <a href="manual/testing.html">a testing framework</a>,
+                    and even <a href="manual/i18n-messages.html">internationalization</a>.
+                </p><br />
+            </div>
+            <div class="col-md-4" style="background-color: rgb(248, 248, 248);">
+                <p>
+                    <h1 style="font-size: 15pt;">High Performance</h1>
+                    Revel builds on top of the Go HTTP server, which was
+                    <a href="http://www.techempower.com/benchmarks/#section=data-r8">recently
+                    benchmarked</a> to serve <b>three to ten times</b> as many requests
+                    as Rails across a variety of loads.
+                </p><br />
+            </div>
         </div>
     </div>
+
+
+    <br />
+
 
      <!-- framework -->
     <div class="page-header">
-        <h1>Framework Design</h1>
+        <h1 style="font-size: 18pt;">Framework Design</h1>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <h2>Synchronous</h2>
-            <p>
-                The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
-                runs each request in its own
-                <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
-                Write simple callback-free code without guilt.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Stateless</h2>
-            <p>
-                Revel provides primitives that keep the web tier stateless for
-                predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
-                cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Modular</h2>
-            <p>
-                Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
-                which implement nearly all request-processing
-                functionality. Developers have the freedom to replace the default
-                filters with custom implementations (e.g. a custom router).
-            </p>
+        <div class="col-md-12">
+            <div class="col-md-4" style="background-color: rgb(248, 248, 248);"> 
+                <p>
+                    <h1 style="font-size: 15pt;">Synchronous</h1>
+                    The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
+                    runs each request in its own
+                    <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
+                    Write simple callback-free code without guilt.
+                </p><br /><br />
+            </div>
+            <div class="col-md-4" style="background-color: rgb(239, 239, 239);">
+                <p>
+                    <h1 style="font-size: 15pt;">Stateless</h1>
+                    Revel provides primitives that keep the web tier stateless for
+                    predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
+                    cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
+                </p>
+            </div>
+            <div class="col-md-4" style="background-color: rgb(248, 248, 248);"> 
+                <p>
+                    <h1 style="font-size: 15pt;">Modular</h1>
+                    Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
+                    which implement nearly all request-processing
+                    functionality. Developers have the freedom to replace the default
+                    filters with custom implementations (e.g. a custom router).
+                </p>
+            </div>
         </div>
     </div>
 
+
+    <br />
+
+
      <!-- quickstart -->    
-    <section id="quickstart">
-        <div class="page-header">
-          <h1>Quick Start</h1>
-        </div>
+    <section id="quickstart" style="background-color: rgb(248, 248, 248);">
         <div class="row">
             <div class="col-md-6">
+                <h1 style="font-size: 15pt; margin-left: 12px;">Quick Start</h1>
                 <p>
-                Revel has some <a href="samples/">sample applications</a> to demonstrate typical usage.
+                    Revel has some <a href="samples/">sample applications</a> to demonstrate typical usage.
                 </p>
                 <p>The commands at right will:</p>
                 <ul>
@@ -139,11 +156,12 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
                     <li>Run the Chat sample application</li>
                     <li>Open <a href="http://localhost:9000/">http://localhost:9000/</a></li>
                 </ul>
-                </p><a href="samples/chat.html">Read how the chat demo is implemented.</a></p>
+                <p><a href="samples/chat.html">Read how the chat demo is implemented.</a></p>
 
             </div>
-            <div class="col-md-6" style="vertical-align:bottom;">
-<pre>
+            <div class="col-md-5" style="vertical-align:bottom;">
+                <br />
+                <pre>
 # get revel framework
 go get github.com/revel/revel
 
@@ -157,16 +175,19 @@ revel run github.com/revel/samples/chat
 <pre>
 # create a new app and run
 revel new github.com/myaccount/my-app
-</pre>
+                </pre>
             </div>
         </div>
     </section>
 
 
+    <br />
+
+
     <!-- Overview -->
     <section id="teaser">
         <div class="page-header">
-            <h1>Overview</h1>
+            <h1 style="font-size: 18pt;">Overview</h1>
         </div>
         <div class="row">
             <p>
@@ -203,7 +224,7 @@ revel new github.com/myaccount/my-app
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 id="routing">Routing</h2>
+                <hr><h1 style="font-size: 18pt; margin-left: 14px;" id="routing">Routing</h1>
                 <p>
                 Revel uses a declarative <a href="manual/routing.html">routing</a> syntax. It collects all routes
                 for an app in a single file, with a simple syntax for matching
@@ -253,10 +274,15 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
 			</div>
         </div>
 
+
+        <br />
+
+
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 id="controllers">Controllers</h2>
+                <hr><h1 style="font-size: 18pt; margin-left: 12px;" id="controllers">Controllers</h1>
                 <p>
                 All Actions are methods on a <a href="manual/controllers.html">Controller</a>.  This teaser shows a couple cool things:
                 <ul>
@@ -273,7 +299,7 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
                     name of the local variable!
                 </ul>
 
-                Here's an example:
+                <p>Here's an example:</p>
                 </p>
             </div>
         </div>
@@ -319,10 +345,14 @@ func (c MyApplication) SaveUser(user models.User, verifyPassword string) revel.R
             </div>
         </div>
 
+
+        <br />
+
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 id="templates">Templates</h2>
+                <hr><h1 style="font-size: 18pt; margin-left: 12px;" id="templates">Templates</h1>
                 <p>
                 By convention, Revel manages to integrate
                 <a href="http://golang.org/pkg/text/template/">Go Templates</a>
@@ -372,10 +402,14 @@ func (c MyApplication) SaveUser(user models.User, verifyPassword string) revel.R
           </div>
         </div>
 
+
+        <br />
+
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 id="interceptors">Interceptors</h2>
+                <hr><h1 style="font-size: 18pt; margin-left: 12px;" id="interceptors">Interceptors</h1>
                 <p>
                 <a href="manual/interceptors.html">Interceptors</a> are controller methods that are run before or after
                 requests, or in response to panics.  By embedding a controller
@@ -464,10 +498,15 @@ select id, hotel_id, user_id, price, nights
             </div>
         </div>
 
+
+        <br />
+
+
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 id="filters">Filters</h2>
+                <hr><h1 style="font-size: 18pt; margin-left: 12px;" id="filters">Filters</h1>
                 <p>
                 <a href="manual/filters.html">Filters</a> are the middleware of the application.  They are simple
                 functions with a specific signature:
@@ -560,9 +599,13 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
 		</div>
     </section>
 
+
+    <br />
+
+
     <section id="development">
         <div class="page-header">
-          <h1>Development Status - <small>Early adopters only.  Pull requests welcome.</small></h1>
+          <h1 style="font-size: 20pt; margin-left: 12px;">Development Status - <small>Early adopters only.  Pull requests welcome.</small></h1>
         </div>
         <p>
           Development is closing in on the "final" 1.0 design, but the rate of
@@ -585,9 +628,12 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
       </section>
 
 
+      <br />
+
+
       <section id="wishlist">
         <div class="page-header">
-          <h1>Wishlist</h1>
+          <h1 style="font-size: 20pt; margin-left: 12px;">Wishlist</h1>
         </div>
         <p>
           There are some areas that could benefit from some TLC.
@@ -610,7 +656,8 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
         </ul>
       </section>
 
-      <hr>
+
+      <br /><br />
 
       <footer>
         <p>MIT License</p>
