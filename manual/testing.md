@@ -20,9 +20,14 @@ Tests needs to be in the `tests/` directory:
 A simple test file looks like the following:
 
 {% highlight go %}
+
+import ( 
+    "github.com/revel/revel/testing" 
+)
+
 // Must Embed `revel.TestSuite` 
 type MyAppTest struct {
-    revel.TestSuite
+    testing.TestSuite
 }
 
 // Run this before a request
