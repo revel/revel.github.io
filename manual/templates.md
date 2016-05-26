@@ -1,6 +1,10 @@
 ---
 title: Templates
 layout: manual
+github:
+  labels:
+    - topic-template
+    - topic-controller
 ---
 
 Revel uses Go's built in [html/template](http://golang.org/pkg/html/template/) package.  It

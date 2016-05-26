@@ -1,6 +1,10 @@
 ---
 title: Controllers Overview
 layout: manual
+github:
+  labels:
+    - topic-controller
+    
 ---
 
 The [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) is the context for 

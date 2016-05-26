@@ -154,11 +154,23 @@ ul ul, ul ol, ol ol, ol ul, ul {
     position: relative;
 }
 
-/************************************************/
-#disqus_thread {
-    margin-top: 30px;
-    margin-bottom: 30px;
+.revel-github-bar {
+  font-family: monospace;
+  margin: 0px;
+  background-color: #efefef;
+  
 }
+.revel-github-bar h6 {
+    font-family: monospace;
+    font-size: 16pt;
+    padding: 2px 4px;
+    border: 0;
+    border-top: 1px solid #bbbbbb;
+    border-right: 20px solid #bbbbbb;
+    
+}
+/************************************************/
+
 footer {
     border-top: 1px solid #dddddd;
     margin-top: 30px;

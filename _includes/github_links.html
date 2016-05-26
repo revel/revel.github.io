@@ -1,0 +1,20 @@
+{% if page.github %}
+<div class="revel-github-bar">
+  <h6>GitHub Labels</h6>
+  <ul>
+    <li><b>Issues: </b> 
+      {% for lbl in page.github.labels %}
+      <a href="https://github.com/revel/revel/labels/{{lbl}}" target="_revel_issues">{{lbl}}</a> 
+      {% if forloop.rindex > 1 %}|{% endif %}
+      {% endfor %}
+    </li>
+    <li><b>Pull Requests: </b> 
+      {% for lbl in page.github.labels %}
+      <a href="https://github.com/revel/revel/pulls?q=is%3Apr+is%3Aopen+label%3A{{lbl}}" target="_revel_issues">{{lbl}}</a>
+      {% if forloop.rindex > 1 %}|{% endif %}
+      {% endfor %}
+    </li>
+  </ul>
+</div>
+{% endif %}
+
