@@ -3,10 +3,9 @@ title: Cache
 layout: manual
 ---
 
-Revel provides a [`Cache`](http://godoc.org/github.com/revel/revel/cache#Cache) library for server-side, temporary, low-latency
+Revel provides a [`Cache`](https://godoc.org/github.com/revel/revel/cache#Cache) library for server-side, temporary, low-latency
 storage.  It is a good replacement for frequent database access to slowly
-changing data, and it can also be used for implementing user sessions (if the
-cookie-based sessions are insufficient).
+changing data. It could also be used for implementing user sessions, if for example the cookie-based sessions are insufficient.
 
 ## Implementations
 
@@ -29,12 +28,12 @@ Cache items are set with an expiration time, in one of three forms:
 
 ## Serialization
 
-The [`Cache'](http://godoc.org/github.com/revel/revel/cache) getters and setters automatically serialize values for callers, to
+The [`Cache`](https://godoc.org/github.com/revel/revel/cache#Cache) getters and setters automatically serialize values for callers, to
 and from any type.  It uses the following mechanisms:
 
 * If the value is already of type `[]byte`, the data is not touched
 * If the value is of any integer type, it is stored as the ASCII representation
-* Else, the value is encoded using [`encoding/gob`](http://golang.org/pkg/encoding/gob/)
+* Otherwise, the value is encoded using [`encoding/gob`](http://golang.org/pkg/encoding/gob/)
 
 
 
@@ -100,7 +99,7 @@ func (c App) DeleteProduct(id string) revel.Result {
 
 ## Session usage
 
-The Cache has a global key space,  to use it as a [session](sessionflash.html) store, callers should
+The [`Cache`](https://godoc.org/github.com/revel/revel/cache#Cache) has a global key space. To use it as a [session](sessionflash.html) store, callers should
 take advantage of the session's UUID, as shown below:
 
 {% highlight go %}
@@ -111,5 +110,5 @@ err := cache.Get(c.Session.Id(), &products)
 {% endhighlight %}
 
 <hr>
-- See the godocs for [cache](http://godoc.org/github.com/revel/revel/cache) package
-- Issues tagged with [`cache`](https://github.com/revel/revel/labels/cache)
+- See the godocs for [cache](https://godoc.org/github.com/revel/revel/cache) package
+- Issues tagged with [`cache`](https://github.com/revel/revel/labels/topic-cache)

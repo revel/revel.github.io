@@ -5,15 +5,16 @@ layout: manual
 
 Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
 
-- The [booking sample application](../samples/booking.html) has an example ORM using GORP.
+- The [booking sample application](../samples/booking.html) has an example 
+   [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) using [GORP](https://github.com/go-gorp/gorp).
 
 ## Config
 - The [appconf](appconf.html) does have a [`database`](appconf.html#database) section for usage.
-- Use [`revel.Config`](../docs/godoc/config.html) to access.
+- Use [`revel.Config`](https://godoc.org/github.com/revel/revel#MergedConfig) to access.
 {% highlight go %}
 func InitDB() {
-    driver := revel.Config.StringDefault("db.user", "root")
-    connect_string := revel.Config.StringDefault("db.spec", "")
+    driver := revel.Config.StringDefault("db.driver", "mysql")
+    connect_string := revel.Config.StringDefault("db.connect", "root:root@locahost/test")
     
     Db, err = sql.Open(driver, connect_string)
     ....

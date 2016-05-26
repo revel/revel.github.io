@@ -3,7 +3,7 @@ title: Debugging
 layout: manual
 ---
 
-By default, the [`revel run`](tool.html) command without a [`run_mode`](appconf.html#runmodes) defaults to `dev`.
+By default, the [`revel run`](tool.html) command without a [`run_mode`](appconf.html#runmodes) defaults to **dev**.
 
 ## Hot Reload
 

@@ -57,11 +57,11 @@ func (t *MyAppTest) TEstFavIcon() {
 
 The example code above shows a few things:
 
-* A test suite is any struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite)
+* A test suite is any struct that embeds [`TestSuite`](https://godoc.org/github.com/revel/revel/testing#TestSuite)
 * `Before()` and `After()` are invoked before and after every test method, if present.
-* The `revel.TestSuite` provides helpers for issuing requests to your application and for asserting things about the response.
+* The [`TestSuite`](https://godoc.org/github.com/revel/revel/testing#TestSuite) provides helpers for issuing requests to your application and for asserting things about the response.
 * An assertion failure generates a panic, which is caught by the test harness.
-* Each test method must contain the case-sensitive prefix 'Test'
+* Each test method must contain the **case-sensitive** prefix 'Test'
 
 You may run this test in two ways:
 
@@ -70,7 +70,8 @@ You may run this test in two ways:
 
 ## Developing a test suite
 
-To create your own test suite, define a struct that embeds [`revel.TestSuite`](../docs/godoc/tests.html#TestSuite), which provides a HTTP client and a number of helper methods for making requests to the application. [See testing docs](../docs/godoc/tests.html)
+To create your own test suite, define a struct that embeds [`TestSuite`](https://godoc.org/github.com/revel/revel/testing#TestSuite), which 
+provides a HTTP client and a number of helper methods for making requests to the application.
 
 {% highlight go %}
 type TestSuite struct {
@@ -97,8 +98,8 @@ func (t *TestSuite) Assertf(exp bool, formatStr string, args ...interface{})
 All request methods behave similarly:
 
 1. They accept a path (e.g. `/users/`)
-2. They issue the request to the app server
-3. They store the response in the `Response` member.
+2. They issue the [`Request`](https://godoc.org/github.com/revel/revel#Request) to the app server
+3. They store the response in the [`Response`](https://godoc.org/github.com/revel/revel#Response) member.
 4. They read the full response body into the `ResponseBody` member.
 
 If the developer wishes to use a customized HTTP Client instead of the default [http.DefaultClient](http://golang.org/pkg/net/http/#pkg-variables), they should replace it in the `Before()` method.
@@ -107,7 +108,7 @@ All assertions raise a panic if they are not fulfilled.  All panics are caught b
 
 ## Running a test suite
 
-In order to run any tests, the `testrunner` [module](modules.html) must be activated.  This is done by including the following line in your [`app.conf`](appconf.html#modules):
+In order to run any tests, the **testrunner** [module](modules.html) must be activated.  This is done by including the following line in your [`app.conf`](appconf.html#modules):
 
 	module.testrunner = github.com/revel/modules/testrunner
 	
