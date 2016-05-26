@@ -124,5 +124,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 
 <hr>
-- See the godocs for [validation.go](../docs/godoc/validation.html), [validators.go](../docs/godoc/validators.html)
+- See the godocs for [`Validator`](https://godoc.org/github.com/revel/revel#Validator), [`Validation`](https://godoc.org/github.com/revel/revel#Validation), 
+    [`ValidationError`](https://godoc.org/github.com/revel/revel#ValidationError), 
+    [`ValidationResult`](https://godoc.org/github.com/revel/revel#ValidationResult)
 

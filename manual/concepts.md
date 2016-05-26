@@ -78,12 +78,12 @@ Overall, Filters and the Filter Chain are the equivalent of Rack.
 
 Each HTTP request invokes an **action**, which handles the request and writes
 the response. Related **actions** are grouped into [**controllers**](controllers.html).  The
-[`Controller`](../docs/godoc/controller.html#Controller) type contains relevant
+[`Controller`](https://godoc.org/github.com/revel/revel#Controller) type contains relevant
 fields and methods and acts as the context for each request.
 
 As part of handling a HTTP request, Revel instantiates an instance of a
-Controller, and it sets all of these properties on the embedded
-`revel.Controller`.  Revel does not share Controller instances between requests.
+[`Controller`](https://godoc.org/github.com/revel/revel#Controller), and it sets all of these properties on the embedded
+`Controller`.  Revel does not share `Controller` instances between requests.
 
 A **Controller** is any type that embeds `*revel.Controller` (directly or indirectly).
 {% highlight go %}
@@ -106,8 +106,8 @@ func (c MyAppController) ShowLogin(username string) revel.Result {
 {% endhighlight %}
 
 The example invokes `Controller.Render()` to execute a [template](templates.html), passing it the
-username as a parameter.  There are many methods on **[revel.Controller](..//docs/godoc/controller.html)** that
-produce **[revel.Result](../docs/godoc/results.html)**, but applications are also [free to create their own](results.html#CustomResult).
+username as a parameter.  There are many methods on a [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) that
+produce [`Result`](https://godoc.org/github.com/revel/revel#Result); but applications are also free to [create their own custom result](results.html#CustomResult).
 
 ## Results
 

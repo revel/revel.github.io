@@ -31,11 +31,9 @@ and returns a [Result](#results) or `nil`.
 
 
 {% highlight go %}
-// Silly function example
-
-// User auth simple example
+// simple example or user auth
 func checkUser(c *revel.Controller) revel.Result {
-    if user := check_auth(c); user == nil {
+    if user := MyCheckAuth(c); user == nil {
         c.Flash.Error("Please log in first")
         return c.Redirect(App.Index)
     }
