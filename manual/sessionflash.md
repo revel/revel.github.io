@@ -3,10 +3,10 @@ title: Session / Flash Scopes
 layout: manual
 ---
 
-Revel provides two cookie-based storage mechanisms.
+Revel provides two cookie-based storage mechanisms for convenience; `Session` and `Flash`.
 
 {% highlight go %}
-// A signed cookie (and thus limited to 4kb in size).
+// A signed cookie, and thus limited to 4kb in size.
 // Restriction: Keys may not have a colon in them.
 type Session map[string]string
 

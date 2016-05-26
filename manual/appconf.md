@@ -533,7 +533,7 @@ jobs.selfconcurrent = true
 
 If `true` (default is `false`), the status page will accept the `X-Forwarded-For` header as the remote
 address used to allow or deny public access. This is diabled by default as the header value can be spoofed
-and therefore is not trustable. You should only use this if you are accessing your Revel app via a reverse
+and therefore is not trustable. You should only use this if you are access your Revel app via a reverse
 proxy (e.g. Nginx). It is not recommended to allow this is production mode due to the security implications.
 
 {% highlight ini %}

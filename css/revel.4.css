@@ -1,6 +1,6 @@
 
 
-
+@import url(https://fonts.googleapis.com/css?family=Archivo+Black);
 
 /* hero is the big gopher banner on index.html */
 .hero-unit {
@@ -44,6 +44,15 @@ a:hover {
   text-decoration: underline;
 }
 
+a[href^="https://godoc.org"] code { 
+    color: #0067CC; 
+    font-family: monospace;
+    font-weight: bold;
+    background: url(/img/godoc.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    padding-right: 16px;
+}
 
 .container {
   padding-left: 5px;
@@ -168,7 +177,7 @@ hr {
 
 
 h2 {
-    font-family: sans-serif !important;
+    font-family: 'Archivo Black', sans-serif !important;
     font-size: 25px;
     color: #eeeeee !important;
     padding: 4px 0 4px 6px;
