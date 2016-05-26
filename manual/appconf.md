@@ -595,5 +595,5 @@ error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %
 
   
 <hr>
-- See the godocs for [config.go](../docs/godoc/config.html)
-- Issues tagged with [`config`](https://github.com/revel/revel/labels/config)
+- See the godocs for [`Config`](https://godoc.org/github.com/revel/revel#MergedConfig)
+- Issues tagged with [config](https://github.com/revel/revel/labels/topicconfig)

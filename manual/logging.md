@@ -1,14 +1,17 @@
 ---
 title: Logging
 layout: manual
+gh_labels: 
+- topic-logging
+
 ---
 
 Revel provides four loggers:
 
-* TRACE - debugging information only.
-* INFO - informational.
-* WARN - something unexpected but not harmful.
-* ERROR - someone should take a look at this.
+* `TRACE` - debugging information only.
+* `INFO` - informational.
+* `WARN` - something unexpected but not harmful.
+* `ERROR` - someone should take a look at this.
 
 Example usage within a Revel app:
 {% highlight go %}
@@ -61,4 +64,4 @@ Areas for development:
 * Revel should create the log directory if it does not already exist.
 
 <hr>
-- Issues tagged with [`log`](https://github.com/revel/revel/labels/log)
+- Issues tagged with [`log`](https://github.com/revel/revel/labels/topic-log)
