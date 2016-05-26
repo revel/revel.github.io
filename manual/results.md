@@ -1,6 +1,11 @@
 ---
 title: Results & Responses
 layout: manual
+github:
+  labels:
+    - topic-controller
+    - topic-static
+    
 ---
 
 Actions must return a [`revel.Result`](https://godoc.org/github.com/revel/revel#Result), which

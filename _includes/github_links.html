@@ -10,7 +10,7 @@
     </li>
     <li><b>Pull Requests: </b> 
       {% for lbl in page.github.labels %}
-      <a href="https://github.com/revel/revel/pulls?q=is%3Apr+is%3Aopen+label%3A{{lbl}}" target="_revel_issues">{{lbl}}</a>
+      <a href="https://github.com/revel/revel/pulls?q=is%3Apr+is%3Aopen+label%3A{{lbl}}" target="_revel_pull_requests">{{lbl}}</a>
       {% if forloop.rindex > 1 %}|{% endif %}
       {% endfor %}
     </li>

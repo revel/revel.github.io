@@ -1,6 +1,10 @@
 ---
 title: Jobs
 layout: manual
+github:
+  labels:
+    - topic-jobs
+    - topic-runtime
 ---
 
 Revel provides the [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) framework for performing work asynchronously, outside of the

@@ -1,6 +1,7 @@
 ---
 title: Interceptors
 layout: manual
+
 ---
 
 An **Interceptor** is a function that is invoked by the framework `BEFORE` or `AFTER` an action invocation.  It allows a form of

@@ -1,6 +1,9 @@
 ---
 title: Filters
 layout: manual
+github:
+  labels:
+    - topic-filter
 ---
 
 **Filters** are the middleware and are individual functions that make up the
