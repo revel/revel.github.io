@@ -94,8 +94,8 @@ type Response struct {
 }
 {% endhighlight %}
 
-- As part of handling a HTTP request, Revel instantiates an instance of a `Controller`.
-- It then sets all of the properties on the embedded `revel.Controller`.  
+- As part of handling a HTTP request, Revel instantiates an instance of a [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller).
+- It then sets all of the properties on the embedded `revel.Controller`.
 - Revel does not share a `Controller` instance between requests.
 
 <hr>

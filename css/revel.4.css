@@ -44,14 +44,29 @@ a:hover {
   text-decoration: underline;
 }
 
+/* its a godoc link */
 a[href^="https://godoc.org"] code { 
-    color: #0067CC; 
+    color: brown; 
     font-family: monospace;
     font-weight: bold;
     background: url(/img/godoc.png);
     background-position: top right;
     background-repeat: no-repeat;
     padding-right: 16px;
+}
+/* its a standard gppher */
+a[href^="https://www.golang.org"],
+a[href^="http://www.golang.org"],
+a[href^="http://golang.org"],
+a[href^="https://golang.org"],
+{ 
+  color: #6AD7E5; 
+  font-family: monospace;
+  font-weight: bold;
+  background: url(/img/gopher-link.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding-right: 12px;
 }
 
 .container {
@@ -121,12 +136,12 @@ ul ul, ul ol, ol ol, ol ul, ul {
 }
 .leftnav .nav-header {
     padding: 2px 0;
-    background-color: #eeeeee !important;
+    background-color: #dddddd !important;
     border-top: 1px solid #dddddd !important;
-    padding-left: 2px;
-    color: #888888;
+    padding: 2px 4px;
+    color: #444444;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 10pt;
 }
 
 .leftnav .nav li  a {
