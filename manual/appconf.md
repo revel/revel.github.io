@@ -6,14 +6,14 @@ layout: manual
 ## Overview
 
 The application config file is at `conf/app.conf` and uses the syntax accepted by
-[revel/config](https://github.com/revel/config)  which is similar to 
+[revel/config](https://github.com/revel/config)  which is similar to
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
 Here's an example file with two sections, `dev` (develop) and `prod` (production).
 {% highlight ini %}
 app.name = myapp
 app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-http.addr = 
+http.addr =
 http.port = 9000
 
 my_stuff.foo = 1234
@@ -80,7 +80,7 @@ http.port = 9000
 
 db.driver = ${CHAT_DB_DRIVER}
 db.spec = ${CHAT_DB_SPEC}
-{% endhighlight %}	
+{% endhighlight %}
 Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
 and inject them into the config at runtime.
 
@@ -126,7 +126,7 @@ var remote_server string
 if revel.Config.BoolDefault("myapp.remote_enabled", false) {
     remote_server = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
     do_something_to( remote_server )
-} 
+}
 {% endhighlight %}
 
 <a name="BuiltinProperties"></a>
@@ -178,7 +178,18 @@ Example:
 {% endhighlight %}
 Default: no value
 
+#### `app.behind.proxy`
+
+If `true` (default false) Revel will resolve client IP address from HTTP headers `X-Forwarded-For` and `X-Real-Ip` in the order. By default Revel will get client IP address from http.Request's RemoteAddr. Set to `true` if Revel application is running behind the proxy server like nginx, haproxy, etc.
+
+Example:
+{% highlight ini %}
+    app.behind.proxy = true
+{% endhighlight %}
+Default: false
+
 <a name="HTTP"></a>
+
 ### HTTP settings
 
 #### `http.port`
@@ -507,7 +518,7 @@ Default: ""
 The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJobs) or [ad-hoc](jobs.html#OneOff) jobs.
 
 
-    
+
 #### `jobs.pool`
 
 - The number of jobs allowed to run concurrently.
@@ -560,13 +571,13 @@ jobs.Schedule("cron.schedulename", job)
 
 ### Modules
 
-- [Modules](modules.html) may be added to an application by specifying their base import path. 
+- [Modules](modules.html) may be added to an application by specifying their base import path.
 - An empty import path disables the module.
 {% highlight ini %}
 module.testrunner = github.com/revel/modules/testrunner
 
 ## FIXME mymodule crashes so disabled for now
-# module.mymodulename = /path/to/mymodule 
+# module.mymodulename = /path/to/mymodule
 module.mymodulename =
 {% endhighlight %}
 
@@ -593,7 +604,7 @@ error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %
 * Allow inserting command line arguments as config values or otherwise
   specifying config values from the command line.
 
-  
+
 <hr>
 - See the godocs for [`Config`](https://godoc.org/github.com/revel/revel#MergedConfig)
-- Issues tagged with [config](https://github.com/revel/revel/labels/topicconfig)
+- Issues tagged with [config](https://github.com/revel/revel/labels/topic-config)
