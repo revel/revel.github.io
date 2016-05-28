@@ -52,6 +52,7 @@ Now run it:
 Creates a few files to get a new Revel application running quickly.
 
 - Copies files from the [`revel/skeleton`](https://github.com/revel/revel/tree/master/skeleton) directory
+- Under multi `GOPATH` scenario, Revel detects the current working directory with `GOPATH` and generates the project
 - Skeleton is an optional argument, provided as an alternate skeleton path
 {% highlight sh %}
 revel new bitbucket.org/myorg/my-app
