@@ -42,9 +42,9 @@ log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
 {% endhighlight %}
 
-<div class="alert alert-info">
-Config values can be accesed via the `revel.Config` variable, more [below](#customproperties)
-</div>
+<br/>
+**Note:** Config values can be accesed via the `revel.Config` variable, more [below](#customproperties)
+
 
 ## Run Modes
 Each section is a **Run Mode** and selected with the [`revel run`](tool.html#run) command, eg.
@@ -140,6 +140,7 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Watchers](#watchers)
 - [Cookies](#Cookies)
 - [Session](#session)
+- [Templates](#templates)
 - [Formatting](#formatting)
 - [Database](#database)
 - [Build](#build)
@@ -383,8 +384,6 @@ the result is not always guaranteed.
 
 
 ### Templates
-
-<a name="template.delimiters"></a>
 
 #### `template.delimiters`
 

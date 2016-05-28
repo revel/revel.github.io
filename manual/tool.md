@@ -32,6 +32,7 @@ Now run it:
 		package     package a Revel application (e.g. for deployment)
 		clean       clean a Revel application's temp files
 		test        run all tests from the command-line
+		version     displays the Revel Framework and Go version
 
 	Use "revel help [command]" for more information.
 
@@ -113,6 +114,14 @@ revel run github.com/mycorp/mega-app prod 9999
 {% highlight sh %}
     revel test github.com/revel/samples/booking dev
 {% endhighlight %}
+
+#### `revel version`
+
+- Displays the Revel Framework and Go version.
+{% highlight sh %}
+    revel version
+{% endhighlight %}
+
 
 <hr>
 - Issues tagged with [`revel cmd tool`](https://github.com/revel/cmd/issues)
