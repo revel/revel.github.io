@@ -181,7 +181,7 @@ Default: no value
 
 #### `app.behind.proxy`
 
-If `true` (default false) Revel will resolve client IP address from HTTP headers `X-Forwarded-For` and `X-Real-Ip` in the order. By default Revel will get client IP address from http.Request's RemoteAddr. Set to `true` if Revel application is running behind the proxy server like nginx, haproxy, etc.
+If `true` Revel will resolve client IP address from HTTP headers `X-Forwarded-For` and `X-Real-Ip` in the order. By default Revel will get client IP address from http.Request's RemoteAddr. Set to `true` if Revel application is running behind the proxy server like nginx, haproxy, etc.
 
 Example:
 {% highlight ini %}
@@ -317,13 +317,16 @@ Default: `"normal"`
 
 #### `watch.templates`
 
-If `true` (default `false`), Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
+If `true`, Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
+
+Default: `false`
 
 
 #### `watch.routes`
 
-If `true` (default `false`), Revel will watch the [`app/routes`](routing.html) file for changes and reload as necessary.
+If `true`, Revel will watch the [`app/routes`](routing.html) file for changes and reload as necessary.
 
+Default: `false`
 
 
 #### `watch.code`
