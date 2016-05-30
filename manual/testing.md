@@ -20,7 +20,7 @@ Tests needs to be in the `tests/` directory:
 A simple test file looks like the following:
 
 {% highlight go %}
-// Must Embed `revel.TestSuite` 
+// Must Embed `revel.TestSuite`
 type MyAppTest struct {
     revel.TestSuite
 }
@@ -70,7 +70,7 @@ You may run this test in two ways:
 
 ## Developing a test suite
 
-To create your own test suite, define a struct that embeds [`TestSuite`](https://godoc.org/github.com/revel/revel/testing#TestSuite), which 
+To create your own test suite, define a struct that embeds [`TestSuite`](https://godoc.org/github.com/revel/revel/testing#TestSuite), which
 provides a HTTP client and a number of helper methods for making requests to the application.
 
 {% highlight go %}
@@ -84,7 +84,7 @@ type TestSuite struct {
 func (t *TestSuite) Get(path string)
 func (t *TestSuite) Post(path string, contentType string, reader io.Reader)
 func (t *TestSuite) PostForm(path string, data url.Values)
-func (t *TestSuite) MakeRequest(req *http.Request)
+func (t *TestSuite) NewTestRequest(req *http.Request) *TestRequest
 
 // Some assertion methods
 func (t *TestSuite) AssertOk()
@@ -111,7 +111,7 @@ All assertions raise a panic if they are not fulfilled.  All panics are caught b
 In order to run any tests, the **testrunner** [module](modules.html) must be activated.  This is done by including the following line in your [`app.conf`](appconf.html#modules):
 
 	module.testrunner = github.com/revel/modules/testrunner
-	
+
 You must also import the test module's routes, by adding this line to your [`routes`](routing.html) file:
 
 	module:testrunner
