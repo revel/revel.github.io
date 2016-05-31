@@ -75,6 +75,16 @@ log.warn.output  = log/%(app.name)s.log
 /srv/www/myapp/log/sampleapp.log
 {% endhighlight %}
 
+### Turn Off Colorize
+
+Revel provides a way to turn of the colorize in the logger.
+
+{% highlight ini %}
+log.colorize = false
+{% endhighlight %}
+
+Default: true
+
 ### Request Access Log
 
 Revel provides request access log since v0.13, you can set the output via`app.conf`. Request log will have following values of RequestStartTime, ClientIP, ResponseStatus, RequestLatency, HTTPMethod and URLPath.
