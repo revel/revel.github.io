@@ -229,3 +229,6 @@ The testing framework could use the following improvements:
 
 * Fixtures for populating a datastore with test data.
 * Loggers that write to a file (instead of stderr / stdout) should also be redirected to `test-results/app.log`
+
+<hr>
+- See the godocs for [`Testing`](https://godoc.org/github.com/revel/revel/testing)

@@ -117,17 +117,32 @@ The developer may define custom keys and access them via the
 Example `app.conf` entries:
 {% highlight ini %}
 myapp.remote = 120.2.3.5
-myapp.remote_enabled = true
+myapp.remote.enabled = true
 {% endhighlight %}
 
-Example go usage:
+Example Go usage:
 {% highlight go %}
-var remote_server string
-if revel.Config.BoolDefault("myapp.remote_enabled", false) {
-    remote_server = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
-    do_something_to( remote_server )
+var remoteServer string
+if revel.Config.BoolDefault("myapp.remote.enabled", false) {
+    remoteServer = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
+    DoSomethingTo( remoteServer )
 }
 {% endhighlight %}
+
+
+## External app.conf
+
+Since v0.13.0 revel supported loading a external `app.conf` from given directory.
+It's a convenient way to override or add config values to the application.
+Please make sure file `app.conf` is in given path.
+
+Example Go usage:
+{% highlight go %}
+func init() {
+    revel.ConfPaths = []string{"/etc/myapp/conf"}
+}
+{% endhighlight %}
+
 
 <a name="BuiltinProperties"></a>
 
@@ -653,5 +668,5 @@ example:
 
 
 <hr>
-- See the godocs for [`Config`](https://godoc.org/github.com/revel/revel#MergedConfig)
+- See the godocs for [`Config`](https://godoc.org/github.com/revel/config)
 - Issues tagged with [config](https://github.com/revel/revel/labels/topic-config)
