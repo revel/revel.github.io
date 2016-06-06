@@ -1,6 +1,10 @@
 ---
 title: Templates
 layout: manual
+github:
+  labels:
+    - topic-template
+    - topic-controller
 ---
 
 Revel uses Go's built in [html/template](http://golang.org/pkg/html/template/) package.  It
@@ -12,21 +16,25 @@ searches two directories for templates:
 
 For example, given a controller/action `Hello.World()`, Revel will:
 
-- look for a template file named `views/Hello/World.html`. 
+- look for a template file named `views/Hello/World.html`.
 - and if not found, show `views/errors/500.html`
-- and if thats not found, use revels in build `templates/errors/500.html`
+- and if that's not found, use Revel's built-in `templates/errors/500.html`
 
 Template file names are case insensitive so the following will be treated as the same:
 
 - `views/hello/world.html`
 - `views/HeLlO/wOrLd.HtMl`
 
-However, on **nix based file systems (and for example with `index.html` and `IndeX.html`), duplicate cased file names are
+However, on `**nix` based file systems (and for example with `index.html` and `IndeX.html`), duplicate cased file names are
 to be avoided as its unpredictable which one will be considered.
 
-Revel provides templates for error pages ([see code](https://github.com/revel/revel/tree/master/templates/errors))  and 
-these display the developer friendly compilation errors in [`dev` mode](appconf.html). An 
+Revel provides templates for error pages ([see code](https://github.com/revel/revel/tree/master/templates/errors))  and
+these display the developer friendly compilation errors in [dev mode](appconf.html#run-modes). An
 application may override them by creating a template of the equivalent template name, e.g. `app/views/errors/404.html`.
+
+#### Template Delimiters
+
+Revel provides configurable [Template Delimiters](appconf.html#templates) via `app.conf`.
 
 ## Render Context
 
@@ -70,9 +78,9 @@ Go Templates allow you to compose templates by inclusion.  For example:
     - [`set`](#set)
     - [`url`](#url)
     - [Custom Functions](#CustomFunctions)
-  
 
-  
+
+
 
 
 
@@ -111,7 +119,7 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 ### date, datetime
 
-Format a date according to the application's default [date](appconf.html#formatdate) and [datetime](appconf.html#formatdatetime) format. 
+Format a date according to the application's default [date](appconf.html#formatdate) and [datetime](appconf.html#formatdatetime) format.
 
 The example below assumes `dateArg := time.Now()`:
 
@@ -161,7 +169,7 @@ Example:
 {{with $field := field "booking.CheckInDate" .}}
     <p class="{{$field.ErrorClass}}">
     <strong>Check In Date:</strong>
-    <input type="text" size="10" name="{{$field.Name}}" 
+    <input type="text" size="10" name="{{$field.Name}}"
             class="datepicker" value="{{$field.Flash}}"> *
     <span class="error">{{$field.Error}}</span>
     </p>
@@ -178,7 +186,7 @@ Example:
 
 ### msg
  - See [internationalization](i18n-messages.html#template)
- 
+
 
 <a name="nl2br"></a>
 
@@ -302,7 +310,7 @@ Click <a href="{{url "Products.ShowProduct" 123}}">here</a> for more.
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 <a name="CustomFunctions"></a>
- 
+
 ## Custom Functions
 
 Applications may register custom functions for use in templates.
@@ -311,7 +319,7 @@ Here is an example:
 
 {% highlight go %}
 func init() {
-    revel.TemplateFuncs["my_eq"] = func(a, b interface{}) bool { 
+    revel.TemplateFuncs["my_eq"] = func(a, b interface{}) bool {
         return a == 0  || a == b
     }
 }
@@ -364,5 +372,4 @@ And templates that include it look like this:
 
 
 <hr>
-- See the godocs for [template.go](../docs/godoc/template.html)
-- Issues tagged with [`template`](https://github.com/revel/revel/labels/template)
+- See the godocs for [`Template`](https://godoc.org/github.com/revel/revel#Template)

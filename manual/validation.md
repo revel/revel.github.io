@@ -3,11 +3,11 @@ title: Validation
 layout: manual
 ---
 
-Revel provides built-in functionality for validating [parameters](parameters.html). There are a couple parts:
+Revel provides built-in functionality for validating [parameters](parameters.html). The main parts are:
 
-* A Validation context collects and manages validation errors (keys and messages).
-* Helper functions that check data and put errors into the context.
-* A template function that gets error messages from the Validation context by key.
+* A [`Validation`](https://godoc.org/github.com/revel/revel#Validation) context collects and manages validation errors (keys and messages).
+* Helper functions that checks data and put errors into the context.
+* A template function that gets error messages from the [`Validation`](https://godoc.org/github.com/revel/revel#Validation) context by key.
 
 See the [validation sample app](../samples/validation.html) for some
 in-depth examples.
@@ -38,12 +38,14 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 Step by step:
 
-1. Evaluate four different conditions on `username` (Required, MinSize, MaxSize, Match).
-2. Each evaluation returns a [ValidationResult](../docs/godoc/validation.html#ValidationResult). Failed ValidationResults are stored in the Validation context.
-3. As part of building the app, Revel records the name of the variable being
-validated, and uses that as the default key in the validation context (to be looked up later).
-4. `Validation.HasErrors()` returns `true` if the the context is non-empty.
-5. `Validation.Keep()` tells Revel to serialize the `ValidationErrors` to the [Flash](sessionflash.html#Flash) cookie.
+1. Evaluate four different conditions on `username` ([`Required`](https://godoc.org/github.com/revel/revel#Validation.Required),
+   [`MinSize`](https://godoc.org/github.com/revel/revel#Validation.MinSize), 
+   [`MaxSize`](https://godoc.org/github.com/revel/revel#Validation.MaxSize), [`Match`](https://godoc.org/github.com/revel/revel#Validation.Match)).
+2. Each evaluation returns a [ValidationResult](https://godoc.org/github.com/revel/revel#ValidationResult). Failed `ValidationResult`'s are stored in the `Validation` context.
+3. As part of building an app, Revel records the name of the variable being
+   validated, and uses that as the default key in the validation context (to be looked up later).
+4. [`Validation.HasErrors()`](https://godoc.org/github.com/revel/revel#Validation.HasErrors) returns `true` if the the context is non-empty.
+5. [`Validation.Keep()`](https://godoc.org/github.com/revel/revel#Validation.Keep) tells Revel to serialize the `ValidationErrors` to the [Flash](sessionflash.html#Flash) cookie.
 6. Revel returns a [redirect](results.html#Redirect) to the `Hotels.Settings` action.
 
 The `Hotels.Settings` action renders a template:
@@ -122,5 +124,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 
 <hr>
-- See the godocs for [validation.go](../docs/godoc/validation.html), [validators.go](../docs/godoc/validators.html)
+- See the godocs for [`Validator`](https://godoc.org/github.com/revel/revel#Validator), [`Validation`](https://godoc.org/github.com/revel/revel#Validation), 
+    [`ValidationError`](https://godoc.org/github.com/revel/revel#ValidationError), 
+    [`ValidationResult`](https://godoc.org/github.com/revel/revel#ValidationResult)
 

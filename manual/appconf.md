@@ -6,14 +6,14 @@ layout: manual
 ## Overview
 
 The application config file is at `conf/app.conf` and uses the syntax accepted by
-[goconfig](https://github.com/revel/config)  which is similar to 
+[revel/config](https://github.com/revel/config)  which is similar to
 [INI](http://en.wikipedia.org/wiki/INI_file) files.
 
 Here's an example file with two sections, `dev` (develop) and `prod` (production).
 {% highlight ini %}
 app.name = myapp
 app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-http.addr = 
+http.addr =
 http.port = 9000
 
 my_stuff.foo = 1234
@@ -41,6 +41,10 @@ log.info.output  = off
 log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
 {% endhighlight %}
+
+<br/>
+**Note:** Config values can be accesed via the `revel.Config` variable, more [below](#customproperties)
+
 
 ## Run Modes
 Each section is a **Run Mode** and selected with the [`revel run`](tool.html#run) command, eg.
@@ -76,7 +80,7 @@ http.port = 9000
 
 db.driver = ${CHAT_DB_DRIVER}
 db.spec = ${CHAT_DB_SPEC}
-{% endhighlight %}	
+{% endhighlight %}
 Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
 and inject them into the config at runtime.
 
@@ -102,38 +106,56 @@ log.warn.output = chat.log
 log.error.output = chat.log
 {% endhighlight %}
 
+<a name="customproperties"></a>
 
 ## Custom properties
 
 The developer may define custom keys and access them via the
-[`revel.Config` variable](../docs/godoc/revel.html#variables), which exposes a
-[simple api](../docs/godoc/config.html).
+`revel.Config` variable, which exposes a
+[simple api](https://godoc.org/github.com/revel/revel#MergedConfig).
 
 Example `app.conf` entries:
 {% highlight ini %}
 myapp.remote = 120.2.3.5
-myapp.remote_enabled = true
-{% endhighlight %}
-Example go usage:
-{% highlight go %}
-var remote_server string
-if revel.Config.BoolDefault("myapp.remote_enabled", false) {
-    remote_server = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
-    init_remote(remote_server)
-} 
+myapp.remote.enabled = true
 {% endhighlight %}
 
+Example Go usage:
+{% highlight go %}
+var remoteServer string
+if revel.Config.BoolDefault("myapp.remote.enabled", false) {
+    remoteServer = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
+    DoSomethingTo( remoteServer )
+}
+{% endhighlight %}
+
+
+## External app.conf
+
+Since v0.13.0 revel supported loading a external `app.conf` from given directory.
+It's a convenient way to override or add config values to the application.
+Please make sure file `app.conf` is in given path.
+
+Example Go usage:
+{% highlight go %}
+func init() {
+    revel.ConfPaths = []string{"/etc/myapp/conf"}
+}
+{% endhighlight %}
+
+
 <a name="BuiltinProperties"></a>
-    
+
 ## Built-in properties
 
 - [Application](#application)
 - [HTTP](#HTTP)
 - [Results](#results)
 - [Internationalization](#internationalization)
-- [Watchers](#watchers)
+- [Watch](#watch)
 - [Cookies](#Cookies)
 - [Session](#session)
+- [Templates](#templates)
 - [Formatting](#formatting)
 - [Database](#database)
 - [Build](#build)
@@ -143,6 +165,7 @@ if revel.Config.BoolDefault("myapp.remote_enabled", false) {
 - [Modules](#modules)
 - [Error Handling](#error-handling)
 
+<a name="application"></a>
 
 ### Application settings
 
@@ -153,24 +176,38 @@ development web pages.
 
 Example:
 {% highlight ini %}
-    app.name = Booking example application
+  app.name = Booking example application
 {% endhighlight %}
-Default: no value
+
+Default: `Auto Generated` For example: github.com/myaccount/myrevelapp, `app.name = myrevelapp`
 
 
 #### `app.secret`
 
-The secret key used for cryptographic operations, see [`revel.Sign`](../docs/godoc/util.html#Sign).  
+The secret key used for cryptographic operations, see [`revel.Sign`](https://godoc.org/github.com/revel/revel#Sign).  
 - Revel also uses it internally to sign [session](session.html) cookies.  
 - Setting it to empty string disables signing and is not recommended.
 - It is set to a random string when initializing a new project with [`revel new`](tool.html#new)
 
 Example:
 {% highlight ini %}
-	app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
+  app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
 {% endhighlight %}
-Default: no value
 
+Default: Auto Generated random seed value
+
+#### `app.behind.proxy`
+
+If `true` Revel will resolve client IP address from HTTP headers `X-Forwarded-For` and `X-Real-Ip` in the order. By default Revel will get client IP address from http.Request's RemoteAddr. Set to `true` if Revel application is running behind the proxy server like nginx, haproxy, etc.
+
+Example:
+{% highlight ini %}
+  app.behind.proxy = true
+{% endhighlight %}
+
+Default: `false`
+
+<a name="HTTP"></a>
 
 ### HTTP settings
 
@@ -180,7 +217,7 @@ The port to listen on.
 
 Example:
 {% highlight ini %}
-	http.port = 9000
+  http.port = 9000
 {% endhighlight %}
 
 #### `http.addr`
@@ -203,7 +240,7 @@ the application listens on `http.port` directly.
 By default, a random free port will be chosen.  This is only necessary to set
 when running in an environment that restricts socket access by the program.
 
-Default: 0
+Default: `0`
 
 
 #### `http.ssl`
@@ -211,7 +248,7 @@ Default: 0
 If true, Revel's web server will configure itself to accept SSL connections. This
 requires an X509 certificate and a key file.
 
-Default: false
+Default: `false`
 
 
 #### `http.sslcert`
@@ -227,7 +264,32 @@ Specifies the path to an X509 certificate key.
 
 Default: ""
 
+#### `timeout.read`
 
+Read timeout specifies a time limit for `http.Server.ReadTimeout` in seconds
+made by a single client. A Timeout of zero means no timeout.
+
+Example:
+{% highlight ini %}
+  timeout.read = 300
+{% endhighlight %}
+
+Default: `90`
+
+#### `timeout.write`
+
+Write timeout specifies a time limit for `http.Server.WriteTimeout` in seconds
+made by a single client. A Timeout of zero means no timeout.
+
+Example:
+{% highlight ini %}
+  timeout.read = 120
+{% endhighlight %}
+
+Default: `60`
+
+
+<a name="results"></a>
 
 ### Results
 
@@ -238,18 +300,21 @@ Determines whether the template rendering should use
 encoding can decrease the time to first byte on the client side by sending data
 before the entire template has been fully rendered.
 
-Default: false
+Default: `false`
 
 
 #### `results.pretty`
 
 Configures [`RenderXml`](../docs/godoc/controller.html#RenderXml) and
 [`RenderJson`](../docs/godoc/controller.html#RenderJson) to produce indented
-XML/JSON.  For example:
+XML/JSON.  
+
+Example:
 {% highlight ini %}
-	results.pretty = true
+  results.pretty = true
 {% endhighlight %}
-Default: false
+
+Default: `false`
 
 
 
@@ -263,8 +328,9 @@ recognized.  If left unspecified, a dummy message is returned to those requests.
 
 For example:
 {% highlight ini %}
-	i18n.default_language = en
+  i18n.default_language = en
 {% endhighlight %}
+
 Default: ""
 
 
@@ -272,17 +338,17 @@ Default: ""
 
 Specifies the name of the cookie used to store the user's locale.
 
-Default: "%(cookie.prefix)\_LANG" (see cookie.prefix)
+Default: `%(cookie.prefix)_LANG` (see cookie.prefix)
 
 
 
 
-### Watchers
+### Watch
 
 Revel watches your project and supports hot-reload for a number of types of
 source. To enable watching:
 {% highlight ini %}
-watch = true
+  watch = true
 {% endhighlight %}
 If `false`, nothing will be watched, regardless of the other `watch.*`
 configuration keys.  (This is appropriate for production deployments)
@@ -291,20 +357,23 @@ Default: `true`
 
 #### `watch.mode`
 
-- If `watcher.mode = "eager"`, the server starts to recompile the application every time the application's files change.
-- If `watcher.mode = "normal"`, the server recompiles with a request eg a browser refresh.
+- If `watch.mode = "eager"`, the server starts to recompile the application every time the application's files change.
+- If `watch.mode = "normal"`, the server recompiles with a request eg a browser refresh.
 
 Default: `"normal"`
 
 #### `watch.templates`
 
-If `true` (default `false`), Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
+If `true`, Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
+
+Default: `false`
 
 
 #### `watch.routes`
 
-If `true` (default `false`), Revel will watch the [`app/routes`](routing.html) file for changes and reload as necessary.
+If `true`, Revel will watch the [`app/routes`](routing.html) file for changes and reload as necessary.
 
+Default: `false`
 
 
 #### `watch.code`
@@ -332,9 +401,9 @@ Revel components use the following cookies by default:
 Revel uses this property as the prefix for the Revel-produced cookies. This is
 so that multiple REVEL applications can coexist on the same host.
 
-For example,
+For example:
 {% highlight ini %}
-	cookie.prefix = MY
+  cookie.prefix = MY
 {% endhighlight %}
 would result in the following cookie names:
 
@@ -343,8 +412,21 @@ would result in the following cookie names:
 * MY_FLASH
 * MY_ERRORS
 
+Default: `REVEL`
 
-Default: "REVEL"
+
+#### `cookie.secure`
+
+A secure cookie has the secure attribute enabled and is only used via HTTPS,
+ensuring that the cookie is always encrypted when transmitting from client to
+server. This makes the cookie less likely to be exposed to cookie theft via
+eavesdropping.
+
+{% highlight ini %}
+  cookie.secure = false
+{% endhighlight %}
+
+Default: `false` in `dev` mode, otherwise `true`
 
 
 
@@ -366,14 +448,12 @@ the result is not always guaranteed.
 
 ### Templates
 
-<a name="template.delimiters"></a>
-
 #### `template.delimiters`
 
 Specifies an override for the left and right delimiters used in the templates.  
 The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"
 
-Default: "\{\{ \}\}"
+Default: \{\{ \}\}
 
 
 
@@ -388,7 +468,7 @@ Specifies the default date format for the application.  Revel uses this in two p
 * Binding dates to a `time.Time` (see [parameters](parameters.html))
 * Printing dates using the `date` template function (see [template funcs](templates.html))
 
-Default: "2006-01-02"
+Default: `2006-01-02`
 
 
 #### `format.datetime`
@@ -398,7 +478,7 @@ Specifies the default datetime format for the application.  Revel uses this in t
 * Binding dates to a `time.Time` (see [parameters](parameters.html))
 * Printing dates using the `datetime` template function (see [template funcs](templates.html))
 
-Default: "2006-01-02 15:04"
+Default: `2006-01-02 15:04`
 
 
 
@@ -461,7 +541,7 @@ It is specified as a duration string acceptable to
 
 (Presently it is not possible to specify a default of `FOREVER`)
 
-Default: "1h" (1 hour)
+Default: `1h` (1 hour)
 
 
 
@@ -471,7 +551,7 @@ Default: "1h" (1 hour)
 If true, the cache module uses [memcached](http://memcached.org) instead of the
 in-memory cache.
 
-Default: false
+Default: `false`
 
 
 
@@ -480,7 +560,7 @@ Default: false
 If true, the cache module uses [redis](http://redis.io) instead of the
 in-memory cache.
 
-Default: false
+Default: `false`
 
 
 #### `cache.hosts`
@@ -500,7 +580,7 @@ Default: ""
 The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJobs) or [ad-hoc](jobs.html#OneOff) jobs.
 
 
-    
+
 #### `jobs.pool`
 
 - The number of jobs allowed to run concurrently.
@@ -508,7 +588,7 @@ The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJo
 - If zero (`0`), then there is no limit imposed.
 
 {% highlight ini %}
-jobs.pool = 4
+  jobs.pool = 4
 {% endhighlight %}
 
 
@@ -518,7 +598,7 @@ If `true` (default is `false`), allows a job to run even if previous instances o
 progress.
 
 {% highlight ini %}
-jobs.selfconcurrent = true
+  jobs.selfconcurrent = true
 {% endhighlight %}
 
 
@@ -530,7 +610,7 @@ and therefore is not trustable. You should only use this if you are access your 
 proxy (e.g. Nginx). It is not recommended to allow this is production mode due to the security implications.
 
 {% highlight ini %}
-jobs.acceptproxyaddress = true
+  jobs.acceptproxyaddress = true
 {% endhighlight %}
 
 
@@ -539,12 +619,12 @@ jobs.acceptproxyaddress = true
 
 [Named cron schedules](jobs.html#NamedSchedules) may be configured by setting a key of the form:
 {% highlight ini %}
-cron.schedulename = @hourly
+  cron.schedulename = @hourly
 {% endhighlight %}
 The names schedule may be referenced upon submission to the job runner. For
 example:
 {% highlight go %}
-jobs.Schedule("cron.schedulename", job)
+  jobs.Schedule("cron.schedulename", job)
 {% endhighlight %}
 
 
@@ -553,14 +633,14 @@ jobs.Schedule("cron.schedulename", job)
 
 ### Modules
 
-- [Modules](modules.html) may be added to an application by specifying their base import path. 
+- [Modules](modules.html) may be added to an application by specifying their base import path.
 - An empty import path disables the module.
 {% highlight ini %}
-module.testrunner = github.com/revel/modules/testrunner
+  module.testrunner = github.com/revel/modules/testrunner
 
-## FIXME mymodule crashes so disabled for now
-# module.mymodulename = /path/to/mymodule 
-module.mymodulename =
+  ## FIXME mymodule crashes so disabled for now
+  # module.mymodulename = /path/to/mymodule
+  module.mymodulename =
 {% endhighlight %}
 
 
@@ -573,7 +653,7 @@ module.mymodulename =
  - Disabled by default; does not wrap error location with link.
  - An example using Sublime Text's custom URI scheme:
 {% highlight ini %}
-error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %}{{Line}}{% endraw %}"
+  error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %}{{Line}}{% endraw %}"
 {% endhighlight %}
 
 
@@ -586,7 +666,7 @@ error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %
 * Allow inserting command line arguments as config values or otherwise
   specifying config values from the command line.
 
-  
+
 <hr>
-- See the godocs for [config.go](../docs/godoc/config.html)
-- Issues tagged with [`config`](https://github.com/revel/revel/labels/config)
+- See the godocs for [`Config`](https://godoc.org/github.com/revel/config)
+- Issues tagged with [config](https://github.com/revel/revel/labels/topic-config)

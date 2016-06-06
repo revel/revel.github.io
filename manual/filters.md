@@ -1,12 +1,15 @@
 ---
 title: Filters
 layout: manual
+github:
+  labels:
+    - topic-filter
 ---
 
 **Filters** are the middleware and are individual functions that make up the
 request processing pipeline.  They execute all of the framework's functionality.
 
-The filter `type` is a simple function:
+The [`Filter`](https://godoc.org/github.com/revel/revel#Filter) `type` is a simple function:
 
 {% highlight go %}
 type Filter func(c *Controller, filterChain []Filter)
@@ -37,7 +40,7 @@ var Filters = []Filter{
 
 ### Global configuration
 
-Applications may configure the filter chain by re-assigning the `revel.Filters`
+Applications may configure the filter chain by **re-assigning** the [`revel.Filters`](https://godoc.org/github.com/revel/revel#Filters)
 variable in `init()`. By default this will be in [`app/init.go`](https://github.com/revel/revel/blob/master/skeleton/app/init.go) for a newly
 generated app.
 
@@ -60,17 +63,17 @@ func init() {
 }
 {% endhighlight %}
 
-Every request is sent down this chain, from top to bottom.
+Every [`Request`](https://godoc.org/github.com/revel/revel#Request) is sent down this chain, from top to bottom.
 
 ### Per-Action configuration
 
 Although all requests are sent down the `revel.Filters` chain, Revel also
 provides a
-[`FilterConfigurator`](../docs/godoc/filterconfig.html#FilterConfigurator),
+`FilterConfigurator`,
 which allows the developer to add, insert, or remove filter stages based on the
-Action or Controller.
+`Action` or `Controller`.
 
-This functionality is implemented by the `FilterConfiguringFilter`, itself a
+This functionality is implemented by the [`FilterConfiguringFilter`](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter), itself a
 filter stage.
 
 ## Implementing a Filter
@@ -92,7 +95,7 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 ### Getting the app Controller type
 
-Filters receive the base `*Controller` type as an
+Filters receive the base [`*Controller`](https://godoc.org/github.com/revel/revel#Controller) type as an
 argument, rather than the actual Controller type that was invoked.  If your
 filter requires access to the actual Controller type that was invoked, it may
 grab it with the following trick:
@@ -109,10 +112,10 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 <div class="alert alert-info">
 Note: this pattern is frequently an indicator that
-<a href="interceptors.html"><code>interceptors</code></a>s may be a better mechanism to accomplish the
+<a href="interceptors.html"><code>interceptors</code></a> may be a better mechanism to accomplish the
 desired functionality.
 </div>
 
 <hr>
-- See the godocs for [filter.go](../docs/godoc/filterconfig.html), [filter.go](../docs/godoc/filterconfig.html)
-- Issues tagged with [`filter`](https://github.com/revel/revel/labels/filter)
+- See the godocs for [`Filters`](https://godoc.org/github.com/revel/revel#Filters), [`FilterConfiguringFilter`](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter)
+- Issues tagged with [`filter`](https://github.com/revel/revel/labels/topic-filter)

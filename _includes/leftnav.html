@@ -1,6 +1,6 @@
 <div class="leftnav">
-  <ul class="nav">
-{% for group in page.nav %}
+<ul class="nav">
+{% for group in layout.nav %}
     <li class="nav-header">{{ group.name }}</li>
     {% for node in group.articles %}
         {% capture node_url %}/{{ page.name }}/{{ node.url }}{% endcapture %}
