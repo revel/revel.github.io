@@ -4,7 +4,10 @@ layout: manual
 github:
   labels:
     - topic-controller
-    
+godoc: 
+    - Controller
+    - Request
+    - Response
 ---
 
 The [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) is the context for 
@@ -100,4 +103,3 @@ type Response struct {
 
 <hr>
 - See the godocs for [`Controller`](https://godoc.org/github.com/revel/revel#Controller)
-- Issues tagged with [controller](https://github.com/revel/revel/labels/%23controller)
