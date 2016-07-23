@@ -49,6 +49,8 @@ type Job interface {
 For example:
 
 {% highlight go %}
+package jobs
+
 type MyJob struct {}
 
 func (j MyJob) Run() {
@@ -221,3 +223,4 @@ so). [See here for discussion](https://groups.google.com/forum/?fromgroups=#!top
 
 <hr>
 - Issues tagged with [`jobs`](https://github.com/revel/revel/labels/topic-jobs)
+- [Booking](https://github.com/revel/samples/tree/master/booking) sample uses the jobs module.
