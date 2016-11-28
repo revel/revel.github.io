@@ -65,4 +65,4 @@ type (
 		BaseController
 	}
 )
-{% endhighlight %}s
+{% endhighlight %}
