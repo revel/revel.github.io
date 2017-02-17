@@ -102,7 +102,7 @@ grab it with the following trick:
 
 {% highlight go %}
 var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
-	if ac, err := c.AppController.(*MyController); err == nil {
+	if ac, ok := c.AppController.(*MyController); ok {
 		// Have an instance of *MyController...
 	}
 
