@@ -329,6 +329,6 @@ return nil
 
 {% endhighlight %}
 
-> [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L48)
+> [websocket.go](https://github.com/revel/samples/blob/master/chat/app/controllers/websocket.go#L48)
 
 If we detect the websocket channel has closed, then we just return nil.
