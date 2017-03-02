@@ -10,19 +10,17 @@ layout: manual
 
 All request parameters are collected into the single [`Params`](https://godoc.org/github.com/revel/revel#Params) object which includes:
 
-* The URL **/:path** parameters
-* The URL **?query** parameters
-* Submitted **Form** values 
-* **File** multipart uploads
+* The URL **/:path** parameters, eg `c.Params.Route.Get("path")`
+* The URL **?query** parameters, eg `c.Params.Query.Get("query")`
+* Submitted **Form** values , eg `c.Params.Form.Get("form_val")`
+* **File** multipart uploads, eg `c.Params.Files.Get("file_name")`
+* Find in all above eg `c.Params.Get("foo")`
 
-The Go struct is:
+**Important:**
 
-{% highlight go %}
-type Params struct {
-	url.Values
-	Files map[string][]*multipart.FileHeader
-}
-{% endhighlight %}
+- All params except `File` are golang's native [`url.Values`](http://www.golang.org/pkg/net/url/#Values) which provide the accessors.
+- All values are map to slices, a `.Get()` will return first. Use map directly to get at multiple values.
+- Revel's data-binding mechanisms helps with non-string values such as dates or floats.
 
 - Golang's native [`url.Values`](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
 - Revel's data-binding mechanisms helps with non-string values such as dates or floats
@@ -135,6 +133,8 @@ func init() {
 {% endhighlight %}
 
 ### File Uploads
+
+<a name="file_uploads"></a>
 
 File uploads can be bound to any of the following types:
 
