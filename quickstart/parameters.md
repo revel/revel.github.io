@@ -8,14 +8,13 @@ easy as possible.  This conversion from string to another type is referred to as
 
 ## Params
 
-All request parameters are collected into a single `Params` object.  That includes:
+All request parameters are collected into a single [Params](../docs/godoc/params.html) object.  That includes:
 
 * URL Path parameters
 * URL Query parameters
 * Form values (Multipart or not)
 * File uploads
 
-This is the definition ([godoc](../docs/godoc/params.html)):
 
 <pre class="prettyprint lang-go">
 type Params struct {
