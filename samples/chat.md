@@ -139,7 +139,7 @@ var scrollDown = function() {
 
 // Reload the whole messages panel
 var refresh = function() {
-    $('#thread').load('/refresh/room?user={{.user}} #thread .message', function() {
+    $('#thread').load('/refresh/room?user={%raw%}{{.user}}{%endraw%} #thread .message', function() {
         scrollDown();
     })
 }
@@ -148,7 +148,7 @@ var refresh = function() {
 setInterval(refresh, 5000);
 {% endhighlight %}
 
-This is the handler to serve the above in [`app/controllers/refresh.go`](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/refresh.go):
+This is the handler to serve the above in [`app/controllers/refresh.go`](https://github.com/revel/samples/blob/master/chat/app/controllers/refresh.go):
 
 {% highlight go %}
 func (c Refresh) Room(user string) revel.Result {
@@ -172,14 +172,14 @@ rendered (after changing the user name to "you" as necessary).
 
 ### Long Polling (Comet)
 
-The Long Polling chat room (see [`LongPolling/Room.html`](https://github.com/revel/revel/tree/master/samples/chat/app/views/LongPolling/Room.html))
+The Long Polling chat room (see [`LongPolling/Room.html`](https://github.com/revel/samples/blob/master/chat/app/views/LongPolling/Room.html))
 makes an ajax request that the server keeps open until a new message comes in. The javascript uses a
 `lastReceived` timestamp to tell the server the last message it knows about.
 
 {% highlight js %}
 var lastReceived = 0;
 var waitMessages = '/longpolling/room/messages?lastReceived=';
-var say = '/longpolling/room/messages?user={{.user}}';
+var say = '/longpolling/room/messages?user={%raw%}{{.user}}{%endraw%}';
 
 $('#send').click(function(e) {
     var message = $('#message').val();
@@ -242,7 +242,7 @@ user has loaded the page.
 
 {% highlight js %}
 // Create a socket
-var socket = new WebSocket('ws://127.0.0.1:9000/websocket/room/socket?user={{.user}}');
+var socket = new WebSocket('ws://127.0.0.1:9000/websocket/room/socket?user={%raw%}{{.user}}{%endraw%}');
 
 // Message received on the socket
 socket.onmessage = function(event) {
@@ -257,7 +257,7 @@ $('#send').click(function(e) {
 {% endhighlight %}
 
 The first thing to do is to subscribe to new events, join the room, and send
-down the archive.  Here is what [websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L17) looks like:
+down the archive.  Here is what [websocket.go](https://github.com/revel/samples/blob/master/chat/app/controllers/websocket.go#L17) looks like:
 
 {% highlight go %}
 func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
@@ -281,7 +281,7 @@ func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
 
 Next, we have to listen for new events from the subscription.  However, the
 websocket library only provides a blocking call to get a new frame.  To select
-between them, we have to wrap it ([websocket.go](https://github.com/revel/revel/tree/master/samples/chat/app/controllers/websocket.go#L33)):
+between them, we have to wrap it ([websocket.go](https://github.com/revel/samples/blob/master/chat/app/controllers/websocket.go#L33)):
 
 {% highlight go %}
 // In order to select between websocket messages and subscription events, we
