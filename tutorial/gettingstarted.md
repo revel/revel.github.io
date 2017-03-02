@@ -30,7 +30,7 @@ Now your Go installation is complete.
 Git and Mercurial are required to allow `go get` to clone various dependencies.
 
 * [Installing Git](http://git-scm.com/book/en/Getting-Started-Installing-Git)
-* [Installing Mercurial](http://mercurial.selenic.com/wiki/Download)
+* [Installing Mercurial](https://www.mercurial-scm.org/downloads)
 
 ## Get the Revel framework
 
