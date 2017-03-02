@@ -3,32 +3,46 @@ title: URL Routing
 layout: manual
 ---
 
-URL's and Routes are defined in the `conf/routes` file, and the basic syntax is three columns as example below:
+URL's and routes are defined in the `conf/routes` file and have three columns as example below:
+	
+```csv
+[METHOD] [URL Pattern] [Controller.Action]
+GET      /              MySite.Welcome
+```
 
-    [METHOD] [URL Pattern] [Controller.Action]
-    GET      /             MySite.Welcome
+### conf example
 
-
-
-
-~~~
-# conf/routes
-# This file defines all application routes 
+```
 # Higher priority routes first
 
-module:jobs  # Import all routes from the jobs module
+module:jobs  # Importing jobs includes all the routes from the module
 
-GET    /login                 App.Login              # A simple path
-GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ (optional trailing slash)
+## main routes
+GET    /                      App.Home # A simple path
+
+GET    /contact               App.Contact  # contact page
+#GET    /contact/              App.Contact  # unnecessary as (optional trailing slash is above)
+
+GET    /login                 App.Login
+
+GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ 
 GET    /hotels/:id            Hotels.Show            # Extract a URI argument
 WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
 POST   /hotels/:id/:action    Hotels.:action         # Automatically route some actions.
-GET    /public/*filepath      Static.Serve("public") # Map /app/public resources under /public/...
-*      /debug/                module:testrunner      # Prefix all routes in the testrunner module with /debug/
-*      /:controller/:action   :controller.:action    # Catch all; Automatic URL generation
-~~~
 
-Let's go through the lines one at a time.  At the end, we'll see how to
+## Static files. Map /app/public resources under /public/...
+GET    /public/*filepath      Static.Serve("public") 
+
+## Developer Stuff
+# Prefix all routes in the testrunner module with /debug/
+*      /debug/                module:testrunner 
+
+## Finally
+# Catch all and Automatic URL generation
+*      /:controller/:action   :controller.:action
+```
+
+Let's go through the lines one at a time and by the end, we'll see how to
 accomplish [reverse routing](#reverse-routing) i.e generating the URL to invoke a particular action.
 
 ## A Fixed Path

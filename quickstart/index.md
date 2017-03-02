@@ -5,7 +5,7 @@ title: Quickstart
 
 Revel is evolving expect changes, changes.
 
-**Note:** This quickstart is work in progress
+\note This quickstart is work in progress
 
 This is a short guide to help you get the information you need in a quick manner. 
 It is divided into sections as listed on the side.
