@@ -97,6 +97,12 @@ Revel maintains a *Heroku Buildpack*, allowing one-command deploys.
 - Visit [heroku-buildpack-go-revel](https://github.com/revel/heroku-buildpack-go-revel) on github
 - See the [README](https://github.com/revel/heroku-buildpack-go-revel/blob/master/README.md) for usage instructions.
 
+## Boxfuse and Amazon Web Services
+
+[Boxfuse](https://boxfuse.com) comes with first-class support for Revel apps with one-command deploys to AWS.
+
+- Visit the [Get Started with Boxfuse and Revel](https://boxfuse.com/getstarted/revel) guide to be up and running on AWS in minutes
+- See the [Boxfuse Revel reference documentation](https://boxfuse.com/docs/payloads/revel) for details.
 
 ## Cross-compilation
 
