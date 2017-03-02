@@ -46,7 +46,7 @@ a:hover {
 
 /* its a godoc link */
 a[href^="https://godoc.org"] code { 
-    color: brown; 
+    color: #515F7C; 
     font-family: monospace;
     font-weight: bold;
     background: url(/img/godoc.png);
