@@ -283,7 +283,7 @@ made by a single client. A Timeout of zero means no timeout.
 
 Example:
 {% highlight ini %}
-  timeout.read = 120
+  timeout.write = 120
 {% endhighlight %}
 
 Default: `60`
