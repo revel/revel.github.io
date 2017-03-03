@@ -16,8 +16,13 @@
             <ul class="nav navbar-nav">
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
+                
                 <li {% if page.layout == 'manual' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/manual/index.html">Manual</a></li>
+                    
+                <li {% if page.layout == 'modules' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/modules/index.html">Modules</a></li>
+                    
 				<li {% if page.layout == 'quickstart' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/quickstart/index.html">Quick Start</a></li>
                 <li {% if page.layout == 'samples' %}class="active"{% endif %}>

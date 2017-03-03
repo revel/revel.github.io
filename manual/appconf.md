@@ -577,7 +577,7 @@ Default: ""
 
 ### Scheduled Jobs
 
-The [jobs](jobs.html) module allows you to run [scheduled](jobs.html#RecurringJobs) or [ad-hoc](jobs.html#OneOff) jobs.
+The [jobs](../modules/jobs.html) module allows you to run [scheduled](../modules/jobs.html#RecurringJobs) or [ad-hoc](../modules/jobs.html#OneOff) jobs.
 
 
 
@@ -617,7 +617,7 @@ proxy (e.g. Nginx). It is not recommended to allow this is production mode due t
 
 #### Named Schedules
 
-[Named cron schedules](jobs.html#NamedSchedules) may be configured by setting a key of the form:
+[Named cron schedules](../modules/jobs.html#NamedSchedules) may be configured by setting a key of the form:
 {% highlight ini %}
   cron.schedulename = @hourly
 {% endhighlight %}

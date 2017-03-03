@@ -1,6 +1,6 @@
 ---
 title: Testing
-layout: manual
+layout: modules
 ---
 
 Revel provides a testing framework that makes it easy to write and run functional tests against an application.

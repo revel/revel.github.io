@@ -1,6 +1,6 @@
 ---
 title: Jobs
-layout: manual
+layout: modules
 github:
   labels:
     - topic-jobs

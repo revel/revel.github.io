@@ -10,7 +10,7 @@ To handle a Websocket connection:
 1. Add a route using the `WS` method.
 2. Add an action that accepts a `*websocket.Conn` parameter.
 
-See the example [chat application](https://github.com/revel/samples/tree/master/chat)
+See the example [chat application](../samples/chat.html)
 
 ## Simple Websocket Example
 
