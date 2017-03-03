@@ -1,0 +1,328 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Archivo+Black);
+
+.navbar {
+        border-radius: 0;
+}
+
+#main-logo {
+    
+   font-family: 'Archivo Black', sans-serif !important;
+   color: #E5FC3A;
+   font-size: 22pt;
+}
+
+/* hero is the big gopher banner on index.html */
+.hero-unit {
+  background-color: #222;
+  margin-top:0px;
+  min-width: 940px;
+  color:#ccc;
+  padding-top:0px;
+  border-bottom:1px solid #375EAB;
+
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+}
+
+.hero-img {
+  float:left;
+  margin-left: 100px;
+}
+
+.hero-text {
+  margin-left:200px;
+  padding-top:200px;
+  padding-bottom:150px;
+}
+
+/** global styles */
+p, li {
+  line-height: 1.5em;
+  margin-left: 15px;
+  margin-right: 30px;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+/* its a godoc link */
+a[href^="https://godoc.org"] code { 
+    color: #515F7C; 
+    font-family: monospace;
+    font-weight: bold;
+    background: url(/img/godoc.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    padding-right: 16px;
+}
+/* its a standard golang */
+a[href^="https://www.golang.org"],
+a[href^="http://www.golang.org"],
+a[href^="http://golang.org"],
+a[href^="https://golang.org"]
+{ 
+  color: #375EAB !important;
+  background-color: #E0EBF5 !important;
+  font-family: monospace;
+  font-weight: bold;
+  background: url(/img/gopher-link.png);
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding-right: 12px;
+}
+/* its a revel link */
+a[href^="https://godoc.org/github.com/revel"] code { 
+	color: brown; 
+	background-color: #FAFFBB !important;
+	font-family: monospace;
+	font-weight: bold;
+	background: url(/img/godoc.png);
+	background-position: top right;
+	background-repeat: no-repeat;
+	padding-right: 16px;
+}
+.deadcontainer {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+.nav-list > .active > a, .nav-list > .active > a:hover {
+  deadbackground-color: #999 !important;
+}
+
+
+.navbar .nav li a {
+  deadfont-size: 16px;
+}
+/*
+code {
+    color: #196497;
+    background: 0;
+    border: 0;
+    font-family: monospace
+}
+
+a code {
+    color: #196497;
+    text-decoration: none;
+}
+
+ul ul, ul ol, ol ol, ol ul, ul {
+  margin-bottom: 1em;
+}
+*/
+/************************************************/
+/* revel logo and header */
+/*
+.navbar-header {
+    width: 250px; 
+}
+#revel-logo {
+    margin: 0;
+    padding: 0;
+}
+#revel-logo img {
+    margin: 2px 0 0 0;
+}
+*/
+/************************************************/
+/* Top navigation */
+/*
+.revel-top-nav li {
+    margin-left: 0;
+    margin-right: 0;
+}
+.revel-top-nav ul li a {
+    color: #444444 !important;
+    font-size: 36px;
+    font-family: sans-serif !important;
+}
+.revel-top-nav ul li.active a {
+    color: #222222 !important;
+}
+*/
+/************************************************/
+/* Left navigation */
+
+.leftnav {
+    deadborder-right: 1px solid #719D00;
+    deadbackground-color: yellow !important;
+    sspadding: 0;
+    ssmargin: 0;
+}
+.leftnav .nav-header {
+    padding: 2px 0;
+    background-color: #666666 !important;
+    deadborder-top: 1px solid #dddddd !important;
+    padding: 2px 4px 2px 20px;
+    color: #dddddd;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10pt;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 8px;
+}
+
+.leftnav .nav li  a {
+    padding: 3px 0 3px 20px;
+    color: #444444 !important;
+    font-size: 11pt;
+    background-color: #dddddd;
+    border: 1px solid #cccccc;
+    margin: 0 15px 0 5px;
+}
+.leftnav .nav li  a:hover {
+    color: black !important;   
+    background-color: white;
+}
+.leftnav .nav li.active a {
+  color: #7B2416 !important;
+  background-color: #222222 !important;
+}
+
+/************************************************/
+/* page header and imporve button */
+.page-header {
+    margin: 0px;
+    margin: 20px 0 10px 0;
+    border-bottom: 1px solid blue;
+}
+.page-header h1 {
+    color: #666666 !important;
+    font-family: sans-serif !important;
+}
+.improve-page {
+    float: right;
+    margin: 0 2px;
+    position: relative;
+}
+
+.revel-github-bar {
+  font-family: monospace;
+  margin: 0px;
+  background-color: blue;
+  
+}
+.revel-github-bar h6 {
+    font-family: monospace;
+    font-size: 16pt;
+    padding: 2px 4px;
+    border: 0;
+    border-top: 1px solid #bbbbbb;
+    border-right: 20px solid #bbbbbb;
+    
+}
+/************************************************/
+
+footer {
+    border-top: 1px solid #dddddd;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #dddddd;
+}
+
+.container {
+    deadmax-width: 1100px;
+}
+
+
+deadh2 {
+    font-family: 'Archivo Black', sans-serif !important;
+    font-size: 25px;
+    color: #eeeeee !important;
+    padding: 4px 0 4px 6px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-top: 1px solid #aaaaaa;
+    border-right: 1px solid #aaaaaa;
+    border-top-right-radius: 20px;
+    background-color: #777777;
+    /*background-image: linear-gradient(to bottom,#cccccc 0,#efefef 100%); */
+}
+
+deadh3 {
+    font-size: 20px;
+    color: #4444 !important;
+    padding: 4px 6px;
+    margin-top: 25px;
+    margin-left: 2px;
+    background-image: linear-gradient(to bottom,#eeeeee 0,#efefef 100%);
+    border: 1px solid #aaaaaa;
+    border-left: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    border-top-right-radius: 20px;
+}
+
+h4 {
+    font-size: 18px;
+    color: #2222 !important;
+    padding-bottom: 2px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+/* uses mainly on appconf */
+h4 code {
+    font-weight: bold;
+    color: #992086 !important;
+    margin-left: 0;
+    padding-left: 0;
+    
+}
+
+.alert {
+    margin-left: 30px;
+    margin-right: 40px;
+} 
+
+
+/* pygments and code */
+
+.highlight pre, pre {
+    border: none;
+    font-size: 12px;   
+    color: #222222;
+    background-color: #eeeeee;
+    box-shadow: 10px 10px 23px -8px rgba(158,158,158,1);
+    margin: 10px 30px 10px 30px;
+    border-radius: 5px;
+    font-family: monospace;
+    white-space: pre;
+}
+
+.highlight .kd {
+    color: #E4438A;   
+}
+.highlight .nx {
+    color: #21922F;
+    font-weight: bold;
+}
+.highlight .nb {
+    font-weight: bold;
+}
+.highlight .c1 {
+    color: #111111;
+}
+.highlight .kc {
+    color: #92214E;
+}
+.highlight .language-htmldjango .nv {
+     color: #219277;
+    font-weight: bold;
+}

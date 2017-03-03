@@ -1,13 +1,9 @@
-<div class="navbar navbar-default navbar-static-top revel-top-nav" ssstyle="margin:0 auto 2px auto;">
+
+
+<div class="navbar navbar-inverse snavbar-fixed-top ssrevel-top-nav" ssstyle="margin:0 auto 2px auto;">
     <div class="container">
-        <div class="navbar-header">
-            <a id="revel-logo" href="{{ page.root }}/index.html">
-                <img class="revel-hat-img"
-                    src="{{ page.root }}/img/revelhat.png"
-                    height="40" width="87">
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
+        
+         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
@@ -47,9 +43,12 @@
                         
                         <li><a href="http://stackoverflow.com/questions/tagged/revel" target="_blank">Revel at StackOverflow</a></li>
                     </ul>
-                <li>        
+                <li>
+                
+                 <a class="navbar-brand" id="main-logo" href="#">Revel</a>
+                 
             </ul>
         </div>
-        
+       
     </div>
 </div>

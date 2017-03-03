@@ -1,15 +1,15 @@
 <div class="leftnav">
 <ul class="nav">
-{% for group in layout.nav %}
-    <li class="nav-header">{{ group.name }}</li>
-    {% for node in group.articles %}
-        {% capture node_url %}/{{ page.name }}/{{ node.url }}{% endcapture %}
-        {% if page.url == node_url %}
-        <li class="active"><a href="{{node.url}}">{{node.title}}</a></li>
-        {% else %}
-        <li><a href="{{node.url}}">{{node.title}}</a></li>
-        {% endif %}
+    {% for group in layout.nav %}
+        <li class="nav-header">{{ group.name }}</li>
+        {% for node in group.articles %}
+            {% capture node_url %}/{{ page.name }}/{{ node.url }}{% endcapture %}
+            {% if page.url == node_url %}
+                <li class="active"><a href="{{node.url}}">{{node.title}}</a></li>
+            {% else %}
+                <li><a href="{{node.url}}">{{node.title}}</a></li>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
-  </ul>
+</ul>
 </div>
