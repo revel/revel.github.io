@@ -12,7 +12,7 @@
    font-family: Helvetica !important;
    color: #CCCCCC;
    font-size: 23pt;
-   padding-left: 40px;
+   padding-left: 20px;
 }
 #main-logo a:hover {
     text-decoration: none;
@@ -20,15 +20,12 @@
 /* hero is the big gopher banner on index.html */
 .hero-unit {
   background-color: #222;
-  margin-top:0px;
+  margin-top:0;
   min-width: 940px;
   color:#ccc;
   padding-top:0px;
   border-bottom:1px solid #375EAB;
 
-  -webkit-border-radius: 0px;
-     -moz-border-radius: 0px;
-          border-radius: 0px;
 }
 
 .hero-img {
@@ -42,9 +39,44 @@
   padding-bottom:150px;
 }
 
-/** global styles for main content */
+/************************************************/
+/* Left navigation */
+.leftnav {
+
+}
+.leftnav .nav-header {
+    background-color: #666666 !important;
+    padding: 2px 4px 2px 20px;
+    color: #dddddd;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10pt;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 8px;
+    margin-top: 10px;
+}
+
+.leftnav .nav li  a {
+    padding: 3px 0 3px 20px;
+    color: #444444 !important;
+    font-size: 11pt;
+    background-color: #dddddd;
+    border: 1px solid #cccccc;
+    margin: 0 20px 0 15px;
+}
+.leftnav .nav li  a:hover {
+    color: black !important;   
+    background-color: white;
+}
+.leftnav .nav li.active a {
+  color: black !important;
+  background-color: #eeeeee !important;
+  border-color: #aaaaaa;
+}
+
+/************************************************/
+/** main content */
 .main {
-    background-color: yellow;
 }
 .main p, .main li {
   line-height: 1.5em;
@@ -61,6 +93,9 @@
   color: #005580;
   text-decoration: underline;
 }
+
+
+
 
 /* its a godoc link */
 a[href^="https://godoc.org"] code { 
@@ -108,58 +143,23 @@ a[href^="https://godoc.org/github.com/revel"] code {
   deadfont-size: 16px;
 }
 */
-/*
-code {
+
+.main code {
     color: #196497;
     background: 0;
     border: 0;
     font-family: monospace
 }
 
-a code {
+.main a code {
     color: #196497;
     text-decoration: none;
 }
 
-ul ul, ul ol, ol ol, ol ul, ul {
-  margin-bottom: 1em;
-}
-*/
 
 
-/************************************************/
-/* Left navigation */
-.leftnav {
 
-}
-.leftnav .nav-header {
-    background-color: #666666 !important;
-    padding: 2px 4px 2px 20px;
-    color: #dddddd;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 10pt;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 8px;
-    margin-top: 10px;
-}
 
-.leftnav .nav li  a {
-    padding: 3px 0 3px 20px;
-    color: #444444 !important;
-    font-size: 11pt;
-    background-color: #dddddd;
-    border: 1px solid #cccccc;
-    margin: 0 20px 0 15px;
-}
-.leftnav .nav li  a:hover {
-    color: black !important;   
-    background-color: white;
-}
-.leftnav .nav li.active a {
-  color: #7B2416 !important;
-  background-color: #222222 !important;
-}
 
 /************************************************/
 /* page header and imporve button */
@@ -193,40 +193,25 @@ ul ul, ul ol, ol ol, ol ul, ul {
     border-right: 20px solid #bbbbbb;
     
 }
-/************************************************/
-
-footer {
-    border-top: 1px solid #dddddd;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-hr {
-    margin-top: 40px;
-    margin-bottom: 10px;
-    border-bottom: 3px solid #dddddd;
-}
-
-.container {
-    deadmax-width: 1100px;
-}
 
 
-deadh2 {
-    font-family: 'Archivo Black', sans-serif !important;
+.main h2 {
+    font-family:  sans-serif !important;
     font-size: 25px;
-    color: #eeeeee !important;
+    color: #444444 !important;
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-top: 1px solid #aaaaaa;
     border-right: 1px solid #aaaaaa;
     border-top-right-radius: 20px;
-    background-color: #777777;
-    /*background-image: linear-gradient(to bottom,#cccccc 0,#efefef 100%); */
+    background-color: #dddddd;
 }
 
-deadh3 {
+
+
+.main h3 {
+    font-family:  sans-serif !important;
     font-size: 20px;
     color: #4444 !important;
     padding: 4px 6px;
@@ -239,7 +224,7 @@ deadh3 {
     border-top-right-radius: 20px;
 }
 
-h4 {
+.main h4 {
     font-size: 18px;
     color: #2222 !important;
     padding-bottom: 2px;
@@ -248,7 +233,7 @@ h4 {
 }
 
 /* uses mainly on appconf */
-h4 code {
+.main h4 code {
     font-weight: bold;
     color: #992086 !important;
     margin-left: 0;
@@ -295,4 +280,19 @@ h4 code {
 .highlight .language-htmldjango .nv {
      color: #219277;
     font-weight: bold;
+}
+
+
+/************************************************/
+
+footer {
+    border-top: 1px solid #dddddd;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #dddddd;
 }
