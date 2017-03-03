@@ -68,6 +68,7 @@ func (c App) Hello(myName string) revel.Result {
     return c.Render(myName)
 }
 {% endhighlight %}
+
 Now it will send the user back to `Index()` if they have not entered a valid
 name. Their name and the validation error are kept in the
 [Flash](../manual/sessionflash.html), which is a temporary cookie.
@@ -98,7 +99,8 @@ The provided `flash.html` template will show any errors or flash messages:
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-When we submit that form with a name that fails validation, we want the form to retain the bad name, so that the user can edit it before re-submitting.  Amend the form you had added to your **app/views/App/Index.html** template:
+When we submit that form with a name that fails validation, we want the form to retain the bad name, so that the user can edit it before 
+re-submitting.  Amend the form you had added to your **app/views/App/Index.html** template:
 
 {% capture ex %}{% raw %}
 <form action="/App/Hello" method="GET">
@@ -117,6 +119,7 @@ Now when we submit a single letter as our name:
 Success, we got an appropriate error and our input was saved for us to edit.
 
 <hr>
+
 #### Next >>
 - Read more the [concepts](../manual/concepts.html)
 - Look at the [samples](../samples/)
