@@ -180,7 +180,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
     font-size: 11pt;
     background-color: #dddddd;
     border: 1px solid #cccccc;
-    margin: 0 15px 0 5px;
+    margin: 0 15px 0 10px;
 }
 .leftnav .nav li  a:hover {
     color: black !important;   
@@ -196,10 +196,11 @@ ul ul, ul ol, ol ol, ol ul, ul {
 .page-header {
     margin: 0px;
     margin: 20px 0 10px 0;
-    border-bottom: 1px solid blue;
+    border-bottom: 1px solid #dddddd;
 }
 .page-header h1 {
     color: #666666 !important;
+    font-size: 22pt;
     font-family: sans-serif !important;
 }
 .improve-page {
@@ -242,17 +243,18 @@ hr {
 }
 
 
-deadh2 {
-    font-family: 'Archivo Black', sans-serif !important;
-    font-size: 25px;
-    color: #eeeeee !important;
+h2 {
+    font-family: sans-serif !important;
+    font-size: 18pt;
+    color: #222222 !important;
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-top: 1px solid #aaaaaa;
     border-right: 1px solid #aaaaaa;
-    border-top-right-radius: 20px;
-    background-color: #777777;
+    ssborder-top-left-radius: 20px;
+    border-bottom-right-radius: 30px;
+    background-color: #cccccc;
     /*background-image: linear-gradient(to bottom,#cccccc 0,#efefef 100%); */
 }
 
