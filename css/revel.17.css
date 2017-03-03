@@ -5,14 +5,18 @@
 .navbar {
         border-radius: 0;
 }
-
 #main-logo {
-    
-   font-family: 'Archivo Black', sans-serif !important;
-   color: #E5FC3A;
-   font-size: 22pt;
+    width: 260px;
 }
-
+#main-logo a {
+   font-family: Helvetica !important;
+   color: #CCCCCC;
+   font-size: 23pt;
+   padding-left: 40px;
+}
+#main-logo a:hover {
+    text-decoration: none;
+}
 /* hero is the big gopher banner on index.html */
 .hero-unit {
   background-color: #222;
@@ -38,19 +42,22 @@
   padding-bottom:150px;
 }
 
-/** global styles */
-p, li {
+/** global styles for main content */
+.main {
+    background-color: yellow;
+}
+.main p, .main li {
   line-height: 1.5em;
   margin-left: 15px;
   margin-right: 30px;
 }
 
-a {
+.main a {
   color: #0088cc;
   text-decoration: none;
 }
 
-a:hover {
+.main a:hover {
   color: #005580;
   text-decoration: underline;
 }
@@ -91,12 +98,7 @@ a[href^="https://godoc.org/github.com/revel"] code {
 	background-repeat: no-repeat;
 	padding-right: 16px;
 }
-.deadcontainer {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-
+/*
 .nav-list > .active > a, .nav-list > .active > a:hover {
   deadbackground-color: #999 !important;
 }
@@ -105,6 +107,7 @@ a[href^="https://godoc.org/github.com/revel"] code {
 .navbar .nav li a {
   deadfont-size: 16px;
 }
+*/
 /*
 code {
     color: #196497;
@@ -122,49 +125,15 @@ ul ul, ul ol, ol ol, ol ul, ul {
   margin-bottom: 1em;
 }
 */
-/************************************************/
-/* revel logo and header */
-/*
-.navbar-header {
-    width: 250px; 
-}
-#revel-logo {
-    margin: 0;
-    padding: 0;
-}
-#revel-logo img {
-    margin: 2px 0 0 0;
-}
-*/
-/************************************************/
-/* Top navigation */
-/*
-.revel-top-nav li {
-    margin-left: 0;
-    margin-right: 0;
-}
-.revel-top-nav ul li a {
-    color: #444444 !important;
-    font-size: 36px;
-    font-family: sans-serif !important;
-}
-.revel-top-nav ul li.active a {
-    color: #222222 !important;
-}
-*/
+
+
 /************************************************/
 /* Left navigation */
-
 .leftnav {
-    deadborder-right: 1px solid #719D00;
-    deadbackground-color: yellow !important;
-    sspadding: 0;
-    ssmargin: 0;
+
 }
 .leftnav .nav-header {
-    padding: 2px 0;
     background-color: #666666 !important;
-    deadborder-top: 1px solid #dddddd !important;
     padding: 2px 4px 2px 20px;
     color: #dddddd;
     font-weight: bold;
@@ -172,6 +141,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
     font-size: 10pt;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 8px;
+    margin-top: 10px;
 }
 
 .leftnav .nav li  a {
@@ -180,7 +150,7 @@ ul ul, ul ol, ol ol, ol ul, ul {
     font-size: 11pt;
     background-color: #dddddd;
     border: 1px solid #cccccc;
-    margin: 0 15px 0 10px;
+    margin: 0 20px 0 15px;
 }
 .leftnav .nav li  a:hover {
     color: black !important;   
@@ -196,11 +166,10 @@ ul ul, ul ol, ol ol, ol ul, ul {
 .page-header {
     margin: 0px;
     margin: 20px 0 10px 0;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #cccccc;
 }
 .page-header h1 {
     color: #666666 !important;
-    font-size: 22pt;
     font-family: sans-serif !important;
 }
 .improve-page {
@@ -243,18 +212,17 @@ hr {
 }
 
 
-h2 {
-    font-family: sans-serif !important;
-    font-size: 18pt;
-    color: #222222 !important;
+deadh2 {
+    font-family: 'Archivo Black', sans-serif !important;
+    font-size: 25px;
+    color: #eeeeee !important;
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-top: 1px solid #aaaaaa;
     border-right: 1px solid #aaaaaa;
-    ssborder-top-left-radius: 20px;
-    border-bottom-right-radius: 30px;
-    background-color: #cccccc;
+    border-top-right-radius: 20px;
+    background-color: #777777;
     /*background-image: linear-gradient(to bottom,#cccccc 0,#efefef 100%); */
 }
 

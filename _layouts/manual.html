@@ -118,7 +118,9 @@ nav:
                     <a href="https://github.com/revel/revel.github.io/edit/develop/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
                     <h1>{{ page.title }}</h1>
                 </div>
-                {{ content }}
+                <div class="main">
+                    {{ content }}
+                </div>
         
                 {% include godoc_links.html %}
                 {% include github_links.html %}

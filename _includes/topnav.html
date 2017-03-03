@@ -1,9 +1,18 @@
 
 
-<div class="navbar navbar-inverse snavbar-fixed-top ssrevel-top-nav" ssstyle="margin:0 auto 2px auto;">
+    
+<nav class="navbar navbar-inverse snavbar-fixed-top ssrevel-top-nav" ssstyle="margin:0 auto 2px auto;">
     <div class="container">
-        
-         <div class="navbar-collapse collapse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div id="main-logo"><a ddclass="navbar-brand" href="/">Revel</a></div>
+        </div>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
@@ -18,7 +27,7 @@
                     <a href="https://godoc.org/github.com/revel/revel" target="_godoc">GoDoc</a></li>
                     
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">github <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GitHub <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="https://github.com/revel/" target="github">The Revel project</a></li>
                         <li class="divider"></li>
@@ -44,11 +53,8 @@
                         <li><a href="http://stackoverflow.com/questions/tagged/revel" target="_blank">Revel at StackOverflow</a></li>
                     </ul>
                 <li>
-                
-                 <a class="navbar-brand" id="main-logo" href="#">Revel</a>
                  
             </ul>
         </div>
-       
     </div>
-</div>
+</nav>
