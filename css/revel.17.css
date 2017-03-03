@@ -45,10 +45,10 @@
 .leftnav .nav-header {
     background-color: #666666 !important;
     padding: 2px 4px 2px 20px;
-    color: #dddddd;
+    color: #eeeeee;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 10pt;
+    font-size: 11pt;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 8px;
     margin-top: 10px;
@@ -58,17 +58,18 @@
     padding: 3px 0 3px 20px;
     color: #444444 !important;
     font-size: 11pt;
-    background-color: #dddddd;
-    border: 1px solid #cccccc;
+    background-color: #eeeeee;
+    border: 1px solid #eeeeee;
     margin: 0 20px 0 15px;
 }
 .leftnav .nav li  a:hover {
     color: black !important;   
     background-color: white;
+    border-color: #dddddd;
 }
 .leftnav .nav li.active a {
   color: black !important;
-  background-color: #eeeeee !important;
+  background-color: white !important;
   border-color: #aaaaaa;
 }
 
@@ -280,4 +281,20 @@ hr {
     margin-top: 40px;
     margin-bottom: 10px;
     border-bottom: 3px solid #dddddd;
+}
+
+.revel-tutorial .leftnav .nav-header {
+    background-color: #6CA642 !important;
+}
+.revel-manual .leftnav .nav-header {
+    background-color: #427FA6 !important;
+}
+.revel-modules .leftnav .nav-header {
+    background-color: #6142A6 !important;
+}
+.revel-quickstart .leftnav .nav-header {
+    background-color: #8F42A6 !important;
+}
+.revel-samples .leftnav .nav-header {
+    background-color: #A69A42 !important;
 }
