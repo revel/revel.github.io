@@ -43,11 +43,12 @@
 
 }
 .leftnav .nav-header {
-    background-color: #666666 !important;
+    background-color: #dddddd !important;
     padding: 2px 4px 2px 20px;
     color: #eeeeee;
     font-weight: bold;
     text-transform: uppercase;
+    font-family: Helvetica;
     font-size: 11pt;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 8px;
@@ -59,7 +60,8 @@
     color: #444444 !important;
     font-size: 11pt;
     background-color: #eeeeee;
-    border: 1px solid #eeeeee;
+    border-left: 3px solid #dddddd;
+    border-right: 3px solid #dddddd;
     margin: 0 20px 0 15px;
 }
 .leftnav .nav li  a:hover {
