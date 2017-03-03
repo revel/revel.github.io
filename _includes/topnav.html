@@ -15,18 +15,18 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
+                    <a href="{{ page.root }}/tutorial/index.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a></li>
                 
                 <li {% if page.layout == 'manual' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/manual/index.html">Manual</a></li>
+                    <a href="{{ page.root }}/manual/index.html"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Manual</a></li>
                     
                 <li {% if page.layout == 'modules' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/modules/index.html">Modules</a></li>
+                    <a href="{{ page.root }}/modules/index.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Modules</a></li>
                     
 				<li {% if page.layout == 'quickstart' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/quickstart/index.html">Quick Start</a></li>
+                    <a href="{{ page.root }}/quickstart/index.html"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Quick Start</a></li>
                 <li {% if page.layout == 'samples' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/samples/index.html">Samples</a></li>
+                    <a href="{{ page.root }}/samples/index.html"><span class="glyphicon glyphicon-sound-stereo" aria-hidden="true"></span> Samples</a></li>
                     
                 <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
                     <a href="https://godoc.org/github.com/revel/revel" target="_godoc">GoDoc</a></li>
