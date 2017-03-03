@@ -1,7 +1,5 @@
 
 
-@import url(https://fonts.googleapis.com/css?family=Archivo+Black);
-
 .navbar {
         border-radius: 0;
 }
@@ -133,16 +131,6 @@ a[href^="https://godoc.org/github.com/revel"] code {
 	background-repeat: no-repeat;
 	padding-right: 16px;
 }
-/*
-.nav-list > .active > a, .nav-list > .active > a:hover {
-  deadbackground-color: #999 !important;
-}
-
-
-.navbar .nav li a {
-  deadfont-size: 16px;
-}
-*/
 
 .main code {
     color: #196497;
@@ -155,9 +143,6 @@ a[href^="https://godoc.org/github.com/revel"] code {
     color: #196497;
     text-decoration: none;
 }
-
-
-
 
 
 
