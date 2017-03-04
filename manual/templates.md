@@ -7,12 +7,16 @@ github:
     - topic-controller
 ---
 
-Revel uses Go's built in [html/template](http://golang.org/pkg/html/template/) package.  It
-searches two directories for templates:
+`Revel` uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
+package, and Hot Topic 
+is [different templating engines](https://github.com/revel/revel/projects/1)
 
-1. First, the application's `app/views/` directory and subdirectories.
-2. Then Revel's own `templates/` directory.
-3. Otherwise its a `500` error as template not found (but in [dev mode](appconf.html#run-modes) shows debug info)
+
+Directories and scanned for templates in the follosing order:
+
+1. The application `app/views/` directory and subdirectories.
+2. revel core `templates/` directory.
+3. Otherwise a `500` error as template not found (but in [dev mode](appconf.html#run-modes) shows debug info)
 
 For example, given a controller/action `Hello.World()`, Revel will:
 

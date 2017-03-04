@@ -3,18 +3,32 @@ title: Request Parameters and Binding
 layout: manual
 ---
 
-- Revel tries to make the conversion of request parameters into the desired Go type as easy and painless as possible. 
-- The conversion from a http request `string` sent by client to another type is referred to as **data binding**.
+- **Revel** tries to make the conversion of request 
+  parameters into the desired Go types as easy and painless as possible. 
+- The conversion from a http request `string` sent 
+  by client to another type is referred to as **data binding**.
 
 ## Request Parameters
 
+#### /:path
+* The URL **/:path** parameters from the router
+
+    `c.Params.Route.Get("path")`
+
+#### ?query=vars
+* The URL **?query** parameters, eg `c.Params.Query.Get("query")`
+
+#### form action="POST"
+* Submitted **Form** values , eg `c.Params.Form.Get("form_val")`
+
+#### form action="POST" UPLOAD
+* **File** multipart uploads, eg `c.Params.Files.Get("file_name")`
+
+#### Mangled
+* Find in all above eg `c.Params.Get("foo")`
+
 All request parameters are collected into the single [`Params`](https://godoc.org/github.com/revel/revel#Params) object which includes:
 
-* The URL **/:path** parameters, eg `c.Params.Route.Get("path")`
-* The URL **?query** parameters, eg `c.Params.Query.Get("query")`
-* Submitted **Form** values , eg `c.Params.Form.Get("form_val")`
-* **File** multipart uploads, eg `c.Params.Files.Get("file_name")`
-* Find in all above eg `c.Params.Get("foo")`
 
 **Important:**
 

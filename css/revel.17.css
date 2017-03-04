@@ -2,6 +2,7 @@
 
 .navbar {
         border-radius: 0;
+        margin-bottom: 0;
 }
 #main-logo {
     width: 260px;
@@ -9,7 +10,7 @@
 #main-logo a {
    font-family: Helvetica !important;
    color: #CCCCCC;
-   font-size: 23pt;
+   font-size: 20pt;
    padding-left: 20px;
 }
 #main-logo a:hover {
@@ -40,16 +41,17 @@
 /************************************************/
 /* Left navigation */
 .leftnav {
-
+    
+    margin-top: 20px;
 }
 .leftnav .nav-header {
     background-color: #dddddd !important;
-    padding: 2px 4px 2px 20px;
+    padding: 3px 4px 3px 20px;
     color: #eeeeee;
     font-weight: bold;
     text-transform: uppercase;
     font-family: Helvetica;
-    font-size: 11pt;
+    font-size: 12pt;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 8px;
     margin-top: 10px;
@@ -67,12 +69,12 @@
 .leftnav .nav li  a:hover {
     color: black !important;   
     background-color: white;
-    border-color: #dddddd;
+    border-color: #999999;
 }
 .leftnav .nav li.active a {
   color: black !important;
   background-color: white !important;
-  border-color: #aaaaaa;
+  border-color: #222222;
 }
 
 /************************************************/
@@ -96,47 +98,48 @@
 }
 
 
+/*********************/
+/* Link decorators */
 
-
-/* its a godoc link */
-a[href^="https://godoc.org"] code { 
-    color: #515F7C; 
-    font-family: monospace;
-    font-weight: bold;
-    background: url(/img/godoc.png);
-    background-position: top right;
-    background-repeat: no-repeat;
-    padding-right: 16px;
-}
-/* its a standard golang */
-a[href^="https://www.golang.org"],
-a[href^="http://www.golang.org"],
-a[href^="http://golang.org"],
-a[href^="https://golang.org"]
+/* golang.org and base packages */
+.main a[href^="https://www.golang.org"],
+.main a[href^="http://www.golang.org"],
+.main a[href^="http://golang.org"],
+.main a[href^="https://golang.org"]
 { 
-  color: #375EAB !important;
-  background-color: #E0EBF5 !important;
+  color: #222222; 
+  background-color: #CBFFFD !important;
   font-family: monospace;
-  font-weight: bold;
   background: url(/img/gopher-link.png);
   background-position: top right;
   background-repeat: no-repeat;
   padding-right: 12px;
 }
-/* its a revel link */
-a[href^="https://godoc.org/github.com/revel"] code { 
-	color: brown; 
-	background-color: #FAFFBB !important;
+/* godoc.org */
+.deadmain a[href^="https://godoc.org"] code { 
+    color: #375EAB; 
+    background-color: black !important;
+    font-family: monospace;
+    ssbackground: url(/img/godoc.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    padding-right: 16px;
+}
+
+/* godoc.org + revel */
+.main a[href^="https://godoc.org/github.com/revel"] { 
+	color: #5E316E; 
+	background-color: #F7DFFF !important;
 	font-family: monospace;
 	font-weight: bold;
-	background: url(/img/godoc.png);
+	ssbackground: url(/img/godoc.png);
 	background-position: top right;
 	background-repeat: no-repeat;
 	padding-right: 16px;
 }
 
 .main code {
-    color: #196497;
+    deadcolor: green;
     background: 0;
     border: 0;
     font-family: monospace
@@ -145,6 +148,7 @@ a[href^="https://godoc.org/github.com/revel"] code {
 .main a code {
     color: #196497;
     text-decoration: none;
+    deadbackground-color: red !important;
 }
 
 
@@ -152,13 +156,14 @@ a[href^="https://godoc.org/github.com/revel"] code {
 /************************************************/
 /* page header and imporve button */
 .page-header {
-    margin: 0px;
-    margin: 20px 0 10px 0;
+    margin: 30px 0 5px 0;
     border-bottom: 1px solid #cccccc;
+    
 }
 .page-header h1 {
     color: #666666 !important;
     font-family: sans-serif !important;
+    font-size: 20pt;
 }
 .improve-page {
     float: right;
@@ -185,22 +190,22 @@ a[href^="https://godoc.org/github.com/revel"] code {
 
 .main h2 {
     font-family:  sans-serif !important;
-    font-size: 25px;
+    font-size: 16pt;
     color: #444444 !important;
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
     border-top: 1px solid #aaaaaa;
-    border-right: 1px solid #aaaaaa;
-    border-top-right-radius: 20px;
-    background-color: #dddddd;
+    border-right: 20px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+    background-color: #eeeeee;
 }
 
 
 
 .main h3 {
     font-family:  sans-serif !important;
-    font-size: 20px;
+    font-size: 14pt;
     color: #4444 !important;
     padding: 4px 6px;
     margin-top: 25px;
@@ -209,15 +214,18 @@ a[href^="https://godoc.org/github.com/revel"] code {
     border: 1px solid #aaaaaa;
     border-left: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 8px;
 }
 
 .main h4 {
     font-size: 18px;
     color: #2222 !important;
-    padding-bottom: 2px;
+    padding: 10pt;
     margin-top: 20px;
     margin-left: 15px;
+    background-color: #444444 !important;
+    color: #cccccc;
 }
 
 /* uses mainly on appconf */

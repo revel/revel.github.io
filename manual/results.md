@@ -8,7 +8,7 @@ github:
     
 ---
 
-Actions must return a [`revel.Result`](https://godoc.org/github.com/revel/revel#Result), which
+Actions must return a [revel.Result](https://godoc.org/github.com/revel/revel#Result), which
 handles the HTTP response generation.  It adheres to the simple interface:
 
 {% highlight go %}
@@ -17,7 +17,7 @@ type Result interface {
 }
 {% endhighlight %}
 
-[`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) provides a few
+[revel.Controller](https://godoc.org/github.com/revel/revel#Controller) provides a few
 methods to produce different results:
 
 * **[`Render()`](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
