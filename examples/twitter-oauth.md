@@ -1,6 +1,6 @@
 ---
 title: Twitter OAuth
-layout: samples
+layout: examples
 ---
 
 The twitter-oauth app uses the `mrjones/oauth` library to demonstrate:

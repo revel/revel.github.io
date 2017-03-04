@@ -3,7 +3,7 @@ title: Introduction
 layout: tutorial
 ---
 
-This tutorial walks through getting started with a very simple Revel app.
+This tutorial walks through getting started with a very simple **Revel** app.
 
 * [Getting started](gettingstarted.html) 
     - How to get Revel up and running.

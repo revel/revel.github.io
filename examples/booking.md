@@ -1,6 +1,6 @@
 ---
 title: Booking
-layout: samples
+layout: examples
 ---
 
 The Booking sample app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/booking)):

@@ -1,6 +1,6 @@
 ---
 title: Messages
-layout: samples
+layout: examples
 ---
 
 The i18n application demonstrates the various internationalization features of Revel:

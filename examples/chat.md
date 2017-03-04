@@ -1,6 +1,6 @@
 ---
 title: Chat room
-layout: samples
+layout: examples
 ---
 
 The Chat app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/chat)):

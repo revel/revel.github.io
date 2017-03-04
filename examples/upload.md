@@ -1,6 +1,6 @@
 ---
 title: Upload
-layout: samples
+layout: examples
 ---
 
 The upload app demonstrates file uploads

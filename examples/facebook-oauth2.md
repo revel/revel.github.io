@@ -1,6 +1,6 @@
 ---
 title: Facebook OAuth2
-layout: samples
+layout: examples
 ---
 
 The facebook-oauth2 app demonstrates:

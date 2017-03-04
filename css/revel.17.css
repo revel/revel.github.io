@@ -195,7 +195,7 @@
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
-    border-top: 1px solid #aaaaaa;
+    border-top: 4px solid #aaaaaa;
     border-right: 20px solid #aaaaaa;
     border-bottom: 1px solid #aaaaaa;
     background-color: #eeeeee;
@@ -210,12 +210,10 @@
     padding: 4px 6px;
     margin-top: 25px;
     margin-left: 2px;
-    background-image: linear-gradient(to bottom,#eeeeee 0,#efefef 100%);
-    border: 1px solid #aaaaaa;
-    border-left: 1px solid #efefef;
-    border-bottom: 1px solid #efefef;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 8px;
+    border-top: 1px solid #aaaaaa;
+    border-right: 10px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+    background-color: #eeeeee;
 }
 
 .main h4 {
@@ -305,6 +303,6 @@ hr {
 .revel-quickstart .leftnav .nav-header {
     background-color: #8F42A6 !important;
 }
-.revel-samples .leftnav .nav-header {
-    background-color: #A69A42 !important;
+.revel-examples .leftnav .nav-header {
+    background-color: #A64252 !important;
 }

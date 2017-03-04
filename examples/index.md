@@ -1,6 +1,6 @@
 ---
 title: Sample applications
-layout: samples
+layout: examples
 ---
 
 Revel provides a few sample applications to demonstrate typical usage. 
