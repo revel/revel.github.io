@@ -38,22 +38,16 @@ typical Go installation.
 
 The `app/` directory contains the source code and templates for your application.
 
-- `app/controllers`
-- `app/models`
-- `app/views`
-
-Revel requires:
-
-- All templates are under `app/views`
-- All controllers are under `app/controllers`
+- `app/controllers/` - All controllers are required here
+- `app/views` - All templates are required here
 
 Beyond that, the application may organize its code however it wishes.  Revel
-will watch all directories under `app/` and rebuild the app when it
+will [watch](../manual/appconf.html#watch) all directories under `app/` and rebuild when it
 notices any changes.  Any dependencies outside of `app/` will not be watched for
-changes -- it is the developer's responsibility to recompile when necessary.
+changes, it is the developer's responsibility to recompile when necessary.
 
 Additionally, Revel will import any packages within `app/` (or imported
-[modules](modules.html)) that contain `init()` functions on startup, to ensure
+[modules](../modules/index.html)) that contain `init()` functions on startup, to ensure
 that all of the developer's code is initialized.
 
 The `app/init.go` file is a conventional location to register all of the
