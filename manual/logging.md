@@ -8,12 +8,12 @@ gh_labels:
 
 Revel provides four loggers:
 
-* `TRACE` - debugging information only.
-* `INFO` - informational.
-* `WARN` - something unexpected but not harmful.
-* `ERROR` - someone should take a look at this.
+* [TRACE](https://godoc.org/github.com/revel/revel#TRACE) - debugging information only.
+* [INFO](https://godoc.org/github.com/revel/revel#INFO) - informational.
+* [WARN](https://godoc.org/github.com/revel/revel#WARN) - something unexpected but not harmful.
+* [ERROR](https://godoc.org/github.com/revel/revel#ERROR) - someone should take a look at this.
 
-Example usage within a Revel app:
+Example usage:
 {% highlight go %}
 now := time.Now()
 revel.TRACE.Printf("%s", now.String())

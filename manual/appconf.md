@@ -47,8 +47,13 @@ log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
 {% endhighlight %}
 
-<br/>
-**Note:** Config values can be accesed via the `revel.Config` variable, more [below](#customproperties)
+Config values can be accesed via the [revel.Config](https://godoc.org/github.com/revel/revel#Config) variable, more [below](#customproperties)
+
+```go
+driver := revel.Config.StringDefault("db.driver", "mysql")
+ena := revel.Config.BoolDefault("myapp.remote.enabled", false)
+```
+    
 
 
 ## Run Modes

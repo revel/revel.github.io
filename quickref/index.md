@@ -3,14 +3,18 @@ title: Quick Ref
 layout: quickref
 ---
 
+[revel.Config](https://godoc.org/github.com/revel/revel#Config),  [manual](../manual/appconf.html)
+- [Logging](../manual/logging.html), [config](../manual/appconf.html#logging)
+- [Debugging](../manual/debug.html)
+
 
 [Controller](https://godoc.org/github.com/revel/revel#Controller), [manual](../manual/controllers.html)
 
 - [Routing](../manual/routing.html)
 - [Static Files](../manual/routing.html#StaticFiles)
-- [Interceptors](../manual/interceptors.html), [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)
-- [Filters](../manual/filters.html), [Filters](https://godoc.org/github.com/revel/revel#Filters)
-
+- [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)  [manual](../manual/interceptors.html),
+- [Filters](https://godoc.org/github.com/revel/revel#Filters), [manual](../manual/filters.html)
+- [Cache](https://godoc.org/github.com/revel/revel#Cache), [manual](../manual/cache.html), [config](../manual/appconf.html#cache)
 
 [Request](https://godoc.org/github.com/revel/revel#Request)
 
@@ -21,10 +25,10 @@ layout: quickref
 
 [Result](https://godoc.org/github.com/revel/revel#Result), [manual](../manual/results.html)
 
-- [RenderJson](../manual/results.html#RenderJson), [RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson)
-- [RenderTemplate()](../manual/results.html#RenderTemplate), [Templates](../manual/templates.html), [Template](https://godoc.org/github.com/revel/revel#Template)
+- [RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson), [manual](../manual/results.html#RenderJson)
+- [RenderTemplate()](https://godoc.org/github.com/revel/revel#Controller.RenderTemplate), [Template](https://godoc.org/github.com/revel/revel#Template) [manual](../manual/templates.html), 
   - [Template Functions](../manual/templates.html#functions)
-- [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult),
-- [Session](../manual/sessionflash.html#session), [Session](https://godoc.org/github.com/revel/revel#Session), [config](../manual/appconf.html#session)
-- [Flash](../manual/sessionflash.html#flash), [Flash](https://godoc.org/github.com/revel/revel#Flash)
+- [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult)
+-  [Session](https://godoc.org/github.com/revel/revel#Session), [manual](../manual/sessionflash.html#session), [config](../manual/appconf.html#session)
+- [Flash](https://godoc.org/github.com/revel/revel#Flash), [manual](../manual/sessionflash.html#flash)
  - [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
