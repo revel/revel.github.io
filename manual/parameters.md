@@ -10,32 +10,58 @@ layout: manual
 
 ## Request Parameters
 
-#### /:path
-* The URL **/:path** parameters from the router
+All request parameters are collected into a single [`Params`](https://godoc.org/github.com/revel/revel#Params) object which includes:
 
-    `c.Params.Route.Get("path")`
 
-#### ?query=vars
-* The URL **?query** parameters, eg `c.Params.Query.Get("query")`
+#### URL path
 
-#### form action="POST"
-* Submitted **Form** values , eg `c.Params.Form.Get("form_val")`
+The URL **/:path** parameters for the route
 
-#### form action="POST" UPLOAD
-* **File** multipart uploads, eg `c.Params.Files.Get("file_name")`
+```go
+// path = /book/:author/:book
+author := c.Params.Route.Get("author")
+book := c.Params.Route.Get("book")
+```
 
-#### Mangled
-* Find in all above eg `c.Params.Get("foo")`
+#### Query Vars
 
-All request parameters are collected into the single [`Params`](https://godoc.org/github.com/revel/revel#Params) object which includes:
+The URL **?query=** parameters
+
+```go
+// url = /foo?sort=asc&active=1
+s := c.Params.Query.Get("sort")
+act := c.Params.Query.Get("active")
+```
+
+#### Form Vars
+
+Submitted POST **Form** values
+```go
+v := c.Params.Form.Get("form_val")
+```
+
+#### File Uploads
+
+**File** multipart [file uploads](#file_uploads)
+
+```go
+f := c.Params.Files.Get("file_name")
+```
+
+#### Combined Params
+
+All the above combined with (TODO explain)
+```go
+c.Params.Get("foo")
+```
+
 
 
 **Important:**
 
 - All params except `File` are golang's native [`url.Values`](http://www.golang.org/pkg/net/url/#Values) which provide the accessors.
 - All values are map to slices, a `.Get()` will return first. Use map directly to get at multiple values.
-- Revel's data-binding mechanisms helps with non-string values such as dates or floats.
-
+- Revel's data-binding mechanisms helps with non-string values such as [dates](#date_time) or floats.
 - Golang's native [`url.Values`](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
 - Revel's data-binding mechanisms helps with non-string values such as dates or floats
 
@@ -104,7 +130,7 @@ There are two supported syntaxes for binding slices; **ordered** and **unordered
 
 - results in a slice of `[]int{1, 2, 4}`
 
-<div class="alert alert-info">Note: Only ordered slices should be used when binding a slice of structs:</div>
+<div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Only ordered slices should be used when binding a slice of structs:</div>
 
 	?user[0].Id=1
 	&user[0].Name=rob
@@ -132,7 +158,9 @@ type User struct {
 }
 {% endhighlight %}
 
-<div class="alert alert-info">Note: Properties must be exported in order to be bound.</div>
+<div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Properties must be exported in order to be bound.</div>
+
+<a name="date_time"></a>
 
 ### Date / Time
 
@@ -146,9 +174,10 @@ func init() {
 }
 {% endhighlight %}
 
-### File Uploads
 
 <a name="file_uploads"></a>
+
+### File Uploads
 
 File uploads can be bound to any of the following types:
 
@@ -164,7 +193,7 @@ they are written to a temp file.
 
 - See the [upload sample app](https://github.com/revel/samples/tree/master/upload)
 
-<div class="alert alert-info">Note: Binding a file upload to <i>os.File</i> requires Revel to write it to a
+<div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Binding a file upload to <i>os.File</i> requires Revel to write it to a
 temp file (if it wasn't already), making it less efficient than the other types.</div>
 
 ### Custom Binders

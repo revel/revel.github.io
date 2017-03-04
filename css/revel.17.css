@@ -6,12 +6,14 @@
 }
 #main-logo {
     width: 260px;
+    padding: 10px 0 0 20px;
 }
 #main-logo a {
    font-family: Helvetica !important;
    color: #CCCCCC;
-   font-size: 20pt;
-   padding-left: 20px;
+   font-size: 18pt;
+   font-weight: bold;
+   
 }
 #main-logo a:hover {
     text-decoration: none;
@@ -24,9 +26,11 @@
   color:#ccc;
   padding-top:0px;
   border-bottom:1px solid #375EAB;
-
+    font-family: Helvetica;
 }
-
+.hero-unit h1 {
+    font-weight: bold;
+}
 .hero-img {
   float:left;
   margin-left: 100px;
@@ -195,7 +199,7 @@
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
-    border-top: 4px solid #aaaaaa;
+    border-top: 1px solid #aaaaaa;
     border-right: 20px solid #aaaaaa;
     border-bottom: 1px solid #aaaaaa;
     background-color: #eeeeee;
@@ -219,11 +223,10 @@
 .main h4 {
     font-size: 18px;
     color: #2222 !important;
-    padding: 10pt;
+    padding: 5px;
     margin-top: 20px;
     margin-left: 15px;
-    background-color: #444444 !important;
-    color: #cccccc;
+    background-color: #dddddd !important;
 }
 
 /* uses mainly on appconf */
