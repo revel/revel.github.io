@@ -3,7 +3,7 @@ title: Session / Flash Scopes
 layout: manual
 ---
 
-Revel provides two cookie-based storage mechanisms for convenience; `Session` and `Flash`.
+Revel provides two cookie-based storage mechanisms for convenience, (Session)[#session] and (Flash)[#flash].
 
 {% highlight go %}
 // A signed cookie, and thus limited to 4kb in size.
@@ -19,7 +19,7 @@ type Flash struct {
 }
 {% endhighlight %}
 
-NOTE: To set your own cookie, use [`Controller.SetCookie()`](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
+NOTE: To set your own cookie, use [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
 {% highlight go %}
 func (c MyController) MyAction() revel.Result {
     new_cookie := &http.Cookie{Name: "foo", Value: "Bar"}
@@ -27,6 +27,8 @@ func (c MyController) MyAction() revel.Result {
     return c.Render()
 }
 {% endhighlight %}
+
+<a name="session"></a>
 
 ## Session
 
@@ -51,6 +53,10 @@ func (c MyController) MyAction() revel.Result {
     return c.Render()
 }
 {% endhighlight %}
+
+
+
+<a name="flash"></a>
 
 
 ## Flash

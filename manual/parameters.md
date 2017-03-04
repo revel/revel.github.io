@@ -79,6 +79,9 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 - Before invoking the action, Revel asks its Binder to convert parameters of those names to the requested data type.  
 - If the binding is unsuccessful for any reason, the parameter will have the zero value for its type.
 
+
+<a name="binder"></a>
+
 ## Binder
 
 - To bind a parameter to a data type, use Revel's [`Binder`](https://godoc.org/github.com/revel/revel#Binder).  
