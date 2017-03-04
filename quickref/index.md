@@ -12,9 +12,10 @@ layout: quickref
 
 - [Routing](../manual/routing.html)
 - [Static Files](../manual/routing.html#StaticFiles)
-- [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)  [manual](../manual/interceptors.html),
+- [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod),  [manual](../manual/interceptors.html),
 - [Filters](https://godoc.org/github.com/revel/revel#Filters), [manual](../manual/filters.html)
 - [Cache](https://godoc.org/github.com/revel/revel#Cache), [manual](../manual/cache.html), [config](../manual/appconf.html#cache)
+- [OnAppStart](https://godoc.org/github.com/revel/revel#OnAppStart)
 
 [Request](https://godoc.org/github.com/revel/revel#Request)
 
@@ -26,9 +27,13 @@ layout: quickref
 [Result](https://godoc.org/github.com/revel/revel#Result), [manual](../manual/results.html)
 
 - [RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson), [manual](../manual/results.html#RenderJson)
-- [RenderTemplate()](https://godoc.org/github.com/revel/revel#Controller.RenderTemplate), [Template](https://godoc.org/github.com/revel/revel#Template) [manual](../manual/templates.html), 
+- [RenderTemplate()](https://godoc.org/github.com/revel/revel#Controller.RenderTemplate), [Template](https://godoc.org/github.com/revel/revel#Template), [manual](../manual/templates.html), [config](/manual/appconf.html#templates)
   - [Template Functions](../manual/templates.html#functions)
 - [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult)
 -  [Session](https://godoc.org/github.com/revel/revel#Session), [manual](../manual/sessionflash.html#session), [config](../manual/appconf.html#session)
 - [Flash](https://godoc.org/github.com/revel/revel#Flash), [manual](../manual/sessionflash.html#flash)
  - [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
+ 
+[Jobs](https://godoc.org/github.com/revel/revel#Jobs), [manual](../modules/jobs.html),  [config](../manual/appconf.html#jobs)
+
+[TestSuite](https://godoc.org/github.com/revel/revel/testing#TestSuite), [manual](../modules/jobs.html)
