@@ -217,14 +217,15 @@
 .main h2 {
     font-family:  sans-serif !important;
     font-size: 16pt;
-    color: #444444 !important;
+    color: #eeeeee !important;
     padding: 4px 0 4px 6px;
     margin-top: 30px;
     margin-bottom: 10px;
-    border-top: 1px solid #aaaaaa;
-    border-right: 20px solid #aaaaaa;
-    border-bottom: 1px solid #aaaaaa;
-    background-color: #dddddd;
+    dborder-top: 1px solid #aaaaaa;
+    dborder-right: 20px solid #444444;
+    dborder-bottom: 1px solid #aaaaaa;
+    background-color: #777777;
+    border-bottom-right-radius: 20px;
 }
 
 
@@ -239,7 +240,8 @@
     border-top: 1px solid #cccccc;
     border-right: 10px solid #cccccc;
     border-bottom: 1px solid #cccccc;
-    background-color: #eeeeee;
+    background-color: #cccccc;
+    border-bottom-right-radius: 20px;
 }
 
 .main h4 {
@@ -248,7 +250,7 @@
     padding: 5px;
     margin-top: 20px;
     margin-left: 15px;
-    background-color: #dddddd !important;
+    background-color: #eeeeee !important;
 }
 
 /* uses mainly on appconf */

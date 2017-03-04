@@ -20,7 +20,7 @@ godoc:
 All request parameters are collected into a single [Params](https://godoc.org/github.com/revel/revel#Params) object which includes:
 
 
-#### URL path
+### URL path
 
 The URL **/:path** parameters for the route
 
@@ -30,7 +30,7 @@ author := c.Params.Route.Get("author")
 book := c.Params.Route.Get("book")
 ```
 
-#### Query Vars
+### Query Vars
 
 The URL **?query=** parameters
 
@@ -40,14 +40,14 @@ s := c.Params.Query.Get("sort")
 act := c.Params.Query.Get("active")
 ```
 
-#### Form Vars
+### Form Vars
 
 Submitted POST **Form** values
 ```go
 v := c.Params.Form.Get("form_val")
 ```
 
-#### File Uploads
+### File Uploads
 
 **File** multipart [file uploads](#file_uploads)
 
@@ -55,7 +55,7 @@ v := c.Params.Form.Get("form_val")
 f := c.Params.Files.Get("file_name")
 ```
 
-#### Combined Params
+### Combined Params
 
 All the above combined with (TODO explain)
 ```go
