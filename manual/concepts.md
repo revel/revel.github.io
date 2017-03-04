@@ -38,7 +38,7 @@ Here is an overview of the request processing framework.
 Concept summary:
 
 * Revel exposes a single http.Handler, responsible for instantiating a
-  [`Controller`](controllers.html) (the context for the request) and passing the request along to the
+  [Controller](controllers.html) (the context for the request) and passing the request along to the
   [Filter chain](filters.html).
 * [Filters](filters.html) are links in a request processing chain. They may be composed to
   implement horizontal concerns like request logging, cookie policies,
@@ -69,8 +69,8 @@ by Revel. They have a simple interface that allows them to be nested.
 
 The "Filter Chain" is an array of functions, each one invoking the next, until
 the terminal filter stage invokes the action.  For example, one of the first
-Filters in the chain is the `RouterFilter`, which decides which Action the
-request is meant for and saves that to the Controller.
+Filters in the chain is the [RouterFilter](https://godoc.org/github.com/revel/revel#RouterFilter), 
+which decides which Action the request is meant for and saves that to the Controller.
 
 Overall, Filters and the Filter Chain are the equivalent of Rack.
 
@@ -78,14 +78,14 @@ Overall, Filters and the Filter Chain are the equivalent of Rack.
 
 Each HTTP request invokes an **action**, which handles the request and writes
 the response. Related **actions** are grouped into [**controllers**](controllers.html).  The
-[`Controller`](https://godoc.org/github.com/revel/revel#Controller) type contains relevant
+[Controller](https://godoc.org/github.com/revel/revel#Controller) type contains relevant
 fields and methods and acts as the context for each request.
 
 As part of handling a HTTP request, Revel instantiates an instance of a
-[`Controller`](https://godoc.org/github.com/revel/revel#Controller), and it sets all of these properties on the embedded
+[Controller](https://godoc.org/github.com/revel/revel#Controller), and it sets all of these properties on the embedded
 `Controller`.  Revel does not share `Controller` instances between requests.
 
-A **Controller** is any type that embeds `*revel.Controller` (directly or indirectly).
+A **Controller** is any type that embeds [*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) (directly or indirectly).
 {% highlight go %}
 type MyAppController struct {
     *revel.Controller
@@ -95,7 +95,7 @@ type MyAppController struct {
 An **Action** is any method on a **Controller** that meets the following criteria:
 
 * is exported
-* returns a [`revel.Result`](results.html)
+* returns a [revel.Result](results.html)
 
 For example:
 {% highlight go %}
@@ -106,8 +106,8 @@ func (c MyAppController) ShowLogin(username string) revel.Result {
 {% endhighlight %}
 
 The example invokes `Controller.Render()` to execute a [template](templates.html), passing it the
-username as a parameter.  There are many methods on a [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) that
-produce [`Result`](https://godoc.org/github.com/revel/revel#Result); but applications are also free to [create their own custom result](results.html#CustomResult).
+username as a parameter.  There are many methods on a [Controller](https://godoc.org/github.com/revel/revel#Controller) that
+produce [Result](https://godoc.org/github.com/revel/revel#Result); but applications are also free to [create their own custom result](results.html#CustomResult).
 
 ## Results
 

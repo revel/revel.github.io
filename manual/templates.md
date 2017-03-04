@@ -5,6 +5,8 @@ github:
   labels:
     - topic-template
     - topic-controller
+godoc:
+    - Template
 ---
 
 `Revel` uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
@@ -375,5 +377,3 @@ And templates that include it look like this:
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
-<hr>
-- See the godocs for [`Template`](https://godoc.org/github.com/revel/revel#Template)

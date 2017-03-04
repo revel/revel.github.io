@@ -10,12 +10,12 @@ godoc:
     - Response
 ---
 
-The [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) is the context for 
+The [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) is the context for 
 a single request and controls
-- the incoming [`Request`](https://godoc.org/github.com/revel/revel#Request) stuff
-- and the [`Response`](https://godoc.org/github.com/revel/revel#Response) back, in Hmtl, Json, Xml, File or your own custom.
+- the incoming [Request](https://godoc.org/github.com/revel/revel#Request) stuff
+- and the [Response](https://godoc.org/github.com/revel/revel#Response) back, in Hmtl, Json, Xml, File or your own custom.
 
-A **Controller** is any type that embeds a [`*revel.Controller`](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**.
+A **Controller** is any type that embeds a [*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**.
 
 {% highlight go %}
 type MyAppController struct {
@@ -35,14 +35,14 @@ type FailController struct {
 <div class="alert alert-danger">Very Important: <code>*revel.Controller</code> must be 'embedded' as the first type in 
 the a controller struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>, the Go way for 'kinda inheritance'</div>
 
-The `revel.Controller` is the context for a request and  contains the 
-[`Request`](https://godoc.org/github.com/revel/revel#Request) and [`Response`](https://godoc.org/github.com/revel/revel#Response) data.
+The [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) is the context for a request and  contains the 
+[Request](https://godoc.org/github.com/revel/revel#Request) and [Response](https://godoc.org/github.com/revel/revel#Response) data.
 
 Below are the most used components and type/struct definitions to give a taste of 
-[`*revel.Controller`](https://godoc.org/github.com/revel/revel#Controller), 
-[`Request`](https://godoc.org/github.com/revel/revel#Request), 
-[`Params`](https://godoc.org/github.com/revel/revel#Params) 
-and [`Response`](https://godoc.org/github.com/revel/revel#Response).
+[Controller](https://godoc.org/github.com/revel/revel#Controller), 
+[Request](https://godoc.org/github.com/revel/revel#Request), 
+[Params](https://godoc.org/github.com/revel/revel#Params) 
+and [Response](https://godoc.org/github.com/revel/revel#Response).
 
 {% highlight go %}
 type Controller struct {
@@ -97,9 +97,8 @@ type Response struct {
 }
 {% endhighlight %}
 
-- As part of handling a HTTP request, Revel instantiates an instance of a [`revel.Controller`](https://godoc.org/github.com/revel/revel#Controller).
+- As part of handling a HTTP request, Revel instantiates an instance of a [revel.Controller](https://godoc.org/github.com/revel/revel#Controller).
 - It then sets all of the properties on the embedded `revel.Controller`.
 - Revel does not share a `Controller` instance between requests.
 
-<hr>
-- See the godocs for [`Controller`](https://godoc.org/github.com/revel/revel#Controller)
+

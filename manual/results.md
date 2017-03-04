@@ -5,7 +5,12 @@ github:
   labels:
     - topic-controller
     - topic-static
-    
+godoc:
+    - Controller.Render
+    - Controller.RenderTemplate
+    - Controller.RenderJson
+    - Controller.RenderXml
+    - Controller.Redirect
 ---
 
 Actions must return a [revel.Result](https://godoc.org/github.com/revel/revel#Result), which
@@ -20,13 +25,13 @@ type Result interface {
 [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) provides a few
 methods to produce different results:
 
-* **[`Render()`](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
+* **[Render()](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
     - render a template, passing arguments.
-* **[`RenderJson()`](#RenderJson)**, **[`RenderXml()`](#RenderXml)** 
+* **[RenderJson()](#RenderJson)**, **[`RenderXml()`](#RenderXml)** 
     - serialize a structure to json or xml.
 * **`RenderText()`** 
     - return a plaintext response.
-* **[`Redirect()`](#Redirect)** 
+* **[Redirect()](#Redirect)** 
     - redirect to another action or URL
 * **`RenderFile()`** 
     - return a file, generally to be downloaded as an attachment.
@@ -37,7 +42,7 @@ methods to produce different results:
 * **`Todo()`** 
     - return a stub response (500)
 
-Additionally, the developer may [define a custom `revel.Result`](#CustomResult) and return that.
+Additionally, the developer may define a result with [CustomResult](#CustomResult) and return that.
 
 ### Setting the Status Code / Content Type
 
@@ -67,12 +72,12 @@ func (c *App) CreateEntity() revel.Result {
 ## Render()
 
 Called within an action (e.g. "Controller.Action"),
-[`Controller.Render`](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
+[Controller.Render()](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
 
  1. Adds all arguments to the controller's `RenderArgs`, using their local identifier as the key.
  2. Executes the template "views/Controller/Action.html", passing in the controller's `RenderArgs` as the data map.
 
-If unsuccessful (e.g. it could not find the template), an [`ErrorResult`](https://godoc.org/github.com/revel/revel#ErrorResult) is returned instead.
+If unsuccessful (e.g. it could not find the template), an [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult) is returned instead.
 
 This allows the developer to write:
 
@@ -117,11 +122,11 @@ func (c MyController) XTemp() revel.Result {
 ## RenderJson() / RenderXml()
 
 The application may call
-[`RenderJson`](https://godoc.org/github.com/revel/revel#Controller.RenderJson) or
-[`RenderXml`](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and pass in any Go
+[RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson) or
+[RenderXml](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and pass in any Go
 type (usually a struct).  Revel will serialize it using
-[`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
-[`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
+[json.Marshal](http://www.golang.org/pkg/encoding/json/#Marshal) or
+[xml.Marshal](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
 If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html)  then serialization will be done using
 `MarshalIndent` instead, to produce nicely indented output for human consumption.
@@ -194,5 +199,3 @@ func (c *MyApp) Action() revel.Result {
 {% endhighlight %}
 
 
-<hr>
-See the godocs for [results.go](../docs/godoc/results.html)

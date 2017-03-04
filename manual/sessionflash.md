@@ -1,6 +1,12 @@
 ---
 title: Session / Flash Scopes
 layout: manual
+github:
+  labels:
+    - topic-session
+godoc: 
+    - Session
+    - Flash
 ---
 
 Revel provides two cookie-based storage mechanisms for convenience, (Session)[#session] and (Flash)[#flash].
@@ -115,7 +121,5 @@ expressions:
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-<hr>
-- See the godocs for [`Session`](https://godoc.org/github.com/revel/revel#Session) and [`Flash`](https://godoc.org/github.com/revel/revel#Flash)
-- Issues tagged with [session](https://github.com/revel/revel/labels/session)
+
 

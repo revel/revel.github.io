@@ -1,13 +1,21 @@
 ---
 title: Validation
 layout: manual
+github:
+  labels:
+    - topic-controller
+godoc: 
+    - Validation
+    - Validator
+    - ValidationResult
+    - ValidationError
 ---
 
 Revel provides built-in functionality for validating [parameters](parameters.html). The main parts are:
 
-* A [`Validation`](https://godoc.org/github.com/revel/revel#Validation) context collects and manages validation errors (keys and messages).
+* A [Validation](https://godoc.org/github.com/revel/revel#Validation) context collects and manages validation errors (keys and messages).
 * Helper functions that checks data and put errors into the context.
-* A template function that gets error messages from the [`Validation`](https://godoc.org/github.com/revel/revel#Validation) context by key.
+* A template function that gets error messages from the [Validation](https://godoc.org/github.com/revel/revel#Validation) context by key.
 
 See the [validation sample app](../samples/validation.html) for some
 in-depth examples.
@@ -38,14 +46,14 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 Step by step:
 
-1. Evaluate four different conditions on `username` ([`Required`](https://godoc.org/github.com/revel/revel#Validation.Required),
-   [`MinSize`](https://godoc.org/github.com/revel/revel#Validation.MinSize), 
-   [`MaxSize`](https://godoc.org/github.com/revel/revel#Validation.MaxSize), [`Match`](https://godoc.org/github.com/revel/revel#Validation.Match)).
+1. Evaluate four different conditions on `username` ([Required](https://godoc.org/github.com/revel/revel#Validation.Required),
+   [MinSize](https://godoc.org/github.com/revel/revel#Validation.MinSize), 
+   [MaxSize](https://godoc.org/github.com/revel/revel#Validation.MaxSize), [Match](https://godoc.org/github.com/revel/revel#Validation.Match)).
 2. Each evaluation returns a [ValidationResult](https://godoc.org/github.com/revel/revel#ValidationResult). Failed `ValidationResult`'s are stored in the `Validation` context.
 3. As part of building an app, Revel records the name of the variable being
    validated, and uses that as the default key in the validation context (to be looked up later).
-4. [`Validation.HasErrors()`](https://godoc.org/github.com/revel/revel#Validation.HasErrors) returns `true` if the the context is non-empty.
-5. [`Validation.Keep()`](https://godoc.org/github.com/revel/revel#Validation.Keep) tells Revel to serialize the `ValidationErrors` to the [Flash](sessionflash.html#Flash) cookie.
+4. [Validation.HasErrors()](https://godoc.org/github.com/revel/revel#Validation.HasErrors) returns `true` if the the context is non-empty.
+5. [Validation.Keep()](https://godoc.org/github.com/revel/revel#Validation.Keep) tells Revel to serialize the `ValidationErrors` to the [Flash](sessionflash.html#Flash) cookie.
 6. Revel returns a [redirect](results.html#Redirect) to the `Hotels.Settings` action.
 
 The `Hotels.Settings` action renders a template:
@@ -69,7 +77,7 @@ It does three things:
 2. Prefills the input with the flashed `username` param value.
 3. Shows the error message next to the field.  (We didn't specify any error message, but each validation function provides one by default.)
 
-**Note:** The [`field`](templates.html#field) template helper function makes writing templates that use
+**Note:** The [field](templates.html#field) template helper function makes writing templates that use
 the validation error framework a little more convenient.
 
 ## Top Error Messages
@@ -122,9 +130,4 @@ func (c MyApp) SaveUser(username string) revel.Result {
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-
-<hr>
-- See the godocs for [`Validator`](https://godoc.org/github.com/revel/revel#Validator), [`Validation`](https://godoc.org/github.com/revel/revel#Validation), 
-    [`ValidationError`](https://godoc.org/github.com/revel/revel#ValidationError), 
-    [`ValidationResult`](https://godoc.org/github.com/revel/revel#ValidationResult)
 

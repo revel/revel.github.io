@@ -1,6 +1,11 @@
 ---
 title: app.conf
 layout: manual
+github:
+  labels:
+    - topic-config
+godoc: 
+    - Config
 ---
 
 ## Overview
@@ -667,6 +672,3 @@ example:
   specifying config values from the command line.
 
 
-<hr>
-- See the godocs for [`Config`](https://godoc.org/github.com/revel/config)
-- Issues tagged with [config](https://github.com/revel/revel/labels/topic-config)

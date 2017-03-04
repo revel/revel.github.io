@@ -175,22 +175,40 @@
     position: relative;
 }
 
+.revel-godoc-bar {
+  font-family: monospace;
+  
+  margin-top: 50px;
+  
+  
+ 
+  
+}
+.revel-godoc-bar h6 {
+    font-family: monospace;
+    font-size: 12pt;
+    padding: 2px 4px;
+    border: 0;
+    border-top: 1px solid #bbbbbb;
+    background-color: #cccccc;
+    
+}
+
 .revel-github-bar {
   font-family: monospace;
   margin: 0px;
-  background-color: blue;
+ 
   
 }
 .revel-github-bar h6 {
     font-family: monospace;
-    font-size: 16pt;
+    font-size: 12pt;
     padding: 2px 4px;
     border: 0;
     border-top: 1px solid #bbbbbb;
-    border-right: 20px solid #bbbbbb;
+    background-color: #cccccc;
     
 }
-
 
 .main h2 {
     font-family:  sans-serif !important;

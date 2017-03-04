@@ -4,12 +4,15 @@ layout: manual
 github:
   labels:
     - topic-filter
+godoc:
+    - Filter
+    - Filters
 ---
 
 **Filters** are the middleware and are individual functions that make up the
 request processing pipeline.  They execute all of the framework's functionality.
 
-The [`Filter`](https://godoc.org/github.com/revel/revel#Filter) `type` is a simple function:
+The [Filter](https://godoc.org/github.com/revel/revel#Filter) `type` is a simple function:
 
 {% highlight go %}
 type Filter func(c *Controller, filterChain []Filter)
@@ -40,7 +43,7 @@ var Filters = []Filter{
 
 ### Global configuration
 
-Applications may configure the filter chain by **re-assigning** the [`revel.Filters`](https://godoc.org/github.com/revel/revel#Filters)
+Applications may configure the filter chain by **re-assigning** the [revel.Filters](https://godoc.org/github.com/revel/revel#Filters)
 variable in `init()`. By default this will be in [`app/init.go`](https://github.com/revel/revel/blob/master/skeleton/app/init.go) for a newly
 generated app.
 
@@ -63,7 +66,7 @@ func init() {
 }
 {% endhighlight %}
 
-Every [`Request`](https://godoc.org/github.com/revel/revel#Request) is sent down this chain, from top to bottom.
+Every [Reques`](https://godoc.org/github.com/revel/revel#Request) is sent down this chain, from top to bottom.
 
 ### Per-Action configuration
 
@@ -73,7 +76,7 @@ provides a
 which allows the developer to add, insert, or remove filter stages based on the
 `Action` or `Controller`.
 
-This functionality is implemented by the [`FilterConfiguringFilter`](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter), itself a
+This functionality is implemented by the [FilterConfiguringFilter](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter), itself a
 filter stage.
 
 ## Implementing a Filter
@@ -95,7 +98,7 @@ var MyFilter = func(c *revel.Controller, fc []revel.Filter) {
 
 ### Getting the app Controller type
 
-Filters receive the base [`*Controller`](https://godoc.org/github.com/revel/revel#Controller) type as an
+Filters receive the base [Controller](https://godoc.org/github.com/revel/revel#Controller) type as an
 argument, rather than the actual Controller type that was invoked.  If your
 filter requires access to the actual Controller type that was invoked, it may
 grab it with the following trick:
@@ -116,6 +119,3 @@ Note: this pattern is frequently an indicator that
 desired functionality.
 </div>
 
-<hr>
-- See the godocs for [`Filters`](https://godoc.org/github.com/revel/revel#Filters), [`FilterConfiguringFilter`](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter)
-- Issues tagged with [`filter`](https://github.com/revel/revel/labels/topic-filter)

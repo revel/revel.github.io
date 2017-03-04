@@ -1,6 +1,12 @@
 ---
 title: URL Routing
 layout: manual
+github:
+  labels:
+    - topic-routing
+godoc: 
+    - Router
+    - Params
 ---
 
 URL's and routes are defined in the `conf/routes` file and have three columns as example below:
@@ -71,7 +77,7 @@ simple path `/login` **will** be matched by a request to `/login/`.
 - The `:id` variable above will match anything except a slash. For example, `/hotels/123` and
 `/hotels/abc` would both be matched by the route above.
 - Extracted parameters are available in both the
-  - [`Controller.Params`](https://godoc.org/github.com/revel/revel#Params) map
+  - [Controller.Params](https://godoc.org/github.com/revel/revel#Params) map
   - and via Action method [parameters](parameters.html).  
   
 For example:
@@ -165,8 +171,8 @@ the [reverse router](#reverse-routing).
     
 For serving directories of static assets, Revel provides the **static** built in module,
 which contains a single
-[`Static`](https://godoc.org/github.com/revel/modules/static/app/controllers#Static)
-controller.  [`Static.Serve`](https://godoc.org/github.com/revel/modules/static/app/controllers#Static.Serve) action takes two parameters:
+[Static](https://godoc.org/github.com/revel/modules/static/app/controllers#Static)
+controller.  [Static.Serve](https://godoc.org/github.com/revel/modules/static/app/controllers#Static.Serve) action takes two parameters:
 
 * `prefix` (string) - A (relative or absolute) path to the asset root.
 * `filepath` (string) - A relative path that specifies the requested file.
@@ -179,15 +185,13 @@ Important:<br>For the two parameters version of <code>Static.Serve</code>, blank
 
 
 - Refer to [organization](organization.html) for the directory layout
-- See the godocs for [static.go](https://godoc.org/github.com/revel/modules/static/app/controllers)
-- Issues tagged with [`static`](https://github.com/revel/revel/labels/%23static)
 
 
 <a name="modules"></a>
 
 ## Modules
 
-[Modules](modules.html) which contain routes can be imported into your application in two ways:
+[Modules](../modules/index.html) which contain routes can be imported into your application in two ways:
 
 In the example below, its assumed `mymodule` has a `routes` file containing:
     
@@ -280,7 +284,4 @@ func (c App) ProcessForm(username, input string) revel.Result {
 }
 {% endhighlight %}
 
-<hr>
-- See the godocs for [`Router`](https://godoc.org/github.com/revel/revel#Router)
-- Issues tagged with [routing](https://github.com/revel/revel/labels/%23routing)
 

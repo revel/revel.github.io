@@ -1,10 +1,10 @@
 {% if page.godoc %}
 <div class="revel-godoc-bar">
-  <h6>godoc</h6>
+  <h6>GoDoc Reference</h6>
   <ul>
     <li>
       {% for lbl in page.godoc %}
-      <a href="https://github.com/revel/revel/labels/{{lbl}}" target="_revel_issues">{{lbl}}</a> 
+      <a href="https://godoc.org/github.com/revel/revel#{{lbl}}" target="_revel_godoc">{{lbl}}</a> 
       {% if forloop.rindex > 1 %}|{% endif %}
       {% endfor %}
     </li>
