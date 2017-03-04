@@ -3,10 +3,12 @@ title: Chat room
 layout: examples
 ---
 
-The Chat app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/chat)):
+The Chat app demonstrates:
 
 * Using channels to implement a chat room with a [publish-subscribe](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) model.
 * Using Comet and [Websockets](../manual/websockets.html)
+
+<a class="btn btn-success btn-sm" href="https://github.com/revel/samples/tree/master/chat" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
 
 Here are the contents of the app:
 

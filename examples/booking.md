@@ -7,12 +7,14 @@ godoc:
     - Flash
 ---
 
-The Booking sample app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/booking)):
+The Booking sample app demonstrates:
 
 * Using an SQL (SQLite) database and configuring the Revel DB module.
 * Using the third party [GORP](https://github.com/go-gorp/gorp) *ORM-ish* library
 * [Interceptors](../manual/interceptors.html) for checking that an user is logged in.
 * Using [validation](../manual/validation) and displaying inline errors
+
+<a class="btn btn-success btn-sm" href="https://github.com/revel/samples/tree/master/booking" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
 
 ~~~
 	booking/app/

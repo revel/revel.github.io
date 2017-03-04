@@ -15,7 +15,8 @@ A module should have the [same layout](../manual/organization.html#DefaultLayout
 
 Revel comes with some built in modules such as [testing](testing.html) and [jobs](jobs.html).
 
-There is also a seperate [modules repository](https://github.com/revel/modules), although this is under development.
+<a class="btn btn-success btn-sm" href="https://github.com/revel/modules" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Modules Repository</a>
+
 
 ## Enabling a module
 

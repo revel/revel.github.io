@@ -163,7 +163,7 @@ func init() {
 - [Results](#results)
 - [Internationalization](#internationalization)
 - [Watch](#watch)
-- [Cookies](#Cookies)
+- [Cookies](#cookies)
 - [Session](#session)
 - [Templates](#templates)
 - [Formatting](#formatting)
@@ -582,7 +582,7 @@ space.
 
 Default: ""
 
-<a name="Jobs"></a>
+<a name="jobs"></a>
 
 
 ### Scheduled Jobs

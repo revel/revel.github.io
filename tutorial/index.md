@@ -14,5 +14,5 @@ This tutorial walks through getting started with a very simple **Revel** app.
 * [Implementing the Hello World app](firstapp.html) 
     - Implementing the 'Hello World' application in Revel.
 
-Command line interactions are shown for the OSX / Linux environment but should
+[Command line](../manual/tool.html) interactions are shown for the OSX / Linux environment but should
 directly translate into Windows.

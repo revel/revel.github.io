@@ -9,6 +9,9 @@ The twitter-oauth app uses the `mrjones/oauth` library to demonstrate:
 * Fetching mentions for that Twitter account.
 * Tweeting on behalf of that Twitter account.
 
+<a class="btn btn-success btn-sm" href="https://github.com/revel/samples/tree/master/twitter-oauth" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
+
+
 Here are the contents of the app:
 
 	twitter-oauth/app/
@@ -17,7 +20,6 @@ Here are the contents of the app:
 		controllers
 			app.go    # All code
 
-[Browse the code on Github](https://github.com/revel/samples/tree/master/twitter-oauth)
 
 ## OAuth Overview
 

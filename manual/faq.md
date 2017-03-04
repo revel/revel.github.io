@@ -41,7 +41,7 @@ applications (or from third-party sources).
 pipeline.  They generally apply to the application as a whole and handle
 technical concerns, orthogonal to application logic.
 
-3. [Interceptors](interceptors,html) are a convenient way to package data and behavior, since
+3. [Interceptors](interceptors.html) are a convenient way to package data and behavior, since
 embedding a type imports its interceptors and fields.  This makes interceptors
 useful for things like verifying the login cookie and saving that information
 into a field.  Interceptors can be applied to one or more controllers.

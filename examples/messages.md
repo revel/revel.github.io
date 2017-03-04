@@ -9,6 +9,9 @@ The i18n application demonstrates the various [internationalization](../manual/i
 * Resolving messages using the current locale from a controller and template.
 * Message file features such as referencing and message arguments.
 
+<a class="btn btn-success btn-sm" href="https://github.com/revel/samples/tree/master/i18n" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
+
+
 <div class="alert alert-info"><strong>Note:</strong> at the time of writing this sample application only demonstrates the <em>messages</em> feature.</div>
 
 ### Contents

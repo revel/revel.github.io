@@ -1,9 +1,14 @@
 ---
 title: Logging
 layout: manual
-gh_labels:
-- topic-logging
-
+github:
+  labels:
+    - topic-log
+godoc:
+    - TRACE
+    - INFO
+    - WARN
+    - ERROR
 ---
 
 Revel provides four loggers:

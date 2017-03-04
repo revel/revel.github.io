@@ -3,18 +3,24 @@ title: revel cmd
 layout: manual
 ---
 
-## Build and Run
+## Install
 
-- The `revel` command line tool is required to use the Revel framework
-- The code/app is in a seperate repository [github.com/revel/cmd](https://github.com/revel/cmd)
-- It is NOT included with the main framework
-- To install, run the command below
+To install, run the command below
 
 {% highlight sh %}
 	$ go get -u github.com/revel/cmd/revel
 {% endhighlight  %}
 
-<div class="alert alert-danger">Gotcha: The command is in the subdirectory '/revel' ie <code>revel/cmd/revel</code> and not <code>revel/cmd</code></div>
+<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Gotcha. The command is in the subdirectory '/revel' ie <code>revel/cmd/revel</code> and not <code>revel/cmd</code></div>
+
+- The `revel` command line tool is required to use the Revel framework
+- It is NOT included with the main framework and is in a  [seperate repos](https://github.com/revel/cmd)
+
+<a class="btn btn-success btn-sm" href="https://github.com/revel/cmd/tree/master/revel" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
+
+
+
+
 
 Now run it:
 
@@ -43,7 +49,7 @@ Now run it:
 
  - Please refer to the tool's built-in help (`revel -h`) for the latest information on the individual commands.
 
-<div class="alert alert-success">NOTE: If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
+<div class="alert alert-success"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
 
 
 <a name="new"></a>
@@ -79,7 +85,7 @@ revel run github.com/mycorp/mega-app prod 9999
     revel build github.org/mememe/mega-app /path/to/deploy/mega-app prod
 {% endhighlight %}   
 
-<div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
+<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> WARNING: The target path will be completely deleted, if it already exists!</div>
 
 <a name="package"></a>
 
@@ -93,7 +99,7 @@ revel run github.com/mycorp/mega-app prod 9999
     > Your archive is ready: chat.tar.gz
 {% endhighlight %}
 
-<div class="alert alert-danger">WARNING: The target path will be completely deleted, if it already exists!</div>
+<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> WARNING: The target path will be completely deleted, if it already exists!</div>
 
 <a name="clean"></a>
 
@@ -122,6 +128,3 @@ revel run github.com/mycorp/mega-app prod 9999
     revel version
 {% endhighlight %}
 
-
-<hr>
-- Issues tagged with [`revel cmd tool`](https://github.com/revel/cmd/issues)

@@ -13,8 +13,8 @@ or [one-off tasks](#OneOff) such as sending emails.
 
 ## Activation
 
-The [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) framework is included as an optional [module](modules.html), and is not enabled by default.  
-To activate it, add `module.jobs` to the [app.conf](appconf.html) file:
+The [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) framework is included as an optional [module](index.html), and is not enabled by default. 
+To activate it, add `module.jobs` to the [app.conf](../manual/appconf.html) file:
 
 {% highlight ini %}
 module.jobs = github.com/revel/modules/jobs
@@ -27,7 +27,7 @@ this line to the `conf/routes` file, which will insert the `/@jobs` url:
 
 ## Options
 
-There are a couple of [configuration settings](appconf.html#jobs) that tell the framework what sort of limitations
+There are some [configuration settings](../manual/appconf.html#jobs) that tell the framework what sort of limitations
 to place on the jobs that it runs. These are listed below with their default values;
 
 - [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
@@ -219,5 +219,4 @@ so). [See here for discussion](https://groups.google.com/forum/?fromgroups=#!top
 * Allow administrators to run scheduled jobs interactively from the status page
 * Provide more visibility into the job runner, e.g. the pool size, the job queue length, etc.
 
-<hr>
-- Issues tagged with [`jobs`](https://github.com/revel/revel/labels/topic-jobs)
+
