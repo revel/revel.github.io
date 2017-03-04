@@ -132,8 +132,8 @@
 
 /* godoc.org + revel */
 .main a[href^="https://godoc.org/github.com/revel"] { 
-	color: #5F3913 !important; 
-	background-color: #FFF9B5 !important;
+	color: #535353 !important; 
+	background-color: #E9F5FF !important;
 	font-family: monospace;
 	font-weight: bold;
 	background: url(/img/godoc.png);
