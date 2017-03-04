@@ -136,10 +136,10 @@
 	background-color: #E9F5FF !important;
 	font-family: monospace;
 	font-weight: bold;
-	background: url(/img/godoc.png);
+	/* background: url(/img/godoc.png);
 	background-position: top right;
-	background-repeat: no-repeat;
-	padding-right: 16px;
+	background-repeat: no-repeat; padding-right: 16px; */
+	
 }
 
 .main code {

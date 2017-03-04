@@ -26,5 +26,5 @@ layout: quickref
   - [Template Functions](../manual/templates.html#functions)
 - [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult),
 - [Session](../manual/sessionflash.html#session), [Session](https://godoc.org/github.com/revel/revel#Session), [config](../manual/appconf.html#session)
-- [Flash](../manual/sessionflash.html#flash), [Session](https://godoc.org/github.com/revel/revel#Flash)
+- [Flash](../manual/sessionflash.html#flash), [Flash](https://godoc.org/github.com/revel/revel#Flash)
  - [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
