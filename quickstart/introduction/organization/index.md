@@ -1,4 +1,0 @@
----
-layout: quickstart
-title: Quickstart
---- 

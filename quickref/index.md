@@ -12,7 +12,7 @@ layout: quickref
 
 - [Routing](../manual/routing.html)
 - [Static Files](../manual/routing.html#StaticFiles)
-- [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod),  [manual](../manual/interceptors.html),
+- [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod),  [manual](../manual/interceptors.html)
 - [Filters](https://godoc.org/github.com/revel/revel#Filters), [manual](../manual/filters.html)
 - [Cache](https://godoc.org/github.com/revel/revel#Cache), [manual](../manual/cache.html), [config](../manual/appconf.html#cache)
 - [OnAppStart](https://godoc.org/github.com/revel/revel#OnAppStart)
@@ -29,7 +29,8 @@ layout: quickref
 - [RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson), [manual](../manual/results.html#RenderJson)
 - [RenderTemplate()](https://godoc.org/github.com/revel/revel#Controller.RenderTemplate), [Template](https://godoc.org/github.com/revel/revel#Template), [manual](../manual/templates.html), [config](/manual/appconf.html#templates)
   - [Template Functions](../manual/templates.html#functions)
-- [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult)
+- [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult), [RenderError()](https://godoc.org/github.com/revel/revel#Controller.RenderError)
+ - [NotFound()](https://godoc.org/github.com/revel/revel#Controller.NotFound), [Todo()](https://godoc.org/github.com/revel/revel#Controller.Todo)
 -  [Session](https://godoc.org/github.com/revel/revel#Session), [manual](../manual/sessionflash.html#session), [config](../manual/appconf.html#session)
 - [Flash](https://godoc.org/github.com/revel/revel#Flash), [manual](../manual/sessionflash.html#flash)
  - [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)

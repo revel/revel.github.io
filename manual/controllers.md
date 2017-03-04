@@ -101,4 +101,21 @@ type Response struct {
 - It then sets all of the properties on the embedded `revel.Controller`.
 - Revel does not share a `Controller` instance between requests.
 
+### Extending the Controller
 
+A **Controller** is any type that embeds [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) either directly or indirectly.
+This means controllers may extend other classes, here is an example on how to do that. 
+- Note in the `MyController` the `BaseController` reference is NOT a pointer
+
+{% highlight go %}
+type (
+	BaseController struct {
+		*revel.Controller
+	}
+)
+type (
+	MyController struct {
+		BaseController
+	}
+)
+{% endhighlight %}

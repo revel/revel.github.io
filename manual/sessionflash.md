@@ -9,7 +9,7 @@ godoc:
     - Flash
 ---
 
-Revel provides two cookie-based storage mechanisms for convenience, (Session)[#session] and (Flash)[#flash].
+Revel provides two cookie-based storage mechanisms for convenience, [Session](#session) and [Flash](#flash).
 
 {% highlight go %}
 // A signed cookie, and thus limited to 4kb in size.
