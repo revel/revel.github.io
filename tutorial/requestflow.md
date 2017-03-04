@@ -179,4 +179,4 @@ Refresh the browser and to see a Hawaiian greeting.
 
 ![A Hawaiian greeting](../img/AlohaWorld.png)
 
-<a href="firstapp.html" class="btn btn-sm btn-success" role="button">Next &gt;&gt;</a> [Create the 'Hello World' application](firstapp.html)
+<a href="firstapp.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create the 'Hello World' application](firstapp.html)

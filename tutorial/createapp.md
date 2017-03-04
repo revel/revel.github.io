@@ -36,4 +36,4 @@ Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a n
 - The generated project structure is described in [organization](../manual/organization.html)
 - The HTTP port settings is in [`conf/app.conf`](../manual/appconf.html#httpport)
 
-<a href="requestflow.html" class="btn btn-sm btn-success" role="button">Next &gt;&gt;</a> [How Revel handles requests.](requestflow.html)
+<a href="requestflow.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [How Revel handles requests.](requestflow.html)

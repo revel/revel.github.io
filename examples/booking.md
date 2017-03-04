@@ -1,6 +1,10 @@
 ---
 title: Booking
 layout: examples
+godoc: 
+    - Controller
+    - InterceptMethod
+    - Flash
 ---
 
 The Booking sample app demonstrates ([browse the source](https://github.com/revel/samples/tree/master/booking)):
@@ -62,7 +66,7 @@ Once you have SQLite installed, it will be possible to run the booking app:
 ## Interceptors
 
 [`app/controllers/init.go`](https://github.com/revel/samples/blob/master/booking/app/controllers/init.go) 
-registers the [interceptors](../manual/interceptors.html) that run before every action:
+registers the [interceptors](../manual/interceptors.html) that run before every action ([InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)):
 
 {% highlight go %}
 func init() {

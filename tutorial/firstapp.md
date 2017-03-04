@@ -120,6 +120,5 @@ Success, we got an appropriate error and our input was saved for us to edit.
 
 <hr>
 
-#### Next
-- Read more the [concepts](../manual/concepts.html)
-- Look at the [samples](../samples/)
+- Read more in the [manual](../manual/concepts.html)
+- Look at the [example](../examples/) applications

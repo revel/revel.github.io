@@ -1,9 +1,12 @@
 ---
 title: Validation
 layout: examples
+godoc: 
+    - Validation
+    - Validator
 ---
 
-The validation app demonstrates every way that the Validation system may be used
+The validation app demonstrates every way that the [Validation](../manual/validation.html) system may be used
 to good effect.
 
 Here are the contents of the app:

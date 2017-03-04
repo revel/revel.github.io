@@ -3,7 +3,7 @@ title: Messages
 layout: examples
 ---
 
-The i18n application demonstrates the various internationalization features of Revel:
+The i18n application demonstrates the various [internationalization](../manual/i18n-messages.html) features of Revel:
 
 * Retrieving the current locale from a controller and template.
 * Resolving messages using the current locale from a controller and template.
