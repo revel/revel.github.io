@@ -155,6 +155,10 @@
     deadbackground-color: red !important;
 }
 
+.main a.btn {
+    text-decoration: none;
+     color: white;
+}
 
 
 /************************************************/

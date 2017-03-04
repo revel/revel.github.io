@@ -12,23 +12,42 @@ git clone https://github.com/revel/samples.git $GOPATH/src/github.com/revel/samp
 revel run github.com/revel/samples/booking
 {% endhighlight  %}
 
-## [Booking](booking.html) 
-  - A database-driven hotel-booking application,
-  including user management.
-  
-## [Chat](chat.html) 
+## Booking
+  - A database-driven hotel-booking application, including user management.
+
+<a class="btn btn-primary btn-sm" href="booking.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+
+
+## Chat
   - A chat room demonstrating active refresh, long-polling (comet), and [websocket](../manual/websockets.html) implementations.
-  
-## [Validation](validation.html) 
+
+<a class="btn btn-primary btn-sm" href="chat.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+
+
+
+## Validation
   - A demonstration of the [validation](../manual/validation.html) system.
-  
-## [Upload](upload.html) 
+
+<a class="btn btn-primary btn-sm" href="validation.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+
+
+
+## Upload
   - Demonstrates single and multiple file uploads.
-  
-## [Twitter OAuth](twitter-oauth.html) 
+
+<a class="btn btn-primary btn-sm" href="upload.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+
+
+
+## Twitter OAuth
   - A sample app that displays mentions and allows posting to a Twitter account using OAuth.
-  
-## [Facebook OAuth2](facebook-oauth2.html) 
+
+<a class="btn btn-primary btn-sm" href="twitter-oauth.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+
+
+
+## Facebook OAuth2
   - A sample app that displays Facebook user information using OAuth2.
 
+<a class="btn btn-primary btn-sm" href="facebook-oauth2.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 
