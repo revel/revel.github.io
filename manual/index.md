@@ -11,8 +11,8 @@ This manual documents aspects of the **Revel** framework.
     - Read the API docs at [godoc](https://godoc.org/github.com/revel/revel)
 - **Support**
     - Chat at
-      - IRC `#revel`  channel at `irc.freenode.net`
-      - Gitter [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/niftylettuce/eskimo)
+      - IRC channel -  `irc.freenode.net#revel`
+      - Gitter = [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/revel/community)
     - Try your luck at [StackOverflow](http://stackoverflow.com/questions/tagged/revel)
     - Mailing List
       - Send an email to the [revel-framework@googlegroups.com](mailto:revel-framework@googlegroups.com)
