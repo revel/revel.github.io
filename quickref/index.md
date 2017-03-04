@@ -35,6 +35,6 @@ layout: quickref
 - [Flash](https://godoc.org/github.com/revel/revel#Flash), [manual](../manual/sessionflash.html#flash)
  - [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
  
-[Jobs](https://godoc.org/github.com/revel/revel#Jobs), [manual](../modules/jobs.html),  [config](../manual/appconf.html#jobs)
-
-[TestSuite](https://godoc.org/github.com/revel/revel/testing#TestSuite), [manual](../modules/jobs.html)
+[Modules](../modules/index.html), [routing](../manual/routing.html#modules)
+- [Jobs](https://godoc.org/github.com/revel/revel#Jobs), [manual](../modules/jobs.html),  [config](../manual/appconf.html#jobs)
+- [TestSuite](https://godoc.org/github.com/revel/revel/testing#TestSuite), [manual](../modules/jobs.html)
