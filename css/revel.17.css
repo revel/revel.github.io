@@ -18,6 +18,13 @@
 #main-logo a:hover {
     text-decoration: none;
 }
+
+/*top nav */
+li.dropdown-header {
+  font-weight: bold;  
+  
+}
+
 /* hero is the big gopher banner on index.html */
 .hero-unit {
   background-color: #222;
