@@ -1,5 +1,5 @@
 ---
-title: Jobs
+title: Schedules Jobs
 layout: modules
 github:
   labels:
@@ -7,30 +7,38 @@ github:
     - topic-runtime
 ---
 
-Revel provides the [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) framework for performing work asynchronously, outside of the
-request flow.  This may take the form of [recurring tasks](#jobs) that updates cached data
-or [one-off tasks](#OneOff) such as sending emails.
+The Revel [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) module 
+is for performing work asynchronously outside of the request flow.
 
-## Activation
+The **job** is either:
+- A [recurring task](#jobs), eg updating a 5 min ticker
+- A [one-off task](#OneOff), such as sending emails or updating a leger or cashe
 
-The [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) framework is included as an optional [module](index.html), and is not enabled by default. 
-To activate it, add `module.jobs` to the [app.conf](../manual/appconf.html) file:
+## Config
 
-{% highlight ini %}
+The [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) module
+is optional **not** enabled by default. 
+
+To activate add `module.jobs` to the [app.conf](/manual/appconf.html) file:
+
+```ini
 module.jobs = github.com/revel/modules/jobs
-{% endhighlight %}
+```
+
 Additionally, in order to access the job monitoring page, you will need to add
-this line to the `conf/routes` file, which will insert the `/@jobs` url:
+`/@jobs` to the `conf/routes` to browse to url:
 
+```
+    // url = /@jobs
 	module:jobs
-
+```
 
 ## Options
 
-There are some [configuration settings](../manual/appconf.html#jobs) that tell the framework what sort of limitations
-to place on the jobs that it runs. These are listed below with their default values;
+There are some [configuration settings](/manual/appconf.html#jobs) that place some limitations
+job and its run, explained below with default values:
 
-- [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously
+- [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously/concurrently
 - [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent) - Allow a job to run only if previous instances are done
 - [`jobs.acceptproxyaddress = false`](appconf#jobsacceptproxyaddress) - Accept `X-Forwarded-For` header value (which is spoofable) to allow or deny status page access
 

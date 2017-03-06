@@ -221,6 +221,7 @@ GET     /foo     Application.FooAction
 ~~~
 
 - The routes would be imported with the URL's `/myurl/gopher` and `/myurl/gopher/add`.
+- See also [Modules](/modules/index.hml) and  [Jobs](/modules/jobs.html)
 
 
 
