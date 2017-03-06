@@ -17,7 +17,7 @@ Revel provides built-in functionality for validating [parameters](parameters.htm
 * Helper functions that checks data and put errors into the context.
 * A template function that gets error messages from the [Validation](https://godoc.org/github.com/revel/revel#Validation) context by key.
 
-See the [validation sample app](../samples/validation.html) for some
+See the [validation sample app](/examples/validation.html) for some
 in-depth examples.
 
 ## Inline Error Messages

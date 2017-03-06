@@ -10,7 +10,7 @@ godoc:
 
 Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
 
-- The [booking sample application](../samples/booking.html) has an example 
+- The [booking sample application](/examples/booking.html) has an example 
    [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) using [GORP](https://github.com/go-gorp/gorp).
 
 ## Config

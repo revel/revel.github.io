@@ -201,7 +201,7 @@ This is a wrapper around the upload handling provided by
 stay in memory unless they exceed a threshold (10MB by default), in which case
 they are written to a temp file.
 
-- See the [upload sample app](https://github.com/revel/samples/tree/master/upload)
+- See the [upload sample app](https://github.com/revel/examples/tree/master/upload)
 
 <div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Binding a file upload to <i>os.File</i> requires Revel to write it to a
 temp file (if it wasn't already), making it less efficient than the other types.</div>

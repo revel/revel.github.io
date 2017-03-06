@@ -117,14 +117,14 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
                 <p>
                     <h1 style="font-size: 15pt;">Stateless</h1>
                     Revel provides primitives that keep the web tier stateless for
-                    predictable scaling. For example, <a href="manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
+                    predictable scaling. For example, <a href="/manual/sessionflash.html#Session"><b>session</b></a> data is stored in the user
                     cookie, and the <a href="manual/cache.html"><b>cache</b></a> is backed by a memcached cluster, redis or in-memory.
                 </p>
             </div>
             <div class="col-md-4" style="background-color: rgb(248, 248, 248);">
                 <p>
                     <h1 style="font-size: 15pt;">Modular</h1>
-                    Revel is built around composable middleware called <a href="manual/filters.html"><b>filters</b></a>,
+                    Revel is built around composable middleware called <a href="/manual/filters.html"><b>filters</b></a>,
                     which implement nearly all request-processing
                     functionality. Developers have the freedom to replace the default
                     filters with custom implementations (e.g. a custom router).
@@ -141,7 +141,7 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
             <div class="col-md-6">
                 <h1 style="font-size: 15pt; margin-left: 12px;">Quick Start</h1>
                 <p>
-                    Revel has some <a href="examples/">sample applications</a> to demonstrate typical usage.
+                    Revel has some <a href="/examples/">sample applications</a> to demonstrate typical usage.
                 </p>
                 <p>The commands at right will:</p>
                 <ul>
@@ -151,7 +151,7 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
                     <li>Run the Chat sample application</li>
                     <li>Open <a href="http://localhost:9000/">http://localhost:9000/</a></li>
                 </ul>
-                <p><a href="examples/chat.html">Read how the chat demo is implemented.</a></p>
+                <p><a href="/examples/chat.html">Read how the chat demo is implemented.</a></p>
 
             </div>
 
@@ -160,17 +160,17 @@ MAIN_TITLE: Welcome to Revel, the Web Framework for Go!
 # get 'revel' framework and command
 go get github.com/revel/cmd/revel
 
-# get samples and run chat app
-git clone https://github.com/revel/samples.git \
-$GOPATH/src/github.com/revel/samples
+# Get the example apps
+git clone https://github.com/revel/examples \
+$GOPATH/src/github.com/revel/examples
 
-# Run revel application
-revel run github.com/revel/samples/chat
+# revel the chat app
+revel run github.com/revel/examples/chat
 </pre>
 <pre>
 # create a new app and run
 revel new github.com/myaccount/my-app
-                </pre>
+</pre>
             </div>
         </div>
     </section>

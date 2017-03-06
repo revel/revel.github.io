@@ -17,7 +17,7 @@ nesting and arguments.
 
 The way Revel handles message files and internationalization in general is similar to most other web frameworks out there. For those of you that wish to get
 started straight away without going through the specifics, there is a sample application 
-[`samples/i18n`](https://github.com/revel/samples/tree/master/i18n) which demonstrates the basics.
+[`examples/i18n`](https://github.com/revel/examples/tree/master/i18n) which demonstrates the basics.
 
 ## Configuration
 

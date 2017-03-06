@@ -95,7 +95,7 @@ revel run github.com/mycorp/mega-app prod 9999
 - This allows it to be deployed and run on a machine that lacks a Go installation.
 
 {% highlight sh %}
-    revel package github.com/revel/revel/samples/chat prod
+    revel package github.com/revel/revel/examples/chat prod
     > Your archive is ready: chat.tar.gz
 {% endhighlight %}
 
@@ -109,7 +109,7 @@ revel run github.com/mycorp/mega-app prod 9999
 - Deletes the `app/tmp` directory.
 - Deletes the `app/routes` directory.
 {% highlight sh %}
-    revel clean github.com/revel/samples/booking
+    revel clean github.com/revel/examples/booking
 {% endhighlight %}
 
 <a name="test"></a>
@@ -118,7 +118,7 @@ revel run github.com/mycorp/mega-app prod 9999
 
 - Run all tests for the Revel app named by the given import path.
 {% highlight sh %}
-    revel test github.com/revel/samples/booking dev
+    revel test github.com/revel/examples/booking dev
 {% endhighlight %}
 
 #### `revel version`

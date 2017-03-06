@@ -336,11 +336,11 @@ func init() {
 
 ## Examples
 
-The [sample applications](../samples/index.html) try to demonstrate effective use of
-Go Templates.  In particular, please take a look at [Booking app](../samples/booking.html) templates:
+The [sample applications](/examples/index.html) try to demonstrate effective use of
+Go Templates.  In particular, please take a look at [Booking app](/examples/booking.html) templates:
 
-* [`samples/booking/app/views/header.html`](https://github.com/revel/samples/blob/master/booking/app/views/header.html)
-* [`samples/booking/app/views/hotels/book.html`](https://github.com/revel/samples/blob/master/booking/app/views/hotels/book.html)
+* [`examples/booking/app/views/header.html`](https://github.com/revel/examples/blob/master/booking/app/views/header.html)
+* [`examples/booking/app/views/hotels/book.html`](https://github.com/revel/examples/blob/master/booking/app/views/hotels/book.html)
 
 It takes advantage of the helper functions to set the title and extra styles in
 the template itself.

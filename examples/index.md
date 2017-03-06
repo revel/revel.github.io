@@ -6,12 +6,12 @@ layout: examples
 Revel provides a few sample applications to demonstrate typical usage. 
 
 {% highlight sh %}
-git clone https://github.com/revel/samples.git $GOPATH/src/github.com/revel/samples
-revel run github.com/revel/samples/booking
+git clone https://github.com/revel/examples.git $GOPATH/src/github.com/revel/examples
+revel run github.com/revel/examples/booking
 {% endhighlight  %}
 
 
-<a class="btn btn-success btn-sm" href="https://github.com/revel/samples" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Samples Repository</a>
+<a class="btn btn-success btn-sm" href="https://github.com/revel/examples" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Samples Repository</a>
 
 ## Booking
   - A database-driven hotel-booking application, including user management.
@@ -20,14 +20,14 @@ revel run github.com/revel/samples/booking
 
 
 ## Chat
-  - A chat room demonstrating active refresh, long-polling (comet), and [websocket](../manual/websockets.html) implementations.
+  - A chat room demonstrating active refresh, long-polling (comet), and [websocket](/manual/websockets.html) implementations.
 
 <a class="btn btn-primary btn-sm" href="chat.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 
 
 
 ## Validation
-  - A demonstration of the [validation](../manual/validation.html) system.
+  - A demonstration of the [validation](/manual/validation.html) system.
 
 <a class="btn btn-primary btn-sm" href="validation.html" role="button">View <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 

@@ -8,7 +8,7 @@ The facebook-oauth2 app demonstrates:
 * Using the `goauth2` library to fetch json information on the logged-in
   Facebook user.
 
-<a class="btn btn-success btn-sm" href="https://github.com/revel/samples/tree/master/facebook-oauth2" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
+<a class="btn btn-success btn-sm" href="https://github.com/revel/examples/tree/master/facebook-oauth2" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
 
 Here are the contents of the app:
 

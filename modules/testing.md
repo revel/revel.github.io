@@ -171,14 +171,14 @@ The Revel [command line tool](tool.html) provides a `test` command that allows a
 
 Here is an example session:
 
-	$ revel test github.com/revel/samples/booking dev
+	$ revel test github.com/revel/examples/booking dev
 	~
 	~ revel! http://revel.github.io
 	~
 	INFO  2012/11/09 19:21:02 revel.go:237: Loaded module testrunner
 	Open DB
 	Listening on port 9000...
-	INFO  2012/11/09 19:21:06 test.go:95: Testing Booking example (github.com/revel/samples/booking) in dev mode
+	INFO  2012/11/09 19:21:06 test.go:95: Testing Booking example (github.com/revel/examples/booking) in dev mode
 	Go to /@tests to run the tests.
 
 	1 test suite to run.
@@ -189,12 +189,12 @@ Here is an example session:
 
 You can also run a single test suite, or method within that suite, with a period-separated parameter:
 
-	$ revel test github.com/revel/samples/booking dev ApplicationTest
-	$ revel test github.com/revel/samples/booking dev ApplicationTest.TestThatIndexPageWorks
+	$ revel test github.com/revel/examples/booking dev ApplicationTest
+	$ revel test github.com/revel/examples/booking dev ApplicationTest.TestThatIndexPageWorks
 
 In the console only a simple PASSED/FAILED overview by test suite is displayed.  The tool writes more detailed results to the filesystem:
 
-	$ cd src/github.com/revel/samples/booking
+	$ cd src/github.com/revel/examples/booking
 	$ find test-results
 	test-results
 	test-results/app.log
