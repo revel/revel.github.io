@@ -1,138 +1,201 @@
 ---
-title: Results
+title: Results & Responses
 layout: manual
+github:
+  labels:
+    - topic-controller
+    - topic-static
+godoc:
+    - Controller.Render
+    - Controller.RenderTemplate
+    - Controller.RenderJson
+    - Controller.RenderXml
+    - Controller.Redirect
 ---
 
-Actions must return a [`revel.Result`](../docs/godoc/results.html#Result), which
-handles the response generation.  It adheres to a simple interface:
+Actions must return a [revel.Result](https://godoc.org/github.com/revel/revel#Result), which
+handles the HTTP response generation.  It adheres to the simple interface:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 type Result interface {
 	Apply(req *Request, resp *Response)
 }
-</pre>
+{% endhighlight %}
 
-[`revel.Controller`](../docs/godoc/controller.html#Controller) provides a couple
-methods to produce Results:
+[revel.Controller](https://godoc.org/github.com/revel/revel#Controller) provides a few
+methods to produce different results:
 
-* Render, RenderTemplate - render a template, passing arguments.
-* RenderJson, RenderXml - serialize a structure to json or xml.
-* RenderText - return a plaintext response.
-* Redirect - redirect to another action or URL
-* RenderFile - return a file, generally to be downloaded as an attachment.
-* RenderError - return a 500 response that renders the errors/500.html template.
-* NotFound - return a 404 response that renders the errors/404.html template.
-* Todo - return a stub response (500)
+* **[Render()](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
+    - render a template, passing arguments.
+* **[RenderJson()](#RenderJson)**, **[`RenderXml()`](#RenderXml)** 
+    - serialize a structure to json or xml.
+* **`RenderText()`** 
+    - return a plaintext response.
+* **[Redirect()](#Redirect)** 
+    - redirect to another action or URL
+* **`RenderFile()`** 
+    - return a file, generally to be downloaded as an attachment.
+* **`RenderError()`** 
+    - return a 500 response that renders the errors/500.html template.
+* **`NotFound()`** 
+    - return a 404 response that renders the errors/404.html template.
+* **`Todo()`** 
+    - return a stub response (500)
 
-Additionally, the developer may define their own `revel.Result` and return that.
+Additionally, the developer may define a result with [CustomResult](#CustomResult) and return that.
 
 ### Setting the Status Code / Content Type
 
-Each built-in Result has a default Status Code and Content Type.  To override
+Each built-in Result has a default `HTTP Status Code` and `Content Type`.  To override
 those defaults, simply set those properties on the response:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c App) Action() revel.Result {
 	c.Response.Status = http.StatusTeapot
 	c.Response.ContentType = "application/dishware"
 	return c.Render()
 }
-</pre>
+{% endhighlight %}
 
-## Render
+
+You can override the default status code by setting one yourself:
+
+{% highlight go %}
+func (c *App) CreateEntity() revel.Result {
+    c.Response.Status = 201
+    return c.Render()
+}
+{% endhighlight %}
+
+<a name="Render"><a name="RenderTemplate">
+
+## Render()
 
 Called within an action (e.g. "Controller.Action"),
-[`mvc.Controller.Render`](../docs/godoc/controller.html#Controller.Render) does two things:
-1. Adds all arguments to the controller's RenderArgs, using their local identifier as the key.
-2. Executes the template "views/Controller/Action.html", passing in the controller's "RenderArgs" as the data map.
+[Controller.Render()](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
 
-If unsuccessful (e.g. it could not find the template), it returns an ErrorResult instead.
+ 1. Adds all arguments to the controller's `RenderArgs`, using their local identifier as the key.
+ 2. Executes the template "views/Controller/Action.html", passing in the controller's `RenderArgs` as the data map.
+
+If unsuccessful (e.g. it could not find the template), an [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult) is returned instead.
 
 This allows the developer to write:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 func (c MyApp) Action() revel.Result {
 	myValue := calculateValue()
 	return c.Render(myValue)
 }
-</pre>
+{% endhighlight %}
 
-and to use "myValue" in their template.  This is usually more convenient than
+and to use `myValue` in their template.  This is usually more convenient than
 constructing an explicit map, since in many cases the data will need to be
 handled as a local variable anyway.
 
-**Note:** Revel looks at the calling method name to determine the Template
-  path and to look up the argument names.  Therefore, c.Render() may only be
-  called from Actions.
+<div class="alert alert-info">Note: Revel looks at the calling method name to determine the Template
+path and to look up the argument names.  Therefore, `c.Render()` may only be  called from Actions.</div>
 
+{% capture ex_render %}{% raw %}
+// Example using mix of render args and variables
+// This renders the `views/MyController/showSutuff.html` template as
+// eg <pre>foo={{.foo}} bar={{.bar}} abc={{.abc}} xyz={{.xyz}}</pre>
+func (c MyController) ShowStuff() revel.Result {
+    c.RenderArgs["foo"] = "bar"
+    c.RenderArgs["bar"] = 1
+    abc := "abc"
+    xyz := "xyz"
+    return c.Render(xyz, abc)
+}
 
-## RenderJson / RenderXml
+// Example renders the `views/Foo/boo.xhtml` tempate
+func (c MyController) XTemp() revel.Result {
+    c.RenderArgs["foo"] = "bar"
+    c.RenderArgs["bar"] = 1
+    return c.RenderTemplate("Foo/boo.xhtml")
+}
+{% endraw %}{% endcapture %}
+
+{% highlight go %}{{ex_render}}{% endhighlight %}
+
+<a name="RenderJson"></a><a name="RenderXml"></a>
+
+## RenderJson() / RenderXml()
 
 The application may call
-[`RenderJson`](../docs/godoc/controller.html#Controller.RenderJson) or
-[`RenderXml`](../docs/godoc/controller.html#Controller.RenderXml) and pass in any Go
+[RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson) or
+[RenderXml](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and pass in any Go
 type (usually a struct).  Revel will serialize it using
-[`json.Marshal`](http://www.golang.org/pkg/encoding/json/#Marshal) or
-[`xml.Marshal`](http://www.golang.org/pkg/encoding/xml/#Marshal).
+[json.Marshal](http://www.golang.org/pkg/encoding/json/#Marshal) or
+[xml.Marshal](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
-If `results.pretty=true` in `app.conf`, serialization will be done using
-`MarshalIndent` instead, to produce nicely indented output for human
-consumption.
+If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html)  then serialization will be done using
+`MarshalIndent` instead, to produce nicely indented output for human consumption.
 
-## Redirect
+{% highlight go %}
+// Simple example
 
-A helper function is provided for generating redirects.  It may be used in two ways.
+type Stuff struct {
+    Foo string ` json:"foo" xml:"foo" `
+    Bar int ` json:"bar" xml:"bar" `
+}
 
-1. Redirect to an action with no arguments:
+func (c MyController) MyAction() revel.Result {
+    data := make(map[string]interface{})
+    data["error"] = nil
+    stuff := Stuff{Foo: "xyz", Bar: 999}
+    data["stuff"] = stuff
+    return c.RenderJson(data)
+    //return c.RenderXml(data)
+}
+{% endhighlight %}
 
-    <pre class="prettyprint lang-go">
-      return c.Redirect(Hotels.Settings)</pre>
+<a name="Redirect"></a>
 
-    This form is useful as it provides a degree of type safety and independence from
-    the routing.  (It generates the URL automatically.)
+## Redirect()
 
-2. Redirect to a formatted string:
+- A helper function is provided for generating [HTTP redirects](http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx).  
+- It may be used in two ways and both return a `302 Temporary Redirect` HTTP status code..
 
-    <pre class="prettyprint lang-go">
-      return c.Redirect("/hotels/%d/settings", hotelId)</pre>
+### Redirect to an action with no arguments:
 
-    This form is necessary to pass arguments.
+{% highlight go %}
+    return c.Redirect(Hotels.Settings)
+{% endhighlight %}
 
-It returns a 302 (Temporary Redirect) status code.
+- This form is useful as it provides a degree of type safety and independence from the routing and generates the URL automatically.
 
-## Adding your own Result
+### Redirect to a formatted string:
 
-Here is an example of adding a simple Result.
+{% highlight go %}return c.Redirect("/hotels/%d/settings", hotelId){% endhighlight %}
+
+- This form is necessary to pass arguments.
+- It returns a `302 Temporary Redirect` status code.
+
+<a name="CustomResult"></a>
+
+## Custom Result
+
+Below is a simple example of creating a custom `Result`.
 
 Create this type:
 
-<pre class="prettyprint lang-go">
+{% highlight go %}
 import ("net/http")
 
-type Html string
+type MyHtml string
 
-func (r Html) Apply(req *revel.Request, resp *revel.Response) {
+func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
 	resp.Out.Write([]byte(r))
 }
-</pre>
+{% endhighlight %}
 
 Then use it in an action:
 
-<pre class="prettyprint lang-go">{% capture html %}
-func (c *App) Action() revel.Result {
-	return Html("<html><body>Hello World</body></html>")
-}{% endcapture %}{{ html|escape }}
-</pre>
-
-## Status Codes
-
-Each Result will set a status code by default.  You can override the default
-status code by setting one yourself:
-
-<pre class="prettyprint lang-go">
-func (c *App) CreateEntity() revel.Result {
-	c.Response.Status = 201
-	return c.Render()
+{% highlight go %}
+func (c *MyApp) Action() revel.Result {
+	return MyHtml("<html><body>Hello Result</body></html>")
 }
-</pre>
+{% endhighlight %}
+
+

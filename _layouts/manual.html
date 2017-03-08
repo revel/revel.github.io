@@ -1,6 +1,7 @@
 ---
 root: ..
 name: manual
+section_title: Manual
 nav:
 -
   name: Overview
@@ -12,28 +13,28 @@ nav:
     title: Concepts
     url: concepts.html
   -
-    title: Organization
+    title: Code Organization
     url: organization.html
 -
   name: Controllers
   articles:
   -
-    title: Overview
+    title: Controllers Overview
     url: controllers.html
   -
-    title: Routing
+    title: URL Routing
     url: routing.html
   -
-    title: Parameters
-    url: binding.html
+    title: Request Parameters
+    url: parameters.html
   -
     title: Validation
     url: validation.html
   -
-    title: Session / Flash
+    title: Session & Flash
     url: sessionflash.html
   -
-    title: Results
+    title: Results & Response
     url: results.html
   -
     title: Templates
@@ -48,23 +49,17 @@ nav:
     title: Websockets
     url: websockets.html
   -
-    title: I18n
+    title: Internationalization
     url: i18n-messages.html
   -
     title: Cache
     url: cache.html
--
-  name: Modules
-  articles:
   -
-    title: Overview
-    url: modules.html
+    title: Database
+    url: database.html
   -
-    title: Testing
-    url: testing.html
-  -
-    title: Jobs
-    url: jobs.html
+    title: Debugging
+    url: debug.html
 -
   name: Operational
   articles:
@@ -84,41 +79,10 @@ nav:
     title: app.conf
     url: appconf.html
   -
-    title: Command line tool
+    title: revel cmd
     url: tool.html
   -
     title: FAQ
     url: faq.html
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% include head.html %}
-    <link href="{{ page.root }}/css/manual.css" type="text/css" rel="stylesheet" />
-    <link href="{{ page.root }}/css/prettify.css" type="text/css" rel="stylesheet" />
-    <script src="{{ page.root }}/js/prettify.js" type="text/javascript"></script>
-    <script src="{{ page.root }}/js/lang-go-rich.js" type="text/javascript"></script>
-		{% include analytics.html %}
-  </head>
-
-  <body onload="prettyPrint()">
-
-    {% include topnav.html %}
-
-    <div class="container">
-      <div class="row">
-        <div class="span2">
-          {% include leftnav.html %}
-        </div>
-
-        <div class="span10">
-          <div class="page-header">
-            <h1>{{ page.title }}</h1>
-            <a href="https://github.com/revel/revel.github.io/edit/master/{{ page.path }}" class="improve-page btn btn-info" target="_blank">Improve this page</a>
-          </div>
-          {{ content }}
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+{% include main_layout.html %}

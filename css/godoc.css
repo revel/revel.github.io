@@ -6,7 +6,7 @@ body {
 pre,
 code {
 	font-family: Menlo, monospace;
-	font-size: 14px;
+	font-size: 12px;
 }
 pre {
 	line-height: 18px;
@@ -130,12 +130,12 @@ div#topbar {
 	height: 64px;
 }
 
-body {
+DEADbody {
 	text-align: center;
 }
 div#page,
 div#topbar > .container {
-	clear: both;
+	DEDclear: both;
 	text-align: left;
 	margin-left: auto;
 	margin-right: auto;

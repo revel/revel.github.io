@@ -1,8 +1,0 @@
-To test Revel hosted under the "/revel/.." path (as it is actually hosted):
-
-In this directory
-- python -m SimpleHTTPServer 8080
-- open http://localhost:8080/revel
-
-In revel/
-- jekyll --auto --pygments --no-lsi --safe test/revel

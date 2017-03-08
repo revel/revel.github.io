@@ -1,23 +1,71 @@
-    <div class="navbar" style="margin:0 auto 2px auto;">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="{{ page.root }}/index.html">
-            <img class="revel-hat-img"
-                 src="{{ page.root }}/img/revelhat.png"
-                 height="40" width="87">
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/tutorial/index.html">Tutorial</a></li>
-              <li {% if page.layout == 'manual' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/manual/index.html">Manual</a></li>
-              <li {% if page.layout == 'samples' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/samples/index.html">Samples</a></li>
-              <li {% if page.layout == 'godoc' %}class="active"{% endif %}>
-                <a href="{{ page.root }}/docs/godoc/index.html">godoc</a></li>
-            </ul>
-          </div>
+
+
+    
+<nav class="navbar navbar-inverse ">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div id="main-logo"><a ddclass="navbar-brand" href="/">Revel</a></div>
         </div>
-      </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/tutorial/index.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a></li>
+                
+                <li {% if page.layout == 'manual' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/manual/index.html"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Manual</a></li>
+                    
+                <li {% if page.layout == 'modules' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/modules/index.html"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Modules</a></li>
+                    
+                    
+                <li {% if page.layout == 'examples' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/examples/index.html"><span class="glyphicon glyphicon-sound-stereo" aria-hidden="true"></span> Examples</a></li>
+                
+                <li {% if page.layout == 'quickref' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/quickref/index.html"><span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> Quick Ref</a></li>
+                    
+                    
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">GitHub <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="https://github.com/revel/" target="github"><span class="glyphicon glyphicon-object-align-horizontal" aria-hidden="true"></span> Revel project</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Revel core</li>
+                            <li><a href="https://github.com/revel/revel" target="github"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Source code</a></li>
+                            <li><a href="https://github.com/revel/revel/issues" starget="github"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Issues</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Revel command</li>
+                            <li><a href="https://github.com/revel/cmd" target="github"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Source code</a></li>
+                            <li><a href="https://github.com/revel/cmd/issues" target="github"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Issues</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Modules</li>
+                        <li><a href="https://github.com/revel/modules" target="github"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Source code</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Example Apps</li>
+                        <li><a href="https://github.com/revel/examples" target="github"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Source code</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">revel.github.io</li>
+                        <li><a href="https://github.com/revel/revel.github.io" target="github"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Source code</a></li>
+                        <li><a href="https://github.com/revel/revel.github.io/issues" starget="github"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Issues</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Support <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="irc://irc.freenode.net#revel" target="_blank">Chat at irc.freenode.net#revel</a></li>
+                        <li><a href="https://gitter.im/revel/community" target="_blank">Chat at gitter.im/revel/community</a></li>
+                        <li><a href="https://groups.google.com/forum/#!forum/revel-framework" target="_blank">Mailing List</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/revel" target="_blank">Revel at StackOverflow</a></li>
+                    </ul>
+                <li>
+                 
+            </ul>
+        </div>
     </div>
+</nav>

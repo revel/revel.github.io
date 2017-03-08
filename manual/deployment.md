@@ -3,19 +3,27 @@ title: Deployment
 layout: manual
 ---
 
+<div class="alert alert-success">
+Revel does NOT have connection/resource management and all production deployments 
+should have a HTTP proxy that is properly configured in front of all Revel HTTP requests.
+</div>
+
 ## Overview
 
 There are a couple common deployment routes:
 
-* Build the app locally and copy it to the server.
-* On the server, pull the updated code, build it, and run it.
-* Use Heroku to manage deployment.
+* [Build the app locally](#build-local) and copy it to the server.
+* [On the server](#build-server), pull the updated code, build it, and run it.
+* [Use Heroku](#heroku) to manage deployment.
 
-The command line sessions demonstrate interactive deployment -- typically one
-would use a tool for daemonizing their web server.  Common tools:
+The command line sessions demonstrate interactive deployment; typically in production
+ a tool would be used for daemonizing the web server.  Some common tools are:
 
 * [Ubuntu Upstart](http://upstart.ubuntu.com)
 * [systemd](http://www.freedesktop.org/wiki/Software/systemd)
+* [Supervisor](http://supervisord.org/)
+
+<a name="build-local"></a>
 
 ## Build locally
 
@@ -62,6 +70,7 @@ Rsync has full support for copying over ssh.  For example, here's a more complic
     # A more complicated example using custom certificate, login name, and target directory
     $ rsync -vaz --rsh="ssh -i .ssh/go.pem" /tmp/myapp2 ubuntu@ec2-50-16-80-4.compute-1.amazonaws.com:~/rsync
 
+<a name="build-server"></a>
 
 ## Build on the server
 
@@ -78,18 +87,26 @@ avoid potentially having to cross-compile.
     $ git pull
     $ revel run import/path/to/app prod
 
+    
+<a name="heroku"></a>
+    
 ## Heroku
 
-Revel maintains a Heroku Buildpack, allowing one-command deploys:
-https://github.com/revel/heroku-buildpack-go-revel
+Revel maintains a *Heroku Buildpack*, allowing one-command deploys.
 
-Please see the
-[README](https://github.com/revel/heroku-buildpack-go-revel/blob/master/README.md)
-for usage instructions.
+- Visit [heroku-buildpack-go-revel](https://github.com/revel/heroku-buildpack-go-revel) on github
+- See the [README](https://github.com/revel/heroku-buildpack-go-revel/blob/master/README.md) for usage instructions.
+
+## Boxfuse and Amazon Web Services
+
+[Boxfuse](https://boxfuse.com) comes with first-class support for Revel apps with one-command deploys to AWS.
+
+- Visit the [Get Started with Boxfuse and Revel](https://boxfuse.com/getstarted/revel) guide to be up and running on AWS in minutes
+- See the [Boxfuse Revel reference documentation](https://boxfuse.com/docs/payloads/revel) for details.
 
 ## Cross-compilation
 
-In order to create a cross-compile environment, we need to build go from source.
+In order to create a cross-compile environment, you need to build go from source.
 See
 [Installing Go from source](http://golang.org/doc/install/source)
 for more information.
