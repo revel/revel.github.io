@@ -8,8 +8,8 @@ github:
 godoc:
     - Controller.Render
     - Controller.RenderTemplate
-    - Controller.RenderJson
-    - Controller.RenderXml
+    - Controller.RenderJSON
+    - Controller.RenderXML
     - Controller.Redirect
 ---
 
@@ -27,7 +27,7 @@ methods to produce different results:
 
 * **[Render()](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
     - render a template, passing arguments.
-* **[RenderJson()](#RenderJson)**, **[`RenderXml()`](#RenderXml)** 
+* **[RenderJSON()](#RenderJSON)**, **[`RenderXML()`](#RenderXML)** 
     - serialize a structure to json or xml.
 * **`RenderText()`** 
     - return a plaintext response.
@@ -117,13 +117,13 @@ func (c MyController) XTemp() revel.Result {
 
 {% highlight go %}{{ex_render}}{% endhighlight %}
 
-<a name="RenderJson"></a><a name="RenderXml"></a>
+<a name="RenderJSON"></a><a name="RenderXML"></a>
 
-## RenderJson() / RenderXml()
+## RenderJSON() / RenderXML()
 
 The application may call
-[RenderJson](https://godoc.org/github.com/revel/revel#Controller.RenderJson) or
-[RenderXml](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and pass in any Go
+[RenderJSON](https://godoc.org/github.com/revel/revel#Controller.RenderJSON) or
+[RenderXML](https://godoc.org/github.com/revel/revel#Controller.RenderXML) and pass in any Go
 type (usually a struct).  Revel will serialize it using
 [json.Marshal](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [xml.Marshal](http://www.golang.org/pkg/encoding/xml/#Marshal).
@@ -144,8 +144,8 @@ func (c MyController) MyAction() revel.Result {
     data["error"] = nil
     stuff := Stuff{Foo: "xyz", Bar: 999}
     data["stuff"] = stuff
-    return c.RenderJson(data)
-    //return c.RenderXml(data)
+    return c.RenderJSON(data)
+    //return c.RenderXML(data)
 }
 {% endhighlight %}
 
