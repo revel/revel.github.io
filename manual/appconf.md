@@ -315,9 +315,9 @@ Default: `false`
 
 #### `results.pretty`
 
-Configures [`RenderXml`](../docs/godoc/controller.html#RenderXml) and
-[`RenderJson`](../docs/godoc/controller.html#RenderJson) to produce indented
-XML/JSON.  
+Configures [`RenderXml`](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and
+[`RenderJson`](https://godoc.org/github.com/revel/revel#Controller.RenderJson) to produce indented
+XML/JSON.
 
 Example:
 {% highlight ini %}
@@ -587,7 +587,7 @@ Default: ""
 
 ### Scheduled Jobs
 
-The [jobs](../modules/jobs.html) module allows you to run [scheduled](../modules/jobs.html#RecurringJobs) or [ad-hoc](../modules/jobs.html#OneOff) jobs.
+The [jobs](/modules/jobs.html) module allows you to run [scheduled](/modules/jobs.html#RecurringJobs) or [ad-hoc](/modules/jobs.html#OneOff) jobs.
 
 
 
@@ -627,7 +627,7 @@ proxy (e.g. Nginx). It is not recommended to allow this is production mode due t
 
 #### Named Schedules
 
-[Named cron schedules](../modules/jobs.html#NamedSchedules) may be configured by setting a key of the form:
+[Named cron schedules](/modules/jobs.html#NamedSchedules) may be configured by setting a key of the form:
 {% highlight ini %}
   cron.schedulename = @hourly
 {% endhighlight %}

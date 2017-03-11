@@ -11,8 +11,8 @@ The Booking sample app demonstrates:
 
 * Using an SQL (SQLite) database and configuring the Revel DB module.
 * Using the third party [GORP](https://github.com/go-gorp/gorp) *ORM-ish* library
-* [Interceptors](../manual/interceptors.html) for checking that an user is logged in.
-* Using [validation](../manual/validation) and displaying inline errors
+* [Interceptors](/manual/interceptors.html) for checking that an user is logged in.
+* Using [validation](/manual/validation) and displaying inline errors
 
 <a class="btn btn-success btn-sm" href="https://github.com/revel/examples/tree/master/booking" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
 
@@ -68,7 +68,7 @@ Once you have SQLite installed, it will be possible to run the booking app:
 ## Interceptors
 
 [`app/controllers/init.go`](https://github.com/revel/examples/blob/master/booking/app/controllers/init.go) 
-registers the [interceptors](../manual/interceptors.html) that run before every action ([InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)):
+registers the [interceptors](/manual/interceptors.html) that run before every action ([InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)):
 
 {% highlight go %}
 func init() {
@@ -128,7 +128,7 @@ the validation context under the key "booking.CheckInDate".
 
 Subsequently, the
 [Hotels/Book.html](https://github.com/revel/examples/blob/master/booking/app/views/Hotels/Book.html)
-template can easily access them using the [`field`](../manual/templates.html#field) helper:
+template can easily access them using the [`field`](/manual/templates.html#field) helper:
 
 {% capture ex %}{% raw %}
 {{with $field := field "booking.CheckInDate" .}}
@@ -142,5 +142,5 @@ ss</p>
 {% highlight htmldjango %}{{ex}}{% endhighlight %} 
 
 
-The [`field`](../manual/templates.html#field) template helper looks for errors in the validation context, using
+The [`field`](/manual/templates.html#field) template helper looks for errors in the validation context, using
 the field name as the key.

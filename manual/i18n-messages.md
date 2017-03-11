@@ -270,5 +270,3 @@ To resolve messages using the current locale from [templates](templates.html) th
     </ul>
 </div>
 
-<hr>
-See the godocs for [i18n.go](../docs/godoc/i18n.html)
