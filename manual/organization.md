@@ -42,12 +42,12 @@ The `app/` directory contains the source code and templates for your application
 - `app/views` - All templates are required here
 
 Beyond that, the application may organize its code however it wishes.  Revel
-will [watch](../manual/appconf.html#watch) all directories under `app/` and rebuild when it
+will [watch](/manual/appconf.html#watch) all directories under `app/` and rebuild when it
 notices any changes.  Any dependencies outside of `app/` will not be watched for
 changes, it is the developer's responsibility to recompile when necessary.
 
 Additionally, Revel will import any packages within `app/` (or imported
-[modules](../modules/index.html)) that contain `init()` functions on startup, to ensure
+[modules](/modules/index.html)) that contain `init()` functions on startup, to ensure
 that all of the developer's code is initialized.
 
 The `app/init.go` file is a conventional location to register all of the

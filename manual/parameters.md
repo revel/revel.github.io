@@ -114,7 +114,7 @@ The following data types are supported by Revel out of the box:
 * \*os.File, \[\]byte, io.Reader, io.ReadSeeker for file uploads
 
 The following sections describe the syntax for these types.  It is also useful
-to refer to [the source code of](../docs/src/binder.html) if more detail is required.
+to refer to [the source code of](https://github.com/revel/revel/blob/master/binder.go) if more detail is required.
 
 ### Booleans
 

@@ -7,7 +7,7 @@ This manual documents aspects of the **Revel** framework.
 
 - **Newbie**
     - Read about the [concepts](concepts.html)
-    - Browse the [example applications](../examples/)
+    - Browse the [example applications](/examples/)
     - Read the API docs at [godoc](https://godoc.org/github.com/revel/revel)
 - **Support**
     - Chat at

@@ -33,7 +33,7 @@ one provided by [Play! Framework](http://www.playframework.org) matches our mode
 
 Here is an overview of the request processing framework.
 
-![Life of a Request](../img/RevelDesign.png)
+![Life of a Request](/img/RevelDesign.png)
 
 Concept summary:
 
