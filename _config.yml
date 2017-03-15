@@ -2,3 +2,8 @@ safe: true
 lsi: false
 highlighter: rouge
 markdown: kramdown
+jekyll-redirect-from: true
+gems:
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-redirect-from
