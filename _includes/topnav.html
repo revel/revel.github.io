@@ -15,6 +15,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+            
+                <li {% if page.layout == 'install' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/install/index.html" title="Install"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a></li>
+                    
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a></li>
                 
