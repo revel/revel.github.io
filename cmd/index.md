@@ -1,5 +1,5 @@
 ---
-title: Shell Cmd Cli
+title: revel cmd
 layout: cmd
 ---
 
@@ -9,11 +9,8 @@ layout: cmd
 revel
 ```
 
-<div class="alert alert-info">
+- If above in errors, then visit [Install](/install/index.html)
 
-Install: visit [Install](/install/)
-
-</div>
 
 
 <a name="version"></a>

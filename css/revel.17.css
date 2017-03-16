@@ -360,3 +360,6 @@ hr {
 .revel-install .leftnav .nav-header {
     background-color: #222244 !important;
 }
+.revel-cmd .leftnav .nav-header {
+    background-color: #111111 !important;
+}

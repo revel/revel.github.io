@@ -53,4 +53,5 @@ Verify that it works:
     Use "revel help [command]" for more information.
 
 
-<a href="createapp.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create a new Revel application.](createapp.html)
+<a href="createapp.html" class="btn btn-sm btn-success" 
+  role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create a new Revel application.](/cmd/index.html)
