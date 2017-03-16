@@ -18,6 +18,9 @@
             
                 <li {% if page.layout == 'install' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/install/index.html" title="Install"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a></li>
+
+                <li {% if page.layout == 'cmd' %}class="active"{% endif %}>
+                    <a href="{{ page.root }}/cmd/index.html" title="Install"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></li>
                     
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a></li>

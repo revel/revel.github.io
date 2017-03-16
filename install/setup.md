@@ -3,7 +3,7 @@ title: Basic Setup
 layout: install
 ---
 
-<div class="alert alert-info">
+<div class="alert alert-warning">
 
 NOTE: The setup described below is not a definitive guide, but rather pointers on how to get up and running
 
@@ -11,6 +11,12 @@ NOTE: The setup described below is not a definitive guide, but rather pointers o
 
 
 ## Install Go
+
+<div class="alert alert-info">
+
+https://github.com/moovweb/gvm
+
+</div>
 
 Before you can use Revel, [install Go](http://golang.org/doc/install) needs to be installed.
 

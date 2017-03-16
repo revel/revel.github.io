@@ -1,55 +1,29 @@
 ---
-title: revel cmd
-layout: manual
+title: Shell Cmd Cli
+layout: cmd
 ---
 
-## Install
+## > revel 
 
-To install, run the command below
+```bash
+revel
+```
 
+<div class="alert alert-info">
+
+Install: visit [Install](/install/)
+
+</div>
+
+
+<a name="version"></a>
+
+#### `revel version`
+
+- Displays the Revel Framework and Go version.
 {% highlight sh %}
-	$ go get -u github.com/revel/cmd/revel
-{% endhighlight  %}
-
-<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Gotcha. The command is in the subdirectory '/revel' ie <code>revel/cmd/revel</code> and not <code>revel/cmd</code></div>
-
-- The `revel` command line tool is required to use the Revel framework
-- It is NOT included with the main framework and is in a  [seperate repos](https://github.com/revel/cmd)
-
-<a class="btn btn-success btn-sm" href="https://github.com/revel/cmd/tree/master/revel" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
-
-
-
-
-
-Now run it:
-
-	$ bin/revel
-	~
-	~ revel! http://revel.github.io
-	~
-	usage: revel command [arguments]
-
-	The commands are:
-
-		new         create a skeleton Revel application
-		run         run a Revel application
-		build       build a Revel application (e.g. for deployment)
-		package     package a Revel application (e.g. for deployment)
-		clean       clean a Revel application's temp files
-		test        run all tests from the command-line
-		version     displays the Revel Framework and Go version
-
-	Use "revel help [command]" for more information.
-
-
-
-## Quick Ref
-
-
- - Please refer to the tool's built-in help (`revel -h`) for the latest information on the individual commands.
-
-<div class="alert alert-success"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> If not specified, the <a href="appconf.html#runmodes"><code>run_mode</code></a> on all commands defaults to <b>dev</b></div>
+    revel version
+{% endhighlight %}
 
 
 <a name="new"></a>
@@ -121,10 +95,5 @@ revel run github.com/mycorp/mega-app prod 9999
     revel test github.com/revel/examples/booking dev
 {% endhighlight %}
 
-#### `revel version`
 
-- Displays the Revel Framework and Go version.
-{% highlight sh %}
-    revel version
-{% endhighlight %}
 
