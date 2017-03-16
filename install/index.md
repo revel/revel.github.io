@@ -19,25 +19,14 @@ layout: install
 
 To get the Revel framework and all its dependancies run cmd below which:
 
-* Go uses git to clone the repository into `$GOPATH/src/github.com/revel/revel/`
+* Go uses git to clone the repository into `$GOPATH/src/github.com/revel/cmd/revel/`
 * Go transitively finds all of the dependencies and runs `go get` on them as well.
 * The `-v` flag is option that shows all the dependancies being installed
+* To update your existing installation of revel add a `-u` flag
 
 ```bash
     # the -v shown whats being installed and can be ommitted
-	go get -v github.com/revel/revel
-```
-
-
-### Install the revel cmd
-
-The [`revel`](tool.html) command line tool is used 
-to [`build`](tool.html#build), [`run`](tool.html#run), and [`package`](tool.html#package) Revel applications.
-
-## go get 
-
-```bash
-go get github.com/revel/cmd/revel
+	go get -v github.com/revel/cmd/revel
 ```
 
 Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the command from anywhere.
