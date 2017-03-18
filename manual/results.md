@@ -14,7 +14,7 @@ godoc:
 ---
 
 Actions must return a [revel.Result](https://godoc.org/github.com/revel/revel#Result), which
-handles the HTTP response generation.  It adheres to the simple interface:
+handles the HTTP response generation and adheres to the simple interface:
 
 {% highlight go %}
 type Result interface {
@@ -25,9 +25,20 @@ type Result interface {
 [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) provides a few
 methods to produce different results:
 
-* **[Render()](#Render)**, **[`RenderTemplate()`](#RenderTemplate)** 
+
+<div class="alert alert-success">
+<b>NOTE: From v0.14, the following changes:</b>
+<ul>
+<li>`RenderJson` is now `RenderJSON`</li>
+<li>`RenderJsonP` is now `RenderJSONP`</li>
+<li>`RenderXml` is now `RenderXML`</li>
+</ul>
+</div>
+
+
+* **[Render()](#Render)**, **[RenderTemplate()](#RenderTemplate)** 
     - render a template, passing arguments.
-* **[RenderJSON()](#RenderJSON)**, **[`RenderXML()`](#RenderXML)** 
+* **[RenderJSON()](#RenderJSON)**, **[RenderXML()](#RenderXML)** 
     - serialize a structure to json or xml.
 * **`RenderText()`** 
     - return a plaintext response.
@@ -122,9 +133,10 @@ func (c MyController) XTemp() revel.Result {
 ## RenderJSON() / RenderXML()
 
 The application may call
-[RenderJSON](https://godoc.org/github.com/revel/revel#Controller.RenderJSON) or
+[RenderJSON](https://godoc.org/github.com/revel/revel#Controller.RenderJSON), 
+[RenderJSONP](https://godoc.org/github.com/revel/revel#Controller.RenderJSONP) or
 [RenderXML](https://godoc.org/github.com/revel/revel#Controller.RenderXML) and pass in any Go
-type (usually a struct).  Revel will serialize it using
+type, usually a struct.  Revel will serialize it using
 [json.Marshal](http://www.golang.org/pkg/encoding/json/#Marshal) or
 [xml.Marshal](http://www.golang.org/pkg/encoding/xml/#Marshal).
 
