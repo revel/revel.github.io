@@ -1,6 +1,7 @@
 ---
 title: Modules Overview
 layout: modules
+redirect_from: "/manual/modules.html"
 ---
 
 **Modules** are packages that can be plugged into an application. They allow sharing of controllers, views, assets, and 

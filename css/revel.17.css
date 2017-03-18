@@ -13,11 +13,22 @@
    color: #CCCCCC;
    font-size: 18pt;
    font-weight: bold;
-   
 }
 #main-logo a:hover {
     text-decoration: none;
+    color: white;
 }
+#main-logo sup {
+   margin-top: 0;
+   padding: 0;
+}
+#main-logo sup a {
+   font-family: monospace !important;
+   color: #999999;
+   font-size: 8pt;
+   text-decoration: none;
+}
+
 
 /*top nav */
 li.dropdown-header {
@@ -342,4 +353,13 @@ hr {
 }
 .revel-quickref .leftnav .nav-header {
     background-color: #427FA6 !important;
+}
+.revel-install .leftnav .nav-header {
+    background-color: #8F42A6 !important;
+}
+.revel-install .leftnav .nav-header {
+    background-color: #222244 !important;
+}
+.revel-cmd .leftnav .nav-header {
+    background-color: #111111 !important;
 }
