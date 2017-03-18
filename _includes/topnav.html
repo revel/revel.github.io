@@ -10,18 +10,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div id="main-logo"><a ddclass="navbar-brand" href="/" title="Home Sweet Home">Revel</a> 
-                <sup><a href="https://github.com/revel/revel/releases/tag/v{{site.data.version.revel}}"  title="Release Notes">v{{site.data.version.revel}} - {{site.data.version.date}}</a></sup></div>
+            <div id="main-logo"><a ddclass="navbar-brand" href="/">Revel</a> 
+                <sup><a href="https://github.com/revel/revel/releases/tag/v{{site.data.version.revel}}"  
+                        title="Release Notes: {{site.data.version.date}}">v{{site.data.version.revel}}
+                    </a>
+                </sup>
+            </div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-            
-                <li {% if page.layout == 'install' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/install/index.html" title="Install"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></a></li>
-
-                <li {% if page.layout == 'cmd' %}class="active"{% endif %}>
-                    <a href="{{ page.root }}/cmd/index.html" title="Install"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></li>
-                    
+                                
                 <li {% if page.layout == 'tutorial' %}class="active"{% endif %}>
                     <a href="{{ page.root }}/tutorial/index.html"><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Tutorial</a></li>
                 

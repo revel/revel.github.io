@@ -1,15 +1,10 @@
 ---
-title: revel cmd
-layout: cmd
+title: Revel tool
+layout: manual
 ---
 
-## > revel 
+## Revel Tool
 
-```bash
-revel
-```
-
-- If above in errors, then visit [Install](/install/index.html)
 
 
 
