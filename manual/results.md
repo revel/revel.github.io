@@ -165,10 +165,10 @@ func (c MyController) MyAction() revel.Result {
 
 ## Redirect()
 
-- A helper function is provided for generating [HTTP redirects](http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx).  
+- A helper function for generating [HTTP redirects](http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx).  
 - It may be used in two ways and both return a `302 Temporary Redirect` HTTP status code.
 
-### Redirect to an action with no arguments:
+#### Redirect to an action with no arguments:
 
 {% highlight go %}
     return c.Redirect(Hotels.Settings)
@@ -176,7 +176,7 @@ func (c MyController) MyAction() revel.Result {
 
 - This form is useful as it provides a degree of type safety and independence from the routing and generates the URL automatically.
 
-### Redirect to a formatted string:
+#### Redirect to a formatted string:
 
 {% highlight go %}return c.Redirect("/hotels/%d/settings", hotelId){% endhighlight %}
 
