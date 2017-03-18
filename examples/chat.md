@@ -6,7 +6,7 @@ layout: examples
 The Chat app demonstrates:
 
 * Using channels to implement a chat room with a [publish-subscribe](http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) model.
-* Using Comet and [Websockets](../manual/websockets.html)
+* Using Comet and [Websockets](/manual/websockets.html)
 
 <a class="btn btn-success btn-sm" href="https://github.com/revel/examples/tree/master/chat" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Browse Source</a>
 
@@ -239,7 +239,7 @@ assuming it has already sent back everything in the archive.
 ### Websocket
 
 The Websocket chat room (see  [WebSocket/Room.html](https://github.com/revel/examples/blob/master/chat/app/views/WebSocket/Room.html#L51))
-opens a [websocket](../manual/websockets.html) connection as soon as the
+opens a [websocket](/manual/websockets.html) connection as soon as the
 user has loaded the page.
 
 {% highlight js %}

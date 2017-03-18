@@ -44,11 +44,11 @@ Revel provides configurable [Template Delimiters](appconf.html#templates) via `a
 
 ## Render Context
 
-Revel executes the template using the [`RenderArgs`](../docs/godoc/controller.html#Controller) data `map[string]interface{}`.  Aside from
+Revel executes the template using the [`RenderArgs`](https://godoc.org/github.com/revel/revel#Controller.RenderArgs) data `map[string]interface{}`.  Aside from
 application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by
-  [`Validation.ErrorMap`](../docs/godoc/validation.html#Validation.ErrorMap) (see [validation](validation.html))
+  [`Validation.ErrorMap`](https://godoc.org/github.com/revel/revel#Validation.ErrorMap) (see [validation](validation.html))
 * **flash** - the data [flashed](sessionflash.html#flash) by the previous request.
 
 ## Including Other Templates
@@ -68,7 +68,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
 ## Template Functions
 
 - Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
-- Revel adds to those. Read the documentation below or [check out the source code](../docs/godoc/template.html#pkg-variables).
+- Revel adds to those. Read the documentation below or [check out the source code](https://godoc.org/github.com/revel/revel#pkg-variables).
     - [`append`](#append)
     - [`checkbox`](#checkbox)
     - [`date`](#date), [`datetime`](#datetime)
@@ -158,7 +158,7 @@ Perform `$in % 2 == 0`. This is a convenience function that assists with table r
 
 ### field
 
-A helper for input fields [See godoc.](../docs/godoc/field.html).
+A helper for input fields [godoc](https://godoc.org/github.com/revel/revel#Field).
 
 Given a field name, it returns a struct containing the following members:
 

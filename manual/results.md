@@ -154,7 +154,7 @@ func (c MyController) MyAction() revel.Result {
 ## Redirect()
 
 - A helper function is provided for generating [HTTP redirects](http://en.wikipedia.org/wiki/URL_redirection#HTTP_status_codes_3xx).  
-- It may be used in two ways and both return a `302 Temporary Redirect` HTTP status code..
+- It may be used in two ways and both return a `302 Temporary Redirect` HTTP status code.
 
 ### Redirect to an action with no arguments:
 

@@ -13,7 +13,7 @@ As part of the development cycle, Revel can be configured to 'watch' for local f
 
 ## Testing Module
 
-Revel comes with a test suite, see the [Testing Module](testing.html)
+Revel comes with a test suite, see the [Testing Module](/modules/testing.html)
 
 
 ## Debug using gdb

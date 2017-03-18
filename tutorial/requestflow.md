@@ -9,12 +9,12 @@ to `http://localhost:9000/` resulting in the welcome message.
 
 ## Routes
 
-The first thing that Revel does is check the `conf/routes` file (see [routing](../manual/routing.html)):
+The first thing that Revel does is check the `conf/routes` file (see [routing](/manual/routing.html)):
 
 	GET     /     App.Index
 
 This tells Revel to invoke the **`Index`** method of the **`App`**
-[controller](../manual/controllers.html) when it receives a http **`GET`** request to **`/`**.
+[controller](/manual/controllers.html) when it receives a http **`GET`** request to **`/`**.
 
 ## Actions
 
@@ -33,17 +33,17 @@ func (c App) Index() revel.Result {
 }
 {% endhighlight %}
 
-All [controllers](../manual/controllers.html) must be a `struct` that embeds a [`*revel.Controller`](../docs/godoc/controller.html)
+All [controllers](/manual/controllers.html) must be a `struct` that embeds a [`*revel.Controller`](https://godoc.org/github.com/revel/revel#Controller)
 in the first slot. Any method on a controller that is
-exported and returns a [`revel.Result`](../manual/results.html) may be used as an **Action**.
+exported and returns a [`revel.Result`](/manual/results.html) may be used as an **Action**.
 
-The Revel controller provides many useful methods for generating [Results](../manual/results.html). In
-this example, it calls [`Render()`](../docs/godoc/controller.html#Controller.Render),
-which tells Revel to find and render a [template](../manual/templates.html) as the response with http `200 OK`.
+The Revel controller provides many useful methods for generating [Results](/manual/results.html). In
+this example, it calls [`Render()`](https://godoc.org/github.com/revel/revel#Controller.Render),
+which tells Revel to find and render a [template](/manual/templates.html) as the response with http `200 OK`.
 
 ## Templates
 
-[Templates](../manual/templates.html) are  in the **app/views** directory. When an explicit
+[Templates](/manual/templates.html) are  in the **app/views** directory. When an explicit
 template name is not specified, Revel looks for a template matching the action.
 In this case, Revel finds the **app/views/App/Index.html** file, and
 renders it as a [Go template](http://www.golang.org/pkg/html/template).
@@ -76,14 +76,14 @@ renders it as a [Go template](http://www.golang.org/pkg/html/template).
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 Beyond the functions provided by the Go templates package, Revel adds
-[a few helpful ones](../manual/templates.html#functions) also.
+[a few helpful ones](/manual/templates.html#functions) also.
 
 The template above : -
 
-1. Adds a new **title** variable to the render context with [set](../manual/templates.html#set).
+1. Adds a new **title** variable to the render context with [set](/manual/templates.html#set).
 2. Includes the **header.html** template, which uses the **title** variable.
 3. Displays a welcome message.
-4. Includes the **flash.html** template, which shows any [flashed](../manual/sessionflash.html#flash) messages.
+4. Includes the **flash.html** template, which shows any [flashed](/manual/sessionflash.html#flash) messages.
 5. Includes the **footer.html**.
 
 If you look at **header.html**, you can see some more template tags in action:
@@ -108,7 +108,7 @@ If you look at **header.html**, you can see some more template tags in action:
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
-You can see the [set](../manual/templates.html#set) `.title` being used, and also see that it accepts JS and CSS
+You can see the [set](/manual/templates.html#set) `.title` being used, and also see that it accepts JS and CSS
 files included from calling templates in the **moreStyles** and **moreScripts**
 variables.
 
@@ -129,7 +129,7 @@ to
 Refresh the browser, and you should see the change immediately!  Revel noticed
 that your template changed and reloaded it.
 
-Revel watches  - see [config](../manual/appconf.html#watchers)):
+Revel watches  - see [config](/manual/appconf.html#watchers)):
 
 * All go code under **app/**
 * All templates under **app/views/**
@@ -148,7 +148,7 @@ return c.Renderx()
 {% endhighlight %}
 Refresh the page and Revel will display a helpful error message:
 
-![A helpful error message](../img/helpfulerror.png)
+![A helpful error message](/img/helpfulerror.png)
 
 Lastly, let's pass some data into the template.
 
@@ -177,6 +177,6 @@ to:
 
 Refresh the browser and to see a Hawaiian greeting.
 
-![A Hawaiian greeting](../img/AlohaWorld.png)
+![A Hawaiian greeting](/img/AlohaWorld.png)
 
 <a href="firstapp.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create the 'Hello World' application](firstapp.html)

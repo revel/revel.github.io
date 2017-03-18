@@ -18,11 +18,11 @@ included `flash.html` template:
 {% endhighlight %}
 Refresh the page to see our work.
 
-![The Say Hello form](../img/AlohaForm.png)
+![The Say Hello form](/img/AlohaForm.png)
 
 Enter some data and submit the form.
 
-![Route not found](../img/HelloRouteNotFound.png)
+![Route not found](/img/HelloRouteNotFound.png)
 
 That makes sense.  Add the action to **app/controllers/app.go**:
 {% highlight go %}
@@ -47,12 +47,12 @@ Next, we have to create the view.  Create a file
 
 Refresh the page, and you should see a greeting:
 
-![Hello revel](../img/HelloRevel.png)
+![Hello revel](/img/HelloRevel.png)
 
 Lastly, let's add some validation.  The name should be required, and at least
 three characters.
 
-To do this, let's use the [validation module](../manual/validation.html).  Edit
+To do this, let's use the [validation module](/manual/validation.html).  Edit
 your action in **app/controllers/app.go**:
 {% highlight go %}
 func (c App) Hello(myName string) revel.Result {
@@ -71,7 +71,7 @@ func (c App) Hello(myName string) revel.Result {
 
 Now it will send the user back to `Index()` if they have not entered a valid
 name. Their name and the validation error are kept in the
-[Flash](../manual/sessionflash.html), which is a temporary cookie.
+[Flash](/manual/sessionflash.html#flash), which is a temporary cookie.
 
 The provided `flash.html` template will show any errors or flash messages:
 
@@ -114,11 +114,11 @@ re-submitting.  Amend the form you had added to your **app/views/App/Index.html*
 
 Now when we submit a single letter as our name:
 
-![Example error](../img/HelloNameNotLongEnough.png)
+![Example error](/img/HelloNameNotLongEnough.png)
 
 Success, we got an appropriate error and our input was saved for us to edit.
 
 <hr>
 
-- Read more in the [manual](../manual/concepts.html)
-- Look at the [example](../examples/) applications
+- Read more in the [manual](/manual/concepts.html)
+- Look at the [example](/examples/) applications
