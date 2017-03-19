@@ -187,7 +187,7 @@ func (c MyController) MyAction() revel.Result {
 
 ## Custom Result
 
-Below is a simple example of creating a custom `Result`.
+Below is a simple example of creating a custom [revel.Result](https://godoc.org/github.com/revel/revel#Result).
 
 Create this type:
 

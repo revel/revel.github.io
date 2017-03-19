@@ -9,12 +9,15 @@ godoc:
     - Template
 ---
 
-`Revel` uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
-package, and Hot Topic 
-is [different templating engines](https://github.com/revel/revel/projects/1)
+Revel currently uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
+package (coming soon is [different templating engines](https://github.com/revel/revel/pull/1136))
 
+<div class="alert alert-info">
+NOTE@notzippy: The Go template engine parser strips html comments from the content (<a href="https://github.com/golang/go/blob/master/src/html/template/html.go#L258">see here</a>).
+The reasoning behind this is <a href="https://groups.google.com/forum/#!msg/golang-nuts/8y6by6SERyU/XQRnbw3aBhwJ">explained here</a>. Use a custom function to protect your inline comment to resolve this
+</div>
 
-Directories and scanned for templates in the follosing order:
+Directories and scanned for templates in the following order:
 
 1. The application `app/views/` directory and subdirectories.
 2. revel core `templates/` directory.
