@@ -5,8 +5,8 @@ layout: manual
 
 **Revel** is almost a full stack web framework in the spirit of [Rails](http://rubyonrails.org/) and [Play!](http://www.playframework.org) frameworks.
 
-- Many  *proven* ideas are incorporated into the framework, its design and interface. 
-- Also using golang.. it's also hackable ;-)
+- Many  *proven* ideas are incorporated into the framework, its design and interface
+- Also using [golang](https://golang.org/), it's also hackable ;-)
 
 Revel attempts to make it easy to build web applications using the [Model-View-Controller
 (MVC)](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
@@ -29,13 +29,12 @@ Here is a quick summary:
 There are many excellent overviews of MVC structure online.  In particular, the
 one provided by [Play! Framework](http://www.playframework.org) matches our model exactly.
 
-## Life of a Request
+## The Life of a Request
 
-Here is an overview of the request processing framework.
+Below is an overview of the request processing framework.
 
 ![Life of a Request](/img/RevelDesign.png)
 
-Concept summary:
 
 * Revel exposes a single http.Handler, responsible for instantiating a
   [Controller](controllers.html) (the context for the request) and passing the request along to the
