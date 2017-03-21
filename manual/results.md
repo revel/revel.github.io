@@ -85,8 +85,8 @@ func (c *App) CreateEntity() revel.Result {
 Called within an action (e.g. "Controller.Action"),
 [Controller.Render()](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
 
- 1. Adds all arguments to the controller's `RenderArgs`, using their local identifier as the key.
- 2. Executes the template "views/Controller/Action.html", passing in the controller's `RenderArgs` as the data map.
+ 1. Adds all arguments to the controller's `ViewArgs`, using their local identifier as the key.
+ 2. Executes the template "views/Controller/Action.html", passing in the controller's `ViewArgs` as the data map.
 
 If unsuccessful (e.g. it could not find the template), an [ErrorResult](https://godoc.org/github.com/revel/revel#ErrorResult) is returned instead.
 
@@ -111,8 +111,8 @@ path and to look up the argument names.  Therefore, `c.Render()` may only be  ca
 // This renders the `views/MyController/showSutuff.html` template as
 // eg <pre>foo={{.foo}} bar={{.bar}} abc={{.abc}} xyz={{.xyz}}</pre>
 func (c MyController) ShowStuff() revel.Result {
-    c.RenderArgs["foo"] = "bar"
-    c.RenderArgs["bar"] = 1
+    c.ViewArgs["foo"] = "bar"
+    c.ViewArgs["bar"] = 1
     abc := "abc"
     xyz := "xyz"
     return c.Render(xyz, abc)
@@ -120,8 +120,8 @@ func (c MyController) ShowStuff() revel.Result {
 
 // Example renders the `views/Foo/boo.xhtml` tempate
 func (c MyController) XTemp() revel.Result {
-    c.RenderArgs["foo"] = "bar"
-    c.RenderArgs["bar"] = 1
+    c.ViewArgs["foo"] = "bar"
+    c.ViewArgs["bar"] = 1
     return c.RenderTemplate("Foo/boo.xhtml")
 }
 {% endraw %}{% endcapture %}

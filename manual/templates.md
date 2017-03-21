@@ -47,7 +47,7 @@ Revel provides configurable [Template Delimiters](appconf.html#templates) via `a
 
 ## Render Context
 
-Revel executes the template using the [`RenderArgs`](https://godoc.org/github.com/revel/revel#Controller.RenderArgs) data `map[string]interface{}`.  Aside from
+Revel executes the template using the [`ViewArgs`](https://godoc.org/github.com/revel/revel#Controller.ViewArgs) data `map[string]interface{}`.  Aside from
 application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by
@@ -167,7 +167,7 @@ Given a field name, it returns a struct containing the following members:
 
 * **Id**: the field name, converted to be suitable as a HTML element ID.
 * **Name**: the field name
-* **Value**: the value of the field in the current `RenderArgs`
+* **Value**: the value of the field in the current `ViewArgs`
 * **Flash**: the [flash](sessionflash.html#flash) value of the field.
 * **Error**: the error message, if any is associated with this field.
 * **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.

@@ -226,9 +226,9 @@ In case the application needs access to the `Accept-Language` HTTP header for th
 {% highlight go %}
 func (c App) Index() revel.Result {
     // Get the string representation of all parsed accept languages
-    c.RenderArgs["acceptLanguageHeaderParsed"] = c.Request.AcceptLanguages.String()
+    c.ViewArgs["acceptLanguageHeaderParsed"] = c.Request.AcceptLanguages.String()
     // Returns the most qualified AcceptLanguage instance
-    c.RenderArgs["acceptLanguageHeaderMostQualified"] = c.Request.AcceptLanguages[0]
+    c.ViewArgs["acceptLanguageHeaderMostQualified"] = c.Request.AcceptLanguages[0]
 
     c.Render()
 }
@@ -246,7 +246,7 @@ Each controller has a `Message(message string, args ...interface{})` function th
 
 {% highlight go %}
 func (c App) Index() revel.Result {
-	c.RenderArgs["controllerGreeting"] = c.Message("greeting")
+	c.ViewArgs["controllerGreeting"] = c.Message("greeting")
 	c.Render()
 }
 {% endhighlight %}
