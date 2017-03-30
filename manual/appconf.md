@@ -315,9 +315,9 @@ Default: `false`
 
 #### `results.pretty`
 
-Configures [`RenderXml`](https://godoc.org/github.com/revel/revel#Controller.RenderXml) and
-[`RenderJson`](https://godoc.org/github.com/revel/revel#Controller.RenderJson) to produce indented
-XML/JSON.
+Configures [`RenderXML`](https://godoc.org/github.com/revel/revel#Controller.RenderXML) 
+and [`RenderJSON`](https://godoc.org/github.com/revel/revel#Controller.RenderJSON) 
+to produce indented XML/JSON.
 
 Example:
 {% highlight ini %}

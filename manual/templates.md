@@ -9,12 +9,15 @@ godoc:
     - Template
 ---
 
-`Revel` uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
-package, and Hot Topic 
-is [different templating engines](https://github.com/revel/revel/projects/1)
+Revel currently uses Go's built in [html/template](http://golang.org/pkg/html/template/) 
+package (coming soon is [different templating engines](https://github.com/revel/revel/pull/1136))
 
+<div class="alert alert-info">
+NOTE@notzippy: The Go template engine parser strips html comments from the content (<a href="https://github.com/golang/go/blob/master/src/html/template/html.go#L258">see here</a>).
+The reasoning behind this is <a href="https://groups.google.com/forum/#!msg/golang-nuts/8y6by6SERyU/XQRnbw3aBhwJ">explained here</a>. Use a custom function to protect your inline comment to resolve this
+</div>
 
-Directories and scanned for templates in the follosing order:
+Directories and scanned for templates in the following order:
 
 1. The application `app/views/` directory and subdirectories.
 2. revel core `templates/` directory.
@@ -44,7 +47,7 @@ Revel provides configurable [Template Delimiters](appconf.html#templates) via `a
 
 ## Render Context
 
-Revel executes the template using the [`RenderArgs`](https://godoc.org/github.com/revel/revel#Controller.RenderArgs) data `map[string]interface{}`.  Aside from
+Revel executes the template using the [`ViewArgs`](https://godoc.org/github.com/revel/revel#Controller.ViewArgs) data `map[string]interface{}`.  Aside from
 application-provided data, Revel provides the following entries:
 
 * **errors** - the map returned by
@@ -164,7 +167,7 @@ Given a field name, it returns a struct containing the following members:
 
 * **Id**: the field name, converted to be suitable as a HTML element ID.
 * **Name**: the field name
-* **Value**: the value of the field in the current `RenderArgs`
+* **Value**: the value of the field in the current `ViewArgs`
 * **Flash**: the [flash](sessionflash.html#flash) value of the field.
 * **Error**: the error message, if any is associated with this field.
 * **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.
