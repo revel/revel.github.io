@@ -17,6 +17,8 @@ Tests needs to be in the `tests/` directory:
 		public/
 		tests/    <----
 
+<div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> WARNING: The name of test file should avoid naming like name_test.go format which would be ignored by go build tool. Please check the <a href="https://golang.org/cmd/go/#hdr-Compile_packages_and_dependencies">Detail</a>.</div>
+
 A simple test file looks like the following:
 
 {% highlight go %}
