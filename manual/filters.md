@@ -60,7 +60,7 @@ func init() {
 		ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
 		I18nFilter,              // Resolve the requested language
 		InterceptorFilter,       // Run interceptors around the action.
-		CompressFilter,          // Compress the result.
+		CompressFilter,          // Compress the result. [^1]
 		ActionInvoker,           // Invoke the action.
 	}
 }
@@ -119,3 +119,4 @@ Note: this pattern is frequently an indicator that
 desired functionality.
 </div>
 
+[^1]: Compress engine needs the application configuration option `results.compressed=true` in order to activate  
