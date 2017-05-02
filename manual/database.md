@@ -5,7 +5,7 @@ github:
   labels:
     - topic-controllers
 godoc:
-    - MergedConfig
+    - Config
 ---
 
 Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
@@ -15,7 +15,7 @@ Revel does not come *configured* with a database or ORM interface. Its up to the
 
 ## Config
 - The [appconf](appconf.html) does have a [`database`](appconf.html#database) section for usage.
-- Use [revel.Config](https://godoc.org/github.com/revel/revel#Config) to access.
+- Use [revel.Config](https://godoc.org/github.com/revel/config#Context) to access.
 {% highlight go %}
 func InitDB() {
     driver := revel.Config.StringDefault("db.driver", "mysql")
