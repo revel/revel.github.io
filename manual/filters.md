@@ -66,7 +66,7 @@ func init() {
 }
 {% endhighlight %}
 
-Every [Reques`](https://godoc.org/github.com/revel/revel#Request) is sent down this chain, from top to bottom.
+Every [Request](https://godoc.org/github.com/revel/revel#Request) is sent down this chain, from top to bottom.
 
 ### Per-Action configuration
 
