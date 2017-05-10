@@ -8,11 +8,11 @@ github:
 ---
 
 The Revel [`Jobs`](https://godoc.org/github.com/revel/modules/jobs/app/jobs) module 
-is for performing work asynchronously outside of the request flow.
+enables performing tasks asynchronously, outside of the request flow.
 
-The **job** is either:
-- A [recurring task](#jobs), eg updating a 5 min ticker
-- A [one-off task](#OneOff), such as sending emails or updating a leger or cashe
+A **job** is either:
+- [Recurring](#RecurringJobs), e.g. generating a daily report
+- [One-off](#OneOffJobs), e.g. sending emails, updating a ledger, or creating a cache
 
 ## Config
 
@@ -25,12 +25,10 @@ To activate add `module.jobs` to the [app.conf](/manual/appconf.html) file:
 module.jobs = github.com/revel/modules/jobs
 ```
 
-Additionally, in order to access the job monitoring page, you will need to add
-`/@jobs` to the `conf/routes` to browse to url:
+Additionally, in order to access the job monitoring page, you will need to add the module's routes to your app's `conf/routes`:
 
 ```
-    // url = /@jobs
-	module:jobs
+module:jobs
 ```
 
 ## Options
@@ -38,17 +36,16 @@ Additionally, in order to access the job monitoring page, you will need to add
 There are some [configuration settings](/manual/appconf.html#jobs) that place some limitations
 job and its run, explained below with default values:
 
-- [`jobs.pool = 10`](appconf.html#jobspool) - The number of jobs allowed to run simultaneously/concurrently
-- [`jobs.selfconcurrent = false`](appconf.html#jobsselfconcurrent) - Allow a job to run only if previous instances are done
-- [`jobs.acceptproxyaddress = false`](appconf#jobsacceptproxyaddress) - Accept `X-Forwarded-For` header value (which is spoofable) to allow or deny status page access
+- [`jobs.pool = 10`](/manual/appconf.html#jobspool) - The number of jobs allowed to run simultaneously/concurrently
+- [`jobs.selfconcurrent = false`](/manual/appconf.html#jobsselfconcurrent) - Allow a job to run only if previous instances are done
+- [`jobs.acceptproxyaddress = false`](/manual/appconf#jobsacceptproxyaddress) - Accept `X-Forwarded-For` header value (which is spoofable) to allow or deny status page access
 
 ## Implementing Jobs
 
-To create a Job, implement the [`cron.Job`](https://github.com/robfig/cron/) interface.  The 
+To create a Job, implement the [`cron.Job`]( https://github.com/revel/cron/blob/master/cron.go) interface.  The 
 [`Job`](https://godoc.org/github.com/revel/modules/jobs/app/jobs#Job) interface has the following signature:
 
 {% highlight go %}
-// https://github.com/robfig/cron/blob/master/cron.go
 type Job interface {
 	Run()
 }
@@ -64,7 +61,7 @@ func (j MyJob) Run() {
 }
 {% endhighlight %}
 
-## Startup jobs
+## Startup Jobs
 
 To run a task on application startup, use
 [`revel.OnAppStart()`](https://godoc.org/github.com/revel/revel#OnAppStart) to register a function.
@@ -87,26 +84,25 @@ Jobs may be scheduled to run on any schedule.  There are two options for express
 1. A cron specification
 2. A fixed interval
 
-Revel uses the [`cron library`](https://godoc.org/github.com/revel/cron) to parse the
-schedule and run the jobs.  The library's
-[README](https://github.com/revel/cron/blob/master/README.md) provides a detailed
-description of the format accepted.
+Revel uses the [`cron`](https://godoc.org/github.com/revel/cron) to parse the
+schedule and run the jobs.  The library provides a detailed description of the format accepted.
 
-Jobs are generally registered using the
+It's recommended thatJobs are registered using the
 [`revel.OnAppStart()`](https://godoc.org/github.com/revel/revel#OnAppStart) hook, but they may be
-registered at any later time as well.
+registered at any later time.
 
 Here are some examples:
 
 {% highlight go %}
 import (
+    "time"
+    
     "github.com/revel/revel"
     "github.com/revel/modules/jobs/app/jobs"
-    "time"
 )
 
 type ReminderEmails struct {
-    // filtered
+    // Filtered
 }
 
 func (e ReminderEmails) Run() {
@@ -126,16 +122,15 @@ func init() {
 
 <a name="NamedSchedules"></a>
 
-## Named schedules
+## Named Schedules
 
-You can [configure schedules ](appconf.html#jobs) in the [`app.conf`](appconf.html) file and reference them anywhere.
-This provides an easy way to reuse, and a useful description for crontab specs.
+You can [define cron schedules](/manual/appconf.html#jobs) in your app's [`app.conf`](/manual/appconf.html) and reference them anywhere for easy reuse.
 
-Here is an example **named cron schedule**, in an [`app.conf`](appconf.html) file:
+Simply define your **named cron schedule**:
 
     cron.workhours_15m = 0 */15 9-17 ? * MON-FRI
 
-Use the named schedule by referencing it anywhere you would have used a cron spec.
+Then, reference it anywhere you would have used a cron spec.
 
 {% highlight go %}
 func init() {
@@ -146,19 +141,16 @@ func init() {
 {% endhighlight %}
 
 <div class="alert alert-warning">
-<b>IMPORTANT</b>: The cron schedule's name must begin with <b>cron</b>.
+<b>IMPORTANT</b>: The schedule's name must begin with <b>`cron.`</b>.
 
 </div>
 
 
-<a name="OneOff"></a>
+<a name="OneOffJobs"></a>
 
 ## One-off Jobs
 
-Sometimes it is necessary to do something in response to a user action.  In these
-cases, the jobs module allows you to submit a job to be run a single time.
-
-The only control offered is how long to wait until the job should be run.
+The jobs module allows you to schedule a job to be run once. You can control how long to wait before the job runs.
 
 {% highlight go %}
 type AppController struct { *revel.Controller }
@@ -175,10 +167,9 @@ func (c AppController) Action() revel.Result {
 }
 {% endhighlight %}
 
-## Registering functions
+## Registering Job Functions
 
-It is possible to register a `func()` as a job by wrapping it in the [`jobs.Func`](https://godoc.org/github.com/revel/modules/jobs/app/jobs#Func)
-type.  For example:
+It is possible to register any `func()` as a job by wrapping it in the [`jobs.Func`](https://godoc.org/github.com/revel/modules/jobs/app/jobs#Func) type.
 
 {% highlight go %}
 func sendReminderEmails() {
@@ -198,23 +189,23 @@ func init() {
 
 The jobs module provides a status page (`/@jobs` url) that shows:
 
-- a list of the scheduled jobs it knows about
-- the current status; **IDLE** or **RUNNING**
-- the  previous and next run times
+- a list of the scheduled jobs
+- the current status (**IDLE** or **RUNNING**)
+- the previous and next run times
 
-<div class="alert alert-info">For security purposes, the status page is restricted to requests that originate
+<div class="alert alert-info">For security purposes, the status page is limited to requests that originate
 from 127.0.0.1.</div>
 
 ![Job Status Page](../img/jobs-status.png)
 
 
 
-## Constrained pool size
+## Constrained Pool Size
 
-It is possible to configure the job module to limit the number of jobs that are
-allowed to run at the same time.  This allows the developer to restrict the
+It's possible to configure the job module to limit the number of jobs that are
+allowed to run at the same time. This allows the developer to restrict the
 resources that could be potentially in use by asynchronous jobs -- typically
-interactive responsiveness is valued above asynchronous processing.  When a pool
+interactive responsiveness is valued above asynchronous processing. When a pool
 is full of running jobs, new jobs block to wait for running jobs to complete.
 
 **Implementation Note**: The implementation blocks on a channel receive, which is
