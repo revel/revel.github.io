@@ -84,12 +84,12 @@ Jobs may be scheduled to run on any schedule.  There are two options for express
 1. A cron specification
 2. A fixed interval
 
-Revel uses the [`cron`](https://godoc.org/github.com/revel/cron) to parse the
-schedule and run the jobs.  The library provides a detailed description of the format accepted.
+Revel uses the [`cron`](https://godoc.org/github.com/revel/cron) library to parse the
+schedule and run the jobs. The library provides a detailed description of the format accepted.
 
-It's recommended thatJobs are registered using the
+It's recommended that `Job`s are registered using the
 [`revel.OnAppStart()`](https://godoc.org/github.com/revel/revel#OnAppStart) hook, but they may be
-registered at any later time.
+registered any time after `OnAppStart`.
 
 Here are some examples:
 
