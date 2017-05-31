@@ -329,31 +329,3 @@ hr {
     margin-bottom: 10px;
     border-bottom: 3px solid #dddddd;
 }
-
-.revel-tutorial .leftnav .nav-header {
-    background-color: #6CA642 !important;
-}
-.revel-manual .leftnav .nav-header {
-    background-color: #427FA6 !important;
-}
-.revel-modules .leftnav .nav-header {
-    border-bottom: 1px solid #eee;
-}
-.revel-quickstart .leftnav .nav-header {
-    background-color: #8F42A6 !important;
-}
-.revel-examples .leftnav .nav-header {
-    background-color: #A64252 !important;
-}
-.revel-quickref .leftnav .nav-header {
-    background-color: #427FA6 !important;
-}
-.revel-install .leftnav .nav-header {
-    background-color: #8F42A6 !important;
-}
-.revel-install .leftnav .nav-header {
-    background-color: #222244 !important;
-}
-.revel-cmd .leftnav .nav-header {
-    background-color: #111111 !important;
-}
