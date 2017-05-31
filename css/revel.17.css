@@ -81,22 +81,22 @@ li.dropdown-header {
 
 .leftnav .nav li  a {
     padding: 3px 0 3px 20px;
-    color: #444444 !important;
+    color: #444 !important;
     font-size: 11pt;
-    background-color: #eeeeee;
-    border-left: 3px solid #dddddd;
-    border-right: 3px solid #dddddd;
+    background-color: #eee;
+    border-left: 3px solid #ddd;
+    border-right: 3px solid #ddd;
     margin: 0 20px 0 15px;
 }
 .leftnav .nav li  a:hover {
-    color: black !important;   
-    background-color: white;
-    border-color: #999999;
+    border-left: 3px solid #ddd;
+    border-right: 3px solid #ddd;
 }
 .leftnav .nav li.active a {
   color: black !important;
   background-color: white !important;
-  border-color: #222222;
+  border-color: #222;
+  font-weight: 800;
 }
 
 /************************************************/
@@ -235,31 +235,25 @@ li.dropdown-header {
 .main h2 {
     font-family:  sans-serif !important;
     font-size: 16pt;
-    color: #eeeeee !important;
-    padding: 4px 0 4px 6px;
+    padding: 10px;
     margin-top: 30px;
     margin-bottom: 10px;
-    dborder-top: 1px solid #aaaaaa;
-    dborder-right: 20px solid #444444;
-    dborder-bottom: 1px solid #aaaaaa;
-    background-color: #777777;
-    border-bottom-right-radius: 20px;
+    background-color: #eee;
+    border-radius: 8px;
+    text-transform: uppercase;
 }
 
 
 
 .main h3 {
-    font-family:  sans-serif !important;
-    font-size: 14pt;
-    color: #4444 !important;
+    font-family: sans-serif !important;
+    font-size: 1.3em;
     padding: 4px 6px;
     margin-top: 25px;
     margin-left: 2px;
-    border-top: 1px solid #cccccc;
-    border-right: 10px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
-    background-color: #cccccc;
-    border-bottom-right-radius: 20px;
+    background-color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .main h4 {
@@ -291,8 +285,8 @@ li.dropdown-header {
 .highlight pre, pre {
     border: none;
     font-size: 12px;   
-    color: #222222;
-    background-color: #FFFFCC;
+    color: #fff;
+    background-color: #111;
     box-shadow: 10px 10px 10px -8px rgba(158,158,158,1);
     margin: 10px 30px 10px 30px;
     border-radius: 5px;
@@ -343,7 +337,7 @@ hr {
     background-color: #427FA6 !important;
 }
 .revel-modules .leftnav .nav-header {
-    background-color: #6142A6 !important;
+    border-bottom: 1px solid #eee;
 }
 .revel-quickstart .leftnav .nav-header {
     background-color: #8F42A6 !important;
