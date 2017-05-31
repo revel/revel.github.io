@@ -57,11 +57,39 @@ f := c.Params.Files.Get("file_name")
 
 ### Combined Params
 
-All the above combined with (TODO explain)
+All the above combined, they values are mapped in a special way.
+Params is a `map[string][]string` 
+Query parameters are assigned to the map first, then form 
+parameters will be appended to the the query results.
+
+For example lets say a form is posted to `foo?a=3` and the form contained 
+`a=4,b=hi`. The map Params map would look like `{"a":["3","4"],"b":["hi"]}`
+
+Finally two special groups of parameters are assigned to the map 
+(overriding both Query and Forms). They are the [URL :parameters](routing.html) as specified
+in the `route` file, and the [Fixed Paramaters](routing.html) as specified in the `route` file 
+as well.
 ```go
 c.Params.Get("foo")
 ```
+### JSON Data
 
+Posted JSON data is read when the http header ContentType is `application/json` 
+or `text/json`. 
+
+JSON data will be automatically assigned to the first structure or map that is 
+encountered in the [Action](routing.md)
+
+When calling `c.Params.Bind` directly JSON data is always ignored, you can call
+`c.Params.BindJSON` to bind the JSON data to the specified object  
+
+```go
+func (c Hotels) Show() revel.Result {
+    var jsonData map[string]interface{}
+    c.Params.BindJSON(&jsonData)
+    ...
+}
+```
 
 
 **Important:**

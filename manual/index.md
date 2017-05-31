@@ -29,7 +29,7 @@ This manual documents aspects of the **Revel** framework.
 You may have noticed the **Improve this page** button at the top right of most documentation pages. Please note:
 
 - You need to be logged into github to be able to edit the page or you will get a 404
-- You can also edit any other pages (such as front page) of revel, even though there isn't a button.
+- You can also edit any other pages (such as front page) of Revel, even though there isn't a button.
 
 
 Refer to the documentation repository [revel.github.io](https://github.com/revel/revel.github.io) to make any changes.

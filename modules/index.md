@@ -29,7 +29,7 @@ module.mymodulename = go/import/path/to/module
 You can add an ordering method by insert a sortable string in between the
 word module and the name of the module like the following. This allows you to specify 
 which order the views should be loaded, so your application will always be the first,
-then the order of the modules and finally the default views in revel.
+then the order of the modules and finally the default views in Revel.
 {% highlight ini %}
 module.01.mymodulename = go/import/path/to/module
 module.02.mymodulename2 = go/import/path/to/module2

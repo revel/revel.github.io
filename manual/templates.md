@@ -39,15 +39,14 @@ template.engines=pongo2,ace,go
 The three template engines `pongo2,ace,go` will be used when rendering
 templates. 
 
-**NOTE** Ace and Pongo2 are not available at this time, but will be added
-
 ### How Revel Picks the Right Template Engine
-The `template-engine` has a method called `IsEngineFor`, which accepts
+The `template-engine` has a method called `Handles`, which accepts
 the basic template information (path, and content). The engine then
 can return true or false if it can parse the file or not. How it makes
-this choice is up to the parser. Revel based parsers look for a 
-`shebang` at the top of the template to see which one it belongs to,
-they also look for a secondary extension like `foo.ace.html` would be 
+this choice is up to the parser. Revel has a builtin function called 
+`revel.EngineHandles`, which can be used to look for a 
+`shebang` at the top of the template to see which template engine it belongs to,
+it also looks for a secondary extension like `foo.ace.html` which would be 
 identified as an `ace` template. Finally it could try to parse the code
 and if that passes it can register itself for that.
 

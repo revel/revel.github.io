@@ -43,8 +43,8 @@ func (c App) Action() revel.Result {
 
 Called within an action (e.g. "Controller.Action"),
 [`mvc.Controller.Render`](../docs/godoc/controller.html#Controller.Render) does two things:
-1. Adds all arguments to the controller's RenderArgs, using their local identifier as the key.
-2. Executes the template "views/Controller/Action.html", passing in the controller's "RenderArgs" as the data map.
+1. Adds all arguments to the controller's ViewArgs, using their local identifier as the key.
+2. Executes the template "views/Controller/Action.html", passing in the controller's "ViewArgs" as the data map.
 
 If unsuccessful (e.g. it could not find the template), it returns an ErrorResult instead.
 

@@ -1,5 +1,5 @@
 ---
-title: Go Template Engine
+title: GO Template Engine
 layout: manual
 github:
   labels:
@@ -8,7 +8,7 @@ godoc:
     - GoEngine
 ---
 
-## Go Template Engine
+## GO Template Engine
 The GO template engine is the default one used by Revel. It requires no application
 settings.
 
@@ -37,7 +37,7 @@ Go Templates allow you to compose templates by inclusion.  For example:
 <a name="functions"></a>
 
 ## GO Template Functions
-These builtin functions are only applicable to the GO template engine, other template
+These built-in functions are only applicable to the GO template engine, other template
 engines will need to supply there own implementation. 
 - Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
 - Revel adds to those. Read the documentation below or [check out the source code](https://godoc.org/github.com/revel/revel#pkg-variables).
@@ -46,6 +46,7 @@ engines will need to supply there own implementation.
     - [`date`](#date), [`datetime`](#datetime)
     - [`even`](#even)
     - [`field`](#field)
+    - [`i18ntemplate`](#i18ntemplate)
     - [`msg`](#msg)
     - [`nl2br`](#nl2br)
     - [`option`](#option)
@@ -160,6 +161,21 @@ Example:
 
 
 
+<a name="i18ntemplate"></a>
+
+### i18ntemplate
+  Include another template through the revel template engine loader
+  
+  Arguments: 
+    - template (string) *required* The template name you want to render
+    - viewArgs (interface{}) *optional* The data to be piped to the 
+    - region (string) *optional* The region, if not provided it will
+     attempt to extract the `.currentRegion` from the viewArgs 
+
+  Interesting tidbit, you can 
+  
+ - See [internationalization](i18n-messages.html#template)
+ 
 <a name="msg"></a>
 
 ### msg
