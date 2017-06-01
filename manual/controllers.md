@@ -32,8 +32,8 @@ type FailController struct {
 }
 {% endhighlight %}
 
-<div class="alert alert-danger">Very Important: <code>*revel.Controller</code> must be 'embedded' as the first type in 
-the a controller struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>, the Go way for 'kinda inheritance'</div>
+<div class="alert alert-danger">NOTE: <code>*revel.Controller</code> must be 'embedded' as the first type in 
+a controller struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>.</div>
 
 The [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) is the context for a request and  contains the 
 [Request](https://godoc.org/github.com/revel/revel#Request) and [Response](https://godoc.org/github.com/revel/revel#Response) data.
