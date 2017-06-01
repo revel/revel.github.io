@@ -30,6 +30,7 @@ except that it will automatically choose the region based on the ViewArgs passed
 (optionally the region may be specified as the third argument)
 It can be used on a page like
 
+{% raw %}
 ```html
 <p>
   Embedded Regional Template Example 
@@ -37,7 +38,7 @@ It can be used on a page like
 </p>
 
 ```
-
+{% endraw %}
 ## Example Application
 
 The way Revel handles message files and internationalization in general is similar to most other web frameworks out there. For those of you that wish to get

@@ -5,5 +5,7 @@ markdown: kramdown
 jekyll-redirect-from: true
 gems:
   - jekyll-redirect-from
+  - octopress-escape-code
 whitelist:
   - jekyll-redirect-from
+escape_code: true

@@ -1,5 +1,5 @@
 ---
-title: Request Parameters and Binding
+title: Request Parameters and JSON
 layout: manual
 github:
   labels:
@@ -10,10 +10,12 @@ godoc:
     - Binder
 ---
 
-- **Revel** tries to make the conversion of request 
-  parameters into the desired Go types as easy and painless as possible. 
+**Revel** tries to make the conversion of request 
+  data into the desired Go types as easy and painless as possible. 
 - The conversion from a http request `string` sent 
   by client to another type is referred to as **data binding**.
+- JSON data is processed when the http header ContentType is `application/json` 
+or `text/json`
 
 ## Request Parameters
 
@@ -75,13 +77,14 @@ c.Params.Get("foo")
 ### JSON Data
 
 Posted JSON data is read when the http header ContentType is `application/json` 
-or `text/json`. 
+or `text/json`. The raw bytes are stored in the `Param.JSON []byte`  
 
-JSON data will be automatically assigned to the first structure or map that is 
-encountered in the [Action](routing.md)
+JSON data will be automatically unmarshalled to the first structure or map that is 
+encountered in the [Action](routing.md).
 
-When calling `c.Params.Bind` directly JSON data is always ignored, you can call
-`c.Params.BindJSON` to bind the JSON data to the specified object  
+When calling `c.Params.Bind(target,paramname)`, JSON data is always ignored, you can call
+`c.Params.BindJSON(target)` to bind the JSON data to the specified object. You must pass
+a pointer to the `c.Params.BindJSON(target)` function. 
 
 ```go
 func (c Hotels) Show() revel.Result {
