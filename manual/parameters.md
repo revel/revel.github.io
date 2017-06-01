@@ -1,5 +1,5 @@
 ---
-title: Request Parameters and Binding
+title: Request Parameters and JSON
 layout: manual
 github:
   labels:
@@ -10,10 +10,12 @@ godoc:
     - Binder
 ---
 
-- **Revel** tries to make the conversion of request 
-  parameters into the desired Go types as easy and painless as possible. 
+**Revel** tries to make the conversion of request 
+  data into the desired Go types as easy and painless as possible. 
 - The conversion from a http request `string` sent 
   by client to another type is referred to as **data binding**.
+- JSON data is processed when the http header ContentType is `application/json` 
+or `text/json`
 
 ## Request Parameters
 
@@ -57,11 +59,40 @@ f := c.Params.Files.Get("file_name")
 
 ### Combined Params
 
-All the above combined with (TODO explain)
+All the above combined, they values are mapped in a special way.
+Params is a `map[string][]string` 
+Query parameters are assigned to the map first, then form 
+parameters will be appended to the the query results.
+
+For example lets say a form is posted to `foo?a=3` and the form contained 
+`a=4,b=hi`. The map Params map would look like `{"a":["3","4"],"b":["hi"]}`
+
+Finally two special groups of parameters are assigned to the map 
+(overriding both Query and Forms). They are the [URL :parameters](routing.html) as specified
+in the `route` file, and the [Fixed Paramaters](routing.html) as specified in the `route` file 
+as well.
 ```go
 c.Params.Get("foo")
 ```
+### JSON Data
 
+Posted JSON data is read when the http header ContentType is `application/json` 
+or `text/json`. The raw bytes are stored in the `Param.JSON []byte`  
+
+JSON data will be automatically unmarshalled to the first structure or map that is 
+encountered in the [Action](routing.md).
+
+When calling `c.Params.Bind(target,paramname)`, JSON data is always ignored, you can call
+`c.Params.BindJSON(target)` to bind the JSON data to the specified object. You must pass
+a pointer to the `c.Params.BindJSON(target)` function. 
+
+```go
+func (c Hotels) Show() revel.Result {
+    var jsonData map[string]interface{}
+    c.Params.BindJSON(&jsonData)
+    ...
+}
+```
 
 
 **Important:**
