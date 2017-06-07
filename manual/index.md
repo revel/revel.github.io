@@ -12,7 +12,6 @@ Ready to have a blast building apps? Let's get started!
 - **Dev Support**
     - [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/revel/community)
     - [StackOverflow](http://stackoverflow.com/questions/tagged/revel)
-    - **Bugs and Features**
     - [GitHub](https://github.com/revel/revel/issues)
 - **Contribute to Revel**
     - Read [CONTRIBUTING](https://github.com/revel/revel/blob/master/CONTRIBUTING.md)
