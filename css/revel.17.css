@@ -67,36 +67,29 @@ li.dropdown-header {
     margin-top: 20px;
 }
 .leftnav .nav-header {
-    background-color: #dddddd !important;
-    padding: 3px 4px 3px 20px;
-    color: #eeeeee;
+    padding: 1em;
     font-weight: bold;
     text-transform: uppercase;
     font-family: Helvetica;
     font-size: 12pt;
-    border-top-left-radius: 15px;
-    border-bottom-right-radius: 8px;
     margin-top: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 .leftnav .nav li  a {
-    padding: 3px 0 3px 20px;
+    padding: 3px 1.5em;
     color: #444 !important;
-    font-size: 11pt;
-    background-color: #eee;
-    border-left: 3px solid #ddd;
-    border-right: 3px solid #ddd;
-    margin: 0 20px 0 15px;
+    font-size: 1em;
 }
 .leftnav .nav li  a:hover {
     border-left: 3px solid #ddd;
     border-right: 3px solid #ddd;
 }
 .leftnav .nav li.active a {
-  color: black !important;
-  background-color: white !important;
-  border-color: #222;
-  font-weight: 800;
+    font-weight: 800;
+    border-left: 3px solid;
+    border-right: 3px solid;
 }
 
 /************************************************/
@@ -182,14 +175,12 @@ li.dropdown-header {
 /************************************************/
 /* page header and imporve button */
 .page-header {
-    margin: 30px 0 5px 0;
-    border-bottom: 1px solid #cccccc;
-    
+    margin: 0 0 40px;
 }
+
 .page-header h1 {
-    color: #666666 !important;
-    font-family: sans-serif !important;
-    font-size: 20pt;
+    font-size: 23em;
+    padding: .5em;
 }
 .improve-page {
     float: right;
@@ -198,71 +189,41 @@ li.dropdown-header {
 }
 
 .revel-godoc-bar {
-  font-family: monospace;
-  
   margin-top: 50px;
-  
-  
- 
-  
 }
 .revel-godoc-bar h6 {
-    font-family: monospace;
-    font-size: 12pt;
-    padding: 2px 4px;
-    border: 0;
-    border-top: 1px solid #bbbbbb;
-    background-color: #cccccc;
-    
+    font-size: 1.4em;
+    margin-bottom: 5px;
 }
 
 .revel-github-bar {
-  font-family: monospace;
-  margin: 0px;
- 
-  
+  margin: 0;
 }
 .revel-github-bar h6 {
-    font-family: monospace;
-    font-size: 12pt;
-    padding: 2px 4px;
-    border: 0;
-    border-top: 1px solid #bbbbbb;
-    background-color: #cccccc;
-    
+    font-size: 1.4em;
+    margin-bottom: 5px;
 }
 
-.main h2 {
-    font-family:  sans-serif !important;
-    font-size: 16pt;
-    padding: 10px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    background-color: #eee;
-    border-radius: 8px;
+.main h2, .main h3, .main h4 {
+    border-bottom: 1px solid #ddd;
     text-transform: uppercase;
 }
-
-
+.main h2 {
+    font-size: 1.4em;
+    padding: 1em;
+    margin: 2em 0 1em;
+}
 
 .main h3 {
-    font-family: sans-serif !important;
     font-size: 1.3em;
-    padding: 4px 6px;
-    margin-top: 25px;
-    margin-left: 2px;
-    background-color: #fff;
-    text-transform: uppercase;
-    font-weight: 800;
+    padding: .7em;
+    margin: 1.7em 0 1em;
 }
 
 .main h4 {
-    font-size: 18px;
-    color: #2222 !important;
-    padding: 5px;
-    margin-top: 20px;
-    margin-left: 15px;
-    background-color: #eeeeee !important;
+    font-size: 1.1em;
+    padding: .5em;
+    margin: 1.5em 0 .8em;
 }
 
 /* uses mainly on appconf */
