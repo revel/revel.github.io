@@ -176,16 +176,16 @@ li.dropdown-header {
 /* page header and imporve button */
 .page-header {
     margin: 0 0 40px;
+    position: relative;
 }
 
 .page-header h1 {
-    font-size: 23em;
-    padding: .5em;
+    font-size: 5em;
 }
 .improve-page {
-    float: right;
-    margin: 0 2px;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .revel-godoc-bar {
