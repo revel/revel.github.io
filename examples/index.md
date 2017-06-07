@@ -1,9 +1,9 @@
 ---
-title: Sample applications
+title: Example Applications
 layout: examples
 ---
 
-Revel provides a few sample applications to demonstrate typical usage. 
+Revel provides a few example applications to demonstrate typical usage. 
 
 {% highlight sh %}
 git clone https://github.com/revel/examples.git $GOPATH/src/github.com/revel/examples
@@ -11,7 +11,7 @@ revel run github.com/revel/examples/booking
 {% endhighlight  %}
 
 
-<a class="btn btn-success btn-sm" href="https://github.com/revel/examples" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Samples Repository</a>
+<a class="btn btn-success btn-sm" href="https://github.com/revel/examples" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Examples Repository</a>
 
 ## Booking
   - A database-driven hotel-booking application, including user management.
