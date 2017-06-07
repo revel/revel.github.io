@@ -50,7 +50,7 @@ to [`build`](tool.html#build), [`run`](tool.html#run), and [`package`](tool.html
 
 Use `go get` to install:
 
-	go get github.com/revel/cmd/revel
+	go get -u github.com/revel/cmd/revel
 
 Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the command from anywhere.
 
