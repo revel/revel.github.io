@@ -20,7 +20,7 @@ template of the equivalent name, e.g. `app/views/errors/500.html`.
 
 ## Render Context
 
-Revel executes the template using the RenderArgs data map.  Aside from
+Revel executes the template using the ViewArgs data map.  Aside from
 application-provided data, Revel provides the following entries:
 
 * "errors" - the map returned by
@@ -84,7 +84,7 @@ Given a field name, it returns a struct containing the following members:
 
 * Id: the field name, converted to be suitable as a HTML element ID.
 * Name: the field name
-* Value: the value of the field in the current RenderArgs
+* Value: the value of the field in the current ViewArgs
 * Flash: the flashed value of the field.
 * Error: the error message, if any is associated with this field.
 * ErrorClass: the raw string "hasError", if there was an error, else "".

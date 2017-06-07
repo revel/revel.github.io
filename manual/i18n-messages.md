@@ -13,6 +13,32 @@ nesting and arguments.
 * **Language**: the language part of a locale, eg. `en`. Language identifiers are expected to be [ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 * **Region**: the region part of a locale, eg. `US`. Region identifiers are expected to be [ISO 3166-1 alpha-2 codes](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
 
+## Implementation Methods
+Revel allows you to implement internalization at template, or as embedded messages.
+
+Templates when loading will automatically look for a region specific template first
+
+    app/
+        views/
+            Index/App.html.en
+            Index/App.html.fr
+            ...
+
+You can also include templates that will check for regions automatically using
+the [i18ntemplate](templates.html#url). This tag acts like a traditional template tag
+except that it will automatically choose the region based on the ViewArgs passed in.
+(optionally the region may be specified as the third argument)
+It can be used on a page like
+
+{% raw %}
+```html
+<p>
+  Embedded Regional Template Example 
+  {{i18ntemplate "templateName" .}}
+</p>
+
+```
+{% endraw %}
 ## Example Application
 
 The way Revel handles message files and internationalization in general is similar to most other web frameworks out there. For those of you that wish to get
@@ -211,7 +237,7 @@ func (c App) Index() revel.Result {
 }
 {% endhighlight %}
 
-From a [template](templates.html), the current locale can be retrieved from the `currentLocale` property of `renderArgs`. For example:
+From a [template](templates.html), the current locale can be retrieved from the `currentLocale` property of `viewArgs`. For example:
 
 {% capture ex %}{% raw %}
     <p>My Locale is: {{.currentLocale}}</p>
