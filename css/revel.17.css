@@ -228,11 +228,9 @@ li.dropdown-header {
 
 /* uses mainly on appconf */
 .main h4 code {
-    font-weight: bold;
+    font-weight: 800;
     color: #992086 !important;
-    margin-left: 0;
-    padding-left: 0;
-    
+    text-transform: initial;
 }
 
 .alert {
