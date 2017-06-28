@@ -52,15 +52,13 @@ renders it as a [Go template](http://www.golang.org/pkg/html/template).
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-<header class="hero-unit" style="background-color:#A9F16C">
-    <div class="container">
+<header class="jumbotron" style="background-color:#A9F16C">
+  <div class="container">
     <div class="row">
-        <div class="hero-text">
-        <h1>It works!</h1>
-        <p></p>
-        </div>
+      <h1>It works!</h1>
+      <p></p>
     </div>
-    </div>
+  </div>
 </header>
 
 <div class="container">
