@@ -88,21 +88,25 @@ If you look at **header.html**, you can see some more template tags in action:
 
 {% capture ex %}{% raw %}
 <!DOCTYPE html>
+
 <html>
-    <head>
-        <title>{{.title}}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
-        <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-        <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
-        {{range .moreStyles}}
-            <link rel="stylesheet" type="text/css" href="/public/{{.}}">
-        {{end}}
-        {{range .moreScripts}}
-            <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-        {{end}}
-    </head>
-<body>
+  <head>
+    <title>{{.title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-3.3.6.min.css">
+    <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
+    <script src="/public/js/jquery-2.2.4.min.js"></script>
+    <script src="/public/js/bootstrap-3.3.6.min.js"></script>
+    {{range .moreStyles}}
+      <link rel="stylesheet" type="text/css" href="/public/{{.}}">
+    {{end}}
+    {{range .moreScripts}}
+      <script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+    {{end}}
+  </head>
+  <body>
+
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
