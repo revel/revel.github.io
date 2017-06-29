@@ -23,7 +23,7 @@ typical Go installation.
             - `models/`          - app domain models
             - `routes/`          - [reverse routes](routing.html#ReverseRouting) (generated code)
             - `views/`           - [templates](templates.html)
-        - `tests/`           -  [test suites](testing.html)
+        - `tests/`           -  [test suites](/modules/testing.html)
         - `conf/`            - configuration files
             - `app.conf`       - [main configuration](appconf.html) file
             - `routes`         -  [routes](routes.html) definition file
