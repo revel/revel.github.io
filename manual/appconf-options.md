@@ -102,7 +102,7 @@ For general information see
 |---------------|----|---------------|
 |pongo2.template.path | lower | Change the template case to lower, valid values `lower`,`case` invalid values assume `lower` | 
 
-### GO Template Engine
+### Go Template Engine
 | Option |default | Description   |
 |---------------|----|---------------|
 |go.template.path | lower | Change the template case to lower, valid values `lower`,`case` invalid values assume `lower` | 

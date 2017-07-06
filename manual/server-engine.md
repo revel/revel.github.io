@@ -8,7 +8,7 @@ godoc:
     - ServerEngine
 ---
 The Revel server engine gives the developer the freedom to implement the server however
-they would like to choose. By default the GO HTTP engine is used, but you can also use
+they would like to choose. By default the Go HTTP engine is used, but you can also use
 the fasthttp engine or the newrelic engine. Or configure an engine to meet your needs.
 For example you can design an engine to listen on multiple IP addresses and serve out
 your website that way. 
