@@ -49,8 +49,8 @@ module.testrunner = github.com/revel/modules/testrunner
 - See the [modules config](../manual/routing.html#modules) in [`app/routes`](../manual/routing.html)
 
 ## Building a module
-### Views best paractices
-It is a good idea to make sure all your views are in their own namespace
+### Best Practices
+It's a good idea to make sure all your views are in their own namespace
 so that they will not conflict with other applications that your module is
 imported into. If you have a module called Reservation, it would be a good
 idea to have your view path look like `app/views/reservation/controller/action.html`
