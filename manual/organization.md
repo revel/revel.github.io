@@ -10,25 +10,29 @@ Revel requires itself and the user application to be installed into a GOPATH lay
 
 ## Default Layout
 
-Below is the default layout of a Revel application called `sample`, within a
-typical Go installation.
+Below is the recommended layout of a Revel application, supplemented with
+domain entities and services. 
 
 - `my_gocode/`                  - GOPATH root
   - `src/`                      - GOPATH src/ directory
     - `github.com/revel/revel/`               - Revel source code
     - `bitbucket.org/me/sample/` - Sample app root
-        - `app/`               - app sources
+        - `entities/`            - domain entities
+        - `app/`                 - app sources
             - `controllers/`     - app [controllers](controllers.html)
                 - `init.go`      - [interceptor](interceptors.html) registration
             - `models/`          - app domain models
+            - `jobs/`            - app domain [jobs](/modules/jobs.html)
+            - `services/`        - app domain services
             - `routes/`          - [reverse routes](routing.html#ReverseRouting) (generated code)
             - `views/`           - [templates](templates.html)
+            - `tmp/`             - app main file, generated code
         - `tests/`           -  [test suites](/modules/testing.html)
         - `conf/`            - configuration files
             - `app.conf`       - [main configuration](appconf.html) file
             - `routes`         -  [routes](routes.html) definition file
         - `messages/`        - i18n [message](i18n-messages.html) files
-        - `public/`          - [static/public assets](routing.html#StaticFiles)
+        - `public/`          - [static/public assets](/modules/static.html)
             - `css/`           - stylesheet files
             - `js/`            - javascript files
             - `images/`        - image files

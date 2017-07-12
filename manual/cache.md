@@ -25,8 +25,8 @@ The Cache may be configured to be backed by one of the following implementations
 Cache items are set with an expiration time, in one of three forms:
 
 * a [time.Duration](http://golang.org/pkg/time/#Duration)
-* `cache.DEFAULT` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#cache))
-* `cache.FOREVER` - will cause the item to never expire
+* `cache.DefaultExpiryTime` - the application-wide default expiration time, one hour by default (see [cache config](appconf.html#cache))
+* `cache.ForEverNeverExpiry` - will cause the item to never expire
 
 <div class="alert alert-info"><b>Important</b>: Callers can <b>not</b> rely on items being present in the cache, as
   the data is not durable, and a cache restart may clear all data.</div>

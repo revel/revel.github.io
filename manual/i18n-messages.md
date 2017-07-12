@@ -96,25 +96,25 @@ When creating new message files, there are a couple of rules to keep in mind:
 
 There are no restrictions on message file names; a message file name can be anything as long as it has a valid extention. There is also no restriction on the *amount*
 of files per language. When the application starts, Revel will parse all message files with a valid extension in the `messages/` directory and merge them according to their 
-language. This means that you are free to organize the message files however you want.
+language. This means that you are free to organize the message files however you want.  
+
+- Refer to [organization](organization.html) for the directory layout
 
 For example, you may want to take a traditional approach and define one single message file per language:
 
-    app/
-        messages/
-            messages.en
-            messages.fr
-            ...
+    messages/
+        messages.en
+        messages.fr
+        ...
 
 Another approach would be to create *multiple files* for the *same language* and organize them based on the kind of messages they contain:
 
-    app/
-        messages/
-            labels.en
-            warnings.en
-            labels.fr
-            warnings.fr
-            ...
+    messages/
+        labels.en
+        warnings.en
+        labels.fr
+        warnings.fr
+        ...
 
 <div class="alert alert-block"><strong>Important note:</strong> while it's technically possible to define the same <em>message key</em> in multiple files with the same language, this will result in unpredictable behaviour. When using multiple files per language, take care to keep your message keys unique so that keys will not be overwritten after the files are merged!</div>
 
