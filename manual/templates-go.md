@@ -38,12 +38,12 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 ## GO Template Functions
 These built-in functions are only applicable to the GO template engine, other template
-engines will need to supply there own implementation. 
+engines will need to supply there own implementation.
 - Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
 - Revel adds to those. Read the documentation below or [check out the source code](https://godoc.org/github.com/revel/revel#pkg-variables).
     - [`append`](#append)
     - [`checkbox`](#checkbox)
-    - [`date`](#date), [`datetime`](#datetime)
+    - [`date`](#date), [`datetime`](#datetime), [`timeago`](#timeago)
     - [`even`](#even)
     - [`field`](#field)
     - [`i18ntemplate`](#i18ntemplate)
@@ -94,9 +94,9 @@ Assists in constructing a HTML checkbox `input` element, eg:
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
-<a name="date"></a><a name="datetime"></a>
+<a name="date"></a><a name="datetime"></a><a name="timeago"></a>
 
-### date, datetime
+### date, datetime, timeago
 
 Format a date according to the application's default [date](appconf.html#formatdate) and [datetime](appconf.html#formatdatetime) format.
 
@@ -165,17 +165,17 @@ Example:
 
 ### i18ntemplate
   Include another template through the revel template engine loader
-  
-  Arguments: 
-    - template (string) *required* The template name you want to render
-    - viewArgs (interface{}) *optional* The data to be piped to the 
-    - region (string) *optional* The region, if not provided it will
-     attempt to extract the `.currentRegion` from the viewArgs 
 
-  Interesting tidbit, you can 
-  
+  Arguments:
+    - template (string) *required* The template name you want to render
+    - viewArgs (interface{}) *optional* The data to be piped to the
+    - region (string) *optional* The region, if not provided it will
+     attempt to extract the `.currentRegion` from the viewArgs
+
+  Interesting tidbit, you can
+
  - See [internationalization](i18n-messages.html#template)
- 
+
 <a name="msg"></a>
 
 ### msg
