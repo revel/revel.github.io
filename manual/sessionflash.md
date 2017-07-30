@@ -67,7 +67,7 @@ func (c MyController) MyAction() revel.Result {
 
 ## Flash
 
-The Flash provides single-use string storage. It useful for implementing
+The Flash provides single-use string storage. It is useful for implementing
 [the Post/Redirect/Get pattern](http://en.wikipedia.org/wiki/Post/Redirect/Get),
 or for transient "Operation Successful!" or "Operation Failed!" messages.
 
