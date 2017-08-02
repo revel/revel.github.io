@@ -100,8 +100,7 @@ func (c Hotels) Show() revel.Result {
 - All params except `File` are golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) which provide the accessors.
 - All values are map to slices, a `.Get()` will return first. Use map directly to get at multiple values.
 - Revel's data-binding mechanisms helps with non-string values such as [dates](#date_time) or floats.
-- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
-- Revel's data-binding mechanisms helps with non-string values such as dates or floats
+- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values.
 
 ## Action arguments
 
@@ -145,7 +144,7 @@ The following data types are supported by Revel out of the box:
 * \*os.File, \[\]byte, io.Reader, io.ReadSeeker for file uploads
 
 The following sections describe the syntax for these types.  It is also useful
-to refer to [the source code of](https://github.com/revel/revel/blob/master/binder.go) if more detail is required.
+to refer to [the source code](https://github.com/revel/revel/blob/master/binder.go) if more detail is required.
 
 ### Booleans
 
@@ -206,7 +205,7 @@ type User struct {
 ### Date / Time
 
 - The SQL standard date time formats of `2006-01-02`, `2006-01-02 15:04` are built in.
-- Alternative formats may be added to the application (see [appconf](appconf.html#formatting)), using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
+- Alternative formats may be added to the application (see [app.conf](appconf.html#formatting)), using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
 - Add a pattern to recognize to the [TimeFormats](https://godoc.org/github.com/revel/revel#TimeFormats) variable, like the example below.
 
 {% highlight go %}
@@ -241,7 +240,7 @@ temp file (if it wasn't already), making it less efficient than the other types.
 
 The application may define its own binders to take advantage of this framework.
 
-It need only implement the [Binder](https://godoc.org/github.com/revel/revel#Binder) `interface` and register the type for which it
+It needs only to implement the [Binder](https://godoc.org/github.com/revel/revel#Binder) `interface` and register the type for which it
 should be called:
 
 {% highlight go %}
