@@ -78,6 +78,18 @@ started straight away without going through the specifics, there is a sample app
                 The default locale to use in case no preferred locale could be found.
             </td>
         </tr>
+        <tr>
+            <td>
+                <code>app.conf</code>
+            </td>
+            <td>
+                <code><a href="appconf.html#i18nlocaleparameter">i18n.locale.parameter</a></code>
+            </td>
+            <td>
+                The name of the parameter to use for switching the current language of the application.
+		The parameter value is checked before other methods to resolve the client locale.
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -203,13 +215,20 @@ Arguments are resolved in the same order as they are given, see [Resolving messa
 
 In order to figure out which locale the user prefers Revel will look for a usable locale in the following places:
 
-1. Language cookie
+1. Language Parameter value
+
+   - If in `app.conf` the value for `i18n.locale.parameter` is set, 
+   this will be the first method to resolve the client language preference. e.g. `i18n.locale.parameter=lang`.
+   - If this parameter has a value, its value is assumed to be the current locale. 
+   - All other resolution methods will be skipped when a language parameter value has been found.
+
+2. Language cookie
 
     - For every request, Revel will look for a cookie with the name defined in the application configuration [`i18n.cookie`](appconf.html#i18ncookie). 
     - If such a cookie is found, its value is assumed to be the current locale. 
     - All other resolution methods will be skipped when a cookie has been found.
 
-2. `Accept-Language` HTTP header
+3. `Accept-Language` HTTP header
 
     - Revel will automatically parse the `Accept-Language` HTTP header for each incoming request. 
     - Each of the locales in the `Accept-Language` header value is evaluated and stored in order of qualification according to the 
@@ -217,7 +236,7 @@ In order to figure out which locale the user prefers Revel will look for a usabl
     - This information is used later by the various message resolving functions to determine the current locale.
     - For more information see [Parsed Accept-Language HTTP header](#parsed_acceptlanguage_http_header).
 
-3. Default language
+4. Default language
 
     - When all of the look-up methods above have returned no usable client locale, Revel will use the [`i18n.default_language`](appconf.html#i18ndefault_language) as 
       defined in the [`conf/app.conf`](appconf.html) file.
