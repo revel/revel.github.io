@@ -13,7 +13,7 @@ godoc:
 The [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) is the context for 
 a single request and controls
 - the incoming [Request](https://godoc.org/github.com/revel/revel#Request) stuff
-- and the [Response](https://godoc.org/github.com/revel/revel#Response) back, in Hmtl, Json, Xml, File or your own custom.
+- and the [Response](https://godoc.org/github.com/revel/revel#Response) back, in Html, Json, Xml, File or your own custom.
 
 A **Controller** is any type that embeds a [*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**.
 
