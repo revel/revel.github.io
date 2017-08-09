@@ -14,6 +14,10 @@ pattern by relying on conventions that require a certain structure in an
 application.  In return, it is very light on [configuration](appconf.html) 
 and enables an extremely fast development cycle.
 
+Revel is very customizable, you can plug in your own [template system](template-engine)
+or even a custom [http server engine](server-engine). It is the perfect middleware that
+is designed to work out of the box and provide the ability to implement almost any application.
+
 ## MVC
 
 Here is a quick summary:
@@ -33,7 +37,7 @@ one provided by [Play! Framework](http://www.playframework.org) matches our mode
 
 Below is an overview of the request processing framework.
 
-![Life of a Request](/img/RevelDesign.png)
+![Life of a Request](../img/RevelDesign.png)
 
 
 * Revel exposes a single http.Handler, responsible for instantiating a
