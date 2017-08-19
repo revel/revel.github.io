@@ -53,7 +53,7 @@ module.testrunner = github.com/revel/modules/testrunner
 It's a good idea to make sure all your views are in their own namespace
 so that they will not conflict with other applications that your module is
 imported into. If you have a module called Reservation, it would be a good
-idea to have your view path look like `app/views/reservation/controller/action.html`
+idea to have your view path look like `app/views/Reservation/Controller/Action.html`
 . This means that your controller needs to call `RenderTemplate` 
 instead of `Render` so that the correct view path is chosen. 
 

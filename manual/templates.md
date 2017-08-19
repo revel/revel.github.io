@@ -67,7 +67,7 @@ Directories are scanned for templates in the following order:
 2. revel core `templates/` directory.
 3. Otherwise a `500` error as template not found (but in [dev mode](appconf.html#run-modes) shows debug info)
 
-For example, given a controller/action `Hello.World()`, Revel will:
+For example, given a controller/method `Hello.World()`, Revel will:
 
 - look for a template file named `views/Hello/World.html`.
 - and if not found, show `views/errors/500.html`

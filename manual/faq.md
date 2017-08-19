@@ -7,28 +7,37 @@ layout: manual
 
 ## How do I integrate existing http.Handlers with Revel ?
 
-As shown in the [concept diagram](concepts.html), the http.Handler is where Go
-hands off the user's request for processing.  Revel's handler is extraordinarily
-simple, it just creates the [Controller](controllers.html) instance and passes the request to the
+As shown in the [concept diagram](concepts.html), The server engine is responsible 
+for routing of the traffic, you can install your own mux on the GoServerEngine 
+once it is initialized. Requests that are sent through the GoServerEngine handler
+will be processed by Revel which creates the [Controller](controllers.html) instance and passes the request to the
 [Filter Chain](filters.html).
 
-Applications may integrate existing http.Handlers by overriding the default Handler:
+Applications may integrate existing http.Handlers by doing the following:
 
-{% highlight go %}
-func installHandlers() {
-    var (
-        serveMux     = http.NewServeMux()
-        revelHandler = revel.Server.Handler
-    )
-    serveMux.Handle("/",     revelHandler)
-    serveMux.Handle("/path", myHandler)
-    revel.Server.Handler = serveMux
+```go
+
+    func installHandlers() {
+        revel.AddInitEventHandler(func(event int, _ interface{}) (r int) {
+            if event==revel.ENGINE_STARTED {
+                var (
+                    serveMux     = http.NewServeMux()
+                    revelHandler = revel.CurrentEngine.(revel.GoHttpServer).Server.Handler
+                )
+                serveMux.Handle("/",     revelHandler)
+                serveMux.Handle("/path", myHandler)
+                revel.CurrentEngine.(revel.GoHttpServer).Server.Handler = serveMux
+    
+    
+            }
+            return
+    })
 }
 
 func init() {
     revel.OnAppStart(installHandlers)
 }
-{% endhighlight %}
+```
 
 
 ## What is the relationship between interceptors, filters, and modules ?
@@ -53,9 +62,9 @@ into a field.  Interceptors can be applied to one or more controllers.
 - So unless you `go install` it. the package is built every time you build a package which depends on it.
 - See [bug 290](https://github.com/revel/revel/issues/290#issuecomment-52385218)
 
-{% raw %}
+```
     go install github.com/mattn/go-sqlite3
-{% endraw %}
+```
 
 
 ## Is there an SMTP mailer ?

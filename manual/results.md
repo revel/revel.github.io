@@ -60,27 +60,27 @@ Additionally, the developer may define a result with [CustomResult](#CustomResul
 Each built-in Result has a default `HTTP Status Code` and `Content Type`.  To override
 those defaults, simply set those properties on the response:
 
-{% highlight go %}
-func (c App) Action() revel.Result {
+```go
+func (c App) Index() revel.Result {
 	c.Response.Status = http.StatusTeapot
 	c.Response.ContentType = "application/dishware"
 	return c.Render()
 }
-{% endhighlight %}
+```
 
 
 You can override the default status code by setting one yourself:
 
-{% highlight go %}
+```go
 func (c *App) CreateEntity() revel.Result {
     c.Response.Status = 201
     return c.Render()
 }
-{% endhighlight %}
+```
 
-<a name="Render"><a name="RenderTemplate">
+<a name="Render" /><a name="RenderTemplate" />
 
-## Render()
+## Controller.Render
 
 Called within an action (e.g. "Controller.Action"),
 [Controller.Render()](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
@@ -92,12 +92,12 @@ If unsuccessful (e.g. it could not find the template), an [ErrorResult](https://
 
 This allows the developer to write:
 
-{% highlight go %}
+```go
 func (c MyApp) Action() revel.Result {
 	myValue := calculateValue()
 	return c.Render(myValue)
 }
-{% endhighlight %}
+```
 
 and to use `myValue` in their template.  This is usually more convenient than
 constructing an explicit map, since in many cases the data will need to be
@@ -143,7 +143,7 @@ type, usually a struct.  Revel will serialize it using
 If [`results.pretty=true`](appconf.html#results.pretty) in [`conf/app.conf`](appconf.html)  then serialization will be done using
 `MarshalIndent` instead, to produce nicely indented output for human consumption.
 
-{% highlight go %}
+```go
 // Simple example
 
 type Stuff struct {
@@ -151,15 +151,16 @@ type Stuff struct {
     Bar int ` json:"bar" xml:"bar" `
 }
 
-func (c MyController) MyAction() revel.Result {
+func (c MyController) MyWork() revel.Result {
     data := make(map[string]interface{})
     data["error"] = nil
     stuff := Stuff{Foo: "xyz", Bar: 999}
     data["stuff"] = stuff
     return c.RenderJSON(data)
-    //return c.RenderXML(data)
+    // or alternately 
+    // return c.RenderXML(data)
 }
-{% endhighlight %}
+```
 
 <a name="Redirect"></a>
 
@@ -170,15 +171,16 @@ func (c MyController) MyAction() revel.Result {
 
 #### Redirect to an action with no arguments:
 
-{% highlight go %}
+```go
     return c.Redirect(Hotels.Settings)
-{% endhighlight %}
+```
 
-- This form is useful as it provides a degree of type safety and independence from the routing and generates the URL automatically.
+- This form is useful as it provides a degree of type safety and independence from the 
+routing and generates the URL automatically.
 
 #### Redirect to a formatted string:
 
-{% highlight go %}return c.Redirect("/hotels/%d/settings", hotelId){% endhighlight %}
+`return c.Redirect("/hotels/%d/settings", hotelId)`
 
 - This form is necessary to pass arguments.
 - It returns a `302 Temporary Redirect` status code.
@@ -191,7 +193,7 @@ Below is a simple example of creating a custom [revel.Result](https://godoc.org/
 
 Create this type:
 
-{% highlight go %}
+```go
 import ("net/http")
 
 type MyHtml string
@@ -200,14 +202,14 @@ func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
 	resp.Out.Write([]byte(r))
 }
-{% endhighlight %}
+```
 
-Then use it in an action:
+Then use it in the action `MyApp.Hello`:
 
-{% highlight go %}
-func (c *MyApp) Action() revel.Result {
+```go
+func (c *MyApp) Hello() revel.Result {
 	return MyHtml("<html><body>Hello Result</body></html>")
 }
-{% endhighlight %}
+```
 
 

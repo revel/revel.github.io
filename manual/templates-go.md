@@ -295,7 +295,7 @@ Set a variable in the given context.
 
 ### url
 
-Outputs the [reverse route](routing.html#reverse-routing) for a `Controller.Action`, eg:
+Outputs the [reverse route](routing.html#reverse-routing) for a `Controller.Method`, eg:
 
 {% capture ex %}{% raw %}
 <a href="{{url "MyApp.ContactPage"}}">Contact</a>

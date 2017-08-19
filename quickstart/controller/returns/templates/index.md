@@ -9,7 +9,7 @@ searches two directories for templates:
 * The application's `views` directory (and all subdirectories)
 * Revel's own `templates` directory.
 
-Given a controller named `Hello` with an action named `World`, Revel will
+Given a controller named `Hello` with an method named `World`, Revel will
 look for a template file named `views/Hello/World.html`. Template file names
 are case insensitive so `views/hello/world.html` will work the same as
 `views/HeLlO/wOrLd.HtMl`.

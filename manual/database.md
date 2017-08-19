@@ -8,7 +8,9 @@ godoc:
     - Config
 ---
 
-Revel does not come *configured* with a database or ORM interface. Its up to the developer what to use and how to use. 
+Revel does not come *configured* with a database or ORM interface. There are modules like
+[GORM](https://github.com/revel/modules/tree/master/gorm) that can be used to provide this
+functionality. But ultimately it's up to the developer what to use and how to use. 
 
 - The [booking sample application](/examples/booking.html) has an example 
    [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping) using [GORP](https://github.com/go-gorp/gorp).
@@ -16,7 +18,7 @@ Revel does not come *configured* with a database or ORM interface. Its up to the
 ## Config
 - The [appconf](appconf.html) does have a [`database`](appconf.html#database) section for usage.
 - Use [revel.Config](https://godoc.org/github.com/revel/config#Context) to access.
-{% highlight go %}
+```go
 func InitDB() {
     driver := revel.Config.StringDefault("db.driver", "mysql")
     connect_string := revel.Config.StringDefault("db.connect", "root:root@locahost/test")
@@ -24,7 +26,7 @@ func InitDB() {
     Db, err = sql.Open(driver, connect_string)
     ....
 }
-{% endhighlight %}
+```
 
 
 
@@ -32,7 +34,7 @@ func InitDB() {
 
 Create an `InitDB()` function in for example  `github.com/username/my-app/app/init.go`.
 
-{% highlight go %}
+```go
 package app
 
 import (
@@ -67,11 +69,11 @@ func init() {
     ...
 }
 
-{% endhighlight %}
+```
 
 
 This can then be used in code
-{% highlight go %}
+```go
 import(
     "github.com/username/my-app/app"
 )
@@ -83,4 +85,4 @@ func GetStuff() MyStruct {
     ... do stuff here ...
 }
 
-{% endhighlight %}
+```

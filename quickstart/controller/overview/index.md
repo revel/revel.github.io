@@ -25,7 +25,7 @@ for the full story, but here is the definition (along with definitions of helper
 type Controller struct {
 	Name          string          // The controller name, e.g. "Application"
 	Type          *ControllerType // A description of the controller type.
-	MethodType    *MethodType     // A description of the invoked action type.
+	MethodType    *MethodType     // A description of the invoked method type.
 	AppController interface{}     // The controller that was instantiated.
 
 	Request  *Request

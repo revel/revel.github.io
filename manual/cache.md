@@ -18,7 +18,10 @@ The Cache may be configured to be backed by one of the following implementations
 
 * a list of [memcached](http://memcached.org/) hosts
 * a single [redis](http://redis.io) host
-* the 'in-memory' implementation
+* the 'in-memory' implementation. **Note the in memory stores the object in memory
+and returns the same object when you `Get` it (if available). This means that
+updating an object retrieved from the cache will update the stored cache object 
+as well.**
 
 ## Expiration
 
@@ -34,7 +37,8 @@ Cache items are set with an expiration time, in one of three forms:
 ## Serialization
 
 The [Cache](https://godoc.org/github.com/revel/revel/cache#Cache) getters and setters automatically serialize values for callers, to
-and from any type.  It uses the following mechanisms:
+and from any type, *with the exception of the inmemory model which stores and returns the object verbatim*. 
+It uses the following mechanisms:
 
 * If the value is already of type `[]byte`, the data is not touched
 * If the value is of any integer type, it is stored as the ASCII representation

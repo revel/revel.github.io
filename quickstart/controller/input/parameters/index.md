@@ -28,18 +28,18 @@ The embedded `url.Values` ([godoc](http://www.golang.org/pkg/net/url/#Values))
 does provide accessors for simple values, but developers will find it easier to
 use Revel's data-binding mechanisms for any non-string values.
 
-## Action arguments
+## Method arguments
 
-Parameters may be accepted directly as method arguments by the action.  For
+Parameters may be accepted directly as method arguments by the method.  For
 example:
 
-<pre class="prettyprint lang-go">
-func (c AppController) Action(name string, ids []int, user User, img []byte) revel.Result {
+```go
+func (c AppController) Method(name string, ids []int, user User, img []byte) revel.Result {
 	...
 }
-</pre>
+```
 
-Before invoking the action, Revel asks its Binder to convert parameters of those
+Before invoking the method, Revel asks its Binder to convert parameters of those
 names to the requested data type.  If the binding is unsuccessful for any
 reason, the parameter will have the zero value for its type.
 
@@ -51,7 +51,7 @@ as the following example shows:
 
 {% raw %}
 <pre class="prettyprint lang-go">
-func (c SomeController) Action() revel.Result {
+func (c SomeController) Method() revel.Result {
 	var ids []int
 	c.Params.Bind(&amp;ids, "ids")
 	...

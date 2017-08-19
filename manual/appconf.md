@@ -458,7 +458,7 @@ the result is not always guaranteed.
 
 ### Templates
 
-#### `template.delimiters`
+#### `template.go.delimiters`
 
 Specifies an override for the left and right delimiters used in the templates.  
 The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"

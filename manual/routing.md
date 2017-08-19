@@ -12,7 +12,7 @@ godoc:
 URL's and routes are defined in the `conf/routes` file and have three columns as example below:
 	
 ```csv
-[METHOD] [URL Pattern] [Controller.Action]
+[METHOD] [URL Pattern] [Controller.Method]
 GET      /              MySite.Welcome
 ```
 
@@ -34,7 +34,7 @@ GET    /login                 App.Login
 GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ 
 GET    /hotels/:id            Hotels.Show            # Extract a URI argument
 WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
-POST   /hotels/:id/:action    Hotels.:action         # Automatically route some actions.
+POST   /hotels/:id/:method    Hotels.:method         # Automatically route some methods.
 
 ## Static files. Map /app/public resources under /public/...
 GET    /public/*filepath      Static.Serve("public") 
@@ -45,7 +45,7 @@ GET    /public/*filepath      Static.Serve("public")
 
 ## Finally
 # Catch all and Automatic URL generation
-*      /:controller/:action   :controller.:action
+*      /:controller/:method   :controller.:method
 ```
 
 Let's go through the lines one at a time and by the end, we'll see how to
@@ -57,7 +57,7 @@ accomplish [reverse routing](#reverse-routing) i.e generating the URL to invoke 
 	GET    /about                 App.About
 
 The routes above use an 'exact match' of HTTP method and path and invoke the Login and About
-*action* on the *App* controller.
+*method* on the *App* controller.
 
 ## Trailing slashes/
 
@@ -78,29 +78,29 @@ simple path `/login` **will** be matched by a request to `/login/`.
 `/hotels/abc` would both be matched by the route above.
 - Extracted parameters are available in both the
   - [Controller.Params](https://godoc.org/github.com/revel/revel#Params) map
-  - and via Action method [parameters](parameters.html).  
+  - and via Method [parameters](parameters.html).  
   
 For example:
-{% highlight go %}
+```go
 func (c Hotels) Show(id int) revel.Result {
     ...
 }
-{% endhighlight %}
+```
 or
-{% highlight go %}
+```go
 func (c Hotels) Show() revel.Result {
     var id string = c.Params.Get("id")
     ...
 }
-{% endhighlight %}
+```
 or
-{% highlight go %}
+```go
 func (c Hotels) Show() revel.Result {
     var id int
     c.Params.Bind(&id, "id")
     ...
 }
-{% endhighlight %}
+```
 
 ## Star *parameters
 
@@ -115,43 +115,43 @@ its value will be the path substring that follows the `*` prefix.
 ## Fixed Parameters
 
 As also demonstrated in [Static Serving](#StaticFiles) below, routes may specify one or more
-parameters to the action.  For example:
+parameters to the method.  For example:
 
     GET    /products/:id     ShowList("PRODUCT")
     GET    /menus/:id        ShowList("MENU")
 
 The provided argument(s) are bound to a parameter name using their position. In
-this case, the list type string would be bound to the name of the first action
+this case, the list type string would be bound to the name of the first method
 parameter.
 
 This is helpful in situations where:
 
-* you have a couple similar actions
-* you have actions that do the same thing, but operate in different modes
-* you have actions that do the same thing, but operate on different data types
+* you have a couple similar methods
+* you have methods that do the same thing, but operate in different modes
+* you have methods that do the same thing, but operate on different data types
 
 ## Auto Routing
 
 ~~~
-POST   /hotels/:id/:action    Hotels.:action
-*      /:controller/:action   :controller.:action
+POST   /hotels/:id/:method    Hotels.:method
+*      /:controller/:method   :controller.:method
 ~~~
 
-URL argument extraction can also be used to determine the invoked action.
-Matching to controllers and actions is **case insensitive**.
+URL argument extraction can also be used to determine the invoked method.
+Matching to controllers and methods is **case insensitive**.
 
 The first example route line would effect the following routes:
 
     /hotels/1/show    => Hotels.Show
     /hotels/2/details => Hotels.Details
 
-Similarly, the second example may be used to access any action in the
+Similarly, the second example may be used to access any action (Controller.Method) in the
 application:
 
     /app/login         => App.Login
     /users/list        => Users.List
 
-Since matching to controllers and actions is case insensitive, the following
+Since matching to controllers and methods are case insensitive, the following
 routes would also work:
 
     /APP/LOGIN         => App.Login
@@ -160,6 +160,9 @@ routes would also work:
 Using auto-routing as a catch-all (e.g. last route in the file) is useful for
 quickly hooking up actions to non-vanity URLs, especially in conjunction with
 the [reverse router](#reverse-routing).
+
+**It is recommended that auto-routing be used for rapid development work, then 
+routes should be fully qualified to avoid exposing a method in a controller**
 
 <a name="StaticFiles"></a>
 
@@ -172,7 +175,8 @@ the [reverse router](#reverse-routing).
 For serving directories of static assets, Revel provides the **static** built in module,
 which contains a single
 [Static](https://godoc.org/github.com/revel/modules/static/app/controllers#Static)
-controller.  [Static.Serve](https://godoc.org/github.com/revel/modules/static/app/controllers#Static.Serve) action takes two parameters:
+controller.  [Static.Serve](https://godoc.org/github.com/revel/modules/static/app/controllers#Static.Serve) 
+method takes two parameters:
 
 * `prefix` (string) - A (relative or absolute) path to the asset root.
 * `filepath` (string) - A relative path that specifies the requested file.
@@ -216,8 +220,8 @@ In the example below, its assumed `mymodule` has a `routes` file containing:
 *       /myurl     module:mymodule 
 	
 # Other routes
-GET     /        Application.MyAction
-GET     /foo     Application.FooAction
+GET     /        Application.MyMethod
+GET     /foo     Application.FooMethod
 ~~~
 
 - The routes would be imported with the URL's `/myurl/gopher` and `/myurl/gopher/add`.
@@ -244,12 +248,12 @@ It is good practice to use a reverse router to generate URL's instead of hardcod
 Upon building your application, Revel generates an `app/routes` package.  Use it
 with a statement of the form:
 
-{% highlight go %}
-routes.Controller.Action(param1, param2)
-{% endhighlight %}
+```go
+routes.Controller.Method(param1, param2)
+```
 
 
-The above statement returns an URL string to `Controller.Action` with the
+The above statement returns an URL string to `Controller.Method` with the
 given parameters.  
 
 <div class="alert alert-info"><strong>Limitation:</strong> Only primitive
@@ -259,7 +263,7 @@ Non-primitive parameters are typed as interface{}.
 
 Below is a more complete example:
 
-{% highlight go %}
+```go
 import (
 	"github.com/revel/revel"
 	"project/app/routes"
@@ -283,6 +287,6 @@ func (c App) ProcessForm(username, input string) revel.Result {
 	c.Flash.Success("Form processed!")
 	return c.Redirect(routes.App.ViewConfirmation(username, input))  // <--- REVERSE ROUTE
 }
-{% endhighlight %}
+```
 
 
