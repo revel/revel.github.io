@@ -12,7 +12,8 @@ godoc:
 
 The application config file is at `conf/app.conf` and uses the syntax accepted by
 [revel/config](https://github.com/revel/config)  which is similar to
-[INI](http://en.wikipedia.org/wiki/INI_file) files.
+[INI](http://en.wikipedia.org/wiki/INI_file) files. For all options see
+ [here](appconf-options)
 
 Here's an example file with two sections, `dev` (develop) and `prod` (production).
 {% highlight ini %}
