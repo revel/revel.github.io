@@ -12,7 +12,8 @@ godoc:
 
 The application config file is at `conf/app.conf` and uses the syntax accepted by
 [revel/config](https://github.com/revel/config)  which is similar to
-[INI](http://en.wikipedia.org/wiki/INI_file) files.
+[INI](http://en.wikipedia.org/wiki/INI_file) files. For all options see
+ [here](appconf-options)
 
 Here's an example file with two sections, `dev` (develop) and `prod` (production).
 {% highlight ini %}
@@ -458,7 +459,7 @@ the result is not always guaranteed.
 
 ### Templates
 
-#### `template.delimiters`
+#### `template.go.delimiters`
 
 Specifies an override for the left and right delimiters used in the templates.  
 The delimiters must be specified as "LEFT\_DELIMS RIGHT\_DELIMS"

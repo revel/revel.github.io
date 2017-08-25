@@ -17,7 +17,7 @@ a single request and controls
 
 A **Controller** is any type that embeds a [*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**.
 
-{% highlight go %}
+```go
 type MyAppController struct {
     *revel.Controller
 }
@@ -30,7 +30,7 @@ type FailController struct {
     XStuff string
     *revel.Controller // Fail as it should be first    
 }
-{% endhighlight %}
+```
 
 <div class="alert alert-danger">NOTE: <code>*revel.Controller</code> must be 'embedded' as the first type in 
 a controller struct <a href="https://talks.golang.org/2012/10things.slide#2">anonymously</a>.</div>
@@ -44,7 +44,7 @@ Below are the most used components and type/struct definitions to give a taste o
 [Params](https://godoc.org/github.com/revel/revel#Params) 
 and [Response](https://godoc.org/github.com/revel/revel#Response).
 
-{% highlight go %}
+```go
 type Controller struct {
     Name          string          // The controller name, e.g. "Application"
     Type          *ControllerType // A description of the controller type.
@@ -62,20 +62,33 @@ type Controller struct {
     ViewArgs map[string]interface{} // Args passed to the template.
     Validation *Validation            // Data validation helpers
 }
-{% endhighlight %}
+```
 
-{% highlight go %}
+
+
+```go
+// The request 
 type Request struct {
-    *http.Request
-    ContentType string
-    Format          string // "html", "xml", "json", or "txt"
-    AcceptLanguages AcceptLanguages
-    Locale          string
-    Websocket       *websocket.Conn
+	In              ServerRequest
+	ServerHeader    *RevelHeader
+	ContentType     string
+	Format          string // "html", "xml", "json", or "txt"
+	AcceptLanguages AcceptLanguages
+	Locale          string
+	WebSocket       ServerWebSocket
+	Method          string
+	RemoteAddr      string
+	Host            string
+	// URL request path from the server (built)
+	URL             *url.URL
+	// DEPRECATED use GetForm()
+	Form url.Values
+	// DEPRECATED use GetMultipartForm()
+	MultipartForm *MultipartForm
 }
-{% endhighlight %}
+```
 
-{% highlight go %}
+```go
 // These provide a unified view of the request params.
 // Includes:
 // - URL query string
@@ -95,19 +108,22 @@ type Response struct {
     Cookies     []*http.Cookie
     Out http.ResponseWriter
 }
-{% endhighlight %}
+```
 
-- As part of handling a HTTP request, Revel instantiates an instance of a [revel.Controller](https://godoc.org/github.com/revel/revel#Controller).
+- As part of handling a HTTP request, Revel instantiates an instance of a 
+[revel.Controller](https://godoc.org/github.com/revel/revel#Controller).
 - It then sets all of the properties on the embedded `revel.Controller`.
 - Revel does not share a `Controller` instance between requests.
 
 ### Extending the Controller
 
-A **Controller** is any type that embeds [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) either directly or indirectly.
+A **Controller** is any type that embeds 
+[revel.Controller](https://godoc.org/github.com/revel/revel#Controller) either directly or 
+indirectly.
 This means controllers may extend other classes, here is an example on how to do that. 
 - Note in the `MyController` the `BaseController` reference is NOT a pointer
 
-{% highlight go %}
+```go
 type (
 	BaseController struct {
 		*revel.Controller
@@ -118,4 +134,4 @@ type (
 		BaseController
 	}
 )
-{% endhighlight %}
+```

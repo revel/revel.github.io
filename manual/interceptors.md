@@ -37,7 +37,7 @@ and returns a [Result](#results) or `nil`.
 * May be applied to any / all Controllers in an application (by adding lines of code).
 
 
-{% highlight go %}
+```go
 // simple example or user auth
 func checkUser(c *revel.Controller) revel.Result {
     if user := MyCheckAuth(c); user == nil {
@@ -53,7 +53,7 @@ func init() {
     revel.InterceptFunc(doNothing, revel.AFTER, &App{})
     revel.InterceptFunc(checkUser, revel.BEFORE, &AnotherController{})
 }
-{% endhighlight %}
+```
 
 
 
@@ -69,8 +69,8 @@ func init() {
   * `func (c *AppController) example() revel.Result // pointer`
 
 
-{% highlight go %}
-// Silly method example
+```go
+// simeple method example
 
 func (c Hotels) checkUser() revel.Result {
     if user := connected(c); user == nil {
@@ -84,7 +84,7 @@ func init() {
     revel.InterceptMethod(Hotels.checkUser, revel.BEFORE)
     revel.InterceptMethod(Room.checkVacant, revel.BEFORE)
 }
-{% endhighlight %}
+```
         
 
 <a name="intercept_times"></a>

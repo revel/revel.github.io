@@ -3,7 +3,7 @@ title: Results
 layout: quickstart
 ---
 
-Actions must return a [`revel.Result`](../docs/godoc/results.html#Result), which
+Methods must return a [`revel.Result`](../docs/godoc/results.html#Result), which
 handles the response generation.  It adheres to a simple interface:
 
 <pre class="prettyprint lang-go">
@@ -18,7 +18,7 @@ methods to produce Results:
 * Render, RenderTemplate - render a template, passing arguments.
 * RenderJson, RenderXml - serialize a structure to json or xml.
 * RenderText - return a plaintext response.
-* Redirect - redirect to another action or URL
+* Redirect - redirect to another action (Controller.Method) or URL
 * RenderFile - return a file, generally to be downloaded as an attachment.
 * RenderError - return a 500 response that renders the errors/500.html template.
 * NotFound - return a 404 response that renders the errors/404.html template.
@@ -32,7 +32,7 @@ Each built-in Result has a default Status Code and Content Type.  To override
 those defaults, simply set those properties on the response:
 
 <pre class="prettyprint lang-go">
-func (c App) Action() revel.Result {
+func (c App) Method() revel.Result {
 	c.Response.Status = http.StatusTeapot
 	c.Response.ContentType = "application/dishware"
 	return c.Render()
@@ -41,17 +41,17 @@ func (c App) Action() revel.Result {
 
 ## Render
 
-Called within an action (e.g. "Controller.Action"),
+Called within an action (e.g. "Controller.Method"),
 [`mvc.Controller.Render`](../docs/godoc/controller.html#Controller.Render) does two things:
 1. Adds all arguments to the controller's ViewArgs, using their local identifier as the key.
-2. Executes the template "views/Controller/Action.html", passing in the controller's "ViewArgs" as the data map.
+2. Executes the template "views/Controller/Method.html", passing in the controller's "ViewArgs" as the data map.
 
 If unsuccessful (e.g. it could not find the template), it returns an ErrorResult instead.
 
 This allows the developer to write:
 
 <pre class="prettyprint lang-go">
-func (c MyApp) Action() revel.Result {
+func (c MyApp) Method() revel.Result {
 	myValue := calculateValue()
 	return c.Render(myValue)
 }
@@ -63,7 +63,7 @@ handled as a local variable anyway.
 
 **Note:** Revel looks at the calling method name to determine the Template
   path and to look up the argument names.  Therefore, c.Render() may only be
-  called from Actions.
+  called from Controller Methods.
 
 
 ## RenderJson / RenderXml
@@ -117,10 +117,10 @@ func (r Html) Apply(req *revel.Request, resp *revel.Response) {
 }
 </pre>
 
-Then use it in an action:
+Then use it in an method:
 
 <pre class="prettyprint lang-go">{% capture html %}
-func (c *App) Action() revel.Result {
+func (c *App) Method() revel.Result {
 	return Html("<html><body>Hello World</body></html>")
 }{% endcapture %}{{ html|escape }}
 </pre>

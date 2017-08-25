@@ -3,7 +3,7 @@ layout: quickstart
 title: Controllers
 --- 
 
-A controller is a container for the request actions. You could have every request tied to an action (function) in one controller
+A controller is a container for the request methods. You could have every request tied to an method in one controller
 but a better practice would be to divide the work up amongst controllers in a logical manner, 
 refer to the hotel application for an example.
 

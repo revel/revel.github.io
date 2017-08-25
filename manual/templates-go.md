@@ -1,5 +1,5 @@
 ---
-title: GO Template Engine
+title: Go Template Engine
 layout: manual
 github:
   labels:
@@ -8,8 +8,8 @@ godoc:
     - GoEngine
 ---
 
-## GO Template Engine
-The GO template engine is the default one used by Revel. It requires no application
+## Go Template Engine
+The Go template engine is the default one used by Revel. It requires no application
 settings.
 
 <div class="alert alert-info">
@@ -36,8 +36,8 @@ Go Templates allow you to compose templates by inclusion.  For example:
 
 <a name="functions"></a>
 
-## GO Template Functions
-These built-in functions are only applicable to the GO template engine, other template
+## Go Template Functions
+These built-in functions are only applicable to the Go template engine, other template
 engines will need to supply there own implementation. 
 - Go provides a few native [template functions](http://golang.org/pkg/html/template/#pkg-index).
 - Revel adds to those. Read the documentation below or [check out the source code](https://godoc.org/github.com/revel/revel#pkg-variables).
@@ -295,7 +295,7 @@ Set a variable in the given context.
 
 ### url
 
-Outputs the [reverse route](routing.html#reverse-routing) for a `Controller.Action`, eg:
+Outputs the [reverse route](routing.html#reverse-routing) for a `Controller.Method`, eg:
 
 {% capture ex %}{% raw %}
 <a href="{{url "MyApp.ContactPage"}}">Contact</a>

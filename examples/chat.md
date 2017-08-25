@@ -33,16 +33,16 @@ First, let's look at how the chat room is implemented, in
 
 The chat room runs as an independent go-routine, started on initialization:
 
-{% highlight go %}
+```go
 func init() {
 	go chatroom()
 }
-{% endhighlight %}
+```
 
 The `chatroom()` function simply selects on three channels and executes the
 requested action.
 
-{% highlight go %}
+```go
 var (
 	// Send a channel here to get room events back.  It will send the entire
 	// archive initially, and then new messages as they come in.
@@ -68,13 +68,13 @@ func chatroom() {
 		}
 	}
 }
-{% endhighlight %}
+```
 
 Let's see how each of those is implemented.
 
 ### Subscribe
 
-{% highlight go %}
+```go
 case ch := <-subscribe:
     var events []Event
     for e := archive.Front(); e != nil; e = e.Next() {
@@ -83,7 +83,7 @@ case ch := <-subscribe:
     subscriber := make(chan Event, 10)
     subscribers.PushBack(subscriber)
     ch <- Subscription{events, subscriber}
-{% endhighlight %}
+```
 
 A Subscription is created with two properties:
 
@@ -96,7 +96,7 @@ supplied.
 
 ### Publish
 
-{% highlight go %}
+```go
 case event := <-publish:
     for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
         ch.Value.(chan Event) <- event
@@ -105,21 +105,21 @@ case event := <-publish:
         archive.Remove(archive.Front())
     }
     archive.PushBack(event)
-{% endhighlight %}
+```
 
 The published event is sent to the subscribers' channels one by one.  Then the
 event is added to the archive, which is trimmed if necessary.
 
 ### Unsubscribe
 
-{% highlight go %}
+```go
 case unsub := <-unsubscribe:
     for ch := subscribers.Front(); ch != nil; ch = ch.Next() {
         if ch.Value.(chan Event) == unsub {
             subscribers.Remove(ch)
         }
     }
-{% endhighlight %}
+```
 
 The subscriber channel is removed from the list.
 
@@ -133,7 +133,7 @@ expose that functionality using different techniques.
 The Active Refresh chat room javascript refreshes the page every five seconds to
 get any new messages (see [`Refresh/Room.html`](https://github.com/revel/examples/blob/master/chat/app/views/Refresh/Room.html)):
 
-{% highlight js %}
+```go
 // Scroll the messages panel to the end
 var scrollDown = function() {
     $('#thread').scrollTo('max');
@@ -148,11 +148,11 @@ var refresh = function() {
 
 // Call refresh every 5 seconds
 setInterval(refresh, 5000);
-{% endhighlight %}
+```
 
 This is the handler to serve the above in [`app/controllers/refresh.go`](https://github.com/revel/examples/blob/master/chat/app/controllers/refresh.go):
 
-{% highlight go %}
+```go
 func (c Refresh) Room(user string) revel.Result {
 	subscription := chatroom.Subscribe()
 	defer subscription.Cancel()
@@ -164,7 +164,7 @@ func (c Refresh) Room(user string) revel.Result {
 	}
 	return c.Render(user, events)
 }
-{% endhighlight %}
+```
 
 
 It subscribes to the chatroom and passes the archive to the template to be
@@ -178,7 +178,7 @@ The Long Polling chat room (see [`LongPolling/Room.html`](https://github.com/rev
 makes an ajax request that the server keeps open until a new message comes in. The javascript uses a
 `lastReceived` timestamp to tell the server the last message it knows about.
 
-{% highlight js %}
+```js
 var lastReceived = 0;
 var waitMessages = '/longpolling/room/messages?lastReceived=';
 var say = '/longpolling/room/messages?user={%raw%}{{.user}}{%endraw%}';
@@ -204,11 +204,11 @@ var getMessages = function() {
     });
 }
 getMessages();
-{% endhighlight %}
+```
 
 The handler for the above in [`app/controllers/longpolling.go`](https://github.com/revel/examples/blob/master/chat/app/controllers/longpolling.go)
 
-{% highlight go %}
+```go
 func (c LongPolling) WaitMessages(lastReceived int) revel.Result {
 	subscription := chatroom.Subscribe()
 	defer subscription.Cancel()
@@ -230,7 +230,7 @@ func (c LongPolling) WaitMessages(lastReceived int) revel.Result {
 	event := <-subscription.New
 	return c.RenderJSON([]chatroom.Event{event})
 }
-{% endhighlight %}
+```
 
 
 In this implementation, it can simply block on the subscription channel, 
@@ -242,7 +242,7 @@ The Websocket chat room (see  [WebSocket/Room.html](https://github.com/revel/exa
 opens a [websocket](/manual/websockets.html) connection as soon as the
 user has loaded the page.
 
-{% highlight js %}
+```js
 // Create a socket
 var socket = new WebSocket('ws://127.0.0.1:9000/websocket/room/socket?user={%raw%}{{.user}}{%endraw%}');
 
@@ -256,13 +256,13 @@ $('#send').click(function(e) {
     $('#message').val('');
     socket.send(message);
 });
-{% endhighlight %}
+```
 
 The first thing to do is to subscribe to new events, join the room, and send
 down the archive.  Here is what [websocket.go](https://github.com/revel/examples/blob/master/chat/app/controllers/websocket.go#L17) looks like:
 
-{% highlight go %}
-func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
+```go
+func (c WebSocket) RoomSocket(user string, ws revel.ServerWebSocket) revel.Result {
 	// Join the room.
 	subscription := chatroom.Subscribe()
 	defer subscription.Cancel()
@@ -272,27 +272,27 @@ func (c WebSocket) RoomSocket(user string, ws *websocket.Conn) revel.Result {
 
 	// Send down the archive.
 	for _, event := range subscription.Archive {
-		if websocket.JSON.Send(ws, &event) != nil {
+		if ws.MessageSendJSON(&event) != nil {
 			// They disconnected
 			return nil
 		}
 	}
 	....
-{% endhighlight %}
+```
 
 
 Next, we have to listen for new events from the subscription.  However, the
 websocket library only provides a blocking call to get a new frame.  To select
 between them, we have to wrap it ([websocket.go](https://github.com/revel/examples/blob/master/chat/app/controllers/websocket.go#L33)):
 
-{% highlight go %}
+```go
 // In order to select between websocket messages and subscription events, we
 // need to stuff websocket events into a channel.
 newMessages := make(chan string)
 go func() {
     var msg string
     for {
-        err := websocket.Message.Receive(ws, &msg)
+        err := ws.MessageReceiveJSON(&msg)
         if err != nil {
             close(newMessages)
             return
@@ -300,7 +300,7 @@ go func() {
         newMessages <- msg
     }
 }()
-{% endhighlight %}
+```
 
 Now we can select for new websocket messages on the `newMessages` channel.
 
@@ -308,12 +308,12 @@ The last bit does exactly that -- it waits for a new message from the websocket
 (if the user has said something) or from the subscription (someone else in the
 chat room has said something) and propagates the message to the other.
 
-{% highlight go %}
+```go
 // Now listen for new events from either the websocket or the chatroom.
 for {
     select {
     case event := <-subscription.New:
-        if websocket.JSON.Send(ws, &event) != nil {
+        if ws.MessageSendJSON(&event) != nil {
             // They disconnected.
             return nil
         }
@@ -329,7 +329,7 @@ for {
 }
 return nil
 
-{% endhighlight %}
+```
 
 > [websocket.go](https://github.com/revel/examples/blob/master/chat/app/controllers/websocket.go#L48)
 
