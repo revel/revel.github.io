@@ -17,11 +17,14 @@ which is useful for some common concerns such as:
 * Request logging
 * Error handling
 * Statistics logging
+* Authentication handling
 
-In Revel, an interceptor can take one of two forms:
+In Revel, an interceptor can take one of three forms:
     
 * A [Function Interceptor](#function_interceptor) 
 * A [Method Interceptor](#method_interceptor)
+* A [Controller Auto Interceptor](#controller_auto_interceptor)
+     using the `revel.BeforeAfterFilter` filter 
 
 An Interceptor has an [intercept](#intercept_times) point in the request ([When](https://godoc.org/github.com/revel/revel#When)) 
 and returns a [Result](#results) or `nil`.
@@ -70,7 +73,7 @@ func init() {
 
 
 ```go
-// simeple method example
+// simple method example
 
 func (c Hotels) checkUser() revel.Result {
     if user := connected(c); user == nil {
@@ -85,7 +88,33 @@ func init() {
     revel.InterceptMethod(Room.checkVacant, revel.BEFORE)
 }
 ```
-        
+
+### Controller Auto Interceptor
+Controllers that have methods named `Before`,`After`,`Finally`,`Panic`, will be called in the 
+same manner as the interceptor does. The method signature is a little different then normal 
+to allow for method Overriding and cascades. ie if **Application** has 
+**GorpController** controller embedded inside it and both define the 
+`Before` method then what happens is the `GorpController.Before` 
+is invoked before the `Application.Before`. The method signature must match the 
+following syntax  
+
+```
+func (c Application) Before() (r revel.Result, a Application) {
+...
+func (c *GorpController) Before() (result revel.Result, controller *GorpController) {
+```
+**Notice** along with the revel.Result we return the Controller type. 
+This is so when the application starts up it can determine which method belongs to what 
+field in the controller (currently Go does not tell you this information). 
+These work identical to the revel.Interceptors without any configuration.
+
+On the `Before` method the deepest embedded struct with the `Before` method is run first, 
+then the next deepest and so on until the top level. `After`, `Finally`, `Panic` 
+are run from the top down
+
+#### Controller Auto Interceptor Implementation
+Add the filter `revel.BeforeAfterFilter` to revel.Filters on app/init.go. 
+Ensure your function names match `func (c Application) Before() (r revel.Result, a Application)` 
 
 <a name="intercept_times"></a>
 
@@ -126,4 +155,6 @@ In all cases, any returned [Result](results.html) will take the place of any exi
 
 * However, in the `BEFORE` case, the returned Result is guaranteed to be final,
 * While in the `AFTER` case it is possible that a further interceptor could emit its own Result.
+
+
 
