@@ -98,9 +98,9 @@ type Params struct {
     url.Values
     Files map[string][]*multipart.FileHeader
 }
-{% endhighlight %}
+```
 
-{% highlight go %}
+```go
 type Response struct {
     Status      int
     ContentType string
