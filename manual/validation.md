@@ -24,7 +24,7 @@ in-depth examples.
 
 This example demonstrates field validation with inline error messages.
 
-{% highlight go %}
+```go
 func (c MyApp) SaveUser(username string) revel.Result {
 	// Username (required) must be between 4 and 15 letters (inclusive).
 	c.Validation.Required(username)
@@ -42,7 +42,46 @@ func (c MyApp) SaveUser(username string) revel.Result {
 	// All the data checked out!
 	...
 }
-{% endhighlight  %}
+
+```
+In this second implementation we have the model validating the object, note 
+
+`v.MaxSize(username, 15).MessageKey("Name must be between 4-15 characters long")`
+
+vs
+
+`v.MinSize(username, 4).Message("Name must be between 4-15 characters long")`
+
+The `MessageKey` function tells Revel for the error message use that message key 
+(ie lookup the message in the [i18n](i18n-messages.html) translation)
+
+The `Message` function tells Revel for the error message use that message
+
+
+```go
+func (c MyApp) SaveUser(user User) revel.Result {
+    user.Validate(c.Validation)
+
+	if c.Validation.HasErrors() {
+		// Store the validation errors in the flash context and redirect.
+		c.Validation.Keep()
+		c.FlashParams()
+		return c.Redirect(Hotels.Settings)
+	}
+
+	// All the data checked out!
+	...
+}
+...
+func (u *User) Validate(v *revel.Validation) {
+	v.Required(u.Name)
+	v.MaxSize(username, 15).MessageKey("Name must be between 4-15 characters long")
+	v.MinSize(username, 4).Message("Name must be between 4-15 characters long")
+	v.Match(username, regexp.MustCompile("^\\w*$"))
+  return
+}
+```
+
 
 Step by step:
 
@@ -58,7 +97,8 @@ Step by step:
 
 The `Hotels.Settings` action renders a template:
 
-{% capture ex %}{% raw %}
+```html
+
 {{/* app/views/Hotels/Settings.html */}}
 ...
 {{if .errors}}Please fix errors marked below!{{end}}
@@ -68,8 +108,8 @@ The `Hotels.Settings` action renders a template:
     <input name="username" value="{{.flash.username}}"/>
     <span class="error">{{.errors.username.Message}}</span>
 </p>
-{% endraw %}{% endcapture %}
-{% highlight htmldjango %}{{ex}}{% endhighlight %}
+
+```
 
 It does three things:
 
@@ -92,7 +132,7 @@ There are only two differences from the previous example:
 
 Here's the code.
 
-{% highlight go %}
+```go
 func (c MyApp) SaveUser(username string) revel.Result {
 	// Username (required) must be between 4 and 15 letters (inclusive).
 	c.Validation.Required(username).Message("Please enter a username")
@@ -110,11 +150,11 @@ func (c MyApp) SaveUser(username string) revel.Result {
 	// All the data checked out!
 	...
 }
-{% endhighlight %}
+```
 
 .. and the template:
 
-{% capture ex %}{% raw %}
+```html
 {{/* app/views/Hotels/Settings.html */}}
 ...
 {{if .errors}}
@@ -127,7 +167,7 @@ func (c MyApp) SaveUser(username string) revel.Result {
 </div>
 {{end}}
 ...
-{% endraw %}{% endcapture %}
-{% highlight htmldjango %}{{ex}}{% endhighlight %}
+```
+
 
 
