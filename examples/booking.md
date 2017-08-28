@@ -68,7 +68,7 @@ Once you have SQLite installed, it will be possible to run the booking app:
 ## Interceptors
 
 [`app/controllers/init.go`](https://github.com/revel/examples/blob/master/booking/app/controllers/init.go) 
-registers the [interceptors](/manual/interceptors.html) that run before every action ([InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)):
+registers the [interceptors](/manual/interceptors.html) that run before every method ([InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod)):
 
 {% highlight go %}
 func init() {

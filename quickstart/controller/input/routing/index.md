@@ -7,7 +7,7 @@ Routes are defined in a separate `routes` file.
 
 The basic syntax is:
 
-	(METHOD) (URL Pattern) (Controller.Action)
+	(METHOD) (URL Pattern) (Controller.Method)
 
 This example demonstrates all of the features:
 
@@ -21,21 +21,21 @@ GET    /login                 App.Login              # A simple path
 GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ (optional trailing slash)
 GET    /hotels/:id            Hotels.Show            # Extract a URI argument
 WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
-POST   /hotels/:id/:action    Hotels.:action         # Automatically route some actions.
+POST   /hotels/:id/:method    Hotels.:method         # Automatically route the controller Hotels methods.
 GET    /public/*filepath      Static.Serve("public") # Map /app/public resources under /public/...
 *      /debug/                module:testrunner      # Prefix all routes in the testrunner module with /debug/
-*      /:controller/:action   :controller.:action    # Catch all; Automatic URL generation
+*      /:controller/:method   :controller.:method    # Catch all; Automatic URL generation
 ~~~
 
 Let's go through the lines one at a time.  At the end, we'll see how to
-accomplish **reverse routing** -- generating the URL to invoke a particular action.
+accomplish **reverse routing** -- generating the URL to invoke a particular method.
 
 ## A simple path
 
 	GET    /login                 App.Login
 
 The simplest route uses an exact match on method and path.  It invokes the Login
-action on the App controller.
+method on the App controller.
 
 ## Trailing slashes
 
@@ -44,7 +44,7 @@ action on the App controller.
 This route invokes `Hotels.Index` for both `/hotels` and `/hotels/`. The
 reverse route to `Hotels.Index` will include the trailing slash.
 
-Trailing slashes should not be used to differentiate between actions. The
+Trailing slashes should not be used to differentiate between methods. The
 simple path `/login` **will** be matched by a request to `/login/`.
 
 ## URL Parameters
@@ -56,7 +56,7 @@ match anything except a slash.  For example, `/hotels/123` and
 `/hotels/abc` would both be matched by this route.
 
 Extracted parameters are available in the `Controller.Params` map, as well as
-via action method parameters.  For example:
+via method parameters.  For example:
 
 	func (c Hotels) Show(id int) revel.Result {
 		...
@@ -94,9 +94,9 @@ its value will be exactly the path substring that follows that prefix.
 Websockets are routed in the same way as other requests, using a method
 identifier of **WS**.
 
-The corresponding action would have this signature:
+The corresponding method would have this signature:
 
-	func (c Hotels) Feed(ws *websocket.Conn, id int) revel.Result {
+	func (c Hotels) Feed(ws revel.ServerWebSocket, id int) revel.Result {
 		...
 	}
 
@@ -111,7 +111,7 @@ For the 2 parameters version of Static.Serve, blank spaces are not allowed betwe
 For serving directories of static assets, Revel provides the **static** module,
 which contains a single
 [Static](http://godoc.org/github.com/revel/revel/modules/static/app/controllers)
-controller.  Its Serve action takes two parameters:
+controller.  Its Serve method takes two parameters:
 
 * prefix (string) - A (relative or absolute) path to the asset root.
 * filepath (string) - A relative path that specifies the requested file.
@@ -121,20 +121,20 @@ controller.  Its Serve action takes two parameters:
 ## Fixed parameters
 
 As demonstrated in the Static Serving section, routes may specify one or more
-parameters to the action.  For example:
+parameters to the method.  For example:
 
 	GET    /products/:id     ShowList("PRODUCT")
 	GET    /menus/:id        ShowList("MENU")
 
 The provided argument(s) are bound to a parameter name using their position.  In
-this case, the list type string would be bound to the name of the first action
+this case, the list type string would be bound to the name of the first method
 parameter.
 
 This could be helpful in situations where:
 
-* you have a couple similar actions
-* you have actions that do the same thing, but operate in different modes
-* you have actions that do the same thing, but operate on different data types
+* you have a couple similar methods
+* you have methods that do the same thing, but operate in different modes
+* you have methods that do the same thing, but operate on different data types
 
 ## Routing Modules
 
@@ -170,25 +170,25 @@ Then in the first example, the routes would be imported into your application wi
 ## Auto Routing
 
 ~~~
-POST   /hotels/:id/:action    Hotels.:action
-*      /:controller/:action   :controller.:action
+POST   /hotels/:id/:method    Hotels.:method
+*      /:controller/:method   :controller.:method
 ~~~
 
-URL argument extraction can also be used to determine the invoked action.
-Matching to controllers and actions is **case insensitive**.
+URL argument extraction can also be used to determine the invoked method.
+Matching to controllers and method is **case insensitive**.
 
 The first example route line would effect the following routes:
 
 	/hotels/1/show    => Hotels.Show
 	/hotels/2/details => Hotels.Details
 
-Similarly, the second example may be used to access any action in the
+Similarly, the second example may be used to access any Action (Controller.Method) in the
 application:
 
 	/app/login         => App.Login
 	/users/list        => Users.List
 
-Since matching to controllers and actions is case insensitive, the following
+Since matching to controllers and methods is case insensitive, the following
 routes would also work:
 
 	/APP/LOGIN         => App.Login
@@ -211,10 +211,10 @@ Upon building your application, Revel generates an `app/routes` package.  Use it
 with a statement of the form:
 
 <pre class="prettyprint lang-go">
-routes.Controller.Action(param1, param2)
+routes.Controller.Method(param1, param2)
 </pre>
 
-The above statement returns a URL (type string) to Controller.Action with the
+The above statement returns a URL (type string) to Controller.Method with the
 given parameters.  Here is a more complete example:
 
 <pre class="prettyprint lang-go">{% capture html %}

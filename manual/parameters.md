@@ -80,7 +80,7 @@ Posted JSON data is read when the http header ContentType is `application/json`
 or `text/json`. The raw bytes are stored in the `Param.JSON []byte`  
 
 JSON data will be automatically unmarshalled to the first structure or map that is 
-encountered in the [Action](routing.md).
+encountered in the [Action Argument](routing.md).
 
 When calling `c.Params.Bind(target,paramname)`, JSON data is always ignored, you can call
 `c.Params.BindJSON(target)` to bind the JSON data to the specified object. You must pass
@@ -100,21 +100,21 @@ func (c Hotels) Show() revel.Result {
 - All params except `File` are golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) which provide the accessors.
 - All values are map to slices, a `.Get()` will return first. Use map directly to get at multiple values.
 - Revel's data-binding mechanisms helps with non-string values such as [dates](#date_time) or floats.
-- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values
-- Revel's data-binding mechanisms helps with non-string values such as dates or floats
+- Golang's native [url.Values](http://www.golang.org/pkg/net/url/#Values) provides accessors for simple values.
 
 ## Action arguments
 
 Parameters may be accepted directly as method arguments by the action.  For
 example:
 
-{% highlight go %}
-func (c AppController) Action(name string, ids []int, user User, img []byte) revel.Result {
+```go
+func (c AppController) DoWork(name string, ids []int, user User, img []byte) revel.Result {
 	...
 }
-{% endhighlight %}
+```
 
-- Before invoking the action, Revel asks its Binder to convert parameters of those names to the requested data type.  
+- Before invoking the action (in this case the AppController.DoWork method), 
+Revel asks its Binder to convert parameters of those names to the requested data type.  
 - If the binding is unsuccessful for any reason, the parameter will have the zero value for its type.
 
 
@@ -123,16 +123,17 @@ func (c AppController) Action(name string, ids []int, user User, img []byte) rev
 ## Binder
 
 - To bind a parameter to a data type, use Revel's [Binder](https://godoc.org/github.com/revel/revel#Binder).  
-- The [Binder](https://godoc.org/github.com/revel/revel#Binder) is integrated with the [`Params`](https://godoc.org/github.com/revel/revel#Params) object.
+- The [Binder](https://godoc.org/github.com/revel/revel#Binder) is integrated with the 
+[`Params`](https://godoc.org/github.com/revel/revel#Params) object.
 
-{% highlight go %}
+```go
 // Example params to binder
-func (c SomeController) Action() revel.Result {
+func (c SomeController) DoResponse() revel.Result {
 	var ids []int
 	c.Params.Bind(&ids, "ids")
 	...
 }
-{% endhighlight %}
+```
 
 The following data types are supported by Revel out of the box:
 
@@ -145,7 +146,7 @@ The following data types are supported by Revel out of the box:
 * \*os.File, \[\]byte, io.Reader, io.ReadSeeker for file uploads
 
 The following sections describe the syntax for these types.  It is also useful
-to refer to [the source code of](https://github.com/revel/revel/blob/master/binder.go) if more detail is required.
+to refer to [the source code](https://github.com/revel/revel/blob/master/binder.go) if more detail is required.
 
 ### Booleans
 
@@ -190,14 +191,14 @@ Structs are bound using simple dot notation:
 	&user.Father.Name=Hermes
 
 Will bind the struct:
-{% highlight go %}
+```go
 type User struct {
     Id int
     Name string
     Friends []int
     Father User
 }
-{% endhighlight %}
+```
 
 <div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Properties must be exported in order to be bound.</div>
 
@@ -206,14 +207,14 @@ type User struct {
 ### Date / Time
 
 - The SQL standard date time formats of `2006-01-02`, `2006-01-02 15:04` are built in.
-- Alternative formats may be added to the application (see [appconf](appconf.html#formatting)), using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
+- Alternative formats may be added to the application (see [app.conf](appconf.html#formatting)), using [golang native constants](http://golang.org/pkg/time/#pkg-constants).  
 - Add a pattern to recognize to the [TimeFormats](https://godoc.org/github.com/revel/revel#TimeFormats) variable, like the example below.
 
-{% highlight go %}
+```go
 func init() {
     revel.TimeFormats = append(revel.TimeFormats, "01/02/2006")
 }
-{% endhighlight %}
+```
 
 
 <a name="file_uploads"></a>
@@ -241,10 +242,10 @@ temp file (if it wasn't already), making it less efficient than the other types.
 
 The application may define its own binders to take advantage of this framework.
 
-It need only implement the [Binder](https://godoc.org/github.com/revel/revel#Binder) `interface` and register the type for which it
+It needs only to implement the [Binder](https://godoc.org/github.com/revel/revel#Binder) `interface` and register the type for which it
 should be called:
 
-{% highlight go %}
+```go
 var myBinder = revel.Binder{
 	Bind: func(params *revel.Params, name string, typ reflect.Type) reflect.Value {...},
 	Unbind: func(output map[string]string, name string, val interface{}) {...},
@@ -253,5 +254,5 @@ var myBinder = revel.Binder{
 func init() {
 	revel.TypeBinders[reflect.TypeOf(MyType{})] = myBinder
 }
-{% endhighlight %}
+```
 

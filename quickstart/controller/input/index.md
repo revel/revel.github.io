@@ -2,10 +2,11 @@
 layout: quickstart
 title: Quickstart
 --- 
-For a controller there are two components to map a request to an action and to determine how the data is processed 
+For a controller there are two components to map a request to an method and to determine how the data is processed 
 
-The **[route]({{site.url}}/quickstart/controller/input/routing/index.html)** maps the request to the action, it also
-provides url paramater mapping, templates also make use of this file to map a controller action and paramater to 
+The **[route]({{site.url}}/quickstart/controller/input/routing/index.html)** maps the request to the Action (Controller.Method), 
+it also
+provides url parameter mapping, templates also make use of this file to map a controller method and paramater to 
 a linkable request.
 
 The **[parameter]({{site.url}}/quickstart/controller/input/parameters/index.html)** or end function point also are 

@@ -155,7 +155,7 @@ The jobs module allows you to schedule a job to be run once. You can control how
 {% highlight go %}
 type AppController struct { *revel.Controller }
 
-func (c AppController) Action() revel.Result {
+func (c AppController) Method() revel.Result {
     // Handle the request.
     ...
 

@@ -54,20 +54,20 @@ and if that passes it can register itself for that.
 In the past we have maintained an all lower case template path, this
 works in most cases but lead to some confusion. For example if you include
 a file within your template you must type out the file and file path
-in lower case. Now you can now specify if 
+in lower case. Now you can specify if 
 the case sensitivity is on or off. The case sensitivity can be turned on
 by setting an app configuration option per template engine like 
 `go.tempate.path=case` will turn on case sensitivity on the `go` 
 template engine (by default it is off). 
 
 ## Directory Scanning
-Directories and scanned for templates in the following order:
+Directories are scanned for templates in the following order:
 
 1. The application `app/views/` directory and subdirectories.
 2. revel core `templates/` directory.
 3. Otherwise a `500` error as template not found (but in [dev mode](appconf.html#run-modes) shows debug info)
 
-For example, given a controller/action `Hello.World()`, Revel will:
+For example, given a controller/method `Hello.World()`, Revel will:
 
 - look for a template file named `views/Hello/World.html`.
 - and if not found, show `views/errors/500.html`
@@ -79,7 +79,7 @@ Template file names are case insensitive so the following will be treated as the
 - `views/HeLlO/wOrLd.HtMl`
 
 However, on `**nix` based file systems (and for example with `index.html` and `IndeX.html`), duplicate cased file names are
-to be avoided as its unpredictable which one will be considered.
+to be avoided as it is unpredictable which one will be considered.
 
 Revel provides templates for error pages ([see code](https://github.com/revel/revel/tree/master/templates/errors))  and
 these display the developer friendly compilation errors in [dev mode](appconf.html#run-modes). An

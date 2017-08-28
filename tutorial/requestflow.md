@@ -16,10 +16,10 @@ The first thing that Revel does is check the `conf/routes` file (see [routing](/
 This tells Revel to invoke the **`Index`** method of the **`App`**
 [controller](/manual/controllers.html) when it receives a http **`GET`** request to **`/`**.
 
-## Actions
+## Controller Methods 
 
 Let's follow this call to the code, in **app/controllers/app.go**:
-{% highlight go %}
+```go
 package controllers
 
 import "github.com/revel/revel"
@@ -31,11 +31,12 @@ type App struct {
 func (c App) Index() revel.Result {
     return c.Render()
 }
-{% endhighlight %}
+```
 
 All [controllers](/manual/controllers.html) must be a `struct` that embeds a [`*revel.Controller`](https://godoc.org/github.com/revel/revel#Controller)
 in the first slot. Any method on a controller that is
-exported and returns a [`revel.Result`](/manual/results.html) may be used as an **Action**.
+exported and returns a [`revel.Result`](/manual/results.html) may be used as 
+part of an **Action**, in the above example **App.Index** is the **Action**.
 
 The Revel controller provides many useful methods for generating [Results](/manual/results.html). In
 this example, it calls [`Render()`](https://godoc.org/github.com/revel/revel#Controller.Render),
@@ -44,7 +45,7 @@ which tells Revel to find and render a [template](/manual/templates.html) as the
 ## Templates
 
 [Templates](/manual/templates.html) are  in the **app/views** directory. When an explicit
-template name is not specified, Revel looks for a template matching the action.
+template name is not specified, Revel looks for a template matching the controller/method.
 In this case, Revel finds the **app/views/App/Index.html** file, and
 renders it as a [Go template](http://www.golang.org/pkg/html/template).
 

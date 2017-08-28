@@ -26,13 +26,13 @@ type Flash struct {
 {% endhighlight %}
 
 NOTE: To set your own cookie, use [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
-{% highlight go %}
-func (c MyController) MyAction() revel.Result {
+```go
+func (c MyController) MyMethod() revel.Result {
     new_cookie := &http.Cookie{Name: "foo", Value: "Bar"}
     c.SetCookie(new_cookie)
     return c.Render()
 }
-{% endhighlight %}
+```
 
 <a name="session"></a>
 
@@ -51,14 +51,14 @@ can be overriden to a specific amount of time by setting the [session.expires](a
 option in [conf/app.conf](appconf.html).  The format is that of
 [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
 
-{% highlight go %}
-func (c MyController) MyAction() revel.Result {
+```go
+func (c MyController) MyMethod() revel.Result {
     c.Session["foo"] = "bar"
     c.Session["bar"] = 1 // Error - value needs to be a string
     delete(c.Session, "abc") // Removed item from session
     return c.Render()
 }
-{% endhighlight %}
+```
 
 
 
@@ -67,7 +67,7 @@ func (c MyController) MyAction() revel.Result {
 
 ## Flash
 
-The Flash provides single-use string storage. It useful for implementing
+The Flash provides single-use string storage. It is useful for implementing
 [the Post/Redirect/Get pattern](http://en.wikipedia.org/wiki/Post/Redirect/Get),
 or for transient "Operation Successful!" or "Operation Failed!" messages.
 

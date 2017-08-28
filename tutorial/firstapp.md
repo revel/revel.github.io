@@ -24,7 +24,7 @@ Enter some data and submit the form.
 
 ![Route not found](/img/HelloRouteNotFound.png)
 
-That makes sense.  Add the action to **app/controllers/app.go**:
+That makes sense.  Add the method to **app/controllers/app.go**:
 {% highlight go %}
 func (c App) Hello(myName string) revel.Result {
     return c.Render(myName)
@@ -53,7 +53,7 @@ Lastly, let's add some validation.  The name should be required, and at least
 three characters.
 
 To do this, let's use the [validation module](/manual/validation.html).  Edit
-your action in **app/controllers/app.go**:
+your method in **app/controllers/app.go**:
 {% highlight go %}
 func (c App) Hello(myName string) revel.Result {
     c.Validation.Required(myName).Message("Your name is required!")
