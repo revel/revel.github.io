@@ -21,9 +21,9 @@ go get -u github.com/flosch/pongo2
 
 Pongo2 template files should start with a `shebang` (`#!`) on the first line. Alternatively, you may append the suffix `*.pongo2.html` to template file names.
 
-Control case sensitivity by setting `pongo2.template.path` in `app.conf` to:
-- `case` case insensitive
-- `lower` compiled using lower case (default)
+Control case sensitivity by setting `pongo2.tempate.caseinsensitive=false` in `app.conf` to:
+- `true` (default) case insensitive
+- `false` compiled using lower case (default)
 
 Currently, the Pongo2 template engine can't access `revel.TemplateFuncs`
 (PR welcome). These functions are built-in:
