@@ -45,9 +45,9 @@ Below is the logger interface.
 
 ```   
 
-###Usage  
+### Usage  
 
-####Log Contexts
+#### Log Contexts
 Logging using these `Debug,Info,Warn,Error,Crit` methods will expect the 
 message values in key value pairs. For example `revel.AppLog.Debug("Hi there")` 
 is fine `revel.AppLog.Debug("Hi there", 25)` will panic (only passed one argument for
@@ -81,7 +81,7 @@ ERROR 22:31:41 app test.go:168: Failed to load: Not Found                       
 
 ```
 
-####Log formats
+#### Log formats
 Logging using these `Debugf,Infof,Warnf,Errorf,Critf` methods allows you to output a formatted string for the message. like
 `revel.AppLog.Debugf("Hi %s ", "Grace")`. Only existing contexts will be applied to them. For example look at the log.Errorf below 
 ```go
@@ -104,7 +104,7 @@ ERROR 22:31:41 app test.go:168: Failed to load: Not Found                       
 ```
 
 
-###App.conf
+### App.conf
  
  Configuration examples
 1) All log messages that match the filter `module=app` to stdout, 
@@ -134,7 +134,7 @@ To summarize the log output can be a named function contained in `logger.LogFunc
  function does not exist then it is assumed to be a file name, the file name extension will choose
  the output format. The `stderr` and `stdout` are two predefined functions which may be overriden if desired
 
-####Filtered logging
+#### Filtered logging
 A filtered log file can specify a series of key, values that will only be logged to if *ALL* the 
 keys and values match a context in the log. For example the following will log at level error
 to the stdout if the log message contains the context `module=revel`
@@ -155,7 +155,7 @@ log.all.output = stdout
 log.error.filter = /var/log/revel/all-errors.json 
 ```
 
-####File logging
+#### File logging
 For file logging revel uses [lumberjack.Logger](https://github.com/natefinch/lumberjack) 
 to stream the output to file. The following configuration options can be set
 ```ini
@@ -168,13 +168,13 @@ These are global options, you can however apply unique options by
 [Customizing Log Handling](#customizing_log_handling) 
 
 
-#####More configuration options
+##### More configuration options
 ```ini
 log.colorize = true   # Turns off colorization for console output
 log.smallDate = true  # Outputs just the time for the terminal output
 ```
 
-#####Customizing Log Handling
+##### Customizing Log Handling
 
 The following code adds a new output called stdoutjson 
 ```go
@@ -199,7 +199,7 @@ log.error.filter.module.revel = longtermstorage
 *It is important to note that your logger function may be called with a `nil` `options.Ctx` 
  (this is the `revel.Config`).*
 
-#####The special cases 
+##### The special cases 
  - `log.request.output` assigns a handler for messages which are on the info channel and have the 
 `section=requestlog` assigned to them. If `log.request.output` is not specified then messages will
 be logged directly to the same handler handling the `info` log level. 
@@ -210,7 +210,7 @@ be logged directly to the same handler handling the `info` log level.
 
  
 
-####Deprecated Logs
+#### Deprecated Logs
 The following loggers are deprecated, the will continue to function but will output something like this 
 `INFO  22:16:10    app harness.go:190: * LOG DEPRECATED * Listening on :9000    module=app section=deprecated `
 ```go
@@ -237,7 +237,7 @@ The logger is forked into the following loggers
         **If the controller handling the response is from a module it will be forked from 
         [module.Log](https://godoc.org/github.com/revel/revel#Module)**
 
-####Request logger
+#### Request logger
 Sample format: terminal format
 ```ini
 log.request.output = stdout
@@ -258,3 +258,20 @@ log.request.output = /var/log/revel/requestlog.json
 
 <hr>
 - Issues tagged with [`log`](https://github.com/revel/revel/labels/topic-log)
+
+### Module Logs
+To fetch a logger initialized for a module you can use the `revel.RegisterModuleInit` like below
+
+```go
+var moduleLogger logger.MultiLogger
+
+func init() {
+	revel.RegisterModuleInit(func(module *revel.Module){
+		moduleLogger = module.Log
+		moduleLogger.Debug("Assigned Logger")
+	})
+}
+
+```
+The `callback` registered in the `revel.RegisterModuleInit` is called before the `revel.OnAppStart`
+functions are.  

@@ -57,3 +57,24 @@ idea to have your view path look like `app/views/Reservation/Controller/Action.h
 . This means that your controller needs to call `RenderTemplate` 
 instead of `Render` so that the correct view path is chosen. 
 
+## Module Initialization
+The `revel.RegisterModuleInit(func(*revel.Module))` can be for a module to be called immediately after all the modules
+are loaded. The `revel.Module` contained in the callback is the one assigned for that module. This can
+be used for a variety of purposes. 
+
+An example of a purpose would be to retrieve the logger initialized for
+the module like the following
+
+```go
+var moduleLogger logger.MultiLogger
+
+func init() {
+	revel.RegisterModuleInit(func(module *revel.Module){
+		moduleLogger = module.Log
+		moduleLogger.Debug("Assigned Logger")
+	})
+}
+
+```
+The `callback` registered in the `revel.RegisterModuleInit` is called before the `revel.OnAppStart`
+functions are.  
