@@ -1,21 +1,20 @@
 ---
-title: Newrelic Server Engine
+title: NewRelic Server Engine
 layout: modules
 github:
   labels:
     - topic-server-engine
 ---
-This module is the for [NewRelic](http://newrelic.com) it wraps the Go
-http server and inserts a filter to track each requests.
+This module wraps the Go HTTP server and inserts a filter to track each request
+using [NewRelic](http://newrelic.com).
 
-###App.conf
-- **server.engine** You must set this to `newrelic` in order to use this server engine
-- **server.newrelic.license** The license key for NewRelic
-- **server.newrelic.addfilter** Defauls `true` When true a filter is inserted
-into `revel.Filters` at position 2. This filter logs every request.
+### Setup
 
-###Other Notes
-There is a controller called RelicController which contains a single method
-to return a `newrelic.Application` object. If you want to access this object
-you can extend that class.
+Set the following keys in your application's `app.conf`:
+- **server.engine** Set to `newrelic`
+- **server.newrelic.license** Set to your NewRelic license key
+- **server.newrelic.addfilter** Inserts filter into `revel.Filters` at position 2 to log every request. Default: `true`
+
+### Other Notes
+To access the `newrelic.Application` instance, embed the `RelicController` into your Revel controller and call the `GetRelicApplication()` method.
  

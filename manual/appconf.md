@@ -8,15 +8,16 @@ godoc:
     - Config
 ---
 
-## Overview
+The application config file is at `conf/app.conf` relative to your app root. It
+uses the syntax accepted by [revel/config](https://github.com/revel/config)
+which is similar to [INI](http://en.wikipedia.org/wiki/INI_file) files. We'll
+cover the general structure here. See [comprehensive keys](appconf-keys) for
+a list of all built-in config keys and their values.
 
-The application config file is at `conf/app.conf` and uses the syntax accepted by
-[revel/config](https://github.com/revel/config)  which is similar to
-[INI](http://en.wikipedia.org/wiki/INI_file) files. For all options see
- [here](appconf-options)
+## Example
 
-Here's an example file with two sections, `dev` (develop) and `prod` (production).
-{% highlight ini %}
+Two sections, `dev` (develop) and `prod` (production):
+```ini
 app.name = myapp
 app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
 http.addr =
@@ -46,7 +47,7 @@ log.trace.output = off
 log.info.output  = off
 log.warn.output  = %(app.name)s.log
 log.error.output = %(app.name)s.log
-{% endhighlight %}
+```
 
 Config values can be accesed via the [revel.Config](https://godoc.org/github.com/revel/revel#Config) variable, more [below](#customproperties)
 
@@ -73,26 +74,25 @@ Each section is a **Run Mode** and selected with the [`revel run`](tool.html#run
 Revel creates new apps with **dev** and **prod** run modes defined, but the developer may
 create any sections they wish.
 
-## Dynamic parameters
+### Environment variables
 
 Besides static configuration, Revel also supports dynamic configuration by injecting
-environment variables or the value of other parameters.
-
-### Environment variables
+**environment variables** or the value of other parameters.
 
 In most cases, you'll want to load sensitive values from environment variables
 rather than storing them in your configuration file. The syntax for including an
 environment variable is similar to the shell syntax: `${ENV_VAR_NAME}`.
 
-Example:
-{% highlight ini %}
+### Example
+
+```ini
 app.name = chat
 http.port = 9000
 
 db.driver = ${CHAT_DB_DRIVER}
 db.spec = ${CHAT_DB_SPEC}
-{% endhighlight %}
-Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables,
+```
+Revel will then load the `CHAT_DB_DRIVER` and `CHAT_DB_SPEC` environment variables
 and inject them into the config at runtime.
 
 ### Composing other parameters
@@ -100,24 +100,25 @@ and inject them into the config at runtime.
 To incorporate the value of one parameter into another, you can "unfold" it by using
 the `%(var_name)s` syntax (note the 's' at the end).
 
-Example:
-{% highlight ini %}
+### Example
+```ini
 app.name = chat
 http.port = 9000
 
 log.warn.output = %(app.name)s.log
 log.error.output = %(app.name)s.log
-{% endhighlight %}
+```
 Will be parsed by revel/config as:
-{% highlight ini %}
+```ini
 app.name=chat
 http.port=9000
 
 log.warn.output = chat.log
 log.error.output = chat.log
-{% endhighlight %}
+```
 
 <a name="customproperties"></a>
+
 
 ## Custom properties
 
@@ -125,34 +126,40 @@ The developer may define custom keys and access them via the
 `revel.Config` variable, which exposes a
 [simple api](https://godoc.org/github.com/revel/revel#MergedConfig).
 
-Example `app.conf` entries:
-{% highlight ini %}
+### Example
+
+In your `app.conf`:
+
+```ini
 myapp.remote = 120.2.3.5
 myapp.remote.enabled = true
-{% endhighlight %}
+```
 
-Example Go usage:
-{% highlight go %}
+In your Go code:
+
+```go
 var remoteServer string
 if revel.Config.BoolDefault("myapp.remote.enabled", false) {
     remoteServer = revel.Config.StringDefault("myapp.remote", "0.0.0.0")
     DoSomethingTo( remoteServer )
 }
-{% endhighlight %}
+```
 
 
 ## External app.conf
 
-Since v0.13.0 revel supported loading a external `app.conf` from given directory.
-It's a convenient way to override or add config values to the application.
-Please make sure file `app.conf` is in given path.
+Since v0.13, Revel has supported loading a external `app.conf` from a given
+directory. It's a convenient way to override or add config values to the
+application. Please make sure `app.conf` is in the given path.
 
-Example Go usage:
-{% highlight go %}
+### Example
+
+```go
+age:
 func init() {
     revel.ConfPaths = []string{"/etc/myapp/conf"}
 }
-{% endhighlight %}
+```
 
 
 <a name="BuiltinProperties"></a>
@@ -185,10 +192,10 @@ func init() {
 The human-readable application name. This is used for some console output and
 development web pages.
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   app.name = Booking example application
-{% endhighlight %}
+```
 
 Default: `Auto Generated` For example: github.com/myaccount/myrevelapp, `app.name = myrevelapp`
 
@@ -200,10 +207,10 @@ The secret key used for cryptographic operations, see [`revel.Sign`](https://god
 - Setting it to empty string disables signing and is not recommended.
 - It is set to a random string when initializing a new project with [`revel new`](tool.html#new)
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   app.secret = pJLzyoiDe17L36mytqC912j81PfTiolHm1veQK6Grn1En3YFdB5lvEHVTwFEaWvj
-{% endhighlight %}
+```
 
 Default: Auto Generated random seed value
 
@@ -211,10 +218,10 @@ Default: Auto Generated random seed value
 
 If `true` Revel will resolve client IP address from HTTP headers `X-Forwarded-For` and `X-Real-Ip` in the order. By default Revel will get client IP address from http.Request's RemoteAddr. Set to `true` if Revel application is running behind the proxy server like nginx, haproxy, etc.
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   app.behind.proxy = true
-{% endhighlight %}
+```
 
 Default: `false`
 
@@ -226,10 +233,10 @@ Default: `false`
 
 The port to listen on.
 
-Example:
-{% highlight ini %}
+### Example:
+```ini
   http.port = 9000
-{% endhighlight %}
+```
 
 #### `http.addr`
 
@@ -280,10 +287,10 @@ Default: ""
 Read timeout specifies a time limit for `http.Server.ReadTimeout` in seconds
 made by a single client. A Timeout of zero means no timeout.
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   http.timeout.read = 300
-{% endhighlight %}
+```
 
 Default: `90`
 
@@ -292,10 +299,10 @@ Default: `90`
 Write timeout specifies a time limit for `http.Server.WriteTimeout` in seconds
 made by a single client. A Timeout of zero means no timeout.
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   http.timeout.write = 120
-{% endhighlight %}
+```
 
 Default: `60`
 
@@ -320,10 +327,10 @@ Configures [`RenderXML`](https://godoc.org/github.com/revel/revel#Controller.Ren
 and [`RenderJSON`](https://godoc.org/github.com/revel/revel#Controller.RenderJSON) 
 to produce indented XML/JSON.
 
-Example:
-{% highlight ini %}
+### Example
+```ini
   results.pretty = true
-{% endhighlight %}
+```
 
 Default: `false`
 
@@ -337,10 +344,10 @@ Default: `false`
 Specifies the default language for messages when the requested locale is not
 recognized.  If left unspecified, a dummy message is returned to those requests.
 
-For example:
-{% highlight ini %}
+### Example
+```ini
   i18n.default_language = en
-{% endhighlight %}
+```
 
 Default: ""
 
@@ -358,9 +365,10 @@ Default: `%(cookie.prefix)_LANG` (see cookie.prefix)
 
 Revel watches your project and supports hot-reload for a number of types of
 source. To enable watching:
-{% highlight ini %}
+```ini
   watch = true
-{% endhighlight %}
+```
+
 If `false`, nothing will be watched, regardless of the other `watch.*`
 configuration keys.  (This is appropriate for production deployments)
 
@@ -401,10 +409,10 @@ Default: `true`
 
 Revel components use the following cookies by default:
 
-* REVEL_SESSION
-* REVEL_LANG
-* REVEL_FLASH
-* REVEL_ERRORS
+* `REVEL_SESSION`
+* `REVEL_LANG`
+* `REVEL_FLASH`
+* `REVEL_ERRORS`
 
 
 #### `cookie.prefix`
@@ -412,16 +420,16 @@ Revel components use the following cookies by default:
 Revel uses this property as the prefix for the Revel-produced cookies. This is
 so that multiple REVEL applications can coexist on the same host.
 
-For example:
-{% highlight ini %}
+### Example
+```ini
   cookie.prefix = MY
-{% endhighlight %}
+```
 would result in the following cookie names:
 
-* MY_SESSION
-* MY_LANG
-* MY_FLASH
-* MY_ERRORS
+* `MY_SESSION`
+* `MY_LANG`
+* `MY_FLASH`
+* `MY_ERRORS`
 
 Default: `REVEL`
 
@@ -433,18 +441,16 @@ ensuring that the cookie is always encrypted when transmitting from client to
 server. This makes the cookie less likely to be exposed to cookie theft via
 eavesdropping.
 
-{% highlight ini %}
+```ini
   cookie.secure = false
-{% endhighlight %}
+```
 
 Default: `false` in `dev` mode, otherwise `true`
 
 
 
+
 ### Session
-
-
-
 
 #### `session.expires`
 
@@ -470,7 +476,6 @@ Default: \{\{ \}\}
 
 
 ### Formatting
-
 
 #### `format.date`
 
@@ -598,19 +603,18 @@ The [jobs](/modules/jobs.html) module allows you to run [scheduled](/modules/job
 - Default is `10`.
 - If zero (`0`), then there is no limit imposed.
 
-{% highlight ini %}
+```ini
   jobs.pool = 4
-{% endhighlight %}
-
+```
 
 #### `jobs.selfconcurrent`
 
 If `true` (default is `false`), allows a job to run even if previous instances of that job are still in
 progress.
 
-{% highlight ini %}
+```ini
   jobs.selfconcurrent = true
-{% endhighlight %}
+```
 
 
 #### `jobs.acceptproxyaddress`
@@ -620,23 +624,23 @@ address used to allow or deny public access. This is diabled by default as the h
 and therefore is not trustable. You should only use this if you are access your Revel app via a reverse
 proxy (e.g. Nginx). It is not recommended to allow this is production mode due to the security implications.
 
-{% highlight ini %}
+```ini
   jobs.acceptproxyaddress = true
-{% endhighlight %}
+```
 
 
 
 #### Named Schedules
 
 [Named cron schedules](/modules/jobs.html#NamedSchedules) may be configured by setting a key of the form:
-{% highlight ini %}
+```ini
   cron.schedulename = @hourly
-{% endhighlight %}
+```
 The names schedule may be referenced upon submission to the job runner. For
 example:
-{% highlight go %}
+```go
   jobs.Schedule("cron.schedulename", job)
-{% endhighlight %}
+```
 
 
 
@@ -646,13 +650,13 @@ example:
 
 - [Modules](modules.html) may be added to an application by specifying their base import path.
 - An empty import path disables the module.
-{% highlight ini %}
+```ini
   module.testrunner = github.com/revel/modules/testrunner
 
   ## FIXME mymodule crashes so disabled for now
   # module.mymodulename = /path/to/mymodule
   module.mymodulename =
-{% endhighlight %}
+```
 
 
 
@@ -663,9 +667,9 @@ example:
  - An optional value to wrap error `path` and `line` locations with a hyper link.
  - Disabled by default; does not wrap error location with link.
  - An example using Sublime Text's custom URI scheme:
-{% highlight ini %}
+```ini
   error.link = "subl://open?url=file://{% raw %}{{Path}}{% endraw %}&line={% raw %}{{Line}}{% endraw %}"
-{% endhighlight %}
+```
 
 
 

@@ -1,37 +1,42 @@
 ---
-title: Pongo 2
+title: Pongo2 Templates
 layout: modules
 github:
   labels:
     - topic-template-engine
 ---
- The [PONGO2](https://github.com/flosch/pongo2) Template Engine
+The [Pongo2](https://github.com/flosch/pongo2) Template Engine
 
-- Pongo2 templates may be identified by a `shebang` on the first line 
-(preferred method) or changing the file extension to home.pongo2.html. 
+Pongo2 is the successor of [pongo](https://github.com/flosch/pongo), a Django-syntax like templating-language.
 
-- Pongo2 templates can be set to be case sensitive by setting
-`pongo2.tempate.path=case`, default is not case sensitive. If case sensitivity is 
-off the templates are compiled using lower case
-- Currently the only functions built in are as follows, pongo2 
-  does not have access to `revel.TemplateFuncs` 
-  (pull requests writing a bridge for this would be welcome):
-  - field
-  - radio
-  - option
-  - url
-  - checkbox
-  - append
-  
-  Samples implementation below  
-
-##### Details
-pongo2 is the successor of [pongo](https://github.com/flosch/pongo), a Django-syntax like templating-language.
+### Dependencies
 
 Install/update using `go get` (no dependencies required by pongo2):
 ```
 go get -u github.com/flosch/pongo2
 ```
+
+
+### Setup
+
+Pongo2 template files should start with a `shebang` (`#!`) on the first line. Alternatively, you may append the suffix `*.pongo2.html` to template file names.
+
+Control case sensitivity by setting `pongo2.tempate.caseinsensitive=false` in `app.conf` to:
+- `true` (default) case insensitive
+- `false` compiled using lower case (default)
+
+Currently, the Pongo2 template engine can't access `revel.TemplateFuncs`
+(PR welcome). These functions are built-in:
+- field
+- radio
+- option
+- url
+- checkbox
+- append
+
+
+### Examples
+
 
 [Try pongo2 out in the pongo2 playground.](https://www.florian-schlachter.de/pongo2/)
 {% raw %}

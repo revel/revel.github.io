@@ -205,24 +205,28 @@ li.dropdown-header {
 }
 
 .main h2, .main h3, .main h4 {
+    border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     text-transform: uppercase;
 }
 .main h2 {
     font-size: 1.4em;
-    padding: 1em;
+    font-weight:800;
+    padding: .5em;
     margin: 2em 0 1em;
+    border-left: 7px solid #ddd;
 }
 
 .main h3 {
-    font-size: 1.3em;
-    padding: .7em;
+    font-size: 1.2em;
+    padding: .5em;
     margin: 1.7em 0 1em;
+    border-left: 3px solid #ddd;
 }
 
 .main h4 {
     font-size: 1.1em;
-    padding: .5em;
+    padding: .3em;
     margin: 1.5em 0 .8em;
 }
 

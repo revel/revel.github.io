@@ -31,20 +31,20 @@ Here is a quick summary:
    action, they decide which View to display, and they prepare and provide the
    necessary data to the View for rendering.
 
-There are many excellent overviews of MVC structure online.  In particular, the
-one provided by [Play! Framework](http://www.playframework.org) matches our model exactly.
+A detailed overview of the MVC approach is beyond the scope of this guide.
+
 ## Revel Startup
 An event model has been added to revel to make it easier to provide additional control
 to the application. Events can be added by calling
 `revel.AddInitEventHandler(func(event int, value interface{}) (r int) {})`
 The event ID's are called  in the following sequence
-![Revel Startup](../img/Initialization.png)
+<img src="../img/Initialization.png" alt="Revel Startup Flow" style="width:100%" />
 
 ## The Life of a Request
 
-Below is an overview of the request processing framework.
+Below is an overview of the request processing framework:
 
-![Life of a Request](../img/RevelDesign.png)
+<img src="../img/RevelDesign.png" alt="Life of a Request Flow" style="width:100%" />
 
 
 
