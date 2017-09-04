@@ -282,26 +282,26 @@ Specifies the path to an X509 certificate key.
 
 Default: ""
 
-#### `timeout.read`
+#### `http.timeout.read`
 
 Read timeout specifies a time limit for `http.Server.ReadTimeout` in seconds
 made by a single client. A Timeout of zero means no timeout.
 
 ### Example
 ```ini
-  timeout.read = 300
+  http.timeout.read = 300
 ```
 
 Default: `90`
 
-#### `timeout.write`
+#### `http.timeout.write`
 
 Write timeout specifies a time limit for `http.Server.WriteTimeout` in seconds
 made by a single client. A Timeout of zero means no timeout.
 
 ### Example
 ```ini
-  timeout.write = 120
+  http.timeout.write = 120
 ```
 
 Default: `60`
