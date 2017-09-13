@@ -3,7 +3,7 @@ lsi: false
 highlighter: rouge
 markdown: kramdown
 jekyll-redirect-from: true
-gems:
+plugins:
   - jekyll-redirect-from
   - octopress-escape-code
 whitelist:
