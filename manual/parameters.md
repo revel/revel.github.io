@@ -142,6 +142,8 @@ The following data types are supported by Revel out of the box:
 * Pointers to any supported type
 * Slices of any supported type
 * Structs
+* Maps
+* Maps of Structs
 * time.Time for dates and times
 * \*os.File, \[\]byte, io.Reader, io.ReadSeeker for file uploads
 
@@ -198,7 +200,55 @@ type User struct {
     Friends []int
     Father User
 }
+func (c SomeController) Method(user *User) revel.Result {
+
+}
 ```
+### Maps
+
+Maps are bound using simple dot notation:
+
+	?user.Id=1
+	&user.Name=rob
+	&user.Friends[]=2
+	&user.Friends[]=3
+	&user.Father.Id=5
+	&user.Father.Name=Harry
+
+Will bind the map:
+```go
+foo := map[string]interface{}{}
+c.Params.Bind(foo, "ids")
+
+```
+`foo={"user":{"Id":1,"Name":"rob","Friends":[2,3],"Father":{"Id":5,"Name":"Harry"}}}`
+### Maps of Structs
+
+If you predefine a map you can manually bind the parameter to it:
+
+	?user.Id=1
+	&user.Name=rob
+	&user.Friends[]=2
+	&user.Friends[]=3
+	&user.Father.Id=5
+	&user.Father.Name=Hermes
+
+Will bind this map with a struct inside of it:
+```go
+type User struct {
+    Id int
+    Name string
+    Friends []int
+    Father User
+}
+map[string]interface{}
+foo := map[string]*User{}{"user":&User{}}
+c.Params.Bind(foo, "ids")
+```
+Notice how this differs from the struct example, in the struct example we defined a parameter 
+of type `*User`, in behind the scenes Revel took any parameter name starting with `user` and assigned
+it to the struct. In this example we define a map and a precreated struct instance of `User`. If we 
+did not precreate this instance Revel would have populated a map within the map.  
 
 <div class="alert alert-warning"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Properties must be exported in order to be bound.</div>
 
