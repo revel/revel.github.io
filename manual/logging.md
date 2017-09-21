@@ -135,7 +135,7 @@ To summarize the log output can be a named function contained in `logger.LogFunc
  the output format. The `stderr` and `stdout` are two predefined functions which may be overriden if desired
 
 #### Filtered logging
-A filtered log file can specify a series of key, values that will only be logged to if *ALL* the 
+A log **filter** can specify a series of key, values that will only be logged to if *ALL* the 
 keys and values match a context in the log. For example the following will log at level error
 to the stdout if the log message contains the context `module=revel`
 ```ini
@@ -154,6 +154,20 @@ Filters may be empty so that you can make use the additive feature, the followin
 log.all.output = stdout 
 log.error.filter = /var/log/revel/all-errors.json 
 ```
+
+Inverse filters can be applied by using **nfilter** for example, consider the following 
+```ini
+log.all.filter.module.app = stdout    # Log all loggers for the application to the stdout
+log.error.output = stderr             # Log all errors to stderr
+```
+In this case any application error would end up logging to both stdout and stderr - which in some cases 
+(like output to a file) would be 
+useful but if you do not want to send duplicate messages to the console you can do the following
+```ini
+log.all.filter.module.app = stdout    # Log all loggers for the application to the stdout
+log.error.nfilter.module.app = stderr # Everything else that logs an error to stderr
+```
+The `log.error.nfilter.module.app` is the inversion of the first filter, with the type of error.
 
 #### File logging
 For file logging revel uses [lumberjack.Logger](https://github.com/natefinch/lumberjack) 
