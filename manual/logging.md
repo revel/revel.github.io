@@ -114,7 +114,7 @@ specified by the `log.all` of the first line.
 
 ```ini
 log.all.filter.module.app = stdout # Log all loggers for the application to the stdout
-log.error.output = stderr          # Log all loggers for Revel errorws to the stderr
+log.error.output = stderr          # Log all loggers for Revel errors to the stderr
 ```
 
 
