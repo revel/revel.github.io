@@ -55,8 +55,8 @@ func init() {
 	revel.Filters = []Filter{
 		PanicFilter,             // Recover from panics and display an error page instead.
 		RouterFilter,            // Use the routing table to select the right Action
-		FilterConfiguringFilter, // A hook for adding or removing per-Action filters.
 		ParamsFilter,            // Parse parameters into Controller.Params.
+		FilterConfiguringFilter, // A hook for adding or removing per-Action filters.
 		SessionFilter,           // Restore and write the session cookie.
 		FlashFilter,             // Restore and write the flash cookie.
 		ValidationFilter,        // Restore kept validation errors and save new ones from cookie.
@@ -79,7 +79,14 @@ which allows the developer to add, insert, or remove filter stages based on the
 `Action` or `Controller`.
 
 This functionality is implemented by the [FilterConfiguringFilter](https://godoc.org/github.com/revel/revel#FilterConfiguringFilter), itself a
-filter stage.
+filter stage. For example to add a filter to all the actions for a `MyController` you can
+
+
+```go
+func init() {
+	revel.FilterController(MyController{}).Insert(MyAuthFilter, revel.BEFORE, revel.ActionInvoker)
+}
+```
 
 ## Implementing a Filter
 
