@@ -242,10 +242,11 @@ The port to listen on.
 
 The IP address on which to listen.
 
-- On Linux, an empty string indicates a wildcard
+- On Linux, an address of 0.0.0.0 will listen on all interfaces assigned to the host
 - on Windows, an empty string is silently converted to `"localhost"`
+- An empty string is converted to localhost for security reasons.
 
-Default: ""
+Default: "localhost"
 
 
 #### `harness.port`
