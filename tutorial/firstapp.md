@@ -45,6 +45,13 @@ Next, we have to create the view.  Create a file
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
+Finally, add the following to **conf/routes** file, just below the `App.Index` entry.
+
+{% capture ex %}{% raw %}
+GET     /App/Hello     App.Hello
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
+
 Refresh the page, and you should see a greeting:
 
 ![Hello revel](/img/HelloRevel.png)
