@@ -386,7 +386,7 @@ Default: `"normal"`
 
 If `true`, Revel will watch the `views/` template directory (and sub-directories) for changes and reload them as necessary.
 
-Default: `false`
+Default: `true`
 
 
 #### `watch.routes`
