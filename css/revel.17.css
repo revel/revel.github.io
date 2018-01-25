@@ -258,7 +258,11 @@ li.dropdown-header {
     font-family: monospace;
     white-space: pre;
 }
-
+/* Fix go code so types are visible */
+.highlight pre code.language-go, pre code.language-go {
+    background-color: #111;
+    display: block;
+}
 .highlight .kd {
     color: #E4438A;   
 }
