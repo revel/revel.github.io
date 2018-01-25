@@ -259,7 +259,7 @@ li.dropdown-header {
     white-space: pre;
 }
 /* Fix go code so types are visible */
-.highlight pre code.language-go, pre code.language-go {
+.highlight pre code.language-go, pre code.language-go, div.language-go div pre code {
     background-color: #111;
     display: block;
 }
