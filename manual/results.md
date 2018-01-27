@@ -200,7 +200,7 @@ type MyHtml string
 
 func (r MyHtml) Apply(req *revel.Request, resp *revel.Response) {
 	resp.WriteHeader(http.StatusOK, "text/html")
-	resp.Out.Write([]byte(r))
+	resp.GetWriter().Write([]byte(r))
 }
 ```
 
