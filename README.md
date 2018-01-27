@@ -10,7 +10,7 @@ This [jekyll](http://jekyllrb.com/) powered site is located at [revel.github.io]
 To compile and view the site locally:
 
 ```
-$ gem install jekyll kramdown
+$ gem install jekyll kramdown jekyll-redirect-from octopress-escape-code
 $ git clone git@github.com:revel/revel.github.io.git
 $ cd revel.github.io
 $ jekyll serve
