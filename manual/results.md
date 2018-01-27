@@ -140,6 +140,7 @@ The main difference is that `Controller.RenderFile()` needs an `*os.File` and `C
 
 * `revel.Attachment` forces the browser to download the file. The filename and size are derived from the passed `*os.File` or file path.
 * `revel.Inline` indicates the browser that it may render the file inline. Note that when browsers can't display the file a download is still performed.
+* `revel.None` omits the content disposition header and let the browser figure out what to do, also omits the file name from the header.
 
 `Controller.RenderFileName()` can also return an error in case the file is not found. See [Controller.RenderError()](https://godoc.org/github.com/revel/revel#Controller.RenderError)
 
