@@ -10,6 +10,8 @@ godoc:
     - Controller.RenderTemplate
     - Controller.RenderJSON
     - Controller.RenderXML
+    - Controller.RenderFile
+    - Controller.RenderFileName
     - Controller.Redirect
 ---
 
@@ -35,7 +37,6 @@ methods to produce different results:
 </ul>
 </div>
 
-
 * **[Render()](#Render)**, **[RenderTemplate()](#RenderTemplate)** 
     - render a template, passing arguments.
 * **[RenderJSON()](#RenderJSON)**, **[RenderXML()](#RenderXML)** 
@@ -44,8 +45,8 @@ methods to produce different results:
     - return a plaintext response.
 * **[Redirect()](#Redirect)** 
     - redirect to another action or URL
-* **`RenderFile()`** 
-    - return a file, generally to be downloaded as an attachment.
+* **[RenderFile()](#RenderFile)**, **[RenderFileName()](#RenderFileName)**
+    - return a file inline or to be downloaded as an attachment.
 * **`RenderError()`** 
     - return a 500 response that renders the errors/500.html template.
 * **`NotFound()`** 
@@ -80,7 +81,7 @@ func (c *App) CreateEntity() revel.Result {
 
 <a name="Render" /><a name="RenderTemplate" />
 
-## Controller.Render
+## Controller.Render()
 
 Called within an action (e.g. "Controller.Action"),
 [Controller.Render()](https://godoc.org/github.com/revel/revel#Controller.Render) does two things:
@@ -128,9 +129,34 @@ func (c MyController) XTemp() revel.Result {
 
 {% highlight go %}{{ex_render}}{% endhighlight %}
 
+<a name="RenderFile" /><a name="RenderFileName" />
+
+## Controller.RenderFile() / Controller.RenderFileName()
+
+Within an action it is sometimes necessary to serve a file (e.g. an attachment).
+For this case the functions [Controller.RenderFile()](https://godoc.org/github.com/revel/revel#Controller.RenderFile) and For this case the functions [Controller.RenderFileName()](https://godoc.org/github.com/revel/revel#Controller.RenderFileName) are there.
+
+The main difference is that `Controller.RenderFile()` needs an `*os.File` and `Controller.RenderFileName()` takes a file path as a string. Both require a Content-Disposition option which can be `revel.Attachment` or `revel.Inline`.
+
+* `revel.Attachment` forces the browser to download the file. The filename and size are derived from the passed `*os.File` or file path.
+* `revel.Inline` indicates the browser that it may render the file inline. Note that when browsers can't display the file a download is still performed.
+
+`Controller.RenderFileName()` can also return an error in case the file is not found. See [Controller.RenderError()](https://godoc.org/github.com/revel/revel#Controller.RenderError)
+
+```go
+func (c App) File() revel.Result {
+	f, _ := os.Open("/path/to/attachment.pdf")
+	return c.RenderFile(f, revel.Inline)
+}
+
+func (c App) Filename() revel.Result {
+	return c.RenderFileName("/path/to/attachment.docx", revel.Attachment)
+}
+```
+
 <a name="RenderJSON"></a><a name="RenderXML"></a>
 
-## RenderJSON() / RenderXML()
+## Controller.RenderJSON() / Controller.RenderXML()
 
 The application may call
 [RenderJSON](https://godoc.org/github.com/revel/revel#Controller.RenderJSON), 
