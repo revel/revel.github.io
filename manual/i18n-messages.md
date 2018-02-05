@@ -315,3 +315,15 @@ To resolve messages using the current locale from [templates](templates.html) th
     </ul>
 </div>
 
+### Locale by URL
+Adds ability to specify a parameter to be used to set the locale.
+
+In revel app.conf set the `i18n.locale.parameter` to the parameter name.
+```
+i18n.locale.parameter=locale
+```
+
+In routes specify the route path with the locale
+```
+GET  /hotels/:locale       Hotels.Index
+```
