@@ -24,17 +24,28 @@ GET      /              MySite.Welcome
 module:jobs  # Importing jobs includes all the routes from the module
 
 ## main routes
-GET    /                      App.Home # A simple path
+GET             /                       App.Home # A simple path
 
-GET    /contact               App.Contact  # contact page
-#GET    /contact/              App.Contact  # unnecessary as (optional trailing slash is above)
+GET             /contact                App.Contact  # contact page
+#GET            /contact/               App.Contact  # unnecessary as (optional trailing slash is above)
 
-GET    /login                 App.Login
+GET             /login                  App.Login
 
-GET    /hotels/               Hotels.Index           # Match /hotels and /hotels/ 
-GET    /hotels/:id            Hotels.Show            # Extract a URI argument
-WS     /hotels/:id/feed       Hotels.Feed            # WebSockets.
-POST   /hotels/:id/:method    Hotels.:method         # Automatically route some methods.
+GET             /hotels/                Hotels.Index            # Match /hotels and /hotels/ 
+GET             /hotels/:id             Hotels.Show             # Extract a URI argument
+WS              /hotels/:id/feed        Hotels.Feed             # WebSockets.
+POST            /hotels/:id/:method     Hotels.:method          # Automatically route some methods.
+
+PURGE           /purge/:key             Cache.Purge             # Cache
+
+# WebDAV extends the set of standard HTTP verbs and headers allowed for request methods.
+PROPFIND        /webdav/:key            WebDav.PropFind         # WebDav
+PROPPATCH       /webdav/:key            WebDav.PropPatch        # WebDav
+MKCOL           /webdav/:key            WebDav.MkCol            # WebDav
+COPY            /webdav/:key            WebDav.Copy             # WebDav
+MOVE            /webdav/:key            WebDav.Mode             # WebDav
+LOCK            /webdav/:key            WebDav.Lock             # WebDav
+UNLOCK          /webdav/:key            WebDav.UnLock           # WebDav
 
 ## Static files. Map /app/public resources under /public/...
 GET    /public/*filepath      Static.Serve("public") 
@@ -235,6 +246,27 @@ GET     /foo     Application.FooMethod
 
 [Websockets](websockets.html) are routed the same way as other requests with the 'method'
 identifier of `WS`.
+
+## Purge
+
+	PURGE           /purge/:key             Cache.Purge             # Cache
+
+- Purge method is routed the same way as other requests with the `method`
+- An HTTP purge is similar to an HTTP GET request, except that the method is PURGE.
+- Actually you can call the method whatever you'd like, but most people refer to this as purging. 
+
+## WebDav
+
+	PROPFIND        /webdav/:key            WebDav.PropFind         # WebDav
+	PROPPATCH       /webdav/:key            WebDav.PropPatch        # WebDav
+	MKCOL           /webdav/:key            WebDav.MkCol            # WebDav
+	COPY            /webdav/:key            WebDav.Copy             # WebDav
+	MOVE            /webdav/:key            WebDav.Mode             # WebDav
+	LOCK            /webdav/:key            WebDav.Lock             # WebDav
+	UNLOCK          /webdav/:key            WebDav.UnLock           # WebDav
+
+- WebDav Methods are routed the same way as other requests with the `method`.
+- See the [WebDav Documentation](https://en.wikipedia.org/wiki/WebDAV) for more details.
 
 
 ## Reverse Routing

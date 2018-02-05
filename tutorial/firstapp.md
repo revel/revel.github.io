@@ -35,13 +35,20 @@ Next, we have to create the view.  Create a file
 **app/views/App/Hello.html**, with this content:
 
 {% capture ex %}{% raw %}
-{{set . "title" "Home"}}
+{{set . "title" "Hello page"}}
 {{template "header.html" .}}
 
 <h1>Hello {{.myName}}</h1>
 <a href="/">Back to form</a>
 
 {{template "footer.html" .}}
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
+
+Finally, add the following to **conf/routes** file, just below the `App.Index` entry.
+
+{% capture ex %}{% raw %}
+GET     /App/Hello     App.Hello
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
