@@ -37,7 +37,6 @@ func (c MyController) MyMethod() revel.Result {
 <a name="session"></a>
 
 ## Session
-
 Revel's concept of *session* is a string map, stored as a cryptographically signed cookie.
 
 This has some implications:
@@ -73,7 +72,7 @@ or for transient "Operation Successful!" or "Operation Failed!" messages.
 
 Here's an example of that pattern:
 
-{% highlight go %}
+```go
 // Show the Settings form
 func (c App) ShowSettings() revel.Result {
 	return c.Render()
@@ -97,7 +96,7 @@ func (c App) SaveSettings(setting string) revel.Result {
     c.Flash.Success("Settings saved!")
     return c.Redirect(App.ShowSettings)
 }
-{% endhighlight %}
+```
 
 Walking through this example:
 
@@ -121,5 +120,24 @@ expressions:
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
+Here is a second scenario where you want the flash variables returned without using a
+redirect
 
+```go
+func (c Controller) Submit(Input UserName) {
+    Input.Validate(c.Validation);
+    if c.Validation.HasErrors() {
+
+        data := map[string]string{}
+        for key, vals := range c.Params.Values {
+            data[key] = strings.Join(vals, ",")
+        }
+        c.RenderArgs["flash"] =  data
+
+        // Display input page
+        return c.RenderTemplate("test.html")
+    }
+    ...
+    }
+```
 
