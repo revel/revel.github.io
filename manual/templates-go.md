@@ -138,6 +138,7 @@ Given a field name, it returns a struct containing the following members:
 * **Id**: the field name, converted to be suitable as a HTML element ID.
 * **Name**: the field name
 * **Value**: the value of the field in the current `ViewArgs`
+* **Options**: the list of options in the current `ViewArgs`
 * **Flash**: the [flash](sessionflash.html#flash) value of the field.
 * **Error**: the error message, if any is associated with this field.
 * **ErrorClass**: the raw string `"hasError"`, if there was an error, else `""`.
@@ -156,6 +157,26 @@ Example:
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
+Options Example : 
+```html
+ {{with $field := field "record.Status"}}
+{{template "fieldTemplate/radio.html" $field}}
+{{end}}
+```
+
+in radio.html template 
+```html
+{{.Name}}
+{{range .Options }}
+{{.}}
+{{end}}
+```
+The option list can be set as the way set field value (which using flash). Options, use ViewArgs["options"]. 
+```go
+	c.ViewArgs["options"] = map[string][]string{
+		"record.Status": map[string][]string{"Started","Ongoing", "Finished"},
+	}
+```
 
 
 
