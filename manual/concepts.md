@@ -66,8 +66,7 @@ to communicate to the MVC architecture of Revel. By default a single Go http.Ser
 
 Revel allows the developer to build their own [Server Engine](server-engine.html). It comes with Go's http.Server
 out of the box which works great for building up your project. However in production you may need more control so
-you can replace it (see modules/serverengine/fasthttp) or extend it (see modules/serverengine/newrelic). 
-You can expect
+you can replace it (see modules/serverengine/fasthttp) or extend it (see modules/serverengine/newrelic).
   
 Revel's Server Engine can handle multiple go-routine
 (lightweight thread) to process each incoming request.  The implication is that
