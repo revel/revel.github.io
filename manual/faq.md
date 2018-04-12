@@ -22,11 +22,11 @@ Applications may integrate existing http.Handlers by doing the following:
             if event==revel.ENGINE_STARTED {
                 var (
                     serveMux     = http.NewServeMux()
-                    revelHandler = revel.CurrentEngine.(revel.GoHttpServer).Server.Handler
+                    revelHandler = revel.CurrentEngine.(*revel.GoHttpServer).Server.Handler
                 )
                 serveMux.Handle("/",     revelHandler)
                 serveMux.Handle("/path", myHandler)
-                revel.CurrentEngine.(revel.GoHttpServer).Server.Handler = serveMux
+                revel.CurrentEngine.(*revel.GoHttpServer).Server.Handler = serveMux
     
     
             }
