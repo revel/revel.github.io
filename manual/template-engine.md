@@ -8,13 +8,13 @@ godoc:
     - TemplateEngine
 ---
 
-Revel now allows for using custom template engines, the process for building your own is as follows
+Revel allows for building and using custom template engines; the process for building your own engine is as follows
 
-###The Template Engine
+### Building a new Template Engine
 A template engine must implement the [`TemplateEngine`](https://godoc.org/github.com/revel/revel#TemplateEngine)
 interface. To register a new engine in Revel :
  - Define it as a module to be loaded in the `app.conf`.
- - In an `init()` function, which registers the engine in revel by calling:  
+ - In the `init()` function of the engine, register the engine in revel by calling:  
 `RegisterTemplateLoader(key string, loader func(loader *TemplateLoader) (TemplateEngine, error)) (err error)`
  - Specify the template engines to be used by setting the 
   `template.engines` configuration option to the names of the engine to be used (a comma delimited list).
