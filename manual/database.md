@@ -9,7 +9,7 @@ godoc:
 ---
 
 Revel does not come *configured* with a database or ORM interface. There are modules like
-[GORM](https://github.com/revel/modules/tree/master/gorm) that can be used to provide this
+[GORM](https://github.com/revel/modules/tree/master/orm/gorm) that can be used to provide this
 functionality. But ultimately it's up to the developer what to use and how to use. 
 
 - The [booking sample application](/examples/booking.html) has an example 

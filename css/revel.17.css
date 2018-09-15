@@ -260,6 +260,7 @@ li.dropdown-header {
 }
 /* Fix go code so types are visible */
 .highlight pre code.language-go, pre code.language-go, div.language-go div pre code {
+    color: inherit;
     background-color: #111;
     display: block;
 }
@@ -280,8 +281,11 @@ li.dropdown-header {
     color: #92214E;
 }
 .highlight .language-htmldjango .nv {
-     color: #219277;
+    color: #219277;
     font-weight: bold;
+}
+.highlight code {
+    color: #333;
 }
 
 

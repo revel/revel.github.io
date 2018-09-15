@@ -54,7 +54,7 @@ v := c.Params.Form.Get("form_val")
 **File** multipart [file uploads](#file_uploads)
 
 ```go
-f := c.Params.Files.Get("file_name")
+f := c.Params.Files["file_name"]
 ```
 
 ### Combined Params
