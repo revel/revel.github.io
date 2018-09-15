@@ -208,7 +208,7 @@ Important:<br>For the two parameters version of <code>Static.Serve</code>, blank
 
 [Modules](/modules/index.html) which contain routes can be imported into your application in two ways:
 
-In the example below, its assumed `mymodule` has a `routes` file containing:
+In the example below, it's assumed `mymodule` has a `routes` file containing:
     
     GET      /gopher        MyModule.FetchGopher
     POST     /gopher/add    MyModule.AddGopher
