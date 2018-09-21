@@ -176,3 +176,22 @@ func init() {
 	revel.TypeBinders[reflect.TypeOf(MyType{})] = myBinder
 }
 </pre>
+
+### JSON
+Posted JSON data is automatically processed when the http header ContentType is `application/json` 
+or `text/json`. The raw bytes are stored in the `Param.JSON []byte`  
+
+JSON data will be automatically unmarshalled to the first structure or map that is 
+encountered in the [Action Argument](routing.md).
+
+When calling `c.Params.Bind(target,paramname)`, JSON data is always ignored, you can call
+`c.Params.BindJSON(target)` to bind the JSON data to the specified object. You must pass
+a pointer to the `c.Params.BindJSON(target)` function. 
+
+```go
+func (c Hotels) Show() revel.Result {
+    var jsonData map[string]interface{}
+    c.Params.BindJSON(&jsonData)
+    ...
+}
+```

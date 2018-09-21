@@ -14,8 +14,59 @@ The [revel.Controller](https://godoc.org/github.com/revel/revel#Controller) is t
 a single request and controls
 - the incoming [Request](https://godoc.org/github.com/revel/revel#Request) stuff
 - and the [Response](https://godoc.org/github.com/revel/revel#Response) back, in Html, Json, Xml, File or your own custom.
+- `Controllers` are reused but not for the same Request <br />
+- `Controllers.Destroy` function may be defined to *clean up* locally defined variables and are called
+after the controller is used.
+ 
+A `Controller` instance is not shared by two simultaneous requests, but a controller instance may be 
+reused. So if you have instance variables that are set in your controller 
+(like in a `Before` function), you should ensure that these variables are always initialized inside your 
+`Before` function.  
 
-A **Controller** is any type that embeds a [*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**.
+
+For example say you have a Map defined in your controller, and the `Before` function looks at 
+the `Controller.Params` object and see that the `name`  parameter exists, so it sets that value in the map.
+then the controller finishes its execution.  
+
+Now a new request comes in and the controller is reused, and the `Before` function looks at 
+the `Controller.Params` object and does not see that the `name` parameter exists, so it does not change 
+the "name" in the map, but as you see the map contains the value from the previous request. This type
+of hidden bugs can be difficult to track down and it is the reason why it is recommended not to use
+additional attributes in the controller 
+
+There are a few ways to avoid this situation, 
+1) Use the `Controller.Args` map to store your single use variables, this map is always initialized 
+to an empty map so it makes a perfect spot to transfer objects within the controller call 
+2) If you do use controller defined variables make sure you initialize them in your `Before` function. 
+(see Before function below)
+3) Define a `Destroy` function to "clean up" your locally defined stuff. Make sure the
+first thing the Destroy calls is to the controller `Destroy` call
+
+###### Example of a Controller with a `Destroy` function
+```go
+type MyAppController struct {
+    *revel.Controller
+    MyMappedData map[string]interface{}
+}
+
+// Assume that this is called for all the controller functions
+func (c MyAppController) Before() {
+  c.MyMappedData = map[string]interface{}{}
+}
+
+// This function will be called when the Controller is put back into the stack
+func (c MyAppController) Destroy() {
+	c.Controller.Destroy()
+	// Clean up locally defined maps or items
+	c.MyMappedData = nil
+}
+```
+
+
+
+A **Controller** is any type that embeds a 
+[*revel.Controller](https://godoc.org/github.com/revel/revel#Controller) as the **first field/type**
+and is in a source path called controllers.
 
 ```go
 type MyAppController struct {
@@ -59,7 +110,7 @@ type Controller struct {
     Session    Session                // Session, stored in cookie, signed.
     Params     *Params                // Parameters from URL and form (including multipart).
     Args       map[string]interface{} // Per-request scratch space.
-    ViewArgs map[string]interface{} // Args passed to the template.
+    ViewArgs   map[string]interface{} // Args passed to the template.
     Validation *Validation            // Data validation helpers
 }
 ```
@@ -113,7 +164,6 @@ type Response struct {
 - As part of handling a HTTP request, Revel instantiates an instance of a 
 [revel.Controller](https://godoc.org/github.com/revel/revel#Controller).
 - It then sets all of the properties on the embedded `revel.Controller`.
-- Revel does not share a `Controller` instance between requests.
 
 ### Extending the Controller
 
