@@ -21,9 +21,9 @@ which is useful for some common concerns such as:
 
 In Revel, an interceptor can take one of three forms:
     
-* A [Function Interceptor](#function_interceptor) 
-* A [Method Interceptor](#method_interceptor)
-* A [Controller Auto Interceptor](#controller_auto_interceptor)
+* A [Function Interceptor](#function-interceptor) 
+* A [Method Interceptor](#method-interceptor)
+* A [Controller Auto Interceptor](#controller-auto-interceptor)
      using the `revel.BeforeAfterFilter` filter 
 
 An Interceptor has an [intercept](#intercept_times) point in the request ([When](https://godoc.org/github.com/revel/revel#When)) 
@@ -120,7 +120,8 @@ Ensure your function names match `func (c Application) Before() (r revel.Result,
 
 ## Intercept Times
 
-An interceptor can be registered to run at four points in the request lifecycle; defined in [When()](https://godoc.org/github.com/revel/revel#When):
+An interceptor can be registered to run at four points in the request lifecycle; 
+defined in [When](https://godoc.org/github.com/revel/revel#When):
 
 1. **BEFORE**
     * After the request has been [routed](routing.html), the [session, flash](sessionflash.html), and [parameters](parameters.html) decoded, but before the action has been invoked.
