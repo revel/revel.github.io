@@ -9,6 +9,7 @@ Ready to have a blast building apps? Let's get started!
     - Read about the [concepts](concepts.html)
     - Browse the [example applications](/examples/)
     - Read the API docs at [godoc](https://godoc.org/github.com/revel/revel)
+    - Read the Revel cmd [documentation](/manual/tool)
 - **Dev Support**
     - [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/revel/community)
     - [StackOverflow](http://stackoverflow.com/questions/tagged/revel)

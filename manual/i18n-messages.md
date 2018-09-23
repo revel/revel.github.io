@@ -150,6 +150,7 @@ greeting.suffix=, welcome to Revel!
 
 A goconfig file is separated into *sections*. The *default section* always exists and contains any messages that are not defined in a specific section. For example:
 {% highlight ini %}
+[DEFAULT]
 key=value
 
 [SECTION]
