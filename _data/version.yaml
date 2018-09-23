@@ -1,4 +1,4 @@
-revel: 0.20.0-dev
-golang: 1.6+
-date: 2018-02-06
+revel: 0.20.0
+golang: 1.8+
+date: 2018-09-23
 
