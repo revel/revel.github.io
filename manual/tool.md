@@ -6,7 +6,7 @@ layout: manual
 ## Revel Tool
 
 The command line tool `revel` is similar to the `go generate` tool. It's purpose is to
-simplify the development process of a web applicaiton by automating some of the 
+simplify the development process of a web application by automating some of the 
 repetitive steps. When used it 
 reads the source code (and configuration) of your project and generates the source 
 files for the routes, 
@@ -64,7 +64,7 @@ if you are using a vendor folder you need to pass in the application path
              -h, --help                  Show this help message
            
            [version command options]
-                 -a, --application-path= Path to applicaiton folder
+                 -a, --application-path= Path to application folder
 
 ```
 
@@ -84,7 +84,7 @@ Help Options:
   -h, --help                  Show this help message
 
 [new command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -s, --skeleton=         Path to skeleton folder (Must exist on GO PATH)
       -V, --vendor            True if project should contain a vendor folder to be initialized. Creates the vendor folder and the 'Gopkg.toml' file in the root
       -r, --run               True if you want to run the application right away
@@ -117,7 +117,7 @@ Help Options:
   -h, --help                  Show this help message
 
 [run command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -m, --run-mode=         The mode to run the application in
       -p, --port=             The port to listen
       -n, --no-proxy          True if proxy server should not be started. This will only update the main and routes files on change
@@ -161,7 +161,7 @@ Help Options:
 
 [build command options]
       -t, --target-path=      Path to target folder. Folder will be completely deleted if it exists
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -m, --run-mode=         The mode to run the application in
       -s, --include-source    Copy the source code as well
 
@@ -198,7 +198,7 @@ Help Options:
 
 [package command options]
       -m, --run-mode=         The mode to run the application in
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -s, --include-source    Copy the source code as well
 
 ```
@@ -235,7 +235,7 @@ Help Options:
   -h, --help                  Show this help message
 
 [clean command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
 
 ```
 
@@ -262,7 +262,7 @@ Help Options:
 
 [test command options]
       -m, --run-mode=         The mode to run the application in
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -f, --suite-function=   The suite.function
 
 ```
