@@ -9,9 +9,11 @@ godoc:
     - Flash
 ---
 
-Revel provides two cookie-based storage mechanisms for convenience, [Session](#session) and [Flash](#flash).
+Revel provides  [Flash](#flash) cookie based method to set temporary transient data. It also
+provides [Session](#session) backed data to provide persistent user state data.
 
-{% highlight go %}
+```go
+
 // A signed cookie, and thus limited to 4kb in size.
 // Restriction: Keys may not have a colon in them.
 type Session map[string]string
@@ -23,7 +25,7 @@ type Session map[string]string
 type Flash struct {
 	Data, Out map[string]string
 }
-{% endhighlight %}
+```
 
 NOTE: To set your own cookie, use [Controller.SetCookie()](https://godoc.org/github.com/revel/revel#Controller.SetCookie)
 ```go
@@ -37,31 +39,43 @@ func (c MyController) MyMethod() revel.Result {
 <a name="session"></a>
 
 ## Session
-Revel's concept of *session* is a string map, stored as a cryptographically signed cookie.
+ [revel.Session](https://godoc.org/github.com/revel/revel/session#Session) is a 
+map[string]interface{}. By default you can still interact with string data as if it was
+a map[string]string. If you store objects in the session they must be able to convert to
+JSON and you must use the [revel.Session.Get()](https://godoc.org/github.com/revel/revel/session#Session.Get)
+function to extract the data. The `Session.Get` call will automatically inflate the object 
+if it exists in the map. The inflated result will be a `map[string]interface{}`. You can
+also do a [revel.Session.GetInto()](https://godoc.org/github.com/revel/revel/session#Session.GetInto)
+passing a reference to the object you want inflated. and it will populate that object if 
+it exists 
 
-This has some implications:
-
-* The size limit is 4kb.
-* All data must be serialized to a `string` for storage.
-* All data may be viewed by the user as it is **not encrypted**, but it is safe from modification.
-
-The default lifetime of the session cookie is the browser lifetime.  This
-can be overriden to a specific amount of time by setting the [session.expires](appconf.html#session.expires)
-option in [conf/app.conf](appconf.html).  The format is that of
-[time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
+The default session engine is the [revel-cookie engine](/manual/session-engine#cookie) 
 
 ```go
+func (c MyController) getUser(username string) models.User {
+	user = &models.User{}
+	_,  err := c.Session.GetInto("fulluser", user, false)
+	if err==nil && user.Username == username {
+		return user
+	}
+	// more
+	
+}
+
 func (c MyController) MyMethod() revel.Result {
+
     c.Session["foo"] = "bar"
-    c.Session["bar"] = 1 // Error - value needs to be a string
+    c.Session["bar"] = 1 
     delete(c.Session, "abc") // Removed item from session
     return c.Render()
 }
+
+
 ```
 
 
 
-<a name="flash"></a>
+
 
 
 ## Flash

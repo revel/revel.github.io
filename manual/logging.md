@@ -222,19 +222,6 @@ be logged directly to the same handler handling the `info` log level.
  - If `log.critical` is not specified and `log.error` has been. Then the error handler 
  will receive the critical messages as well
 
- 
-
-#### Deprecated Logs
-The following loggers are deprecated, the will continue to function but will output something like this 
-`INFO  22:16:10    app harness.go:190: * LOG DEPRECATED * Listening on :9000    module=app section=deprecated `
-```go
-revel.TRACE
-revel.INFO
-revel.WARN
-revel.ERROR
-```
-
-
 #### Internal structure
 
 Revel provides a single root logger called [revel.RootLog](https://godoc.org/github.com/revel/revel#RootLog). 

@@ -8,9 +8,17 @@ layout: quickref
 - [Static Files](/manual/routing.html#StaticFiles)
 - [InterceptorFunc](https://godoc.org/github.com/revel/revel#InterceptorFunc), [InterceptorMethod](https://godoc.org/github.com/revel/revel#InterceptorMethod),  [manual](/manual/interceptors.html)
 - [Filters](https://godoc.org/github.com/revel/revel#Filters), [manual](/manual/filters.html)
-  - [OnAppStart](https://godoc.org/github.com/revel/revel#OnAppStart)
 - [Logging](/manual/logging.html), [config](/manual/appconf.html#logging)
 - [Debugging](/manual/debug.html)
+- [Revel Events](https://godoc.org/github.com/revel/revel#OnAppStop) , [manual](/manual/startup-shutdown.html)
+
+Revel Core 
+- [OnAppStart](https://godoc.org/github.com/revel/revel#OnAppStart), [manual](/manual/startup-shutdown.html)
+- [OnAppStop](https://godoc.org/github.com/revel/revel#OnAppStop), [manual](/manual/startup-shutdown.html)
+- [Manual Shutdown](https://godoc.org/github.com/revel/revel#StopServer) , [manual](/manual/startup-shutdown.html)
+- [ServerEngine](https://godoc.org/github.com/revel/revel#ServerEngine), [manual](/manual/server-engine.html)
+- [TemplateEngine](https://godoc.org/github.com/revel/revel#TemplateEngine), [manual](/manual/template-engine.html)
+- [SessionEngine](https://godoc.org/github.com/revel/revel#SessionEngine), [manual](/manual/session-engine.html)
 
 [Controller](https://godoc.org/github.com/revel/revel#Controller), [manual](/manual/controllers.html)
 - [Request](https://godoc.org/github.com/revel/revel#Request)

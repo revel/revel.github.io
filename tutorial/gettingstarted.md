@@ -58,22 +58,22 @@ Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the
 
 Verify that it works:
 
-	$ revel help
-	~
-	~ revel! http://revel.github.io
-	~
-	usage: revel command [arguments]
-
-	The commands are:
-
-	    new         create a skeleton Revel application
-	    run         run a Revel application
-	    build       build a Revel application (e.g. for deployment)
-	    package     package a Revel application (e.g. for deployment)
-	    clean       clean a Revel application's temp files
-	    test        run all tests from the command-line
-
-	Use "revel help [command]" for more information.
+	$ Usage:
+        revel [OPTIONS] <command>
+      
+      Application Options:
+        -v, --debug              If set the logger is set to verbose
+            --historic-run-mode  If set the runmode is passed a string not json
+        -X, --build-flags=       These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
+      
+      Available commands:
+        build
+        clean
+        new
+        package
+        run
+        test
+        version
 
 
 <a href="createapp.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create a new Revel application.](createapp.html)

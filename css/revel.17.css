@@ -263,6 +263,8 @@ li.dropdown-header {
     color: inherit;
     background-color: #111;
     display: block;
+    overflow-x: auto;
+    min-width: 1000px;
 }
 .highlight .kd {
     color: #E4438A;   

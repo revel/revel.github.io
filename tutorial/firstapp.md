@@ -10,12 +10,12 @@ Let's start with the **myapp** project that was [created previously](createapp.h
 
 Edit the **app/views/App/Index.html** template to add this form, under the
 included `flash.html` template:
-{% highlight html %}
+```html
 <form action="/App/Hello" method="GET">
     <input type="text" name="myName" /><br/>
     <input type="submit" value="Say hello!" />
 </form>
-{% endhighlight %}
+```
 Refresh the page to see our work.
 
 ![The Say Hello form](/img/AlohaForm.png)
