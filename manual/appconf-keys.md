@@ -13,7 +13,7 @@ This is a comprehensive list of keys and their possible values for the Revel
 `app.conf` file. See [general information](appconf) for an overview on how to use the `app.conf` file.
 
 
-## Harness
+## Revel Tool
 
 | Option | Default | Description   |
 |---------------|----|---------------|
@@ -23,6 +23,7 @@ This is a comprehensive list of keys and their possible values for the Revel
 |`watch.gopath` | `false` | Watch GOPAth for changes
 |`watch` | `true` | Watch files for changes
 |`watch.code` | `true` | Watch source code for changes
+|`package.folders` | `conf,public,app/views` | when building/packaging only include folders defined in this option  
 
 ## Core application
 

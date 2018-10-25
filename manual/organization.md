@@ -36,6 +36,8 @@ domain entities and services.
             - `css/`           - stylesheet files
             - `js/`            - javascript files
             - `images/`        - image files
+        - `vendor/`          - vendor folder used for version control
+        - `Gopkg.toml`          - vendor dependency management file
 
 
 ## app/ directory
@@ -81,3 +83,7 @@ sub-directories for `images/`, `css/` stylesheets and `js/` JavaScript files.
 
 The names of these directories may be anything and  the developer need only update the [routes](routing.html).
 
+## vendor/ directory
+
+Used by the `dep` tool for storing dependent packages (instead of using the GOPATH)
+see [versions](versions.html). To initialize a vendor application see the [Revel tool](tool.html)

@@ -8,31 +8,28 @@ Use the [`revel`](/manual/tool.html#mew) command line tool to create a new appli
 
 $ export GOPATH="/home/me/gostuff"
 $ cd $GOPATH
-$ revel new -a myapp
-~
-~ revel! http://revel.github.io
-~
-Your application is ready:
-    /home/me/gostuff/src/myapp
+$ revel new myapp
+Revel executing: create a skeleton Revel application
+Your application has been created in:
+   /home/me/gostuff/myapp
 
 You can run it with:
-    revel run -a myapp
+   revel run -a  myapp
 
 $ revel run -a myapp
-~
-~ revel! http://revel.github.io
-~
 Revel executing: run a Revel application
-WARN  20:12:59 harness.go:114: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
-Proxy server is listening on  :9000
+WARN  11:21:51 harness.go:170: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
+INFO  11:21:52    app     run.go:32: Running revel server                      
+INFO  11:21:52    app   plugin.go:9: Go to /@tests to run the tests.           
+Revel engine is listening on.. localhost:40935
+Revel proxy is listening, point your browser to : 9000
 ```
 
-Another Example
-```commandline
+*Notes* When you run an application through the command line tool `revel` it is run as a proxy
+that is why you see the revel engine is listening on port X and Revel proxy is listening on 
+port Y
 
-$ revel new -a github.com/myaccount/myapp
-$ revel run -a github.com/myaccount/myapp
-```
+
 Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a notification that your app is ready.
 
 ![Your Application Is Ready](/img/YourApplicationIsReady.png)

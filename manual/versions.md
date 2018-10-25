@@ -3,20 +3,45 @@ title: Versioning
 layout: manual
 ---
 
-A great deal has been written about Go's package versioning situation (by
-@nathany in particular). However, at this time, there is no community standard
-for managing package versions.  Therefore, it is left up to the end developer to
-ensure their software builds safely and reproducibly.
+# Repeatable Builds
 
-If you use Revel for a production application, it is *your* responsibility to
-avoid breakages due to incompatible changes.  Your build process should not
-involve "go get"ing the master branch of Revel.
+The goal of vendoring is to have repeatable builds. The Go language has been trending toward using
+the [dep tool](https://golang.github.io/dep/) which is almost in final format. Adding vendoring
+to a project now is fairly simple. Create a `Gopkg.toml` file in your application root,
+and run `dep ensure`. The contents of the `Gopkg.toml` could be
 
-The simplest way to handle this is to check the code for Revel and all
-dependencies into your repository.  If you use git, they can be embedded
-efficiently as sub-repos.
+```text
+required = ["github.com/revel/revel", "github.com/revel/modules", "github.com/revel/cmd"]
 
-Alternatively, try one of the package managers described in the linked article.
+[[constraint]]
+name = "github.com/revel/revel"
+version = "0.20.0"
 
-* [Go package versioning](http://nathany.com/go-packages/)
+[[constraint]]
+  name = "github.com/revel/modules"
+  version = "0.20.1"
 
+[[constraint]]
+  name = "github.com/revel/cmd"
+  version = "0.20.1"
+
+``` 
+
+Doing a `dep ensure` will download all the files into the folder adjacent to the Gopkg.toml folder.
+
+**Note**
+The two main components of Revel are `revel/revel` and `revel/modules`. They are specified as being
+required so the dep tool will always download them even if your source code does not include them.
+
+The third required package we said is `revel/cmd`. This package contains the revel tool, so if you
+always want the same build tool you would specify it as well. Even though it is downloaded you need
+to install it. So your *setup* sequence should be something like
+
+```text
+dep ensure 
+go install github.com/revel/cmd/revel
+```
+
+This will, download the required packages then compile the package  `github.com/revel/cmd/revel` 
+and place it in your $GOPATH/bin folder.
+Optionally can use the `go build` command to create the `revel` tool elsewhere.

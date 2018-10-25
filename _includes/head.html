@@ -15,5 +15,14 @@
 
 
 <link href="{{ page.root }}/css/revel.17.css" rel="stylesheet">
-
+<script >
+  $(function(){
+    var space = new RegExp('[_,/,\\s]', 'g');
+    $('h2,h3,h4,h5,h6').each(function () {
+      content = $(this).html()
+      content = content.toLowerCase().replace(/[_,/,\s]/g, "_")
+      $(this).html('<a name="'+content+'" href="#'+content+'">' + $(this).text() + '</a>');
+    });
+  })
+</script>
 {% include analytics.html %}

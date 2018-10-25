@@ -6,7 +6,7 @@ layout: manual
 ## Revel Tool
 
 The command line tool `revel` is similar to the `go generate` tool. It's purpose is to
-simplify the development process of a web applicaiton by automating some of the 
+simplify the development process of a web application by automating some of the 
 repetitive steps. When used it 
 reads the source code (and configuration) of your project and generates the source 
 files for the routes, 
@@ -21,7 +21,7 @@ The Revel command package contains no dependencies on the Revel webframework. Th
 the Revel team to make changes to either package individually without affecting your build 
 environment.   
 
-```sh 
+```commandline 
 $ revel
 Usage:
   revel [OPTIONS] <command>
@@ -64,7 +64,7 @@ if you are using a vendor folder you need to pass in the application path
              -h, --help                  Show this help message
            
            [version command options]
-                 -a, --application-path= Path to applicaiton folder
+                 -a, --application-path= Path to application folder
 
 ```
 
@@ -84,17 +84,37 @@ Help Options:
   -h, --help                  Show this help message
 
 [new command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -s, --skeleton=         Path to skeleton folder (Must exist on GO PATH)
-      -V, --vendor            True if project should contain a vendor folder to be initialized. Creates the vendor folder and the 'Gopkg.toml' file in the root
+      -V, --vendor            True if project should contain a vendor folder to be initialized. Creates the vendor folder and the 'Gopkg.toml' file in the root of application
       -r, --run               True if you want to run the application right away
 
 ```
 Creates the directory structure and copy files from a skeleton to initialize an application quickly.
 
-- Copies files from the [`skeleton/`](https://github.com/revel/cmd/tree/develop/revel/skeleton) directory
-- Under multi `GOPATH` scenario, Revel detects the current working directory with `GOPATH` and generates the project
-- Skeleton is an optional argument, provided as an alternate skeleton path
+- Copies files from the [`skeleton/`](https://github.com/revel/skeletons) package
+- The location of the project is dependent on a few variables
+  - If the import path is an absolute path the location will be there
+  - If the path is a relative path the current working directory is checked
+    - If the CWD is on a GOPATH the project is created in the CWD
+    - Otherwise the project is created on the first GOPATH defined 
+- Skeleton is an optional argument, the default skeleton is in
+https://github.com/revel/skeletons/tree/master/basic/bootstrap4 but you can specify a different
+git repository by entering in the path like below.
+```commandline
+./revel new test/me2.com/myproject git://github.com/revel/skeletons:basic/bootstrap4
+Revel executing: create a skeleton Revel application
+Your application has been created in:
+   /home/me/mygopath/src/test/me2.com/myproject
+
+You can run it with:
+   revel run -a  test/me2.com/myproject
+
+```
+Or you can specify a local filesystem path by 
+```commandline
+revel new github.com/me/myapp/ -s path/to/my/skeletong
+```
 - Interestingly you can create a new app and run using the `-r` by doing a
 `revel new -a github.com/me/myapp -r` 
 
@@ -117,7 +137,7 @@ Help Options:
   -h, --help                  Show this help message
 
 [run command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -m, --run-mode=         The mode to run the application in
       -p, --port=             The port to listen
       -n, --no-proxy          True if proxy server should not be started. This will only update the main and routes files on change
@@ -161,7 +181,7 @@ Help Options:
 
 [build command options]
       -t, --target-path=      Path to target folder. Folder will be completely deleted if it exists
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -m, --run-mode=         The mode to run the application in
       -s, --include-source    Copy the source code as well
 
@@ -174,6 +194,8 @@ instead only the folders specified in the app.conf `` are included (recursively)
 You can override this behavior by including the `--include-source` to the command
 - By specifying the `--run-mode` you can further reduce the size of the packaged module since
 this will restrict the number of modules included in the package to be deployed
+- The tool ignores any directory beginning with a period and only includes folders 
+in `conf,public,app/views`. this is configured by `package.folders` in the app.conf 
 
 
 ```commandline
@@ -198,7 +220,7 @@ Help Options:
 
 [package command options]
       -m, --run-mode=         The mode to run the application in
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -s, --include-source    Copy the source code as well
 
 ```
@@ -210,6 +232,8 @@ instead only the folders specified in the app.conf `` are included (recursively)
 You can override this behavior by including the `--include-source` to the command
 - By specifying the `--run-mode` you can further reduce the size of the packaged module since
 this will restrict the number of modules included in the package to be deployed
+- The tool ignores any directory beginning with a period and only includes folders 
+in `conf,public,app/views`. this is configured by `package.folders` in the app.conf 
 
 ```commandline
     revel package -a github.com/revel/revel/examples/chat -m prod
@@ -235,7 +259,7 @@ Help Options:
   -h, --help                  Show this help message
 
 [clean command options]
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
 
 ```
 
@@ -262,7 +286,7 @@ Help Options:
 
 [test command options]
       -m, --run-mode=         The mode to run the application in
-      -a, --application-path= Path to applicaiton folder
+      -a, --application-path= Path to application folder
       -f, --suite-function=   The suite.function
 
 ```

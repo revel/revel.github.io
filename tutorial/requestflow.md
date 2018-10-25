@@ -47,7 +47,7 @@ which tells Revel to find and render a [template](/manual/templates.html) as the
 [Templates](/manual/templates.html) are  in the **app/views** directory. When an explicit
 template name is not specified, Revel looks for a template matching the controller/method.
 In this case, Revel finds the **app/views/App/Index.html** file, and
-renders it as a [Go template](http://www.golang.org/pkg/html/template).
+renders it using the [Template engine](/manual/template-engine).
 
 {% capture ex %}{% raw %}
 {{set . "title" "Home"}}

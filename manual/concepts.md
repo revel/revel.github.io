@@ -16,8 +16,13 @@ application.  In return, it is very light on [configuration](appconf.html)
 and enables an extremely fast development cycle.
 
 Revel is very customizable, you can plug in your own [template system](template-engine)
-or even a custom [http server engine](server-engine). It is the perfect middleware that
+ [http server engine](server-engine) or [session engine](session-engine). 
+Revel also allows integration of custom [HTTP Mux](custom-mux), so if you have an existing
+code base you can migrate to Revel at your own pace, or integrate generated code easily. 
+It is the perfect middleware that
 is designed to work out of the box and provide the ability to implement almost any application.
+
+   
 
 ## MVC
 
