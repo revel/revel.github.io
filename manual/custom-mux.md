@@ -10,7 +10,9 @@ You use the [AddInitEventHandler](/manual/startup-shutdown.html#revel_event_hook
 to inject the 
 mux into the server engine. You pass the prefix of the path that will be handled by the mux
 and the `http.HandlerFunc` in the case were the Go engine is used (or `fasthttp.RequestHandler` 
-for the FastHTTP engine). The mux is called for every request that begins with the prefix
+for the FastHTTP engine). The mux is called for every request that begins with the prefix.
+Revel matches the longest prefix first, then the shorter one (longer is defined by having more 
+forward slashes)
 
 **Notes**
 
