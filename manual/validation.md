@@ -97,7 +97,7 @@ Step by step:
 
 The `Hotels.Settings` action renders a template:
 
-```html
+{% capture ex %}{% raw %}
 
 {{/* app/views/Hotels/Settings.html */}}
 ...
@@ -109,7 +109,8 @@ The `Hotels.Settings` action renders a template:
     <span class="error">{{.errors.username.Message}}</span>
 </p>
 
-```
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 It does three things:
 
@@ -154,7 +155,8 @@ func (c MyApp) SaveUser(username string) revel.Result {
 
 .. and the template:
 
-```html
+{% capture ex %}{% raw %}
+
 {{/* app/views/Hotels/Settings.html */}}
 ...
 {{if .errors}}
@@ -167,7 +169,8 @@ func (c MyApp) SaveUser(username string) revel.Result {
 </div>
 {{end}}
 ...
-```
+{% endraw %}{% endcapture %}
+{% highlight htmldjango %}{{ex}}{% endhighlight %}
 
 
 

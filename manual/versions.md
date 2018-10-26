@@ -45,3 +45,14 @@ go install github.com/revel/cmd/revel
 This will, download the required packages then compile the package  `github.com/revel/cmd/revel` 
 and place it in your $GOPATH/bin folder.
 Optionally can use the `go build` command to create the `revel` tool elsewhere.
+
+## Prune Section
+`Gopkg.toml` files can include a prune section, **do not** prune `unused-packages`, 
+also **do not** prune `non-go`. At most your prune section should look like is the following. 
+If you create a new project that is [vendored](/manual/tool.html#new_vendored)
+it will be created without a prune section  
+
+```ini
+[prune]
+  go-tests = true
+```     

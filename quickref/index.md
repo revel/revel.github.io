@@ -16,6 +16,7 @@ Revel Core
 - [OnAppStart](https://godoc.org/github.com/revel/revel#OnAppStart), [manual](/manual/startup-shutdown.html)
 - [OnAppStop](https://godoc.org/github.com/revel/revel#OnAppStop), [manual](/manual/startup-shutdown.html)
 - [Manual Shutdown](https://godoc.org/github.com/revel/revel#StopServer) , [manual](/manual/startup-shutdown.html)
+- [Custom Mux](https://godoc.org/github.com/revel/revel#AddHTTPMux) , [manual](/manual/custom-mux.html)
 - [ServerEngine](https://godoc.org/github.com/revel/revel#ServerEngine), [manual](/manual/server-engine.html)
 - [TemplateEngine](https://godoc.org/github.com/revel/revel#TemplateEngine), [manual](/manual/template-engine.html)
 - [SessionEngine](https://godoc.org/github.com/revel/revel#SessionEngine), [manual](/manual/session-engine.html)

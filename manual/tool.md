@@ -70,7 +70,7 @@ if you are using a vendor folder you need to pass in the application path
 
 
 <a name="new"></a>
-#### `revel new`
+#### New
 ```commandline
 Usage:
   revel [OPTIONS] new [new-OPTIONS]
@@ -122,8 +122,18 @@ revel new github.com/me/myapp/ -s path/to/my/skeletong
 revel new -a bitbucket.org/myorg/my-app
 ```
 
+#### New Vendored
+
+This creates a new application complete with a Gopkg.toml file needed to perform the vendoring.
+You must install the [dep](https://golang.github.io/dep/) tool prior to using this command, and 
+it must be on the path.
+ 
+```commandline
+revel new bitbucket.org/myorg/my-app -V
+```
+
 <a name="run"></a>
-#### `revel run`
+#### Run
 ```commandline 
 Usage:
   revel [OPTIONS] run [run-OPTIONS]
@@ -165,7 +175,7 @@ you don't need to keep track of what ports are being used
 ```
 
 <a name="build"></a>
-#### `revel build `
+#### Build
 ```commandline
 
 Usage:
@@ -205,7 +215,7 @@ in `conf,public,app/views`. this is configured by `package.folders` in the app.c
 <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> WARNING: The target path will be completely deleted, if it already exists!</div>
 
 <a name="package"></a>
-#### `revel package`
+#### Package
 ```commandline
 Usage:
   revel [OPTIONS] package [package-OPTIONS]
@@ -245,7 +255,7 @@ in `conf,public,app/views`. this is configured by `package.folders` in the app.c
 
 <a name="clean"></a>
 
-#### `revel clean`
+#### Clean
 ```commandline
 Usage:
   revel [OPTIONS] clean [clean-OPTIONS]
@@ -271,7 +281,7 @@ Help Options:
 ```
 
 <a name="test"></a>
-#### `revel test`
+#### Test
 ```commandline
 Usage:
   revel [OPTIONS] test [test-OPTIONS]
