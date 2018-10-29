@@ -49,24 +49,32 @@ Available commands:
 
 #### Version
 
-- Displays the Revel Framework and Go version, 
-if you are using a vendor folder you need to pass in the application path  
 
 ```commandline
-    revel  version -h
-           Usage:
-             build [OPTIONS] version [version-OPTIONS]
-           
-           Application Options:
-             -d, --debug                 If set the logger is set to verbose
-           
-           Help Options:
-             -h, --help                  Show this help message
-           
-           [version command options]
-                 -a, --application-path= Path to application folder
+ $ revel version --help
+ Usage:
+   revel [OPTIONS] version [version-OPTIONS]
+ 
+ Application Options:
+   -v, --debug                                                                                             If set the logger is set to verbose
+       --historic-run-mode                                                                                 If set the runmode is passed a string not json
+   -X, --build-flags=                                                                                      These flags will be used when building the application. May be specified multiple times,
+                                                                                                           only applicable for Build, Run, Package, Test commands
+ 
+ Help Options:
+   -h, --help                                                                                              Show this help message
+ 
+ [version command options]
+       -a, --application-path=                                                                             Path to application folder
+       -u, --Update the framework and modules
 
 ```
+- Displays the Revel Framework and Go version, and the latest version on the server
+- If you are using a vendor folder you need to pass in the application path to show the framework version in the Vendor folder  
+
+The `-u` or `--update` command will update your local version with the latest from the server,
+it calls `go get -u package` if it detects a difference between the two versions.
+If you are using a vendor project it will call `dep ensure -update package`
 
 
 <a name="new"></a>
@@ -115,6 +123,13 @@ Or you can specify a local filesystem path by
 ```commandline
 revel new github.com/me/myapp/ -s path/to/my/skeletong
 ```
+
+Supported Schemes for the skeleton path
+* file:// (or none), expects to find the skeleton on the oath specified
+* http:// Git repository, will access like git clone http://....
+* https:// Git repository, will access like git clone https://....
+* git:// Git repository, will access like git clone git://....
+
 - Interestingly you can create a new app and run using the `-r` by doing a
 `revel new -a github.com/me/myapp -r` 
 
