@@ -25,9 +25,9 @@ Revel engine is listening on.. localhost:40935
 Revel proxy is listening, point your browser to : 9000
 ```
 
-*Notes* When you run an application through the command line tool `revel` it is run as a proxy
-that is why you see the revel engine is listening on port X and Revel proxy is listening on 
-port Y
+*Notes* When you run an application through the command line tool `revel` it is run as a proxy.
+That is why you see the revel engine is listening on port X and Revel proxy is listening on 
+port Y.
 
 
 Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a notification that your app is ready.
