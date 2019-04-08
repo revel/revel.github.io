@@ -138,7 +138,7 @@ Here is a second scenario where you want the flash variables returned without us
 redirect
 
 ```go
-func (c Controller) Submit(Input UserName) {
+func (c Controller) Submit(Input UserName) revel.Result {
     Input.Validate(c.Validation);
     if c.Validation.HasErrors() {
 
