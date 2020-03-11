@@ -21,7 +21,7 @@ functionality. But ultimately it's up to the developer what to use and how to us
 ```go
 func InitDB() {
     driver := revel.Config.StringDefault("db.driver", "mysql")
-    connect_string := revel.Config.StringDefault("db.connect", "root:root@locahost/test")
+    connect_string := revel.Config.StringDefault("db.connect", "root:root@localhost/test")
     
     Db, err = sql.Open(driver, connect_string)
     ....
