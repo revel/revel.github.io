@@ -62,6 +62,7 @@ This is a comprehensive list of keys and their possible values for the Revel
 |`log.error.output` | `stderr` | The output of error messages |
 |`log.debug.output` | `stderr` | The output of debug messages |
 |`log.info.output` | `stderr` | The output of info messages |
+|`log.warn.output` | `stderr` | The output of warn messages |
 |`log.colorize` | `true` | True if log output should be colorized |
 |`mode.dev` | `false` | True if in dev mode |
 |`revel.cache.controller.stack` | `10` | The number of user controller instances to precreate (each user instance gets a Controller instance injected into it during routing)  |

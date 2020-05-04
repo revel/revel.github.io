@@ -14,7 +14,7 @@ generates a main entry point for the application,
 downloads any missing packages (using `deps` if vendor folder is found)
 and can start your application running in a proxy. 
 
-You can optionally increase the verbosity of this process by adding a `-d` or `--debug` 
+You can optionally increase the verbosity of this process by adding a `-v` or `--debug` 
 to any of the commands listed below
 
 The Revel command package contains no dependencies on the Revel webframework. This allows 
@@ -125,7 +125,7 @@ revel new github.com/me/myapp/ -s path/to/my/skeletong
 ```
 
 Supported Schemes for the skeleton path
-* file:// (or none), expects to find the skeleton on the oath specified
+* file:// (or none), expects to find the skeleton on the path specified
 * http:// Git repository, will access like git clone http://....
 * https:// Git repository, will access like git clone https://....
 * git:// Git repository, will access like git clone git://....

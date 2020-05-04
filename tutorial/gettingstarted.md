@@ -11,6 +11,8 @@ Before you can use Revel, first you need to [install Go](http://golang.org/doc/i
 - See the official [Go installation guide](https://golang.org/doc/install).
     - [Ubuntu](https://github.com/golang/go/wiki/Ubuntu)
     - [Windows](https://golang.org/doc/install#windows)
+    
+**Because of Default HTTP Server's graceful shutdown, Go 1.8+ is required.**
 
 ### Set up your GOPATH
 

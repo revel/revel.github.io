@@ -15,7 +15,7 @@ controller.  [Static.Serve](https://godoc.org/github.com/revel/modules/static/ap
 ## Config
 
 The [`static`](https://godoc.org/github.com/revel/modules/static/app/controllers) module
-is optional **is** enabled by default. 
+is optional and is **enabled** by default. 
 
 By default when you create a new project the following
 configuration options are set in the [app.conf](/manual/appconf.html) file:
