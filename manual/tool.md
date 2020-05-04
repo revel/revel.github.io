@@ -27,12 +27,11 @@ Usage:
   revel [OPTIONS] <command>
 
 Application Options:
-  -v, --debug              If set the logger is set to verbose
-      --historic-run-mode  If set the runmode is passed a string not json
-  -X, --build-flags=       These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands                           
-
-Help Options:
-  -h, --help               Show this help message
+  -v, --debug                If set the logger is set to verbose
+      --historic-run-mode    If set the runmode is passed a string not json
+      --historic-build-mode  If set the code is scanned using the original parsers, not the go.1.11+
+  -X, --build-flags=         These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
+      --gomod-flags=         These flags will execut go mod commands for each flag, this happens during the build process
 
 Available commands:
   build
@@ -42,51 +41,60 @@ Available commands:
   run
   test
   version
+```
 
+You can optionally increase the verbosity of this process by adding a `-v` or `--debug` 
+to any of the commands listed below
+
+The Revel command package contains no dependencies on the Revel webframework. This allows 
+the Revel team to make changes to either package individually without affecting your build 
+environment.   
+
+##### Application Options
+These are global options available with any command.
+* -v, --debug : Turns on the logger to be verbose in logging, may offer up clues as to what is not working
+* --historic-run-mode : Passes the run mode as a string, not a json object. Not compatible with project using go.mod
+* -- historic-build-mode : Parses the source files using go/build library. Not recommended with project using go.mod
+* -X --build-flags= Go build flags to be used when building the app, may be specified multiple times for multiple flags
+* --gomod-flags= commands to be run using `go mod <your command here>` spaces will be assumes to be split arguments example below
+handy for modifying the go.mod file before it is used for a build.  
+```
+ revel build   --gomod-flags "edit -replace=github.com/revel/revel=github.com/revel/revel@develop" -a my_gocode -t build/my_gocode
 ```
 
 <a name="version"></a>
 
 #### Version
 
-
-```commandline
- $ revel version --help
- Usage:
-   revel [OPTIONS] version [version-OPTIONS]
- 
- Application Options:
-   -v, --debug                                                                                             If set the logger is set to verbose
-       --historic-run-mode                                                                                 If set the runmode is passed a string not json
-   -X, --build-flags=                                                                                      These flags will be used when building the application. May be specified multiple times,
-                                                                                                           only applicable for Build, Run, Package, Test commands
- 
- Help Options:
-   -h, --help                                                                                              Show this help message
- 
- [version command options]
-       -a, --application-path=                                                                             Path to application folder
-       -u, --Update the framework and modules
+- Displays the Revel Framework and Go version, 
+if you want to view the version for a particular project you need to pass in the application path.
+All version management is maintained in the go.mod file which is located in the root of your project. You can
+modify that file using the `go mod edit` [commands](https://golang.org/cmd/go/#hdr-Edit_go_mod_from_tools_or_scripts)
+or directly with a text editor. You can also pass in commands that Revel will run before building a project like:
 
 ```
-- Displays the Revel Framework and Go version, and the latest version on the server
-- If you are using a vendor folder you need to pass in the application path to show the framework version in the Vendor folder  
-
-The `-u` or `--update` command will update your local version with the latest from the server,
-it calls `go get -u package` if it detects a difference between the two versions.
-If you are using a vendor project it will call `dep ensure -update package`
+revel build   --gomod-flags "edit -replace=github.com/revel/revel=github.com/revel/revel@develop" -a my_gocode -t build/my_gocode
+```    
 
 
-<a name="new"></a>
+```commandline
+$ revel  version -h
+Usage:
+  revel [OPTIONS] version [version-OPTIONS]
+
+Help Options:
+  -h, --help                  Show this help message
+
+[version command options]
+      -a, --application-path= Path to application folder
+
+```
+
 #### New
 ```commandline
+revel new -h
 Usage:
   revel [OPTIONS] new [new-OPTIONS]
-
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
 
 Help Options:
   -h, --help                  Show this help message
@@ -94,18 +102,19 @@ Help Options:
 [new command options]
       -a, --application-path= Path to application folder
       -s, --skeleton=         Path to skeleton folder (Must exist on GO PATH)
-      -V, --vendor            True if project should contain a vendor folder to be initialized. Creates the vendor folder and the 'Gopkg.toml' file in the root of application
+      -p, --package=          The package name, this becomes the repfix to the app name, if defined vendored is set to true
+          --no-vendor         True if project should not be configured with a go.mod, this requires you to have the project on the GOPATH, this is only compatible with go
+                              versions v1.12 or older
       -r, --run               True if you want to run the application right away
 
 ```
 Creates the directory structure and copy files from a skeleton to initialize an application quickly.
+Since version 1 this will initialize a go.mod file in the project folder and the project is not required to be in a GOPATH
 
 - Copies files from the [`skeleton/`](https://github.com/revel/skeletons) package
 - The location of the project is dependent on a few variables
   - If the import path is an absolute path the location will be there
   - If the path is a relative path the current working directory is checked
-    - If the CWD is on a GOPATH the project is created in the CWD
-    - Otherwise the project is created on the first GOPATH defined 
 - Skeleton is an optional argument, the default skeleton is in
 https://github.com/revel/skeletons/tree/master/basic/bootstrap4 but you can specify a different
 git repository by entering in the path like below.
@@ -121,7 +130,7 @@ You can run it with:
 ```
 Or you can specify a local filesystem path by 
 ```commandline
-revel new github.com/me/myapp/ -s path/to/my/skeletong
+revel new github.com/me/myapp/ -s path/to/my/skeleton
 ```
 
 Supported Schemes for the skeleton path
@@ -130,52 +139,38 @@ Supported Schemes for the skeleton path
 * https:// Git repository, will access like git clone https://....
 * git:// Git repository, will access like git clone git://....
 
-- Interestingly you can create a new app and run using the `-r` by doing a
+- You can create a new app and run using the `-r` by doing a
 `revel new -a github.com/me/myapp -r` 
 
 ```commandline
 revel new -a bitbucket.org/myorg/my-app
 ```
 
-#### New Vendored
-
-This creates a new application complete with a Gopkg.toml file needed to perform the vendoring.
-You must install the [dep](https://golang.github.io/dep/) tool prior to using this command, and 
-it must be on the path.
- 
-```commandline
-revel new bitbucket.org/myorg/my-app -V
-```
 
 <a name="run"></a>
 #### Run
 ```commandline 
+$ revel run -h
 Usage:
   revel [OPTIONS] run [run-OPTIONS]
-
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-
-Help Options:
-  -h, --help                  Show this help message
 
 [run command options]
       -a, --application-path= Path to application folder
       -m, --run-mode=         The mode to run the application in
-      -p, --port=             The port to listen
+      -p, --port=             The port to listen (default: -1)
       -n, --no-proxy          True if proxy server should not be started. This will only update the main and routes files on change
-
+```
+Example usage
+```
 // run in dev mode
-revel run -a github.com/mycorp/mega-app
+$ revel run -a github.com/mycorp/mega-app
 
 // run in prod mode on port 9999
-revel run -a github.com/mycorp/mega-app -m prod -p 9999
+$ revel run -a github.com/mycorp/mega-app -m prod -p 9999
 ```
 Run creates a proxy container to run your application in, it also can watch your file for changes
 and if any changes are made it can redeploy the application (if Go source files are changed), or
-recompile the templates. It also downloads all necessary libraries if they are not in the GOPATH
+recompile the templates. It also downloads all necessary libraries
 
 - Creates main and routes Go source files and compiles the project for you 
 - Runs a Proxy which will display any compile errors or template errors
@@ -192,21 +187,13 @@ you don't need to keep track of what ports are being used
 <a name="build"></a>
 #### Build
 ```commandline
-
+revel build -h
 Usage:
   revel [OPTIONS] build [build-OPTIONS]
 
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-
-Help Options:
-  -h, --help                  Show this help message
-
 [build command options]
-      -t, --target-path=      Path to target folder. Folder will be completely deleted if it exists
       -a, --application-path= Path to application folder
+      -t, --target-path=      Path to target folder. Folder will be completely deleted if it exists
       -m, --run-mode=         The mode to run the application in
       -s, --include-source    Copy the source code as well
 
@@ -232,21 +219,16 @@ in `conf,public,app/views`. this is configured by `package.folders` in the app.c
 <a name="package"></a>
 #### Package
 ```commandline
+revel package -h
 Usage:
   revel [OPTIONS] package [package-OPTIONS]
 
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-
-Help Options:
-  -h, --help                  Show this help message
-
 [package command options]
-      -m, --run-mode=         The mode to run the application in
       -a, --application-path= Path to application folder
+      -t, --target-path=      Full path and filename of target package to deploy
+      -m, --run-mode=         The mode to run the application in
       -s, --include-source    Copy the source code as well
+
 
 ```
 
@@ -272,19 +254,13 @@ in `conf,public,app/views`. this is configured by `package.folders` in the app.c
 
 #### Clean
 ```commandline
+revel clean -h
 Usage:
   revel [OPTIONS] clean [clean-OPTIONS]
 
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-
-Help Options:
-  -h, --help                  Show this help message
-
 [clean command options]
       -a, --application-path= Path to application folder
+
 
 ```
 
@@ -298,20 +274,13 @@ Help Options:
 <a name="test"></a>
 #### Test
 ```commandline
+revel test -h
 Usage:
   revel [OPTIONS] test [test-OPTIONS]
 
-Application Options:
-  -v, --debug                 If set the logger is set to verbose
-      --historic-run-mode     If set the runmode is passed a string not json
-  -X, --build-flags=          These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-
-Help Options:
-  -h, --help                  Show this help message
-
 [test command options]
-      -m, --run-mode=         The mode to run the application in
       -a, --application-path= Path to application folder
+      -m, --run-mode=         The mode to run the application in
       -f, --suite-function=   The suite.function
 
 ```

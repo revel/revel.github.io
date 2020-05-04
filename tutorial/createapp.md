@@ -8,7 +8,7 @@ Use the [`revel`](/manual/tool.html#mew) command line tool to create a new appli
 
 $ export GOPATH="/home/me/gostuff"
 $ cd $GOPATH
-$ revel new myapp
+$ revel new -a myapp
 Revel executing: create a skeleton Revel application
 Your application has been created in:
    /home/me/gostuff/myapp
@@ -30,6 +30,17 @@ That is why you see the revel engine is listening on port X and Revel proxy is l
 port Y.
 
 
+$ revel run -a myapp
+Revel executing: run a Revel application
+WARN  20:12:59 harness.go:114: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
+Proxy server is listening on  :9000
+```
+
+```commandline
+
+$ revel new -a github.com/myaccount/myapp
+$ revel run -a github.com/myaccount/myapp
+```
 Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a notification that your app is ready.
 
 ![Your Application Is Ready](/img/YourApplicationIsReady.png)

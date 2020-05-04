@@ -322,3 +322,7 @@ func (c App) ProcessForm(username, input string) revel.Result {
 ```
 
 
+## Custom MUX
+Revel provides an ability to add a custom Mux into the framework. This is useful if you are
+using a package that already includes a HTTP mux (such as Go swagger or Hugo). See [here](custom-mux.html) 
+for details

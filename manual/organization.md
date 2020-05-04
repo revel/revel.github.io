@@ -11,7 +11,32 @@ Revel requires itself and the user application to be installed into a GOPATH lay
 ## Default Layout
 
 Below is the recommended layout of a Revel application, supplemented with
-domain entities and services. 
+domain entities and services. (version 1+)
+ 
+- `my_gocode/`                  - GOPATH root
+    - `go.mod`                      - The go.mod folder
+    - `entities/`            - domain entities
+    - `app/`                 - app sources
+        - `controllers/`     - app [controllers](controllers.html)
+            - `init.go`      - [interceptor](interceptors.html) registration
+        - `models/`          - app domain models
+        - `jobs/`            - app domain [jobs](/modules/jobs.html)
+        - `services/`        - app domain services
+        - `routes/`          - [reverse routes](routing.html#ReverseRouting) (generated code)
+        - `views/`           - [templates](templates.html)
+        - `tmp/`             - app main file, generated code
+    - `tests/`           -  [test suites](/modules/testing.html)
+    - `conf/`            - configuration files
+        - `app.conf`       - [main configuration](appconf.html) file
+        - `routes`         -  [routes](routes.html) definition file
+    - `messages/`        - i18n [message](i18n-messages.html) files
+    - `public/`          - [static/public assets](/modules/static.html)
+        - `css/`           - stylesheet files
+        - `js/`            - javascript files
+        - `images/`        - image files
+
+
+Prior to version 1 this is the default layout created
 
 - `my_gocode/`                  - GOPATH root
   - `src/`                      - GOPATH src/ directory
