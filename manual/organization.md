@@ -14,7 +14,7 @@ Below is the recommended layout of a Revel application, supplemented with
 domain entities and services. (version 1+)
  
 - `my_gocode/`                  - GOPATH root
-    - `go.mod`                      - The go.mod folder
+    - `go.mod`                  - The go.mod file
     - `entities/`            - domain entities
     - `app/`                 - app sources
         - `controllers/`     - app [controllers](controllers.html)

@@ -31,7 +31,7 @@ Application Options:
       --historic-run-mode    If set the runmode is passed a string not json
       --historic-build-mode  If set the code is scanned using the original parsers, not the go.1.11+
   -X, --build-flags=         These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-      --gomod-flags=         These flags will execut go mod commands for each flag, this happens during the build process
+      --gomod-flags=         These flags will execute go mod commands for each flag, this happens during the build process
 
 Available commands:
   build
