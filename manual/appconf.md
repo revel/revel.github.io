@@ -449,6 +449,20 @@ eavesdropping.
 Default: `false` in `dev` mode, otherwise `true`
 
 
+#### `cookie.samesite`
+
+The SameSite attribute of the Set-Cookie HTTP response header allows you to declare if your cookie should be restricted to a first-party or same-site context. As of mid-2020, browsers are warning that cookies that do not have SameSite set will soon be blocked unless they also have Secure set. So once browsers start enforcing this, for local development where you are not using SSL and thus cannot use Secure, you will likely need to set `cookie.samesite` to `strict`. And where possible, it is best practice to set to `strict` in production too.
+
+```ini
+  cookie.samesite = default
+  cookie.samesite = lax
+  cookie.samesite = strict
+  cookie.samesite = none
+```
+
+Default: `default`
+
+
 
 
 ### Session
