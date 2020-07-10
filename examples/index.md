@@ -5,10 +5,10 @@ layout: examples
 
 Revel provides a few example applications to demonstrate typical usage. 
 
-{% highlight sh %}
-git clone https://github.com/revel/examples.git $GOPATH/src/github.com/revel/examples
-revel run github.com/revel/examples/booking
-{% endhighlight  %}
+```
+git clone https://github.com/revel/examples.git
+revel run examples/booking
+```
 
 
 <a class="btn btn-success btn-sm" href="https://github.com/revel/examples" role="button"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Examples Repository</a>

@@ -134,7 +134,7 @@ func (c MyController) XTemp() revel.Result {
 ## Controller.RenderFile() / Controller.RenderFileName()
 
 Within an action it is sometimes necessary to serve a file (e.g. an attachment).
-For this case the functions [Controller.RenderFile()](https://godoc.org/github.com/revel/revel#Controller.RenderFile) and For this case the functions [Controller.RenderFileName()](https://godoc.org/github.com/revel/revel#Controller.RenderFileName) are there.
+For this case the functions [Controller.RenderFile()](https://godoc.org/github.com/revel/revel#Controller.RenderFile) and [Controller.RenderFileName()](https://godoc.org/github.com/revel/revel#Controller.RenderFileName) are there.
 
 The main difference is that `Controller.RenderFile()` needs an `*os.File` and `Controller.RenderFileName()` takes a file path as a string. Both require a Content-Disposition option which can be `revel.Attachment` or `revel.Inline`.
 
