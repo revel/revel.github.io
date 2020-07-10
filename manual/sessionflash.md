@@ -47,7 +47,8 @@ function to extract the data. The `Session.Get` call will automatically inflate 
 if it exists in the map. The inflated result will be a `map[string]interface{}`. You can
 also do a [revel.Session.GetInto()](https://godoc.org/github.com/revel/revel/session#Session.GetInto)
 passing a reference to the object you want inflated. and it will populate that object if 
-it exists 
+it exists. If the session object does not exist, a [SESSION_VALUE_NOT_FOUND](https://godoc.org/github.com/revel/revel/session#pkg-variables)
+error is returned.
 
 The default session engine is the [revel-cookie engine](/manual/session-engine#cookie) 
 
