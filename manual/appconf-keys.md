@@ -47,6 +47,7 @@ This is a comprehensive list of keys and their possible values for the Revel
 |`cookie.domain` | `` | The domain of the cookie |
 |`cookie.prefix` | `` | The name of the cookie prefix  |
 |`cookie.secure` |  `http.ssl` | True if secure cookie |
+|`cookie.samesite` | `` | Valid values `default`, `strict`, `lax`, `none` |
 |`format.date` | `"2006-01-02"` | The default format of date |
 |`format.datetime` | `"2006-01-02 15:04"` | The default format of date time |
 |`http.host`  | `localhost` | The hostname |
