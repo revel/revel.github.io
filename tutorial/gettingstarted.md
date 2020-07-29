@@ -58,7 +58,8 @@ Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the
 
 Verify that it works:
 
-	$ Usage:
+	$ revel
+	Usage:
         revel [OPTIONS] <command>
       
       Application Options:
