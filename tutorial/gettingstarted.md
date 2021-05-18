@@ -58,25 +58,25 @@ Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the
 
 Verify that it works:
 
-        $ revel
-        Usage:
-          revel [OPTIONS] <command>
+  $ revel
+  Usage:
+    revel [OPTIONS] <command>
 
-        Application Options:
-          -v, --debug                If set the logger is set to verbose
-              --historic-run-mode    If set the runmode is passed a string not json
-              --historic-build-mode  If set the code is scanned using the original parsers, not the go.1.11+
-          -X, --build-flags=         These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
-              --gomod-flags=         These flags will execute go mod commands for each flag, this happens during the build process
+  Application Options:
+    -v, --debug                If set the logger is set to verbose
+        --historic-run-mode    If set the runmode is passed a string not json
+        --historic-build-mode  If set the code is scanned using the original parsers, not the go.1.11+
+    -X, --build-flags=         These flags will be used when building the application. May be specified multiple times, only applicable for Build, Run, Package, Test commands
+        --gomod-flags=         These flags will execute go mod commands for each flag, this happens during the build process
 
-        Available commands:
-          build
-          clean
-          new
-          package
-          run
-          test
-          version
+  Available commands:
+    build
+    clean
+    new
+    package
+    run
+    test
+    version
 
 
 <a href="createapp.html" class="btn btn-sm btn-success" role="button">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a> [Create a new Revel application.](createapp.html)
