@@ -5,8 +5,6 @@ layout: tutorial
 
 Use the [`revel`](/manual/tool.html#mew) command line tool to create a new application in your GOPATH and run it:
 ```commandline
-
-$ export GOPATH="/home/me/gostuff"
 $ cd $GOPATH
 $ revel new -a myapp
 Revel executing: create a skeleton Revel application
