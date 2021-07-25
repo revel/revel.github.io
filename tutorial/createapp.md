@@ -13,6 +13,12 @@ Revel executing: create a skeleton Revel application
 Your application has been created in:
    /home/me/gostuff/myapp
 
+# https://golangbyexample.com/go-mod-tidy/
+cd /home/me/gostuff/myapp
+go mod tidy -v
+
+cd ..
+
 You can run it with:
    revel run -a  myapp
 
