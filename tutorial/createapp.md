@@ -17,8 +17,6 @@ Your application has been created in:
 cd /home/me/gostuff/myapp
 go mod tidy -v
 
-cd ..
-
 You can run it with:
    revel run -a  myapp
 
