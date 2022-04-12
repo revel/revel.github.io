@@ -28,7 +28,7 @@ domain entities and services. (version 1+)
     - `tests/`           -  [test suites](/modules/testing.html)
     - `conf/`            - configuration files
         - `app.conf`       - [main configuration](appconf.html) file
-        - `routes`         -  [routes](routes.html) definition file
+        - `routes`         -  [routes](routing.html) definition file
     - `messages/`        - i18n [message](i18n-messages.html) files
     - `public/`          - [static/public assets](/modules/static.html)
         - `css/`           - stylesheet files
