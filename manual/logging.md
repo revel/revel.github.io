@@ -174,7 +174,7 @@ For file logging revel uses [lumberjack.Logger](https://github.com/natefinch/lum
 to stream the output to file. The following configuration options can be set
 ```ini
 log.compressBackups = true # Compress the backups after rotation default true
-log.maxsize = 1024         # The max file size before rotation in MB degault 10G
+log.maxsize = 1024         # The max file size before rotation in MB default 10G
 log.maxagelog.maxage= 14   # The max age of the file before rotation occurs default 14 days
 log.maxbackups = 14        # The max number of old log files to keep default 14
 ```
@@ -184,7 +184,7 @@ These are global options, you can however apply unique options by
 
 ##### More configuration options
 ```ini
-log.colorize = true   # Turns off colorization for console output
+log.colorize = true   # Turns on colorization for console output
 log.smallDate = true  # Outputs just the time for the terminal output
 ```
 
@@ -204,7 +204,7 @@ The following code adds a new output called stdoutjson
 		}
 ```
 This setting in `app.conf` would activate the above logger for all log messages of level Warn
-and error messages from the `module=revel`
+and Error from the `module=revel`
 ```ini
 log.warn.output = stdoutjson
 log.error.filter.module.revel = longtermstorage 
@@ -218,7 +218,7 @@ log.error.filter.module.revel = longtermstorage
 `section=requestlog` assigned to them. If `log.request.output` is not specified then messages will
 be logged directly to the same handler handling the `info` log level. 
  
- - `log.trace` usage in initialization files is deprecated and replace by `log.debug`
+ - `log.trace` usage in initialization files is deprecated and replaced  by `log.debug`
  - If `log.critical` is not specified and `log.error` has been. Then the error handler 
  will receive the critical messages as well
 
