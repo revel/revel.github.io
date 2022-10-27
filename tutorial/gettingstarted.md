@@ -56,6 +56,8 @@ Ensure the `$GOPATH/bin` directory is in your PATH so that you can reference the
 
 	export PATH="$PATH:$GOPATH/bin"
 
+NOTE: As of Go 1.16 you should use `go install` rather than `go get` to install `revel` globally.
+
 Verify that it works:
 	
 ```
