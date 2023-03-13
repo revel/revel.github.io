@@ -29,17 +29,16 @@ Revel proxy is listening, point your browser to : 9000
 That is why you see the revel engine is listening on port X and Revel proxy is listening on 
 port Y.
 
-
+```commandline
 $ revel run -a myapp
 Revel executing: run a Revel application
-WARN  20:12:59 harness.go:114: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
-Proxy server is listening on  :9000
-```
-
-```commandline
-
-$ revel new -a github.com/myaccount/myapp
-$ revel run -a github.com/myaccount/myapp
+WARN  12:06:56 harness.go:179: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application
+Change detected, recompiling
+Parsing packages, (may require download if not cached)... Completed
+INFO  12:07:10    app     run.go:34: Running revel server
+INFO  12:07:10    app   plugin.go:9: Go to /@tests to run the tests.
+Revel engine is listening on.. localhost:58990
+Revel proxy is listening, point your browser to : 9000
 ```
 Open your browser to [http://localhost:9000/](http://localhost:9000/) to see a notification that your app is ready.
 
