@@ -36,7 +36,7 @@ Git and Mercurial are required to allow `go get` to clone various dependencies.
 
 To get the Revel framework, run
 
-	go get github.com/revel/revel
+	go install github.com/revel/cmd/revel@latest
 
 This command does a couple of things:
 

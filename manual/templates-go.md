@@ -100,11 +100,17 @@ Assists in constructing a HTML checkbox `input` element, eg:
 
 Format a date according to the application's default [date](appconf.html#formatdate) and [datetime](appconf.html#formatdatetime) format.
 
+`timeago` accept a second argument, either string or variable set in `ViewArgs` telling (ISO 639-1 code) as language to be used, otherwise use `i18n.default_language` config value, for preconfigured language : de, fr, ko, pt, sp, tr, zh and default en.
+In last resort, internationalisation will apply on timeago english term, and missing translation will be displayed with `i18n.unknown_format` config value.
+
 The example below assumes `dateArg := time.Now()`:
 
 {% capture ex %}{% raw %}
 {{date .MyDate}}
 {{datetime .MyDateTime}}
+{{timeago .MyDateTime}}
+{{timeago .MyDateTime "fr"}}
+{{timeago .MyDateTime .lang}}
 {% endraw %}{% endcapture %}
 {% highlight htmldjango %}{{ex}}{% endhighlight %}
 
